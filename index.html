@@ -136,8 +136,6 @@ footer {
 </head>
 
 <body>
- <img src="trabant.PNG" alt="Trabant" style="max-width:200px; display:block; margin:20px auto;"> 
-<div class="wrapper">
 
 <header>
   <img src="logo .PNG" alt="Die Isolatoren Deluxe Logo">
@@ -149,7 +147,10 @@ footer {
 
 <div class="label">FAHRZEUG</div>
 <div class="vehicles">
-  <div class="vehicle active" onclick="setVehicle(50,this)">Trabant<br>1:50</div>
+  <div class="vehicle active">
+  <img src="trabant.PNG" alt="Trabant" class="vehicle-icon">
+  <div>Trabant<br>1:50</div>
+</div>
   <div class="vehicle" onclick="setVehicle(50,this)">Simson<br>1:50</div>
   <div class="vehicle" onclick="setVehicle(40,this)">MZ<br>1:40</div>
   <div class="vehicle" onclick="setVehicle(33,this)">Eigenes<br>1:33</div>
