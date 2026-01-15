@@ -2,199 +2,190 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="DDR Zweitakt Gemischrechner & Technik – Die Isolatoren Deluxe">
   <title>Die Isolatoren Deluxe</title>
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
-    :root {
-      --bg: #151515;
-      --card: #1f1f1f;
-      --text: #f1f1f1;
-      --muted: #aaaaaa;
-      --accent: #d4aa00;
-      --border: #2e2e2e;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    header {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #121212;
+      color: #f5f5f5;
       text-align: center;
-      padding: 60px 20px 40px;
     }
 
-    header h1 {
-      color: var(--accent);
-      font-size: 2.4rem;
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    /* Logo */
+    .logo {
+      max-width: 280px;
+      width: 100%;
+      margin: 0 auto 30px;
+      display: block;
+    }
+
+    h1 {
+      color: #d4aa00;
+      font-size: 2.5rem;
       margin-bottom: 10px;
     }
 
-    header p {
-      color: var(--muted);
+    .subtitle {
+      color: #cccccc;
+      font-size: 1.1rem;
+      margin-bottom: 40px;
+    }
+
+    .card {
+      background: #1e1e1e;
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+      text-align: left;
+    }
+
+    .card h2 {
+      color: #d4aa00;
+      margin-top: 0;
+    }
+
+    .card p {
+      line-height: 1.6;
       font-size: 1rem;
     }
 
-    main {
-      max-width: 900px;
-      margin: auto;
-      padding: 20px;
-    }
-
-    section {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 24px;
-      margin-bottom: 24px;
-    }
-
-    h2 {
-      color: var(--accent);
-      margin-bottom: 16px;
-      font-size: 1.4rem;
-    }
-
-    p {
-      margin-bottom: 12px;
-    }
-
-    label {
+    /* Rechner */
+    .calculator label {
       display: block;
-      margin-top: 14px;
-      font-size: 0.9rem;
-      color: var(--muted);
+      margin-top: 15px;
+      font-weight: bold;
     }
 
-    input, select {
+    .calculator input,
+    .calculator select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1rem;
+    }
+
+    .calculator button {
+      margin-top: 20px;
       width: 100%;
       padding: 12px;
-      margin-top: 6px;
-      background: #0f0f0f;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      color: var(--text);
-      font-size: 1rem;
-    }
-
-    button {
-      width: 100%;
-      margin-top: 20px;
-      padding: 14px;
-      background: var(--accent);
+      background: #d4aa00;
       color: #000;
+      font-size: 1.1rem;
+      font-weight: bold;
       border: none;
-      border-radius: 12px;
-      font-size: 1rem;
-      font-weight: 600;
+      border-radius: 10px;
       cursor: pointer;
-    }
-
-    button:hover {
-      opacity: 0.9;
     }
 
     .result {
       margin-top: 20px;
-      text-align: center;
       font-size: 1.2rem;
-      font-weight: 600;
-      color: var(--accent);
+      color: #00ff99;
+      font-weight: bold;
+      text-align: center;
     }
 
     footer {
-      text-align: center;
-      padding: 30px 20px;
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 2rem;
-      }
+      margin-top: 40px;
+      font-size: 0.9rem;
+      color: #777;
     }
   </style>
 </head>
 
 <body>
+  <div class="container">
 
-<header>
-  <h1>Die Isolatoren Deluxe</h1>
-  <p>DDR Zweitakt · Technik · Gemeinschaft</p>
-</header>
+    <!-- LOGO -->
+    <img src="Logo.PNG" alt="Die Isolatoren Deluxe Logo" class="logo">
 
-<main>
+    <h1>Die Isolatoren Deluxe</h1>
+    <div class="subtitle">
+      DDR Zweitakt · Technik · Gemeinschaft
+    </div>
 
-  <section>
-    <h2>Über das Projekt</h2>
-    <p>
-      <strong>Die Isolatoren Deluxe</strong> ist eine Plattform für
-      DDR-Zweitakt-Technik, Erfahrungsaustausch und praxisnahe Werkzeuge.
-    </p>
-    <p>
-      Reduziert auf das Wesentliche. Technik statt Marketing.
-    </p>
-  </section>
+    <!-- ÜBER DAS PROJEKT -->
+    <div class="card">
+      <h2>Über das Projekt</h2>
+      <p>
+        <strong>Die Isolatoren Deluxe</strong> ist eine Plattform für
+        DDR-Zweitakt-Technik, Erfahrungsaustausch und praxisnahe Werkzeuge.
+      </p>
+      <p>
+        Reduziert auf das Wesentliche.<br>
+        <strong>Technik statt Marketing.</strong>
+      </p>
+    </div>
 
-  <section>
-    <h2>Zweitakt-Gemischrechner</h2>
+    <!-- GEMISCHRECHNER -->
+    <div class="card calculator">
+      <h2>Zweitakt-Gemischrechner</h2>
 
-    <label for="fuel">Benzinmenge in Liter</label>
-    <input id="fuel" type="number" placeholder="z. B. 5" min="0" step="0.1">
+      <label for="liter">Benzinmenge (Liter)</label>
+      <input type="number" id="liter" placeholder="z. B. 5" step="0.1">
 
-    <label for="mix">Mischungsverhältnis</label>
-    <select id="mix">
-      <option value="50">1 : 50 (modern)</option>
-      <option value="33">1 : 33 (klassisch)</option>
-      <option value="25">1 : 25 (alt)</option>
-    </select>
+      <label for="ratio">Mischungsverhältnis</label>
+      <select id="ratio">
+        <option value="33">1 : 33</option>
+        <option value="40">1 : 40</option>
+        <option value="50">1 : 50</option>
+        <option value="custom">frei wählbar</option>
+      </select>
 
-    <button onclick="calculateOil()">Ölmenge berechnen</button>
+      <label for="customRatio">Eigenes Verhältnis (nur bei „frei wählbar“)</label>
+      <input type="number" id="customRatio" placeholder="z. B. 45">
 
-    <div class="result" id="output"></div>
-  </section>
+      <button onclick="calculate()">Berechnen</button>
 
-  <section>
-    <h2>Gemeinschaft</h2>
-    <p>
-      Wissen erhalten. Fehler vermeiden. Technik weitergeben.
-    </p>
-    <p>
-      Weitere Inhalte folgen.
-    </p>
-  </section>
+      <div class="result" id="result"></div>
+    </div>
 
-</main>
+    <footer>
+      © Die Isolatoren Deluxe – Gemeinschaft & Leidenschaft
+    </footer>
 
-<footer>
-  © 2026 · Die Isolatoren Deluxe
-</footer>
+  </div>
 
-<script>
-  function calculateOil() {
-    const fuel = parseFloat(document.getElementById("fuel").value);
-    const ratio = parseInt(document.getElementById("mix").value);
-    const output = document.getElementById("output");
+  <script>
+    function calculate() {
+      const liter = parseFloat(document.getElementById("liter").value);
+      const ratioSelect = document.getElementById("ratio").value;
+      const customRatio = parseFloat(document.getElementById("customRatio").value);
+      const resultDiv = document.getElementById("result");
 
-    if (!fuel || fuel <= 0) {
-      output.textContent = "Bitte eine gültige Benzinmenge eingeben.";
-      return;
+      if (!liter || liter <= 0) {
+        resultDiv.textContent = "Bitte eine gültige Benzinmenge eingeben.";
+        return;
+      }
+
+      let ratio;
+      if (ratioSelect === "custom") {
+        if (!customRatio || customRatio <= 0) {
+          resultDiv.textContent = "Bitte ein gültiges eigenes Verhältnis eingeben.";
+          return;
+        }
+        ratio = customRatio;
+      } else {
+        ratio = parseFloat(ratioSelect);
+      }
+
+      const oilMl = (liter * 1000) / ratio;
+      resultDiv.textContent =
+        `Benötigte Ölmenge: ${oilMl.toFixed(1)} ml`;
     }
-
-    const oil = (fuel * 1000) / ratio;
-    output.textContent = `Benötigte Ölmenge: ${oil.toFixed(1)} ml`;
-  }
-</script>
-
+  </script>
 </body>
 </html>
