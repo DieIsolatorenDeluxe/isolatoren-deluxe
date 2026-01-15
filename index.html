@@ -30,6 +30,8 @@ header img {
   max-width: 260px;
   width: 100%;
   margin-bottom: 15px;
+  background: transparent;
+  filter: drop-shadow(0 0 20px rgba(0,0,0,0.9));
 }
 
 header h1 {
@@ -180,8 +182,8 @@ footer {
     <option value="oil">Öl → Benzin</option>
   </select>
 
-  <div class="label">EINGABE</div>
-  <input type="number" id="amount" placeholder="Wert eingeben">
+  <div class="label" id="inputLabel">WIEVIEL LITER BENZIN GETANKT?</div>
+<input type="number" id="amount" placeholder="z.B. 10">
 
   <button onclick="calculate()">BERECHNEN</button>
 
@@ -232,7 +234,19 @@ function calculate() {
     const fuel = (amount * ratio) / 1000;
     result.innerText = fuel.toFixed(2) + " l Benzin";
   }
-}
+}// Eingabebeschriftung je nach Modus anpassen
+document.getElementById("mode").addEventListener("change", () => {
+  const label = document.getElementById("inputLabel");
+  const input = document.getElementById("amount");
+
+  if (document.getElementById("mode").value === "fuel") {
+    label.innerText = "WIEVIEL LITER BENZIN GETANKT?";
+    input.placeholder = "z.B. 10";
+  } else {
+    label.innerText = "WIEVIEL ML ÖL VORHANDEN?";
+    input.placeholder = "z.B. 300";
+  }
+});
 </script>
 
 </body>
