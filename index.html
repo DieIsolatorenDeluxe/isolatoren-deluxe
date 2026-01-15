@@ -1,193 +1,239 @@
 <!DOCTYPE html>
 <html lang="de">
-
 <head>
-  <meta charset="UTF-8">
-  <title>Die Isolatoren Deluxe</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zweitakt-Mischrechner – Die Isolatoren Deluxe</title>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+/* ===== Grundlook ===== */
+body {
+  margin: 0;
+  background: #0f0f0f;
+  color: #e6e6e6;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #121212;
-      color: #f5f5f5;
-      text-align: center;
-    }
+.wrapper {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 20px;
+}
 
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 40px 20px;
-    }
+/* ===== Header ===== */
+header {
+  text-align: center;
+  margin-bottom: 25px;
+}
 
-    /* Logo */
-    .logo {
-      max-width: 280px;
-      width: 100%;
-      margin: 0 auto 30px;
-      display: block;
-    }
+header img {
+  max-width: 260px;
+  width: 100%;
+  margin-bottom: 15px;
+}
 
-    h1 {
-      color: #d4aa00;
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
+header h1 {
+  margin: 0;
+  font-size: 22px;
+  color: #d4aa00;
+  letter-spacing: 1px;
+}
 
-    .subtitle {
-      color: #cccccc;
-      font-size: 1.1rem;
-      margin-bottom: 40px;
-    }
+header p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: #aaa;
+}
 
-    .card {
-      background: #1e1e1e;
-      border-radius: 16px;
-      padding: 30px;
-      margin-bottom: 30px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-      text-align: left;
-    }
+/* ===== Bedienfeld ===== */
+.panel {
+  background: #1a1a1a;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: inset 0 0 25px rgba(0,0,0,0.9);
+}
 
-    .card h2 {
-      color: #d4aa00;
-      margin-top: 0;
-    }
+/* kleine Beschriftung */
+.label {
+  font-size: 12px;
+  color: #aaa;
+  letter-spacing: 1px;
+  margin-top: 18px;
+}
 
-    .card p {
-      line-height: 1.6;
-      font-size: 1rem;
-    }
+/* ===== Fahrzeuge ===== */
+.vehicles {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
 
-    /* Rechner */
-    .calculator label {
-      display: block;
-      margin-top: 15px;
-      font-weight: bold;
-    }
+.vehicle {
+  background: #2a2a2a;
+  border-radius: 10px;
+  padding: 12px;
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid #2a2a2a;
+  font-size: 14px;
+}
 
-    .calculator input,
-    .calculator select {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border-radius: 8px;
-      border: none;
-      font-size: 1rem;
-    }
+.vehicle.active {
+  border-color: #d4aa00;
+  color: #d4aa00;
+}
 
-    .calculator button {
-      margin-top: 20px;
-      width: 100%;
-      padding: 12px;
-      background: #d4aa00;
-      color: #000;
-      font-size: 1.1rem;
-      font-weight: bold;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-    }
+/* ===== Skalenanzeige ===== */
+.scale {
+  margin-top: 15px;
+  text-align: center;
+}
 
-    .result {
-      margin-top: 20px;
-      font-size: 1.2rem;
-      color: #00ff99;
-      font-weight: bold;
-      text-align: center;
-    }
+.scale-value {
+  font-size: 42px;
+  font-weight: bold;
+  color: #d4aa00;
+}
 
-    footer {
-      margin-top: 40px;
-      font-size: 0.9rem;
-      color: #777;
-    }
-  </style>
+/* ===== Eingaben ===== */
+input, select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  background: #2b2b2b;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+/* ===== Button ===== */
+button {
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px;
+  background: #d4aa00;
+  color: #000;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* ===== Ergebnis ===== */
+.result-box {
+  margin-top: 20px;
+  padding: 15px;
+  background: #111;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+}
+
+.result-value {
+  font-size: 28px;
+  color: #8cffb0;
+  margin-top: 5px;
+}
+
+/* ===== Footer ===== */
+footer {
+  margin-top: 35px;
+  text-align: center;
+  font-size: 11px;
+  color: #777;
+}
+</style>
 </head>
 
 <body>
-  <div class="container">
+<div class="wrapper">
 
-    <!-- LOGO -->
-    <img src="Logo.PNG" alt="Die Isolatoren Deluxe Logo" class="logo">
+<header>
+  <!-- Logo als PNG ohne weißen Rand -->
+  <img src="Logo.PNG" alt="Die Isolatoren Deluxe">
+  <h1>ZWEITAKT-MISCHRECHNER</h1>
+  <p>DDR Zweitakt · Technik · Gemeinschaft</p>
+</header>
 
-    <h1>Die Isolatoren Deluxe</h1>
-    <div class="subtitle">
-      DDR Zweitakt · Technik · Gemeinschaft
-    </div>
+<div class="panel">
 
-    <!-- ÜBER DAS PROJEKT -->
-    <div class="card">
-      <h2>Über das Projekt</h2>
-      <p>
-        <strong>Die Isolatoren Deluxe</strong> ist eine Plattform für
-        DDR-Zweitakt-Technik, Erfahrungsaustausch und praxisnahe Werkzeuge.
-      </p>
-      <p>
-        Reduziert auf das Wesentliche.<br>
-        <strong>Technik statt Marketing.</strong>
-      </p>
-    </div>
-
-    <!-- GEMISCHRECHNER -->
-    <div class="card calculator">
-      <h2>Zweitakt-Gemischrechner</h2>
-
-      <label for="liter">Benzinmenge (Liter)</label>
-      <input type="number" id="liter" placeholder="z. B. 5" step="0.1">
-
-      <label for="ratio">Mischungsverhältnis</label>
-      <select id="ratio">
-        <option value="33">1 : 33</option>
-        <option value="40">1 : 40</option>
-        <option value="50">1 : 50</option>
-        <option value="custom">frei wählbar</option>
-      </select>
-
-      <label for="customRatio">Eigenes Verhältnis (nur bei „frei wählbar“)</label>
-      <input type="number" id="customRatio" placeholder="z. B. 45">
-
-      <button onclick="calculate()">Berechnen</button>
-
-      <div class="result" id="result"></div>
-    </div>
-
-    <footer>
-      © Die Isolatoren Deluxe – Gemeinschaft & Leidenschaft
-    </footer>
-
+  <div class="label">FAHRZEUG</div>
+  <div class="vehicles">
+    <div class="vehicle active" onclick="setVehicle(50, this)">Trabant</div>
+    <div class="vehicle" onclick="setVehicle(50, this)">Simson</div>
+    <div class="vehicle" onclick="setVehicle(40, this)">MZ</div>
+    <div class="vehicle" onclick="setVehicle(null, this)">Eigenes</div>
   </div>
 
-  <script>
-    function calculate() {
-      const liter = parseFloat(document.getElementById("liter").value);
-      const ratioSelect = document.getElementById("ratio").value;
-      const customRatio = parseFloat(document.getElementById("customRatio").value);
-      const resultDiv = document.getElementById("result");
+  <div class="label">MISCHUNGSVERHÄLTNIS</div>
+  <div class="scale">
+    <div class="scale-value">1 : <span id="ratioDisplay">50</span></div>
+  </div>
+  <input type="number" id="ratio" value="50" min="20" max="100" oninput="updateRatio()">
 
-      if (!liter || liter <= 0) {
-        resultDiv.textContent = "Bitte eine gültige Benzinmenge eingeben.";
-        return;
-      }
+  <div class="label">MODUS</div>
+  <select id="mode">
+    <option value="fuel">Benzin → Öl</option>
+    <option value="oil">Öl → Benzin</option>
+  </select>
 
-      let ratio;
-      if (ratioSelect === "custom") {
-        if (!customRatio || customRatio <= 0) {
-          resultDiv.textContent = "Bitte ein gültiges eigenes Verhältnis eingeben.";
-          return;
-        }
-        ratio = customRatio;
-      } else {
-        ratio = parseFloat(ratioSelect);
-      }
+  <div class="label">EINGABE</div>
+  <input type="number" id="amount" placeholder="Wert eingeben">
 
-      const oilMl = (liter * 1000) / ratio;
-      resultDiv.textContent =
-        `Benötigte Ölmenge: ${oilMl.toFixed(1)} ml`;
-    }
-  </script>
+  <button onclick="calculate()">BERECHNEN</button>
+
+  <div class="result-box">
+    <div class="label">ERGEBNIS</div>
+    <div class="result-value" id="result">—</div>
+  </div>
+
+</div>
+
+<footer>
+  Impressum · J. Sonneborn · 2026<br>
+  Privates, nicht-kommerzielles Projekt
+</footer>
+
+</div>
+
+<script>
+function setVehicle(value, el) {
+  document.querySelectorAll(".vehicle").forEach(v => v.classList.remove("active"));
+  el.classList.add("active");
+  if (value) {
+    document.getElementById("ratio").value = value;
+    updateRatio();
+  }
+}
+
+function updateRatio() {
+  document.getElementById("ratioDisplay").innerText =
+    document.getElementById("ratio").value;
+}
+
+function calculate() {
+  const ratio = parseFloat(document.getElementById("ratio").value);
+  const amount = parseFloat(document.getElementById("amount").value);
+  const mode = document.getElementById("mode").value;
+  const result = document.getElementById("result");
+
+  if (!ratio || !amount) {
+    result.innerText = "—";
+    return;
+  }
+
+  if (mode === "fuel") {
+    const oil = (amount * 1000) / ratio;
+    result.innerText = oil.toFixed(0) + " ml Öl";
+  } else {
+    const fuel = (amount * ratio) / 1000;
+    result.innerText = fuel.toFixed(2) + " l Benzin";
+  }
+}
+</script>
+
 </body>
-
 </html>
