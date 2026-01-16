@@ -6,7 +6,7 @@
 <title>Zweitakt-Mischrechner – die Isolatoren Deluxe</title>
 
 <style>
-/* ===== GRUNDSTIL ===== */
+/* ===== BASIS ===== */
 body {
   margin: 0;
   background: #0e0e0e;
@@ -45,10 +45,19 @@ header img {
 }
 
 header h1 {
-  margin: 10px 0 0;
-  font-size: 22px;
+  margin: 12px 0 0;
+  font-size: 20px;
   color: #d4aa00;
-  letter-spacing: 1px;
+  letter-spacing: 3px;
+  font-weight: 600;
+}
+
+header h1 span {
+  display: block;
+  margin-top: 4px;
+  font-size: 14px;
+  letter-spacing: 4px;
+  color: #bbb;
 }
 
 header p {
@@ -115,6 +124,7 @@ button {
   max-width: 90px;
   display: block;
   margin: 0 auto 6px;
+  filter: brightness(1.15) contrast(1.1);
 }
 
 .vehicle.active {
@@ -183,59 +193,45 @@ button {
   color: #bbb;
 }
 
-/* ===== SHOP ===== */
-.shop {
-  margin-top: 30px;
-}
-
-.shop-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-}
-
-.shop-grid img {
-  width: 100%;
-  border: 1px solid #333;
-}
-
-/* ===== FOOTER WERKSTATTSCHILD ===== */
-.footer-panel {
+/* ===== SOCIAL PANEL ===== */
+.social-panel {
   margin-top: 40px;
   padding: 16px 10px;
-  border-top: 2px solid #666;
-  border-bottom: 1px solid #333;
-  background: #121212;
+  border: 2px solid #666;
+  background: #141414;
   text-align: center;
 }
 
-.footer-panel .title {
-  font-size: 12px;
-  letter-spacing: 1px;
-  color: #bbb;
-  margin-bottom: 6px;
-}
-
-.footer-panel .subtitle {
-  font-size: 11px;
-  color: #888;
+.social-panel .title {
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: #d4aa00;
   margin-bottom: 10px;
 }
 
-.footer-panel a {
+.social-buttons {
+  display: grid;
+  gap: 8px;
+}
+
+.social-buttons a {
   display: block;
+  padding: 10px;
+  border: 1px solid #d4aa00;
+  background: #1a1a1a;
   color: #d4aa00;
   text-decoration: none;
-  font-size: 12px;
-  margin: 4px 0;
+  font-size: 13px;
+  letter-spacing: 1px;
 }
 
-.footer-panel a:hover {
-  text-decoration: underline;
+.social-buttons a:hover {
+  background: #222;
 }
 
-.footer-panel .impressum {
-  margin-top: 10px;
+.impressum {
+  margin-top: 12px;
+  text-align: center;
   font-size: 11px;
   color: #777;
 }
@@ -247,7 +243,7 @@ button {
 
 <header>
   <img src="logo.png" alt="die Isolatoren Deluxe">
-  <h1>ZWEITAKT-MISCHRECHNER</h1>
+  <h1>ZWEITAKT<br><span>MISCHRECHNER</span></h1>
   <p>Technik · Gemeinschaft · Zweitakt</p>
 </header>
 
@@ -304,42 +300,18 @@ button {
 
 </div>
 
-<div class="shop">
-  <h3>DEKO & MERCH (Ideen)</h3>
-  <div class="shop-grid">
-    <img src="shirt_mockup.png">
-    <img src="sticker_mockup.png">
-    <img src="deko_mockup.png">
-    <img src="tasse_mockup.png">
-    <img src="keychain_mockup.png">
-    <img src="plasticcup_mockup.png">
-    <img src="cap_mockup.png">
-    <img src="jacket_mockup.png">
-    <img src="banner_mockup.png">
+<div class="social-panel">
+  <div class="title">FOLGE DER GEMEINSCHAFT</div>
+  <div class="social-buttons">
+    <a href="https://www.instagram.com/isolator_jan?igsh=MTRyc3R5azR0eWx1cw%3D%3D&utm_source=qr" target="_blank">▶ INSTAGRAM BESUCHEN</a>
+    <a href="https://www.facebook.com/share/1Gk158Fub9/?mibextid=wwXIfr" target="_blank">▶ FACEBOOK-SEITE ÖFFNEN</a>
+    <a href="https://www.tiktok.com/@mullemannjan?_r=1&_t=ZG-937w29KVJg0" target="_blank">▶ TIKTOK-KANAL ANSEHEN</a>
   </div>
-  <p style="font-size:11px;color:#888;margin-top:6px;">
-    Beispiele & Mockups – Anfragen über Social Media
-  </p>
 </div>
 
-<footer class="footer-panel">
-  <div class="title">FOLGE DER GEMEINSCHAFT</div>
-  <div class="subtitle">Austausch · Bilder · Kontakt · Ideen</div>
-
-  <a href="https://www.instagram.com/isolator_jan?igsh=MTRyc3R5azR0eWx1cw%3D%3D&utm_source=qr" target="_blank">
-    ▶ Instagram besuchen
-  </a>
-  <a href="https://www.facebook.com/share/1Gk158Fub9/?mibextid=wwXIfr" target="_blank">
-    ▶ Facebook-Seite öffnen
-  </a>
-  <a href="https://www.tiktok.com/@mullemannjan?_r=1&_t=ZG-937w29KVJg0" target="_blank">
-    ▶ TikTok-Kanal ansehen
-  </a>
-
-  <div class="impressum">
-    Impressum: J. Sonneborn · privat · nicht-kommerziell · 2026
-  </div>
-</footer>
+<div class="impressum">
+  Impressum: J. Sonneborn · privat · nicht-kommerziell · 2026
+</div>
 
 </div>
 
@@ -369,15 +341,12 @@ mode.onchange = () => {
 
 function calculate() {
   const amount = parseFloat(document.getElementById("amount").value);
-  if (!amount) return;
+  if (!amount || amount <= 0) return;
 
   let usedRatio = ratio;
   if (ratio === 0) {
     usedRatio = parseFloat(document.getElementById("customRatio").value);
-    if (!usedRatio) {
-      alert("Bitte Mischverhältnis angeben.");
-      return;
-    }
+    if (!usedRatio || usedRatio <= 0) return;
   }
 
   let text = "";
