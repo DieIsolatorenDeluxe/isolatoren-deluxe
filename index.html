@@ -6,7 +6,7 @@
 <title>Zweitakt-Mischrechner – die Isolatoren Deluxe</title>
 
 <style>
-/* ===== Grundlayout ===== */
+/* ===== GRUNDSTIL ===== */
 body {
   margin: 0;
   background: #0e0e0e;
@@ -20,21 +20,21 @@ body {
   padding: 20px;
 }
 
-/* ===== Desktop Hintergrundlogo ===== */
+/* ===== DESKTOP HINTERGRUNDLOGO ===== */
 @media (min-width: 900px) {
   body::before {
     content: "";
     position: fixed;
     inset: 0;
     background: url("logo.png") no-repeat center;
-    background-size: 700px;
+    background-size: 720px;
     opacity: 0.035;
     transform: rotate(-12deg);
     pointer-events: none;
   }
 }
 
-/* ===== Header ===== */
+/* ===== HEADER ===== */
 header {
   text-align: center;
   margin-bottom: 25px;
@@ -57,14 +57,14 @@ header p {
   color: #aaa;
 }
 
-/* ===== Panel ===== */
+/* ===== PANEL ===== */
 .panel {
   background: #1a1a1a;
   border: 1px solid #333;
   padding: 18px;
 }
 
-/* ===== Abschnitt ===== */
+/* ===== ABSCHNITTE ===== */
 .section {
   margin-top: 20px;
 }
@@ -76,7 +76,7 @@ header p {
   margin-bottom: 6px;
 }
 
-/* ===== Inputs ===== */
+/* ===== INPUTS ===== */
 input, select {
   width: 100%;
   padding: 12px;
@@ -96,7 +96,7 @@ button {
   cursor: pointer;
 }
 
-/* ===== Fahrzeuge ===== */
+/* ===== FAHRZEUGE ===== */
 .vehicles {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -122,7 +122,7 @@ button {
   color: #d4aa00;
 }
 
-/* ===== Mischschild ===== */
+/* ===== MISCHSCHILD ===== */
 .mix-sign {
   border: 1px solid #666;
   padding: 10px;
@@ -136,7 +136,7 @@ button {
   color: #d4aa00;
 }
 
-/* ===== Ergebnis ===== */
+/* ===== ERGEBNIS ===== */
 .result {
   margin-top: 20px;
   background: #111;
@@ -155,7 +155,7 @@ button {
   color: #9aa58c;
 }
 
-/* ===== DDR Skala ===== */
+/* ===== DDR SKALA ===== */
 .scale {
   margin-top: 10px;
   font-size: 11px;
@@ -174,7 +174,7 @@ button {
   margin-top: 4px;
 }
 
-/* ===== Hinweis ===== */
+/* ===== HINWEIS ===== */
 .notice {
   margin-top: 18px;
   padding: 10px;
@@ -183,7 +183,7 @@ button {
   color: #bbb;
 }
 
-/* ===== Shop ===== */
+/* ===== SHOP ===== */
 .shop {
   margin-top: 30px;
 }
@@ -199,10 +199,43 @@ button {
   border: 1px solid #333;
 }
 
-/* ===== Footer ===== */
-footer {
-  margin-top: 30px;
+/* ===== FOOTER WERKSTATTSCHILD ===== */
+.footer-panel {
+  margin-top: 40px;
+  padding: 16px 10px;
+  border-top: 2px solid #666;
+  border-bottom: 1px solid #333;
+  background: #121212;
   text-align: center;
+}
+
+.footer-panel .title {
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #bbb;
+  margin-bottom: 6px;
+}
+
+.footer-panel .subtitle {
+  font-size: 11px;
+  color: #888;
+  margin-bottom: 10px;
+}
+
+.footer-panel a {
+  display: block;
+  color: #d4aa00;
+  text-decoration: none;
+  font-size: 12px;
+  margin: 4px 0;
+}
+
+.footer-panel a:hover {
+  text-decoration: underline;
+}
+
+.footer-panel .impressum {
+  margin-top: 10px;
   font-size: 11px;
   color: #777;
 }
@@ -220,7 +253,6 @@ footer {
 
 <div class="panel">
 
-<!-- 1 MODUS -->
 <div class="section">
   <div class="section-title">1. MODUS</div>
   <select id="mode">
@@ -229,13 +261,11 @@ footer {
   </select>
 </div>
 
-<!-- 2 MENGE -->
 <div class="section">
   <div class="section-title" id="amountLabel">2. KRAFTSTOFFMENGE</div>
   <input type="number" id="amount" placeholder="Angabe">
 </div>
 
-<!-- 3 FAHRZEUG -->
 <div class="section">
   <div class="section-title">3. FAHRZEUG</div>
   <div class="vehicles">
@@ -246,18 +276,17 @@ footer {
   </div>
 </div>
 
-<!-- 4 MISCHUNG -->
 <div class="section">
   <div class="section-title">4. MISCHVERHÄLTNIS</div>
   <div class="mix-sign">
     MISCHUNG
     <span id="mixDisplay">1 : 50</span>
   </div>
+  <input type="number" id="customRatio" placeholder="Freies Mischverhältnis (z. B. 50)" style="display:none;margin-top:10px;">
 </div>
 
 <button onclick="calculate()">WERT ERMITTELN</button>
 
-<!-- ERGEBNIS -->
 <div class="result" id="resultBox" style="display:none;">
   <div class="result-main" id="resultMain"></div>
   <div class="scale">
@@ -275,7 +304,6 @@ footer {
 
 </div>
 
-<!-- SHOP -->
 <div class="shop">
   <h3>DEKO & MERCH (Ideen)</h3>
   <div class="shop-grid">
@@ -294,51 +322,79 @@ footer {
   </p>
 </div>
 
-<footer>
-  Folge der Gemeinschaft · Instagram · Facebook · TikTok<br>
-  Impressum: J. Sonneborn · privat · 2026
+<footer class="footer-panel">
+  <div class="title">FOLGE DER GEMEINSCHAFT</div>
+  <div class="subtitle">Austausch · Bilder · Kontakt · Ideen</div>
+
+  <a href="https://www.instagram.com/isolator_jan?igsh=MTRyc3R5azR0eWx1cw%3D%3D&utm_source=qr" target="_blank">
+    ▶ Instagram besuchen
+  </a>
+  <a href="https://www.facebook.com/share/1Gk158Fub9/?mibextid=wwXIfr" target="_blank">
+    ▶ Facebook-Seite öffnen
+  </a>
+  <a href="https://www.tiktok.com/@mullemannjan?_r=1&_t=ZG-937w29KVJg0" target="_blank">
+    ▶ TikTok-Kanal ansehen
+  </a>
+
+  <div class="impressum">
+    Impressum: J. Sonneborn · privat · nicht-kommerziell · 2026
+  </div>
 </footer>
 
 </div>
 
 <script>
 let ratio = 50;
+const mode = document.getElementById("mode");
 
 document.querySelectorAll('.vehicle').forEach(v => {
   v.onclick = () => {
-    document.querySelectorAll('.vehicle').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.vehicle').forEach(x => x.classList.remove('active'));
     v.classList.add('active');
-    ratio = v.dataset.ratio || 50;
-    document.getElementById("mixDisplay").innerText = ratio ? "1 : " + ratio : "frei";
-  }
+    ratio = parseFloat(v.dataset.ratio);
+    if (ratio === 0) {
+      document.getElementById("mixDisplay").innerText = "frei";
+      document.getElementById("customRatio").style.display = "block";
+    } else {
+      document.getElementById("mixDisplay").innerText = "1 : " + ratio;
+      document.getElementById("customRatio").style.display = "none";
+    }
+  };
 });
 
-document.getElementById("mode").onchange = () => {
+mode.onchange = () => {
   document.getElementById("amountLabel").innerText =
     mode.value === "fuel" ? "2. KRAFTSTOFFMENGE (Liter)" : "2. ÖLMENGE (ml)";
 };
 
-function calculate(){
+function calculate() {
   const amount = parseFloat(document.getElementById("amount").value);
-  if(!amount) return;
+  if (!amount) return;
+
+  let usedRatio = ratio;
+  if (ratio === 0) {
+    usedRatio = parseFloat(document.getElementById("customRatio").value);
+    if (!usedRatio) {
+      alert("Bitte Mischverhältnis angeben.");
+      return;
+    }
+  }
 
   let text = "";
-  if(mode.value==="fuel"){
-    const oil = (amount/ratio)*1000;
-    text = "Ermittelter Ölbedarf, Genosse: " + oil.toFixed(0) + " ml";
+  if (mode.value === "fuel") {
+    text = "Ermittelter Ölbedarf, Genosse: " + ((amount / usedRatio) * 1000).toFixed(0) + " ml";
   } else {
-    const fuel = (amount*ratio)/1000;
-    text = "Ermittelter Kraftstoffbedarf, Genosse: " + fuel.toFixed(2) + " Liter";
+    text = "Ermittelter Kraftstoffbedarf, Genosse: " + ((amount * usedRatio) / 1000).toFixed(2) + " Liter";
   }
 
   document.getElementById("resultMain").innerText = text;
   document.getElementById("resultHumor").innerText =
-    ratio==33?"Heute lieber etwas mehr Liebe."
-    :ratio==40?"Bewährter Kompromiss."
-    :ratio==50?"So fährt die Mehrheit."
-    :"Du weißt, was du tust.";
+    usedRatio == 33 ? "Heute lieber etwas mehr Liebe."
+    : usedRatio == 40 ? "Bewährter Kompromiss."
+    : usedRatio == 50 ? "So fährt die Mehrheit."
+    : "Du weißt, was du tust.";
 
-  document.getElementById("resultBox").style.display="block";
+  document.getElementById("resultBox").style.display = "block";
 }
 </script>
 
