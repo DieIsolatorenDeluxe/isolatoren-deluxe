@@ -95,7 +95,7 @@ input, select {
   font-size: 16px;
 }
 
-button {
+button.main {
   width: 100%;
   margin-top: 18px;
   padding: 14px;
@@ -146,6 +146,23 @@ button {
   color: #d4aa00;
 }
 
+/* ===== MISCHOPTIONEN ===== */
+#mixOptions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  margin-top: 10px;
+}
+
+#mixOptions button {
+  padding: 8px;
+  background: #1a1a1a;
+  border: 1px solid #666;
+  color: #d4aa00;
+  font-size: 13px;
+  cursor: pointer;
+}
+
 /* ===== ERGEBNIS ===== */
 .result {
   margin-top: 20px;
@@ -172,8 +189,9 @@ button {
   color: #aaa;
 }
 
-.scale-bar {
-  height: 6px;
+.scale-track {
+  position: relative;
+  height: 10px;
   background: repeating-linear-gradient(
     to right,
     #777,
@@ -181,7 +199,16 @@ button {
     transparent 2px,
     transparent 20px
   );
-  margin-top: 4px;
+  margin-top: 6px;
+}
+
+.scale-marker {
+  position: absolute;
+  top: -4px;
+  width: 4px;
+  height: 18px;
+  background: #d4aa00;
+  left: 0%;
 }
 
 /* ===== HINWEIS ===== */
@@ -193,44 +220,43 @@ button {
   color: #bbb;
 }
 
-/* ===== SOCIAL PANEL ===== */
+/* ===== SOCIAL ===== */
 .social-panel {
   margin-top: 40px;
   padding: 16px 10px;
   border: 2px solid #666;
   background: #141414;
-  text-align: center;
 }
 
-.social-panel .title {
+.social-title {
+  text-align: center;
   font-size: 13px;
   letter-spacing: 2px;
   color: #d4aa00;
-  margin-bottom: 10px;
-}
-
-.social-buttons {
-  display: grid;
-  gap: 8px;
+  margin-bottom: 12px;
 }
 
 .social-buttons a {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 12px;
   padding: 10px;
+  margin-bottom: 8px;
   border: 1px solid #d4aa00;
   background: #1a1a1a;
   color: #d4aa00;
   text-decoration: none;
   font-size: 13px;
-  letter-spacing: 1px;
 }
 
-.social-buttons a:hover {
-  background: #222;
+.social-buttons img {
+  width: 20px;
+  height: 20px;
+  opacity: 0.9;
 }
 
 .impressum {
-  margin-top: 12px;
+  margin-top: 14px;
   text-align: center;
   font-size: 11px;
   color: #777;
@@ -258,8 +284,8 @@ button {
 </div>
 
 <div class="section">
-  <div class="section-title" id="amountLabel">2. KRAFTSTOFFMENGE</div>
-  <input type="number" id="amount" placeholder="Angabe">
+  <div class="section-title" id="amountLabel">2. KRAFTSTOFFMENGE (Liter)</div>
+  <input type="number" id="amount">
 </div>
 
 <div class="section">
@@ -274,20 +300,27 @@ button {
 
 <div class="section">
   <div class="section-title">4. MISCHVERHÄLTNIS</div>
-  <div class="mix-sign">
-    MISCHUNG
-    <span id="mixDisplay">1 : 50</span>
+  <div class="mix-sign">MISCHUNG <span id="mixDisplay">1 : 50</span></div>
+
+  <div id="mixOptions">
+    <button onclick="setRatio(50)">1 : 50</button>
+    <button onclick="setRatio(40)">1 : 40</button>
+    <button onclick="setRatio(33)">1 : 33</button>
+    <button onclick="setRatio(0)">frei</button>
   </div>
-  <input type="number" id="customRatio" placeholder="Freies Mischverhältnis (z. B. 50)" style="display:none;margin-top:10px;">
+
+  <input type="number" id="customRatio" placeholder="Freies Verhältnis" style="display:none;margin-top:10px;">
 </div>
 
-<button onclick="calculate()">WERT ERMITTELN</button>
+<button class="main" onclick="calculate()">WERT ERMITTELN</button>
 
 <div class="result" id="resultBox" style="display:none;">
   <div class="result-main" id="resultMain"></div>
   <div class="scale">
-    Messskala
-    <div class="scale-bar"></div>
+    <span id="scaleLabel">Messskala – Ölmenge (ml)</span>
+    <div class="scale-track">
+      <div class="scale-marker" id="scaleMarker"></div>
+    </div>
   </div>
   <div class="result-humor" id="resultHumor"></div>
 </div>
@@ -301,11 +334,17 @@ button {
 </div>
 
 <div class="social-panel">
-  <div class="title">FOLGE DER GEMEINSCHAFT</div>
+  <div class="social-title">FOLGE DER GEMEINSCHAFT</div>
   <div class="social-buttons">
-    <a href="https://www.instagram.com/isolator_jan?igsh=MTRyc3R5azR0eWx1cw%3D%3D&utm_source=qr" target="_blank">▶ INSTAGRAM BESUCHEN</a>
-    <a href="https://www.facebook.com/share/1Gk158Fub9/?mibextid=wwXIfr" target="_blank">▶ FACEBOOK-SEITE ÖFFNEN</a>
-    <a href="https://www.tiktok.com/@mullemannjan?_r=1&_t=ZG-937w29KVJg0" target="_blank">▶ TIKTOK-KANAL ANSEHEN</a>
+    <a href="https://www.instagram.com/isolator_jan" target="_blank">
+      <img src="icon_instagram.png"> INSTAGRAM BESUCHEN
+    </a>
+    <a href="https://www.facebook.com/share/1Gk158Fub9" target="_blank">
+      <img src="icon_facebook.png"> FACEBOOK-SEITE ÖFFNEN
+    </a>
+    <a href="https://www.tiktok.com/@mullemannjan" target="_blank">
+      <img src="icon_tiktok.png"> TIKTOK-KANAL ANSEHEN
+    </a>
   </div>
 </div>
 
@@ -319,44 +358,59 @@ button {
 let ratio = 50;
 const mode = document.getElementById("mode");
 
+function setRatio(val){
+  ratio = val;
+  if(val === 0){
+    document.getElementById("mixDisplay").innerText = "frei";
+    document.getElementById("customRatio").style.display = "block";
+  } else {
+    document.getElementById("mixDisplay").innerText = "1 : " + val;
+    document.getElementById("customRatio").style.display = "none";
+  }
+}
+
 document.querySelectorAll('.vehicle').forEach(v => {
   v.onclick = () => {
     document.querySelectorAll('.vehicle').forEach(x => x.classList.remove('active'));
     v.classList.add('active');
-    ratio = parseFloat(v.dataset.ratio);
-    if (ratio === 0) {
-      document.getElementById("mixDisplay").innerText = "frei";
-      document.getElementById("customRatio").style.display = "block";
-    } else {
-      document.getElementById("mixDisplay").innerText = "1 : " + ratio;
-      document.getElementById("customRatio").style.display = "none";
-    }
+    setRatio(parseInt(v.dataset.ratio));
+    document.getElementById("mixOptions").style.display =
+      v.dataset.ratio == 0 ? "none" : "grid";
   };
 });
 
 mode.onchange = () => {
   document.getElementById("amountLabel").innerText =
     mode.value === "fuel" ? "2. KRAFTSTOFFMENGE (Liter)" : "2. ÖLMENGE (ml)";
+  document.getElementById("scaleLabel").innerText =
+    mode.value === "fuel" ? "Messskala – Ölmenge (ml)" : "Messskala – Kraftstoffmenge (Liter)";
+  document.getElementById("scaleMarker").style.left = "50%";
 };
 
-function calculate() {
+function calculate(){
   const amount = parseFloat(document.getElementById("amount").value);
-  if (!amount || amount <= 0) return;
-
   let usedRatio = ratio;
-  if (ratio === 0) {
+  if(!amount) return;
+
+  if(ratio === 0){
     usedRatio = parseFloat(document.getElementById("customRatio").value);
-    if (!usedRatio || usedRatio <= 0) return;
+    if(!usedRatio) return;
   }
 
-  let text = "";
-  if (mode.value === "fuel") {
-    text = "Ermittelter Ölbedarf, Genosse: " + ((amount / usedRatio) * 1000).toFixed(0) + " ml";
+  let value = 0;
+  if(mode.value === "fuel"){
+    value = (amount / usedRatio) * 1000;
+    document.getElementById("resultMain").innerText =
+      "Ermittelter Ölbedarf, Genosse: " + value.toFixed(0) + " ml";
+    document.getElementById("scaleMarker").style.left =
+      Math.min(value / 300, 1) * 100 + "%";
   } else {
-    text = "Ermittelter Kraftstoffbedarf, Genosse: " + ((amount * usedRatio) / 1000).toFixed(2) + " Liter";
+    value = (amount * usedRatio) / 1000;
+    document.getElementById("resultMain").innerText =
+      "Ermittelter Kraftstoffbedarf, Genosse: " + value.toFixed(2) + " Liter";
+    document.getElementById("scaleMarker").style.left = "50%";
   }
 
-  document.getElementById("resultMain").innerText = text;
   document.getElementById("resultHumor").innerText =
     usedRatio == 33 ? "Heute lieber etwas mehr Liebe."
     : usedRatio == 40 ? "Bewährter Kompromiss."
