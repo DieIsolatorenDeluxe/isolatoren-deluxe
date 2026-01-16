@@ -3,54 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zweitakt-Mischrechner – Isolatoren Deluxe</title>
+<title>Zweitakt-Mischrechner – Die Isolatoren Deluxe</title>
 
 <style>
-/* ===== Fahrzeug Cards ===== */
-
-.vehicle-card {
-  background: #2b2b2b;
-  border-radius: 14px;
-  padding: 20px;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  border: 2px solid transparent;
-}
-
-.vehicle-card img {
-  max-width: 140px;
-  margin-bottom: 12px;
-}
-
-.vehicle-name {
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.vehicle-ratio {
-  font-size: 14px;
-  opacity: 0.7;
-}
-
-/* aktiv */
-.vehicle-card.active {
-  border-color: #d4a100;
-  box-shadow: 0 0 18px rgba(212,161,0,0.35);
-}
+/* ===== Grundstil ===== */
 body {
   margin: 0;
-  background: #0f0f0f;
-  color: #e6e6e6;
+  background: #0b0b0b;
+  color: #e8e3d6;
   font-family: Arial, Helvetica, sans-serif;
 }
 
 .wrapper {
-  max-width: 420px;
+  max-width: 460px;
   margin: 0 auto;
   padding: 20px;
 }
 
+/* ===== Header ===== */
 header {
   text-align: center;
   margin-bottom: 25px;
@@ -59,117 +29,169 @@ header {
 header img {
   max-width: 260px;
   width: 100%;
-  background: transparent;
-  filter: drop-shadow(0 0 25px rgba(0,0,0,0.8));
+  filter: drop-shadow(0 0 18px rgba(212,170,0,0.35));
 }
 
 header h1 {
-  margin: 10px 0 0;
+  margin: 12px 0 0;
   font-size: 22px;
+  letter-spacing: 1px;
   color: #d4aa00;
 }
 
 header p {
-  margin: 4px 0 0;
+  margin: 6px 0 0;
   font-size: 13px;
-  color: #aaa;
+  color: #b5b1a6;
 }
 
+/* ===== Panel ===== */
 .panel {
-  background: #1a1a1a;
+  background: linear-gradient(145deg, #1e1c18, #14120f);
   border-radius: 18px;
   padding: 20px;
-  box-shadow: inset 0 0 25px rgba(0,0,0,0.8);
+  box-shadow:
+    inset 0 0 25px rgba(0,0,0,0.9),
+    0 0 20px rgba(0,0,0,0.6);
+  border: 1px solid #2b271f;
 }
 
 .label {
-  font-size: 12px;
-  color: #aaa;
-  letter-spacing: 1px;
-  margin-top: 18px;
+  font-size: 11px;
+  color: #b5b1a6;
+  letter-spacing: 1.5px;
+  margin-top: 20px;
 }
 
-.vehicle-icon {
-  width: 120px;
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto 10px auto;
-  pointer-events: none;
+/* ===== Fahrzeuge ===== */
+.vehicles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 10px;
 }
 
-.vehicle {
-  background: #2a2a2a;
-  border-radius: 10px;
-  padding: 12px;
+.vehicle-card {
+  background: #2a261f;
+  border-radius: 14px;
+  padding: 10px;
   text-align: center;
   cursor: pointer;
-  border: 2px solid #2a2a2a;
+  border: 2px solid #2a261f;
+  transition: all 0.25s ease;
 }
 
-.vehicle.active {
-  border-color: #d4aa00;
-  color: #d4aa00;
+.vehicle-card img {
+  max-width: 70px;
+  margin-bottom: 6px;
 }
 
-.scale {
-  text-align: center;
-  margin-top: 15px;
-}
-
-.scale-value {
-  font-size: 42px;
+.vehicle-name {
+  font-size: 13px;
   font-weight: bold;
-  color: #d4aa00;
 }
 
+.vehicle-ratio {
+  font-size: 11px;
+  opacity: 0.75;
+}
+
+.vehicle-card.active {
+  border-color: #d4aa00;
+  box-shadow: 0 0 14px rgba(212,170,0,0.45);
+}
+
+/* ===== Inputs ===== */
 input, select {
   width: 100%;
   padding: 12px;
   margin-top: 8px;
-  background: #2b2b2b;
-  border: none;
+  background: #2b261f;
+  border: 1px solid #3a342a;
   border-radius: 8px;
   color: #fff;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 button {
   width: 100%;
-  margin-top: 20px;
+  margin-top: 22px;
   padding: 14px;
-  background: #d4aa00;
+  background: linear-gradient(145deg, #e2b800, #b08a00);
   border: none;
   border-radius: 10px;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: bold;
   cursor: pointer;
+  color: #1a1405;
 }
 
+/* ===== Ergebnis ===== */
 .result-box {
   margin-top: 20px;
-  padding: 15px;
-  background: #111;
+  padding: 16px;
+  background: #0f0e0b;
   border-radius: 10px;
+  border: 1px solid #2b271f;
   text-align: center;
 }
 
-.result-value {
-  font-size: 28px;
-  color: #8cff80;
-  margin-top: 5px;
+.result-main {
+  font-size: 26px;
+  color: #9cff8c;
 }
 
+.result-humor {
+  font-size: 13px;
+  color: #b5b1a6;
+  margin-top: 6px;
+}
+
+/* ===== Merch ===== */
+.merch {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.merch-item {
+  background: #26221c;
+  border-radius: 12px;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #3a342a;
+}
+
+.merch-item img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 6px;
+}
+
+.merch-item span {
+  font-size: 12px;
+}
+
+/* ===== Footer ===== */
 footer {
-  margin-top: 30px;
+  margin-top: 35px;
   text-align: center;
   font-size: 11px;
-  color: #777;
+  color: #9a958a;
+}
+
+.social a {
+  display: block;
+  color: #d4aa00;
+  text-decoration: none;
+  margin: 5px 0;
 }
 </style>
 </head>
 
 <body>
+<div class="wrapper">
 
 <header>
   <img src="logo.png" alt="Die Isolatoren Deluxe Logo">
@@ -182,20 +204,31 @@ footer {
 <div class="label">FAHRZEUG</div>
 <div class="vehicles">
   <div class="vehicle-card active" data-ratio="50">
-  <img src="trabant.PNG" alt="Trabant">
-  <div class="vehicle-name">Trabant</div>
-  <div class="vehicle-ratio">1 : 50</div>
-</div>
-  <div class="vehicle" onclick="setVehicle(50,this)">Simson<br>1:50</div>
-  <div class="vehicle" onclick="setVehicle(40,this)">MZ<br>1:40</div>
-  <div class="vehicle" onclick="setVehicle(33,this)">Eigenes<br>1:33</div>
+    <img src="trabant.png" alt="Trabant">
+    <div class="vehicle-name">Trabant</div>
+    <div class="vehicle-ratio">Empf. 1:50</div>
+  </div>
+  <div class="vehicle-card" data-ratio="50">
+    <img src="simson.png" alt="Simson">
+    <div class="vehicle-name">Simson</div>
+    <div class="vehicle-ratio">Empf. 1:50</div>
+  </div>
+  <div class="vehicle-card" data-ratio="40">
+    <img src="mz.png" alt="MZ">
+    <div class="vehicle-name">MZ</div>
+    <div class="vehicle-ratio">Empf. 1:40</div>
+  </div>
 </div>
 
 <div class="label">MISCHUNGSVERHÄLTNIS</div>
-<div class="scale">
-  <div class="scale-value" id="ratioDisplay">1 : 50</div>
-</div>
-<input type="number" id="ratio" value="50">
+<select id="ratioSelect">
+  <option value="recommended">Empfohlen</option>
+  <option value="50">1 : 50</option>
+  <option value="40">1 : 40</option>
+  <option value="33">1 : 33</option>
+  <option value="custom">Frei</option>
+</select>
+<input type="number" id="customRatio" placeholder="Eigenes Verhältnis (z. B. 45)" min="20" max="100" style="display:none;">
 
 <div class="label">MODUS</div>
 <select id="mode">
@@ -204,64 +237,124 @@ footer {
 </select>
 
 <div class="label" id="inputLabel">WIEVIEL LITER BENZIN GETANKT?</div>
-<input type="number" id="amount" placeholder="z.B. 10">
+<input type="number" id="amount" placeholder="z. B. 10" min="0.1" step="0.1">
 
 <button onclick="calculate()">BERECHNEN</button>
 
 <div class="result-box">
-  <div class="label">ERGEBNIS</div>
-  <div class="result-value" id="result"></div>
+  <div class="result-main" id="result"></div>
+  <div class="result-humor" id="humor"></div>
 </div>
+
+<div class="label">DEKO & MERCH</div>
+<p style="font-size:13px;color:#b5b1a6;">Im Aufbau – Werkbank läuft schon.</p>
+
+<div class="merch">
+  <div class="merch-item">
+    <img src="shirt_mockup.png" alt="Shirt">
+    <span>T-Shirt</span>
+  </div>
+  <div class="merch-item">
+    <img src="sticker_mockup.png" alt="Aufkleber">
+    <span>Aufkleber</span>
+  </div>
+  <div class="merch-item">
+    <img src="deko_mockup.png" alt="Deko">
+    <span>Werkstatt-Deko</span>
+  </div>
+</div>
+
+<p style="font-size:13px;color:#b5b1a6;margin-top:10px;">
+Interesse an Merch? Schreib uns einfach über Social Media.
+</p>
+
+<div class="label">GEMEINSCHAFT</div>
+<p style="font-size:13px;color:#b5b1a6;">
+Die Isolatoren Deluxe sind eine freie Schrauber- und Zweitakt-Gemeinschaft.<br>
+Aktuell ca. <strong>17 Leute</strong> – Team wächst.
+</p>
 
 </div>
 
 <footer>
-Impressum · J. Sonneborn · 2026 · privat, nicht-kommerziell
+<div class="social">
+  <a href="https://www.instagram.com/isolator_jan" target="_blank">Instagram</a>
+  <a href="https://www.tiktok.com/@mullemannjan" target="_blank">TikTok</a>
+  <a href="https://www.facebook.com/share/1Gk158Fub9/" target="_blank">Facebook</a>
+</div>
+
+<p>
+Impressum · J. Sonneborn · Deutschland<br>
+Privates, nicht-kommerzielles Projekt · Keine Gewähr
+</p>
 </footer>
 
 </div>
 
 <script>
-function setVehicle(value, el) {
-  document.querySelectorAll('.vehicle').forEach(v => v.classList.remove('active'));
-  el.classList.add('active');
-  document.getElementById('ratio').value = value;
-  updateRatio();
-}
+let recommendedRatio = 50;
 
-function updateRatio() {
-  const r = document.getElementById('ratio').value;
-  document.getElementById('ratioDisplay').innerText = '1 : ' + r;
-}
+document.querySelectorAll('.vehicle-card').forEach(card => {
+  card.addEventListener('click', () => {
+    document.querySelectorAll('.vehicle-card').forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
+    recommendedRatio = card.dataset.ratio;
+    if (document.getElementById('ratioSelect').value === 'recommended') {
+      updateRatio();
+    }
+  });
+});
 
-document.getElementById('ratio').addEventListener('input', updateRatio);
+document.getElementById('ratioSelect').addEventListener('change', () => {
+  document.getElementById('customRatio').style.display =
+    ratioSelect.value === 'custom' ? 'block' : 'none';
+});
 
 document.getElementById('mode').addEventListener('change', () => {
   document.getElementById('inputLabel').innerText =
-    document.getElementById('mode').value === 'fuel'
+    mode.value === 'fuel'
     ? 'WIEVIEL LITER BENZIN GETANKT?'
     : 'WIEVIEL ML ÖL VORHANDEN?';
 });
 
-function calculate() {
-  const ratio = parseFloat(document.getElementById('ratio').value);
-  const amount = parseFloat(document.getElementById('amount').value);
-  const mode = document.getElementById('mode').value;
-  const result = document.getElementById('result');
+function getRatio() {
+  const sel = ratioSelect.value;
+  if (sel === 'recommended') return recommendedRatio;
+  if (sel === 'custom') return parseFloat(customRatio.value);
+  return parseFloat(sel);
+}
 
-  if (!ratio || !amount) {
-    result.innerText = '';
-    return;
-  }
+function calculate() {
+  const ratio = getRatio();
+  const amount = parseFloat(amountInput.value);
+  if (!ratio || !amount) return;
+
+  const mode = document.getElementById('mode').value;
+  let text = '';
+  let humorTexts = [
+    'DDR-Technik nickt anerkennend.',
+    'Lieber etwas fett als Kolbenklemmer.',
+    'Nicht schütten wie beim Salat.',
+    'So hält der Motor länger.'
+  ];
 
   if (mode === 'fuel') {
-    const oil = (amount / ratio) * 1000;
-    result.innerText = oil.toFixed(0) + ' ml Öl';
+    const oil = (amount * 1000) / ratio;
+    text = oil.toFixed(0) + ' ml Zweitaktöl';
   } else {
     const fuel = (amount * ratio) / 1000;
-    result.innerText = fuel.toFixed(2) + ' Liter Benzin';
+    text = fuel.toFixed(2) + ' Liter Benzin';
   }
+
+  result.innerText = text;
+  humor.innerText = humorTexts[Math.floor(Math.random() * humorTexts.length)];
 }
+
+const ratioSelect = document.getElementById('ratioSelect');
+const customRatio = document.getElementById('customRatio');
+const amountInput = document.getElementById('amount');
+const result = document.getElementById('result');
+const humor = document.getElementById('humor');
 </script>
 
 </body>
