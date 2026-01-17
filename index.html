@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Zweitakt-Mischrechner – die Isolatoren Deluxe</title>
 
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+
 <style>
 /* ===== BASIS ===== */
 body {
@@ -26,9 +29,9 @@ body {
     content: "";
     position: fixed;
     inset: 0;
-    background: url("logo.png") no-repeat center 55%;
-    background-size: 860px;
-    opacity: 0.055;
+    background: url("logo.png") no-repeat center;
+    background-size: 900px;
+    opacity: 0.06;
     transform: rotate(-12deg);
     pointer-events: none;
   }
@@ -71,13 +74,6 @@ header p {
   background: #1a1a1a;
   border: 1px solid #333;
   padding: 18px;
-}
-
-/* ===== RECHNER INFO ===== */
-.calculator-info {
-  font-size: 11px;
-  color: #bbb;
-  margin-bottom: 14px;
 }
 
 /* ===== ABSCHNITTE ===== */
@@ -132,11 +128,12 @@ button.main {
   max-width: 80px;
   display: block;
   margin: 0 auto 6px;
-  filter: brightness(1.1);
+  filter: brightness(1.15);
 }
 
-.vehicle img.dim {
-  filter: brightness(1.35) contrast(1.15);
+.vehicle img.sonstige {
+  filter: brightness(1.6) contrast(1.25);
+  box-shadow: 0 0 6px rgba(0,0,0,0.8);
 }
 
 .vehicle.active {
@@ -145,7 +142,7 @@ button.main {
 }
 
 /* ===== MISCHVERHÄLTNIS ===== */
-#mixArea { display:none; }
+#mixArea { display: none; }
 
 .mix-sign {
   border: 1px solid #666;
@@ -214,15 +211,7 @@ button.main {
   border: 1px solid #444;
   font-size: 11px;
   color: #bbb;
-}
-
-/* ===== RESET ===== */
-.reset {
-  margin-top: 10px;
-  font-size: 11px;
-  color: #aaa;
-  cursor: pointer;
-  text-align: center;
+  display: none;
 }
 
 /* ===== MOCKUP SHOP ===== */
@@ -237,7 +226,6 @@ button.main {
   font-size: 13px;
   letter-spacing: 2px;
   color: #bbb;
-  margin-bottom: 6px;
 }
 
 .mockup-hint {
@@ -249,13 +237,7 @@ button.main {
 .mockup-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 18px 12px;
-}
-
-@media (min-width: 520px) {
-  .mockup-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  gap: 16px;
 }
 
 .mockup-grid figure {
@@ -266,7 +248,6 @@ button.main {
 .mockup-grid img {
   width: 100%;
   max-width: 160px;
-  margin-bottom: 6px;
 }
 
 .mockup-grid figcaption {
@@ -285,28 +266,12 @@ button.main {
   font-size: 13px;
   letter-spacing: 2px;
   color: #bbb;
-  margin-bottom: 4px;
 }
 
-.terms .terms-hint {
+.terms-hint {
   font-size: 11px;
   color: #888;
   margin-bottom: 14px;
-}
-
-.term {
-  margin-bottom: 16px;
-}
-
-.term-date {
-  font-family: monospace;
-  font-size: 13px;
-  color: #e0e0e0;
-}
-
-.term-info {
-  font-size: 12px;
-  color: #9a9a9a;
 }
 
 /* ===== SOCIAL ===== */
@@ -322,7 +287,13 @@ button.main {
   font-size: 13px;
   letter-spacing: 2px;
   color: #d4aa00;
-  margin-bottom: 12px;
+}
+
+.social-hint {
+  text-align: center;
+  font-size: 11px;
+  color: #888;
+  margin: 10px 0 12px;
 }
 
 .social-buttons a {
@@ -364,11 +335,6 @@ button.main {
 
 <div class="panel">
 
-<div class="calculator-info">
-  Zweitakt-Mischrechner für Benzin-Öl-Gemische.<br>
-  Angaben ohne Gewähr.
-</div>
-
 <div class="section">
   <div class="section-title">1. MODUS</div>
   <select id="mode">
@@ -387,14 +353,14 @@ button.main {
   <div class="vehicles">
     <div class="vehicle" data-ratio="50"><img src="trabant.png">Trabant</div>
     <div class="vehicle" data-ratio="50"><img src="simson.png">Simson</div>
-    <div class="vehicle" data-ratio="40"><img src="mz.png" class="dim">MZ</div>
-    <div class="vehicle" data-ratio="0"><img src="sonstige_zweitakter.png" class="dim">Sonstige Zweitakter</div>
+    <div class="vehicle" data-ratio="40"><img src="mz.png">MZ</div>
+    <div class="vehicle" data-ratio="0"><img src="sonstige_zweitakter.png" class="sonstige">Sonstige Zweitakter</div>
   </div>
 </div>
 
 <div class="section" id="mixArea">
   <div class="section-title">4. MISCHVERHÄLTNIS</div>
-  <div class="mix-sign">AKTIV <span id="mixDisplay"></span></div>
+  <div class="mix-sign"><span id="mixDisplay"></span></div>
   <div id="mixOptions"></div>
   <input type="number" id="customRatio" placeholder="Freies Verhältnis" style="display:none;margin-top:10px;">
 </div>
@@ -406,56 +372,39 @@ button.main {
   <div class="result-note" id="resultNote"></div>
   <div class="result-egg" id="resultEgg"></div>
   <div class="result-humor" id="resultHumor"></div>
-  <div class="reset" onclick="location.reload()">Eingaben zurücksetzen</div>
 </div>
 
-<div class="notice" id="notice" style="display:none;"></div>
-
-<div style="margin-top:10px;font-size:10px;color:#777;">
-  Rechnerstand: 2026
-</div>
+<div class="notice" id="notice"></div>
 
 </div>
 
-<!-- MOCKUP SHOP -->
 <div class="mockup-panel">
   <h2>DEKO & MERCH – IDEEN</h2>
-  <p class="mockup-hint">Beispiele & Mockups. Kein Verkauf.<br>Interesse über Social Media.</p>
+  <div class="mockup-hint">Beispiele & Mockups. Kein Verkauf.<br>Interesse über Social Media.</div>
   <div class="mockup-grid">
+    <figure><img src="shirt_mockup.png"><figcaption>T-Shirt</figcaption></figure>
     <figure><img src="sticker_mockup.png"><figcaption>Aufkleber</figcaption></figure>
     <figure><img src="deko_mockup.png"><figcaption>Werkstatt-Deko</figcaption></figure>
-    <figure><img src="banner_mockup.png"><figcaption>Banner</figcaption></figure>
-    <figure><img src="shirt_mockup.png"><figcaption>T-Shirt</figcaption></figure>
     <figure><img src="cap_mockup.png"><figcaption>Cap</figcaption></figure>
-    <figure><img src="jacket_mockup.png"><figcaption>Werkstattjacke</figcaption></figure>
     <figure><img src="tasse_mockup.png"><figcaption>Tasse</figcaption></figure>
-    <figure><img src="plasticcup_mockup.png"><figcaption>Trinkbecher</figcaption></figure>
+    <figure><img src="banner_mockup.png"><figcaption>Banner</figcaption></figure>
     <figure><img src="keychain_mockup.png"><figcaption>Schlüsselanhänger</figcaption></figure>
+    <figure><img src="plasticcup_mockup.png"><figcaption>Trinkbecher</figcaption></figure>
+    <figure><img src="jacket_mockup.png"><figcaption>Werkstattjacke</figcaption></figure>
   </div>
 </div>
 
-<!-- TERMINE -->
 <div class="terms">
   <h2>WO WIR EVTL. ZU FINDEN SIND</h2>
   <div class="terms-hint">Unverbindliche Hinweise auf Treffen und Veranstaltungen.</div>
-
-  <div class="term"><div class="term-date">25.–26.04.2026</div><div class="term-info">19. Ostfahrzeugtreffen – Finowfurt</div></div>
-  <div class="term"><div class="term-date">01.05.2026</div><div class="term-info">IFA Freunde Ladeburg</div></div>
-  <div class="term"><div class="term-date">09.–10.05.2026</div><div class="term-info">18. Oldtimertreffen – Alt Tucheband</div></div>
-  <div class="term"><div class="term-date">14.–17.05.2026</div><div class="term-info">Anklam</div></div>
-  <div class="term"><div class="term-date">23.–24.05.2026</div><div class="term-info">IFA & Oldtimertreffen – Herzfelde</div></div>
-  <div class="term"><div class="term-date">30.–31.05.2026</div><div class="term-info">8. Linumer Simson & Oldtimertreffen</div></div>
-  <div class="term"><div class="term-date">06.–07.06.2026</div><div class="term-info">Eens zu Fuffzsch am Ring – Lausitzring</div></div>
-  <div class="term"><div class="term-date">04.–05.07.2026</div><div class="term-info">Ostblock Fahrzeugtreffen – Pütnitz</div></div>
-  <div class="term"><div class="term-date">25.–26.07.2026</div><div class="term-info">TFO-Treffen – Mügeln</div></div>
-  <div class="term"><div class="term-date">01.–02.08.2026</div><div class="term-info">Trabant & VW-Bus-Treffen – Kleinzerlang</div></div>
-  <div class="term"><div class="term-date">07.–09.08.2026</div><div class="term-info">Reitwein – East German Classics</div></div>
-  <div class="term"><div class="term-date">12.–13.09.2026</div><div class="term-info">7. Ostblockmeeting von Erichs Erben</div></div>
 </div>
 
-<!-- SOCIAL -->
 <div class="social-panel">
   <div class="social-title">FOLGE DER GEMEINSCHAFT</div>
+  <div class="social-hint">
+    Eine wachsende Gemeinschaft rund um Zweitakt, Technik und Schrauberei.<br>
+    Weitere Beteiligte werden nach und nach sichtbar gemacht.
+  </div>
   <div class="social-buttons">
     <a href="https://www.instagram.com/isolator_jan" target="_blank"><img src="icon_instagram.png">Instagram</a>
     <a href="https://www.facebook.com/share/1Gk158Fub9" target="_blank"><img src="icon_facebook.png">Facebook</a>
@@ -477,19 +426,18 @@ document.querySelectorAll('.vehicle').forEach(v => {
   v.onclick = () => {
     document.querySelectorAll('.vehicle').forEach(x => x.classList.remove('active'));
     v.classList.add('active');
-    setupMixOptions(parseInt(v.dataset.ratio));
+    setupMix(parseInt(v.dataset.ratio));
   };
 });
 
-function setupMixOptions(rec){
+function setupMix(rec){
   document.getElementById("mixArea").style.display = "block";
   document.getElementById("mixOptions").innerHTML = "";
   document.getElementById("customRatio").style.display = "none";
   activeRatio = rec;
   hasRecommendation = rec !== 0;
 
-  document.getElementById("mixDisplay").innerText =
-    rec === 0 ? "frei" : "1 : " + rec;
+  document.getElementById("mixDisplay").innerText = rec === 0 ? "frei" : "1 : " + rec;
 
   [50,40,33].forEach(r => {
     if(r !== rec){
@@ -549,16 +497,13 @@ function calculate(){
   document.getElementById("resultHumor").innerText = "";
 
   if(activeRatio < 25)
-    document.getElementById("resultNote").innerText =
-      "Werkstatt-Hinweis: Sehr fettes Gemisch.";
+    document.getElementById("resultNote").innerText = "Werkstatt-Hinweis: Sehr fettes Gemisch.";
 
   if(activeRatio > 60)
-    document.getElementById("resultNote").innerText =
-      "Werkstatt-Hinweis: Mageres Gemisch.";
+    document.getElementById("resultNote").innerText = "Werkstatt-Hinweis: Mageres Gemisch.";
 
   if(activeRatio < 16 || activeRatio > 100)
-    document.getElementById("resultEgg").innerText =
-      "Interner Vermerk: Versuchsaufbau erkannt.";
+    document.getElementById("resultEgg").innerText = "Interner Vermerk: Versuchsaufbau erkannt.";
 
   if(hasRecommendation)
     document.getElementById("resultHumor").innerText =
