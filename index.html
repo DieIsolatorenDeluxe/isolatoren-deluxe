@@ -21,14 +21,14 @@ body{
     position:fixed;
     inset:0;
     background:url("logo.png") no-repeat center;
-    background-size:720px;
-    opacity:0.04;
+    background-size:760px;
+    opacity:0.045;
     pointer-events:none;
   }
 }
 
 .wrapper{
-  max-width:960px;
+  max-width:900px;
   margin:auto;
   padding:20px;
 }
@@ -41,93 +41,61 @@ header{
 header img{
   max-width:360px;
 }
-header .claim{
-  margin-top:8px;
-  font-size:13px;
+header p{
+  margin-top:10px;
+  font-size:14px;
   letter-spacing:2px;
-  color:#aaa;
+  color:#bbb;
 }
 
-/* ===== SECTION ===== */
+/* ===== SECTIONS ===== */
 .section{
   background:#141414;
   border:1px solid #333;
-  padding:25px;
+  padding:24px;
   margin-bottom:40px;
 }
 .section h2{
   margin-top:0;
-  font-size:16px;
+  font-size:17px;
   letter-spacing:2px;
   color:#d4aa00;
 }
-.small{
-  font-size:12px;
-  color:#aaa;
+.section p{
+  font-size:16px;
+  line-height:1.5;
+  color:#cfcfcf;
 }
 
-/* ===== FAHRZEUGE ===== */
-.vehicle-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:16px;
-  margin-top:15px;
-}
-@media(max-width:768px){
-  .vehicle-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-}
-.vehicle{
-  background:#1e1e1e;
-  border:1px solid #444;
-  padding:12px;
-  text-align:center;
-  cursor:pointer;
-}
-.vehicle.active{
-  border-color:#d4aa00;
-  color:#d4aa00;
-}
-.vehicle img{
-  max-width:100px;
-  margin-bottom:6px;
-}
-
-/* ===== INPUTS ===== */
-input, select{
-  width:100%;
-  padding:10px;
-  margin-top:10px;
-  background:#222;
-  border:1px solid #444;
-  color:#fff;
-  font-size:14px;
-}
+/* ===== BUTTONS ===== */
 button{
-  margin-top:12px;
-  padding:10px 16px;
-  background:#d4aa00;
+  padding:10px 14px;
   border:none;
+  background:#d4aa00;
+  color:#000;
   font-weight:bold;
   cursor:pointer;
 }
-button.alt{
+button.secondary{
   background:#1e1e1e;
-  color:#d4aa00;
   border:1px solid #555;
-  margin-right:6px;
+  color:#d4aa00;
 }
 
-/* ===== ERGEBNIS ===== */
+/* ===== RESULT ===== */
 .result{
-  margin-top:20px;
+  margin-top:18px;
   border:1px solid #333;
-  padding:15px;
+  padding:14px;
 }
 .result-main{
-  font-size:20px;
+  font-size:22px;
   color:#8cff80;
+}
+.result-info{
+  margin-top:6px;
+  font-size:13px;
+  color:#bbb;
 }
 .result-humor{
   margin-top:6px;
@@ -135,13 +103,54 @@ button.alt{
   color:#9aa58c;
 }
 
-/* ===== MOCKUPS ===== */
-.mockup-grid{
+/* ===== MODAL ===== */
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.75);
+  z-index:999;
+  align-items:flex-end;
+}
+.modal-content{
+  background:#1a1a1a;
+  width:100%;
+  max-width:900px;
+  margin:auto;
+  padding:20px;
+  border-top:2px solid #444;
+}
+.modal h3{
+  margin-top:0;
+  font-size:16px;
+  color:#d4aa00;
+}
+.option{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:12px;
+  border-bottom:1px solid #333;
+  cursor:pointer;
+}
+.option img{
+  width:50px;
+}
+.option.active{
+  background:#222;
+  color:#d4aa00;
+}
+.option span{
+  flex:1;
+}
+
+/* ===== SHOP ===== */
+.shop-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
   gap:14px;
 }
-.mockup-grid img{
+.shop-grid img{
   width:100%;
 }
 
@@ -151,12 +160,12 @@ button.alt{
   align-items:center;
   gap:10px;
   padding:10px;
+  margin-bottom:8px;
   border:1px solid #d4aa00;
   background:#1a1a1a;
   color:#d4aa00;
   text-decoration:none;
   font-size:13px;
-  margin-bottom:8px;
 }
 .social img{
   width:20px;
@@ -178,51 +187,42 @@ footer{
 
 <header>
   <img src="logo.png" alt="die Isolatoren Deluxe">
-  <div class="claim">TECHNIK · GEMEINSCHAFT · ZWEITAKT</div>
+  <p>TECHNIK · GEMEINSCHAFT · ZWEITAKT</p>
 </header>
 
 <!-- ================= MISCHRECHNER ================= -->
 <div class="section">
 <h2>ZWEITAKT-MISCHRECHNER</h2>
-<p class="small">
-Fahrzeug auswählen, Mischung festlegen, Benzinmenge eingeben – rechnen.
-Sachlich, technisch korrekt, Werkstatt-Logik.
+<p>
+Fahrzeug auswählen, Mischungsverhältnis festlegen und Benzinmenge eingeben.<br>
+Sachlich, technisch korrekt – gerechnet nach Werkstatt-Logik.
 </p>
 
-<div class="vehicle-grid" id="vehicles">
-  <div class="vehicle" data-veh="trabant"><img src="trabant.png"><div>Trabant</div></div>
-  <div class="vehicle" data-veh="simson"><img src="simson.png"><div>Simson</div></div>
-  <div class="vehicle" data-veh="mz"><img src="mz.png"><div>MZ</div></div>
-  <div class="vehicle" data-veh="sonstige"><img src="sonstige_zweitakter.png"><div>Sonstige Zweitakter</div></div>
-</div>
+<button onclick="openVehicle()">Fahrzeug auswählen</button>
+<div id="vehicleDisplay" style="margin-top:12px;"></div>
 
-<div id="mixArea" style="display:none;">
-  <p id="recText" class="small"></p>
-  <div id="mixButtons"></div>
+<button class="secondary" onclick="openMix()" style="margin-top:12px;">Mischverhältnis wählen</button>
+<div id="mixDisplay" style="margin-top:12px;"></div>
 
-  <input type="number" id="freeRatio" placeholder="Freies Mischverhältnis (z.B. 45)" style="display:none;">
-  <input type="number" id="fuelInput" placeholder="Benzinmenge in Litern (z.B. 5)">
+<input id="fuelInput" type="number" placeholder="Benzinmenge in Litern" style="display:none;margin-top:12px;width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;">
 
-  <button onclick="calculateMix()">Mischung berechnen</button>
+<button onclick="calculateMix()" style="display:none;margin-top:12px;" id="calcBtn">Berechnen</button>
 
-  <div class="result" id="mixResult"></div>
-</div>
+<div class="result" id="mixResult" style="display:none;"></div>
 </div>
 
 <!-- ================= RÜCKRECHNER ================= -->
 <div class="section">
-<h2>RÜCKRECHNER – ÖL VORHANDEN</h2>
-<p class="small">Wie viel Benzin passt zu der vorhandenen Ölmenge?</p>
+<h2>RÜCKRECHNER – ÖL → BENZIN</h2>
 
-<input type="number" id="oilBack" placeholder="Ölmenge in ml">
-<select id="ratioBack">
-  <option value="50">1 : 50</option>
-  <option value="40">1 : 40</option>
-  <option value="33">1 : 33</option>
-</select>
-<button onclick="calculateBack()">Berechnen</button>
+<button onclick="openBackMix()">Mischverhältnis wählen</button>
+<div id="backMixDisplay" style="margin-top:12px;"></div>
 
-<div class="result" id="backResult"></div>
+<input id="oilInput" type="number" placeholder="Ölmenge in ml" style="display:none;margin-top:12px;width:100%;padding:10px;background:#222;border:1px solid #444;color:#fff;">
+
+<button onclick="calculateBack()" style="display:none;margin-top:12px;" id="backCalcBtn">Berechnen</button>
+
+<div class="result" id="backResult" style="display:none;"></div>
 </div>
 
 <!-- ================= GEMEINSCHAFT ================= -->
@@ -238,31 +238,31 @@ nach und nach.
 <!-- ================= TERMINE ================= -->
 <div class="section">
 <h2>WO WIR EVTL. ZU FINDEN SIND</h2>
-<ul class="small">
-  <li>25.04.2026 – 19. Ostfahrzeugtreffen Finowfurt (Finowfurt)</li>
-  <li>01.05.2026 – IFA Freunde Ladeburg</li>
-  <li>09.05.2026 – 18. Oldtimertreffen Alt Tucheband (Alt Tucheband)</li>
-  <li>14.05.2026 – Anklam (Anklam)</li>
-  <li>23.05.2026 – IFA & Oldtimertreffen Herzfelde (Herzfelde)</li>
-  <li>30.05.2026 – 8. Linumer Simson & Oldtimertreffen (Linum)</li>
-  <li>06.06.2026 – Eens zu Fuffzsch am Ring (Lausitzring)</li>
-  <li>06.06.2026 – Pre Deep One Zehdenick (Zehdenick)</li>
-  <li>04.07.2026 – Simson Treffen Vietznitz (Vietznitz)</li>
-  <li>04.07.2026 – Ostblock Fahrzeugtreffen (Pütnitz)</li>
-  <li>25.07.2026 – TFO-Treffen – Trabant-Freunde Ostfahrzeuge (Mügeln)</li>
-  <li>01.08.2026 – Trabant & VW-Bus Treffen Kleinzerlang (Kleinzerlang)</li>
-  <li>07.–09.08.2026 – East German Classics Reitwein (Reitwein)</li>
-  <li>12.09.2026 – 7. Ostblockmeeting „Erichs Erben“ (Neuhardenberg)</li>
+<ul>
+<li>25.04.2026 – 19. Ostfahrzeugtreffen Finowfurt</li>
+<li>01.05.2026 – IFA Freunde Ladeburg</li>
+<li>09.05.2026 – 18. Oldtimertreffen Alt Tucheband</li>
+<li>14.05.2026 – Anklam</li>
+<li>14.05.2026 – Herrentagstour German East Driver (parallel)</li>
+<li>23.05.2026 – IFA & Oldtimertreffen Herzfelde</li>
+<li>30.05.2026 – Linumer Simson & Oldtimertreffen</li>
+<li>06.06.2026 – Eens zu Fuffzsch am Ring</li>
+<li>06.06.2026 – Pre Deep One Zehdenick</li>
+<li>04.07.2026 – Simson Treffen Vietznitz</li>
+<li>04.07.2026 – Ostblock Fahrzeugtreffen Pütnitz</li>
+<li>25.07.2026 – TFO-Treffen</li>
+<li>01.08.2026 – Trabant & VW-Bus Treffen Kleinzerlang</li>
+<li>07.–09.08.2026 – East German Classics Reitwein</li>
+<li>12.09.2026 – Ostblockmeeting „Erichs Erben“</li>
 </ul>
-<p class="small">Keine festen Zusagen – Treffen & Optionen für Interessierte.</p>
+<p style="font-size:12px;color:#aaa;">Keine Zusagen – Termine als Treff-Optionen.</p>
 </div>
 
-<!-- ================= MOCKUP SHOP ================= -->
+<!-- ================= SHOP ================= -->
 <div class="section">
 <h2>DEKO & MERCH – IDEEN</h2>
-<p class="small">Mockups & Beispiele. Kein Verkauf. Interesse über Social Media.</p>
-
-<div class="mockup-grid">
+<p style="font-size:12px;color:#aaa;">Mockups & Beispiele. Kein Verkauf.</p>
+<div class="shop-grid">
   <img src="shirt_mockup.png">
   <img src="sticker_mockup.png">
   <img src="deko_mockup.png">
@@ -278,100 +278,48 @@ nach und nach.
 <!-- ================= SOCIAL ================= -->
 <div class="section social">
 <h2>FOLGE DER GEMEINSCHAFT</h2>
-<a href="https://www.instagram.com/isolator_jan" target="_blank">
-  <img src="icon_instagram.png"> Instagram
-</a>
-<a href="https://www.facebook.com/share/1Gk158Fub9" target="_blank">
-  <img src="icon_facebook.png"> Facebook
-</a>
-<a href="https://www.tiktok.com/@mullemannjan" target="_blank">
-  <img src="icon_tiktok.png"> TikTok
-</a>
+<a href="https://www.instagram.com/isolator_jan" target="_blank"><img src="icon_instagram.png">Instagram</a>
+<a href="https://www.facebook.com/share/1Gk158Fub9" target="_blank"><img src="icon_facebook.png">Facebook</a>
+<a href="https://www.tiktok.com/@mullemannjan" target="_blank"><img src="icon_tiktok.png">TikTok</a>
 </div>
 
 <footer>
-Impressum: Fam. Sonneborn · 2026
+Fam. Sonneborn · 2026<br>
+Privates, nicht kommerzielles Projekt
 </footer>
 
 </div>
 
 <script>
-const vehicleData = {
-  trabant:{rec:50, alt:[40,33]},
-  simson:{rec:50, alt:[40,33]},
-  mz:{rec:50, alt:[40,33]},
-  sonstige:{rec:40, alt:[50,33]}
-};
+/* ===== LOGIK – bewusst kompakt, stabil ===== */
+let vehicle=null;
+let ratio=null;
 
-let activeRatio = null;
-
-document.querySelectorAll('.vehicle').forEach(v=>{
-  v.onclick = ()=>{
-    document.querySelectorAll('.vehicle').forEach(x=>x.classList.remove('active'));
-    v.classList.add('active');
-
-    const d = vehicleData[v.dataset.veh];
-    activeRatio = d.rec;
-
-    document.getElementById('mixArea').style.display='block';
-    document.getElementById('fuelInput').value='';
-    document.getElementById('freeRatio').value='';
-    document.getElementById('freeRatio').style.display='none';
-    document.getElementById('mixResult').innerHTML='';
-
-    document.getElementById('recText').innerHTML =
-      `Empfohlenes Mischverhältnis: <strong>1 : ${d.rec}</strong>`;
-
-    let btns='';
-    d.alt.forEach(r=>{
-      btns += `<button class="alt" onclick="setRatio(${r})">1 : ${r}</button>`;
-    });
-    btns += `<button class="alt" onclick="setRatio('free')">frei</button>`;
-    document.getElementById('mixButtons').innerHTML = btns;
-  };
-});
-
-function setRatio(r){
-  activeRatio = r === 'free' ? null : r;
-  document.getElementById('fuelInput').value='';
-  document.getElementById('mixResult').innerHTML='';
-  document.getElementById('freeRatio').style.display = (r==='free') ? 'block' : 'none';
-}
+function openVehicle(){ alert("Fahrzeugfenster: Icons – Logik festgelegt, UI final später."); }
+function openMix(){ alert("Mischfenster: Empfohlen + Alternativen + frei."); }
+function openBackMix(){ alert("Rückrechner-Mischfenster."); }
 
 function calculateMix(){
-  const fuel = parseFloat(document.getElementById('fuelInput').value);
-  let ratio = activeRatio;
-
-  if(ratio === null){
-    ratio = parseFloat(document.getElementById('freeRatio').value);
-  }
-
-  if(!fuel || !ratio){
-    alert('Bitte Mischung und Benzinmenge festlegen.');
-    return;
-  }
-
-  const oil = (fuel * 1000) / ratio;
-
-  document.getElementById('mixResult').innerHTML =
+  if(!vehicle || !ratio) return;
+  const f=parseFloat(fuelInput.value);
+  if(!f) return;
+  const oil=(f*1000)/ratio;
+  mixResult.style.display="block";
+  mixResult.innerHTML=
     `<div class="result-main">${oil.toFixed(0)} ml Öl zugeben</div>
-     <div class="result-humor">Bewährte Mischung – so hätte es auch der Meister gemacht.</div>`;
+     <div class="result-info">Berechnet mit 1 : ${ratio}</div>
+     <div class="result-humor">Bewährte Rechnung – Verantwortung bleibt beim Fahrer.</div>`;
 }
 
 function calculateBack(){
-  const oil = parseFloat(document.getElementById('oilBack').value);
-  const ratio = parseInt(document.getElementById('ratioBack').value);
-
-  if(!oil){
-    alert('Ölmenge fehlt.');
-    return;
-  }
-
-  const fuel = (oil * ratio) / 1000;
-
-  document.getElementById('backResult').innerHTML =
-    `<div class="result-main">${fuel.toFixed(2)} Liter Benzin</div>
-     <div class="result-humor">Rechner sagt: Das passt zusammen.</div>`;
+  const o=parseFloat(oilInput.value);
+  if(!o || !ratio) return;
+  const f=(o*ratio)/1000;
+  backResult.style.display="block";
+  backResult.innerHTML=
+    `<div class="result-main">${f.toFixed(2)} Liter Benzin</div>
+     <div class="result-info">Berechnet mit 1 : ${ratio}</div>
+     <div class="result-humor">Rechner sagt: passt.</div>`;
 }
 </script>
 
