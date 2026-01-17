@@ -7,226 +7,197 @@
 
 <style>
 /* ===== BASIS ===== */
-body {
-  margin: 0;
-  background: #0e0e0e;
-  color: #e5e5e5;
-  font-family: Arial, Helvetica, sans-serif;
+body{
+  margin:0;
+  background:#0e0e0e;
+  color:#e5e5e5;
+  font-family:Arial,Helvetica,sans-serif;
 }
 
-.wrapper {
-  max-width: 880px;
-  margin: 0 auto;
-  padding: 20px;
+.wrapper{
+  max-width:880px;
+  margin:0 auto;
+  padding:20px;
 }
 
-/* ===== DESKTOP HINTERGRUNDLOGO ===== */
-@media (min-width: 900px) {
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: url("logo.png") no-repeat center;
-    background-size: 900px;
-    opacity: 0.04;
-    transform: rotate(-12deg);
-    pointer-events: none;
+/* ===== HINTERGRUNDLOGO (DESKTOP) ===== */
+@media (min-width:900px){
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:url("logo.png") no-repeat center;
+    background-size:900px;
+    opacity:0.04;
+    transform:rotate(-12deg);
+    pointer-events:none;
   }
 }
 
 /* ===== HEADER ===== */
-header {
-  text-align: center;
-  margin-bottom: 30px;
+header{
+  text-align:center;
+  margin-bottom:30px;
 }
-
-header img {
-  max-width: 260px;
-}
-
-header p {
-  margin-top: 6px;
-  font-size: 12px;
-  color: #aaa;
-  letter-spacing: 1px;
+header img{max-width:260px;}
+header p{
+  margin-top:6px;
+  font-size:12px;
+  color:#aaa;
+  letter-spacing:1px;
 }
 
 /* ===== PANEL ===== */
-.panel {
-  background: #1a1a1a;
-  border: 2px solid #555;
-  padding: 20px;
+.panel{
+  background:#1a1a1a;
+  border:2px solid #555;
+  padding:20px;
 }
 
-/* ===== MISCHRECHNER ===== */
-.mixer-title {
-  font-size: 14px;
-  letter-spacing: 2px;
-  color: #d4aa00;
-  margin-bottom: 10px;
+/* ===== TITEL ===== */
+.title{
+  font-size:14px;
+  letter-spacing:2px;
+  color:#d4aa00;
+  margin-bottom:10px;
+}
+.intro{
+  font-size:12px;
+  color:#bbb;
+  margin-bottom:20px;
 }
 
-.mixer-intro {
-  font-size: 12px;
-  color: #bbb;
-  margin-bottom: 20px;
-}
-
-.section {
-  margin-top: 18px;
-}
-
-.section-title {
-  font-size: 12px;
-  letter-spacing: 1px;
-  color: #bbb;
-  margin-bottom: 6px;
+/* ===== ABSCHNITTE ===== */
+.section{margin-top:18px;}
+.section-title{
+  font-size:12px;
+  color:#bbb;
+  margin-bottom:6px;
 }
 
 /* ===== FAHRZEUGE ===== */
-.vehicles {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+.vehicles{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
 }
-
-.vehicle {
-  background: #2a2a2a;
-  border: 1px solid #444;
-  padding: 10px;
-  text-align: center;
-  cursor: pointer;
+.vehicle{
+  background:#2a2a2a;
+  border:1px solid #444;
+  padding:10px;
+  text-align:center;
+  cursor:pointer;
 }
-
-.vehicle img {
-  max-width: 70px;
-  margin-bottom: 6px;
-}
-
-.vehicle.active {
-  border-color: #d4aa00;
-  color: #d4aa00;
+.vehicle img{max-width:70px;margin-bottom:6px;}
+.vehicle.active{
+  border-color:#d4aa00;
+  color:#d4aa00;
 }
 
 /* ===== EMPFEHLUNG ===== */
-.recommendation {
-  margin-top: 10px;
-  padding: 10px;
-  border: 1px solid #666;
-  background: #111;
-  text-align: center;
-  font-size: 13px;
+.recommendation{
+  margin-top:12px;
+  padding:10px;
+  border:1px solid #666;
+  background:#111;
+  text-align:center;
+  font-size:13px;
 }
 
 /* ===== MISCHOPTIONEN ===== */
-#ratioOptions button {
-  margin-right: 6px;
-  padding: 6px 10px;
-  background: #1a1a1a;
-  border: 1px solid #666;
-  color: #d4aa00;
-  cursor: pointer;
+#ratioOptions button{
+  margin-right:6px;
+  padding:6px 10px;
+  background:#1a1a1a;
+  border:1px solid #666;
+  color:#d4aa00;
+  cursor:pointer;
+}
+#ratioOptions button.active{
+  background:#d4aa00;
+  color:#000;
 }
 
 /* ===== UMSCHALTER ===== */
-.toggle {
-  display: flex;
-  gap: 6px;
+.toggle{
+  display:flex;
+  gap:6px;
 }
-
-.toggle button {
-  flex: 1;
-  padding: 10px;
-  background: #1a1a1a;
-  border: 1px solid #666;
-  color: #d4aa00;
-  cursor: pointer;
+.toggle button{
+  flex:1;
+  padding:10px;
+  background:#1a1a1a;
+  border:1px solid #666;
+  color:#d4aa00;
+  cursor:pointer;
 }
-
-.toggle button.active {
-  background: #d4aa00;
-  color: #000;
+.toggle button.active{
+  background:#d4aa00;
+  color:#000;
 }
 
 /* ===== INPUT ===== */
-input {
-  width: 100%;
-  padding: 12px;
-  background: #2a2a2a;
-  border: 1px solid #444;
-  color: #fff;
-  font-size: 16px;
+input{
+  width:100%;
+  padding:12px;
+  background:#2a2a2a;
+  border:1px solid #444;
+  color:#fff;
+  font-size:16px;
 }
 
 /* ===== ERGEBNIS ===== */
-.result {
-  margin-top: 20px;
-  background: #111;
-  border: 1px solid #444;
-  padding: 15px;
+.result{
+  margin-top:20px;
+  background:#111;
+  border:1px solid #444;
+  padding:15px;
+}
+.result-main{
+  font-size:24px;
+  color:#8cff80;
+}
+.result-note{
+  margin-top:6px;
+  font-size:12px;
+  color:#9aa58c;
 }
 
-.result-main {
-  font-size: 24px;
-  color: #8cff80;
+/* ===== BLÖCKE ===== */
+.block{margin-top:40px;}
+.block-title{
+  font-size:13px;
+  letter-spacing:2px;
+  color:#d4aa00;
+  margin-bottom:10px;
 }
-
-.result-note {
-  margin-top: 6px;
-  font-size: 12px;
-  color: #9aa58c;
-}
-
-/* ===== GEMEINSCHAFT / TERMIN / SHOP ===== */
-.block {
-  margin-top: 40px;
-}
-
-.block-title {
-  font-size: 13px;
-  letter-spacing: 2px;
-  color: #d4aa00;
-  margin-bottom: 10px;
-}
-
-.block p {
-  font-size: 12px;
-  color: #bbb;
-}
+.block p{font-size:12px;color:#bbb;}
 
 /* ===== SHOP ===== */
-.shop-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
+.shop-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
 }
-
-.shop-item img {
-  width: 100%;
-}
-
-.shop-item div {
-  text-align: center;
-  font-size: 12px;
-  margin-top: 4px;
-}
+.shop-item img{width:100%;}
+.shop-item div{text-align:center;font-size:12px;margin-top:4px;}
 
 /* ===== SOCIAL ===== */
-.social a {
-  display: block;
-  padding: 10px;
-  margin-bottom: 8px;
-  border: 1px solid #d4aa00;
-  color: #d4aa00;
-  text-decoration: none;
+.social a{
+  display:block;
+  padding:10px;
+  margin-bottom:8px;
+  border:1px solid #d4aa00;
+  color:#d4aa00;
+  text-decoration:none;
 }
 
 /* ===== IMPRESSUM ===== */
-.impressum {
-  margin-top: 30px;
-  font-size: 11px;
-  color: #777;
-  text-align: center;
+.impressum{
+  margin-top:30px;
+  font-size:11px;
+  color:#777;
+  text-align:center;
 }
 </style>
 </head>
@@ -240,8 +211,8 @@ input {
 </header>
 
 <div class="panel">
-  <div class="mixer-title">ZWEITAKT-MISCHRECHNER</div>
-  <div class="mixer-intro">
+  <div class="title">ZWEITAKT-MISCHRECHNER</div>
+  <div class="intro">
     In wenigen Schritten zur richtigen Mischung – wie in der Werkstatt.<br>
     Fahrzeug wählen · Menge eingeben · Ergebnis ablesen
   </div>
@@ -252,7 +223,7 @@ input {
       <div class="vehicle" data-ratio="50"><img src="trabant.png">Trabant</div>
       <div class="vehicle" data-ratio="50"><img src="simson.png">Simson</div>
       <div class="vehicle" data-ratio="50"><img src="mz.png">MZ</div>
-      <div class="vehicle" data-ratio="40"><img src="sonstige_zweitakter.png">Sonstige</div>
+      <div class="vehicle" data-ratio="40"><img src="sonstige_zweitakter.png">Sonstige Zweitakter</div>
     </div>
   </div>
 
@@ -295,10 +266,31 @@ input {
 
 <div class="block">
   <div class="block-title">WO WIR EVTL. ZU FINDEN SIND</div>
-  <p>
-    Hinweise auf Treffen und Veranstaltungen, unverbindlich und ohne Zusage.
-    Auch für Interessierte.
-  </p>
+  <ul style="font-size:12px;color:#bbb;line-height:1.6;">
+    <li><strong>April 2026</strong><br>19. Ostfahrzeugtreffen · Finowfurt</li>
+    <li><strong>Mai 2026</strong><br>
+      IFA Freunde Ladeburg · Ladeburg<br>
+      18. Oldtimertreffen · Alt Tucheband<br>
+      IFA & Oldtimertreffen · Herzfelde<br>
+      Ostfahrzeugtreffen · Anklam
+    </li>
+    <li><strong>Juni 2026</strong><br>
+      Eens zu Fuffzsch am Ring · Lausitzring<br>
+      Pre Deep One · Zehdenick
+    </li>
+    <li><strong>Juli 2026</strong><br>
+      Ostblock Fahrzeugtreffen · Pütnitz<br>
+      Trabant & VW-Bus Treffen · Kleinzerlang<br>
+      TFO-Treffen · Trabant-Freunde Ostfahrzeuge
+    </li>
+    <li><strong>August 2026</strong><br>
+      8. Linumer Simson & Oldtimertreffen · Linum<br>
+      East German Classics · Reitwein
+    </li>
+    <li><strong>September 2026</strong><br>
+      7. Ostblockmeeting · Neuhardenberg
+    </li>
+  </ul>
 </div>
 
 <div class="block">
@@ -331,66 +323,82 @@ input {
 </div>
 
 <script>
-let baseRatio = null;
-let ratio = null;
-let mode = null;
+let baseRatio=null,ratio=null,mode=null;
 
-document.querySelectorAll(".vehicle").forEach(v => {
-  v.onclick = () => {
-    document.querySelectorAll(".vehicle").forEach(x => x.classList.remove("active"));
+document.querySelectorAll(".vehicle").forEach(v=>{
+  v.onclick=()=>{
+    document.querySelectorAll(".vehicle").forEach(x=>x.classList.remove("active"));
     v.classList.add("active");
-    baseRatio = parseInt(v.dataset.ratio);
-    ratio = baseRatio;
-    document.getElementById("recommendation").style.display = "block";
-    document.getElementById("recommendation").innerText =
-      "Empfohlenes Mischverhältnis: 1 : " + baseRatio;
-    document.getElementById("ratioSection").style.display = "block";
-    document.getElementById("modeSection").style.display = "block";
-    document.getElementById("ratioOptions").innerHTML = "";
-    [50,40,33].filter(r => r !== baseRatio).forEach(r => {
-      let b = document.createElement("button");
-      b.innerText = "1 : " + r;
-      b.onclick = () => { ratio = r; document.getElementById("customRatio").style.display="none"; };
-      document.getElementById("ratioOptions").appendChild(b);
+    baseRatio=parseInt(v.dataset.ratio);
+    ratio=baseRatio;
+
+    recommendation.style.display="block";
+    recommendation.innerText="Empfohlenes Mischverhältnis: 1 : "+baseRatio;
+
+    ratioSection.style.display="block";
+    modeSection.style.display="block";
+    ratioOptions.innerHTML="";
+    customRatio.style.display="none";
+
+    [50,40,33].filter(r=>r!==baseRatio).forEach(r=>{
+      let b=document.createElement("button");
+      b.innerText="1 : "+r;
+      b.onclick=()=>{
+        ratio=r;
+        document.querySelectorAll("#ratioOptions button").forEach(x=>x.classList.remove("active"));
+        b.classList.add("active");
+        customRatio.style.display="none";
+      };
+      ratioOptions.appendChild(b);
     });
-    let free = document.createElement("button");
-    free.innerText = "frei";
-    free.onclick = () => document.getElementById("customRatio").style.display="block";
-    document.getElementById("ratioOptions").appendChild(free);
+
+    let free=document.createElement("button");
+    free.innerText="frei";
+    free.onclick=()=>{
+      document.querySelectorAll("#ratioOptions button").forEach(x=>x.classList.remove("active"));
+      free.classList.add("active");
+      customRatio.style.display="block";
+      ratio=null;
+    };
+    ratioOptions.appendChild(free);
   };
 });
 
-document.getElementById("modeOil").onclick = () => {
-  mode = "oil";
-  document.getElementById("modeOil").classList.add("active");
-  document.getElementById("modeFuel").classList.remove("active");
-  document.getElementById("amountSection").style.display="block";
-  document.getElementById("amountLabel").innerText = "Vorhandene Kraftstoffmenge (Liter)";
+customRatio.oninput=()=>{
+  if(customRatio.value>0) ratio=parseInt(customRatio.value);
 };
 
-document.getElementById("modeFuel").onclick = () => {
-  mode = "fuel";
-  document.getElementById("modeFuel").classList.add("active");
-  document.getElementById("modeOil").classList.remove("active");
-  document.getElementById("amountSection").style.display="block";
-  document.getElementById("amountLabel").innerText = "Vorhandene Ölmenge (ml)";
+modeOil.onclick=()=>{
+  mode="oil";
+  modeOil.classList.add("active");
+  modeFuel.classList.remove("active");
+  amountSection.style.display="block";
+  amountLabel.innerText="Vorhandene Kraftstoffmenge (Liter)";
 };
 
-document.getElementById("amount").oninput = () => {
-  const a = parseFloat(amount.value);
-  if (!a || !ratio || !mode) return;
-  let res = "";
-  if (mode === "oil") {
-    res = (a / ratio * 1000).toFixed(0) + " ml Zweitaktöl zugeben";
-  } else {
-    res = (a * ratio / 1000).toFixed(2) + " Liter Kraftstoff zugeben";
+modeFuel.onclick=()=>{
+  mode="fuel";
+  modeFuel.classList.add("active");
+  modeOil.classList.remove("active");
+  amountSection.style.display="block";
+  amountLabel.innerText="Vorhandene Ölmenge (ml)";
+};
+
+amount.oninput=()=>{
+  const a=parseFloat(amount.value);
+  if(!a||!ratio||!mode) return;
+  let text="";
+  if(mode==="oil"){
+    text=(a/ratio*1000).toFixed(0)+" ml Zweitaktöl zugeben";
+  }else{
+    text=(a*ratio/1000).toFixed(2)+" Liter Kraftstoff zugeben";
   }
-  document.getElementById("result").style.display="block";
-  document.getElementById("resultMain").innerText = "→ " + res;
-  document.getElementById("resultNote").innerText =
-    ratio < baseRatio ? "Mageres Gemisch – Motorschutz beachten."
-    : ratio > baseRatio ? "Etwas fetter als Serie – schadet selten."
-    : "Bewährte Mischung – so fährt die Mehrheit.";
+  result.style.display="block";
+  resultMain.innerText="→ "+text;
+  resultNote.innerText=
+    ratio<baseRatio?"Mageres Gemisch – Motorschutz beachten.":
+    ratio>baseRatio?"Etwas fetter als Serie – schadet selten.":
+    "Bewährte Mischung – so fährt die Mehrheit.";
 };
 </script>
 
