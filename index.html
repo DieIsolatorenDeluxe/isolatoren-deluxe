@@ -3,415 +3,277 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zweitakt-Mischrechner – Die Isolatoren Deluxe</title>
+<title>Die Isolatoren Deluxe – Zweitakt</title>
 
 <style>
 :root{
-  --bg:#0e0e0e;
-  --panel:#1a1a1a;
+  --bg:#0f0f0f;
+  --panel:#1b1b1b;
+  --gold:#c9a227;
+  --text:#e0e0e0;
   --border:#333;
-  --gold:#d4aa00;
-  --text:#e5e5e5;
-  --green:#7CFF7C;
+  --green:#4caf50;
 }
 
 *{box-sizing:border-box}
-
 body{
   margin:0;
+  font-family:Arial,Helvetica,sans-serif;
   background:var(--bg);
   color:var(--text);
-  font-family:Arial,Helvetica,sans-serif;
-}
-
-/* Hintergrundlogo Desktop */
-@media(min-width:900px){
-  body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    background:url("logo.png") no-repeat center;
-    background-size:720px;
-    opacity:0.04;
-    pointer-events:none;
-  }
-}
-
-.wrapper{
-  max-width:900px;
-  margin:auto;
-  padding:20px;
 }
 
 header{
   text-align:center;
-  margin-bottom:40px;
-}
-header img{
-  max-width:340px;
-}
-header p{
-  margin-top:10px;
-  letter-spacing:2px;
-  color:#bbb;
+  padding:40px 20px;
+  background:
+    radial-gradient(circle at center, rgba(255,255,255,0.05), transparent 60%),
+    url("logo.png") no-repeat center/420px;
 }
 
-/* ===== Panels ===== */
-.section{
-  background:var(--panel);
-  border:1px solid var(--border);
-  padding:22px;
-  margin-bottom:40px;
+header img{
+  max-width:320px;
 }
-.section h2{
-  margin-top:0;
+
+section{
+  max-width:1100px;
+  margin:40px auto;
+  padding:20px;
+}
+
+h2{
   color:var(--gold);
   letter-spacing:2px;
-  font-size:17px;
-}
-.section p{
-  font-size:16px;
-  line-height:1.5;
 }
 
-/* ===== Buttons ===== */
+.panel{
+  background:var(--panel);
+  border:1px solid var(--border);
+  padding:20px;
+  margin-top:20px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:15px;
+}
+
+.card{
+  background:#222;
+  border:2px solid transparent;
+  padding:15px;
+  text-align:center;
+  cursor:pointer;
+}
+.card.active{
+  border-color:var(--gold);
+}
+.card img{
+  max-width:100%;
+  height:100px;
+  object-fit:contain;
+}
+
 button{
   background:var(--gold);
+  color:#000;
   border:none;
-  padding:12px 16px;
+  padding:12px 18px;
   font-weight:bold;
   cursor:pointer;
 }
 button.secondary{
-  background:#222;
-  border:1px solid #555;
-  color:var(--gold);
+  background:#333;
+  color:var(--text);
 }
 
-/* ===== Inputs ===== */
 input{
   width:100%;
-  padding:12px;
-  margin-top:12px;
-  background:#111;
-  border:1px solid #444;
-  color:#fff;
-  font-size:16px;
-}
-
-/* ===== Result ===== */
-.result{
-  margin-top:18px;
-  border:1px solid #333;
-  padding:14px;
-}
-.result-main{
-  font-size:22px;
-  color:var(--green);
-}
-.result-info{
-  margin-top:6px;
-  font-size:13px;
-  color:#bbb;
-}
-.result-humor{
-  margin-top:6px;
-  font-size:12px;
-  color:#9aa58c;
-}
-
-/* ===== Vehicle Icons ===== */
-.vehicle-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:14px;
-}
-.vehicle{
-  background:#222;
-  border:2px solid transparent;
   padding:10px;
-  text-align:center;
-  cursor:pointer;
-}
-.vehicle.active{
-  border-color:var(--gold);
-}
-.vehicle img{
-  max-width:90px;
-  filter:brightness(1.15);
+  margin-top:10px;
+  background:#111;
+  color:#fff;
+  border:1px solid var(--border);
 }
 
-/* ===== Modals ===== */
+.result{
+  margin-top:15px;
+  padding:15px;
+  border:1px solid var(--border);
+}
+.result strong{
+  color:var(--green);
+  font-size:20px;
+}
+
 .modal{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.75);
+  background:rgba(0,0,0,0.7);
   display:none;
-  align-items:flex-end;
-  z-index:1000;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
 }
 .modal.active{display:flex}
-.modal-box{
-  background:#1a1a1a;
-  width:100%;
-  max-width:900px;
-  margin:auto;
+.modal-content{
+  background:#1f1f1f;
   padding:20px;
-  border-top:2px solid #444;
+  border:1px solid var(--border);
+  max-width:320px;
+  width:100%;
 }
-.modal-box h3{
+.modal-content h3{
   margin-top:0;
   color:var(--gold);
 }
-.option{
-  padding:12px;
-  border-bottom:1px solid #333;
+.modal-content button{
+  width:100%;
+  margin-top:10px;
+}
+.close{
+  text-align:right;
   cursor:pointer;
-}
-.option.active{
-  background:#222;
-  color:var(--gold);
-}
-
-/* ===== Shop ===== */
-.shop-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
-  gap:14px;
-}
-.shop-grid img{width:100%}
-
-/* ===== Social ===== */
-.social a{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:10px;
-  margin-bottom:8px;
-  border:1px solid var(--gold);
-  background:#1a1a1a;
-  color:var(--gold);
-  text-decoration:none;
-  font-size:13px;
-}
-.social img{width:20px;height:20px}
-
-footer{
-  text-align:center;
-  font-size:11px;
-  color:#777;
-  margin:40px 0;
+  color:#aaa;
 }
 </style>
 </head>
 
 <body>
-<div class="wrapper">
 
 <header>
   <img src="logo.png" alt="Die Isolatoren Deluxe">
-  <p>TECHNIK · GEMEINSCHAFT · ZWEITAKT</p>
+  <div>TECHNIK · GEMEINSCHAFT · ZWEITAKT</div>
 </header>
 
-<!-- ================= MISCHRECHNER ================= -->
-<div class="section">
+<section>
 <h2>ZWEITAKT-MISCHRECHNER</h2>
-<p>
-Fahrzeug auswählen, Mischungsverhältnis festlegen, Benzinmenge eingeben.<br>
-Sachlich gerechnet – Verantwortung bleibt beim Fahrer.
-</p>
 
-<div class="vehicle-grid" id="vehicles">
-  <div class="vehicle" data-name="Trabant" data-ratio="50"><img src="trabant.png"><div>Trabant</div></div>
-  <div class="vehicle" data-name="Simson" data-ratio="50"><img src="simson.png"><div>Simson</div></div>
-  <div class="vehicle" data-name="MZ" data-ratio="50"><img src="mz.png"><div>MZ</div></div>
-  <div class="vehicle" data-name="Sonstige Zweitakter" data-ratio="40"><img src="sonstige_zweitakter.png"><div>Sonstige</div></div>
+<div class="panel">
+
+<h3>1. Fahrzeug auswählen</h3>
+<div class="grid" id="vehicles">
+  <div class="card" data-vehicle="Trabant" data-ratio="50"><img src="trabant.png"><div>Trabant</div></div>
+  <div class="card" data-vehicle="Simson" data-ratio="50"><img src="simson.png"><div>Simson</div></div>
+  <div class="card" data-vehicle="MZ" data-ratio="50"><img src="mz.png"><div>MZ</div></div>
+  <div class="card" data-vehicle="Sonstige" data-ratio="40"><img src="sonstige_zweitakter.png"><div>Sonstige</div></div>
 </div>
 
-<div id="mixInfo" style="margin-top:14px;"></div>
+<div id="ratioInfo" style="margin-top:15px;"></div>
 
-<button class="secondary" onclick="openRatioModal()" style="margin-top:12px;">Mischungsverhältnis wählen</button>
+<button onclick="openRatio()">Mischungsverhältnis wählen</button>
 
-<input id="fuelInput" type="number" placeholder="Benzinmenge in Litern">
+<input id="fuelInput" type="number" placeholder="Benzinmenge in Litern (z.B. 5)">
 
-<button onclick="calculateMix()" style="margin-top:12px;">Berechnen</button>
+<button onclick="calculate()">Mischung berechnen</button>
 
-<div class="result" id="mixResult" style="display:none;"></div>
+<div class="result" id="result"></div>
+
 </div>
+</section>
 
-<!-- ================= RÜCKRECHNER ================= -->
-<div class="section">
+<section>
 <h2>RÜCKRECHNER – ÖL → BENZIN</h2>
-
-<button class="secondary" onclick="openRatioModal(true)">Mischungsverhältnis wählen</button>
-
+<div class="panel">
+<button onclick="openRatio()">Mischungsverhältnis wählen</button>
 <input id="oilInput" type="number" placeholder="Ölmenge in ml">
-
-<button onclick="calculateBack()" style="margin-top:12px;">Berechnen</button>
-
-<div class="result" id="backResult" style="display:none;"></div>
+<button onclick="calculateReverse()">Berechnen</button>
+<div class="result" id="resultReverse"></div>
 </div>
+</section>
 
-<!-- ================= GEMEINSCHAFT ================= -->
-<div class="section">
+<section>
 <h2>DIE GEMEINSCHAFT</h2>
-<p>
-Lose Gemeinschaft von Schraubern, Fahrern und Zweitakt-Interessierten.<br>
-Kein Verein, kein Zwang. Die Gemeinschaft wächst und integriert ihre Leute nach und nach.
-</p>
-</div>
+<p>Lose Gemeinschaft von Schraubern, Fahrern und Zweitakt-Interessierten. Kein Verein, kein Zwang – wächst nach und nach.</p>
+</section>
 
-<!-- ================= TERMINE ================= -->
-<div class="section">
-<h2>WO WIR EVTL. ZU FINDEN SIND</h2>
-<ul>
-<li>25.04.2026 – 19. Ostfahrzeugtreffen Finowfurt</li>
-<li>01.05.2026 – IFA Freunde Ladeburg</li>
-<li>09.05.2026 – 18. Oldtimertreffen Alt Tucheband</li>
-<li>14.05.2026 – Anklam</li>
-<li>14.05.2026 – Herrentagstour German East Driver (parallel)</li>
-<li>23.05.2026 – IFA & Oldtimertreffen Herzfelde</li>
-<li>30.05.2026 – 8. Linumer Simson & Oldtimertreffen</li>
-<li>06.06.2026 – Eens zu Fuffzsch am Ring</li>
-<li>06.06.2026 – Pre Deep One Zehdenick</li>
-<li>04.07.2026 – Simson Treffen Vietznitz</li>
-<li>04.07.2026 – Ostblock Fahrzeugtreffen</li>
-<li>25.07.2026 – TFO-Treffen</li>
-<li>01.08.2026 – Trabant & VW-Bus Treffen Kleinzerlang</li>
-<li>07.–09.08.2026 – East German Classics Reitwein</li>
-<li>12.09.2026 – Ostblockmeeting „Erichs Erben“</li>
-</ul>
-<p style="font-size:12px;color:#aaa;">Treffen als Optionen – keine Zusagen.</p>
-</div>
-
-<!-- ================= SHOP ================= -->
-<div class="section">
+<section>
 <h2>DEKO & MERCH – IDEEN</h2>
-<p style="font-size:12px;color:#aaa;">Mockups & Beispiele. Kein Verkauf.</p>
-<div class="shop-grid">
-  <img src="shirt_mockup.png">
-  <img src="sticker_mockup.png">
-  <img src="deko_mockup.png">
-  <img src="tasse_mockup.png">
-  <img src="keychain_mockup.png">
-  <img src="plasticcup_mockup.png">
-  <img src="cap_mockup.png">
-  <img src="jacket_mockup.png">
-  <img src="banner_mockup.png">
-</div>
-</div>
+<p>Mockups & Beispiele. Kein Verkauf. Kontakt über Social Media.</p>
+</section>
 
-<!-- ================= SOCIAL ================= -->
-<div class="section social">
-<h2>FOLGE DER GEMEINSCHAFT</h2>
-<a href="https://www.instagram.com/isolator_jan" target="_blank"><img src="icon_instagram.png">Instagram</a>
-<a href="https://www.facebook.com/share/1Gk158Fub9" target="_blank"><img src="icon_facebook.png">Facebook</a>
-<a href="https://www.tiktok.com/@mullemannjan" target="_blank"><img src="icon_tiktok.png">TikTok</a>
-</div>
+<section>
+<h2>TERMINE & TREFFEN</h2>
+<ul>
+<li>14.05.2026 – Anklam</li>
+<li>14.05.2026 – Herrentagstour German East Driver</li>
+</ul>
+</section>
 
-<footer>
-Fam. Sonneborn · 2026<br>
-Privates, nicht kommerzielles Projekt
-</footer>
+<section>
+<h2>IMPRESSUM</h2>
+<p>Privates, nicht kommerzielles Projekt.<br>Fam. Sonneborn – 2026</p>
+</section>
 
-</div>
-
-<!-- ================= MODAL ================= -->
+<!-- MODAL -->
 <div class="modal" id="ratioModal">
-  <div class="modal-box">
+  <div class="modal-content">
+    <div class="close" onclick="closeRatio()">✕</div>
     <h3>Mischungsverhältnis</h3>
-    <div class="option" onclick="selectRatio('recommended')">Empfohlen</div>
-    <div class="option" onclick="selectRatio(40)">1 : 40</div>
-    <div class="option" onclick="selectRatio(33)">1 : 33</div>
-    <div class="option" onclick="openFreeRatio()">Freie Wahl</div>
-    <button class="secondary" onclick="closeRatioModal()" style="margin-top:12px;">Schließen</button>
+    <button onclick="setRatio(50)">1 : 50</button>
+    <button onclick="setRatio(40)">1 : 40</button>
+    <button onclick="setRatio(33)">1 : 33</button>
+    <button onclick="customRatio()">Freie Wahl</button>
   </div>
 </div>
 
 <script>
 let vehicle=null;
-let recommendedRatio=null;
-let selectedRatio=null;
-let isBack=false;
+let recommended=null;
+let ratio=null;
 
-document.querySelectorAll('.vehicle').forEach(v=>{
-  v.onclick=()=>{
-    document.querySelectorAll('.vehicle').forEach(x=>x.classList.remove('active'));
-    v.classList.add('active');
-    vehicle=v.dataset.name;
-    recommendedRatio=parseInt(v.dataset.ratio);
-    selectedRatio=recommendedRatio;
-    updateInfo();
+document.querySelectorAll('#vehicles .card').forEach(c=>{
+  c.onclick=()=>{
+    document.querySelectorAll('.card').forEach(x=>x.classList.remove('active'));
+    c.classList.add('active');
+    vehicle=c.dataset.vehicle;
+    recommended=parseInt(c.dataset.ratio);
+    ratio=recommended;
+    document.getElementById('ratioInfo').innerText=
+      "Empfohlenes Mischverhältnis: 1 : "+recommended;
     resetResults();
   }
 });
 
-function updateInfo(){
-  document.getElementById('mixInfo').innerHTML=
-    `<strong>Empfohlenes Mischungsverhältnis:</strong> 1 : ${recommendedRatio}<br>
-     <span style="font-size:13px;color:#bbb;">Aktiv: 1 : ${selectedRatio}</span>`;
-}
-
-function resetResults(){
-  document.getElementById('mixResult').style.display="none";
-  document.getElementById('backResult').style.display="none";
-}
-
-function openRatioModal(back=false){
-  if(!vehicle && !back) return;
-  isBack=back;
+function openRatio(){
+  if(!vehicle){alert("Fahrzeug auswählen");return;}
   document.getElementById('ratioModal').classList.add('active');
 }
-
-function closeRatioModal(){
+function closeRatio(){
   document.getElementById('ratioModal').classList.remove('active');
 }
-
-function selectRatio(val){
-  if(val==="recommended") selectedRatio=recommendedRatio;
-  else selectedRatio=val;
-  updateInfo();
+function setRatio(r){
+  ratio=r;
+  closeRatio();
   resetResults();
-  closeRatioModal();
+}
+function customRatio(){
+  let r=prompt("Mischungsverhältnis eingeben (z.B. 45)");
+  if(r && r>0){ratio=parseInt(r);resetResults();}
+  closeRatio();
+}
+function resetResults(){
+  document.getElementById('result').innerHTML="";
+  document.getElementById('resultReverse').innerHTML="";
 }
 
-function openFreeRatio(){
-  let val=prompt("Mischungsverhältnis eingeben (z.B. 45)");
-  if(val && val>0){
-    selectedRatio=parseInt(val);
-    updateInfo();
-    resetResults();
-  }
-  closeRatioModal();
-}
-
-function calculateMix(){
+function calculate(){
   let fuel=parseFloat(document.getElementById('fuelInput').value);
-  if(!vehicle || !selectedRatio || !fuel) return;
-  let oil=Math.round((fuel*1000)/selectedRatio);
-  let humor= selectedRatio===recommendedRatio
-    ? "Bewährte Mischung – so hätte es auch der Meister gemacht."
-    : selectedRatio<recommendedRatio
-      ? "Etwas fetter gemischt – Kolben sagt Danke."
-      : "Mager unterwegs – Technik im Auge behalten.";
-  let box=document.getElementById('mixResult');
-  box.style.display="block";
-  box.innerHTML=
-    `<div class="result-main">${oil} ml Öl zugeben</div>
-     <div class="result-info">Berechnet mit 1 : ${selectedRatio}</div>
-     <div class="result-humor">${humor}</div>`;
+  if(!fuel||!ratio)return;
+  let oil=Math.round((fuel*1000)/ratio);
+  document.getElementById('result').innerHTML=
+    "<strong>"+oil+" ml Öl zugeben</strong><br>"+
+    "Berechnet mit 1:"+ratio;
 }
 
-function calculateBack(){
+function calculateReverse(){
   let oil=parseFloat(document.getElementById('oilInput').value);
-  if(!selectedRatio || !oil) return;
-  let fuel=(oil*selectedRatio/1000).toFixed(2);
-  let box=document.getElementById('backResult');
-  box.style.display="block";
-  box.innerHTML=
-    `<div class="result-main">${fuel} Liter Benzin</div>
-     <div class="result-info">Berechnet mit 1 : ${selectedRatio}</div>
-     <div class="result-humor">Rechnerisch sauber – jetzt weißt du, was in den Kanister gehört.</div>`;
+  if(!oil||!ratio)return;
+  let fuel=(oil*ratio/1000).toFixed(2);
+  document.getElementById('resultReverse').innerHTML=
+    "<strong>"+fuel+" Liter Benzin zugeben</strong><br>"+
+    "Berechnet mit 1:"+ratio;
 }
 </script>
 
