@@ -1,369 +1,452 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <title>die Isolatoren Deluxe – Zweitakt Mischrechner</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zweitakt-Mischrechner – die Isolatoren Deluxe</title>
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="logo.png">
+<link rel="icon" type="image/png" href="logo.png">
 
-  <style>
-    :root {
-      --bg: #111;
-      --panel: #1b1b1b;
-      --text: #e0e0e0;
-      --accent: #cfa44a;
-      --muted: #888;
-      --danger: #c05050;
-      --ok: #6fbf73;
-    }
+<style>
+/* ===== GRUNDLAGEN ===== */
+:root{
+  --bg:#0e0e0e;
+  --panel:#1a1a1a;
+  --text:#e5e5e5;
+  --muted:#9a9a9a;
+  --accent:#d4aa00;
+  --ok:#7fd18c;
+  --warn:#c76b6b;
+}
 
-    * { box-sizing: border-box; }
+*{box-sizing:border-box;}
 
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-    }
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;
+}
 
-    header {
-      text-align: center;
-      padding: 40px 20px 30px;
-      background: radial-gradient(circle at top, #222 0%, #111 70%);
-    }
+/* ===== HINTERGRUNDLOGO (DESKTOP) ===== */
+@media (min-width:900px){
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:url("logo.png") no-repeat center;
+    background-size:900px;
+    opacity:0.045;
+    transform:rotate(-12deg);
+    pointer-events:none;
+  }
+}
 
-    header img {
-      width: 260px;
-      opacity: 0.9;
-    }
+/* ===== LAYOUT ===== */
+.wrapper{
+  max-width:880px;
+  margin:0 auto;
+  padding:20px;
+}
 
-    main {
-      max-width: 1100px;
-      margin: auto;
-      padding: 20px;
-    }
+.section{
+  margin-top:48px;
+}
 
-    h2 {
-      margin-top: 60px;
-      margin-bottom: 10px;
-      font-size: 1.4rem;
-      letter-spacing: 0.05em;
-    }
+.section h2{
+  margin:0 0 6px;
+  font-size:18px;
+  letter-spacing:2px;
+}
 
-    .hint {
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin-bottom: 25px;
-      max-width: 700px;
-    }
+.hint{
+  font-size:13px;
+  color:var(--muted);
+  margin-bottom:16px;
+  max-width:700px;
+}
 
-    .panel {
-      background: var(--panel);
-      padding: 25px;
-      margin-bottom: 40px;
-      border-radius: 6px;
-    }
+.panel{
+  background:var(--panel);
+  border:1px solid #333;
+  padding:20px;
+}
 
-    /* Fahrzeugauswahl */
-    .vehicles {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 15px;
-      margin-bottom: 25px;
-    }
+/* ===== HEADER ===== */
+header{
+  text-align:center;
+  padding:35px 10px 25px;
+}
 
-    .vehicle {
-      background: #222;
-      padding: 15px 10px;
-      text-align: center;
-      cursor: pointer;
-      border-radius: 5px;
-      transition: background 0.2s;
-    }
+header img{
+  max-width:280px;
+}
 
-    .vehicle img {
-      width: 60px;
-      margin-bottom: 8px;
-    }
+header h1{
+  margin:14px 0 4px;
+  font-size:20px;
+  letter-spacing:4px;
+  color:var(--accent);
+}
 
-    .vehicle.active {
-      background: #2a2a2a;
-      outline: 2px solid var(--accent);
-    }
+header p{
+  margin:0;
+  font-size:13px;
+  color:var(--muted);
+}
 
-    .vehicle span {
-      display: block;
-      font-size: 0.85rem;
-    }
+/* ===== FAHRZEUGE ===== */
+.vehicles{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+  gap:14px;
+  margin-bottom:18px;
+}
 
-    /* Inputs */
-    .row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      margin-bottom: 20px;
-    }
+.vehicle{
+  background:#222;
+  border:1px solid #333;
+  padding:12px 8px;
+  text-align:center;
+  cursor:pointer;
+}
 
-    label {
-      display: block;
-      font-size: 0.85rem;
-      margin-bottom: 6px;
-      color: var(--muted);
-    }
+.vehicle.active{
+  border-color:var(--accent);
+}
 
-    input, select {
-      width: 100%;
-      padding: 10px;
-      background: #222;
-      border: 1px solid #333;
-      color: var(--text);
-      border-radius: 4px;
-    }
+.vehicle img{
+  width:60px;
+  margin-bottom:6px;
+}
 
-    .col {
-      flex: 1;
-      min-width: 200px;
-    }
+.vehicle span{
+  font-size:13px;
+}
 
-    button {
-      padding: 12px 25px;
-      background: var(--accent);
-      border: none;
-      color: #000;
-      font-weight: bold;
-      cursor: pointer;
-      border-radius: 4px;
-    }
+/* ===== INPUTS ===== */
+.row{
+  display:flex;
+  gap:16px;
+  flex-wrap:wrap;
+}
 
-    button:hover {
-      opacity: 0.9;
-    }
+.col{
+  flex:1;
+  min-width:180px;
+}
 
-    .result {
-      margin-top: 25px;
-      padding: 20px;
-      background: #151515;
-      border-left: 4px solid var(--accent);
-    }
+label{
+  font-size:12px;
+  color:var(--muted);
+  display:block;
+  margin-bottom:5px;
+}
 
-    .result strong {
-      font-size: 1.1rem;
-      color: var(--accent);
-    }
+input,select{
+  width:100%;
+  padding:10px;
+  background:#222;
+  border:1px solid #444;
+  color:var(--text);
+}
 
-    .warning {
-      color: var(--danger);
-      margin-top: 10px;
-      font-size: 0.9rem;
-    }
+button{
+  margin-top:16px;
+  padding:12px 18px;
+  background:var(--accent);
+  border:none;
+  font-weight:bold;
+  cursor:pointer;
+}
 
-    /* Mockup Shop */
-    .mockups {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 25px;
-    }
+/* ===== ERGEBNIS ===== */
+.result{
+  margin-top:18px;
+  padding:14px;
+  background:#141414;
+  border-left:4px solid var(--accent);
+}
 
-    .mockup {
-      text-align: center;
-    }
+.result .main{
+  font-size:18px;
+  color:var(--ok);
+}
 
-    .mockup img {
-      width: 100%;
-      border-radius: 4px;
-    }
+.result .humor{
+  margin-top:6px;
+  font-size:12px;
+  color:var(--muted);
+}
 
-    .mockup span {
-      display: block;
-      margin-top: 8px;
-      font-size: 0.85rem;
-    }
+.warning{
+  color:var(--warn);
+  font-size:13px;
+}
 
-    /* Termine */
-    .dates {
-      display: grid;
-      gap: 15px;
-    }
+/* ===== MOCKUPS ===== */
+.mockups{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:20px;
+}
 
-    .date {
-      background: #222;
-      padding: 15px;
-      border-left: 4px solid var(--accent);
-    }
+.mockup img{
+  width:100%;
+}
 
-    .date strong {
-      display: block;
-      color: var(--accent);
-      font-size: 1rem;
-    }
+.mockup span{
+  display:block;
+  margin-top:6px;
+  font-size:13px;
+  text-align:center;
+}
 
-    footer {
-      margin-top: 60px;
-      padding: 30px 20px;
-      text-align: center;
-      font-size: 0.8rem;
-      color: var(--muted);
-      border-top: 1px solid #222;
-    }
-  </style>
+/* ===== TERMINE ===== */
+.term{
+  padding:10px 0;
+  border-bottom:1px solid #333;
+}
+
+.term:last-child{border:none;}
+
+.term-date{
+  color:var(--accent);
+  font-weight:bold;
+}
+
+.term-info{
+  font-size:13px;
+  color:var(--muted);
+}
+
+/* ===== SOCIAL ===== */
+.social{
+  display:grid;
+  gap:10px;
+}
+
+.social a{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px;
+  border:1px solid var(--accent);
+  color:var(--accent);
+  text-decoration:none;
+  background:#1a1a1a;
+  font-size:13px;
+}
+
+.social img{
+  width:20px;
+}
+
+/* ===== FOOTER ===== */
+footer{
+  margin-top:60px;
+  padding:22px 10px;
+  border-top:1px solid #333;
+  text-align:center;
+  font-size:12px;
+  color:var(--muted);
+}
+</style>
 </head>
 
 <body>
+<div class="wrapper">
 
 <header>
   <img src="logo.png" alt="die Isolatoren Deluxe">
+  <h1>ZWEITAKT MISCHRECHNER</h1>
+  <p>Technik · Gemeinschaft · Zweitakt</p>
 </header>
 
-<main>
+<!-- MISCHRECHNER -->
+<div class="section">
+<h2>MISCHRECHNER</h2>
+<div class="hint">
+Berechnungshilfe für Zweitakt-Gemische.  
+Kein Ersatz für Erfahrung – aber besser als Raten.
+</div>
 
-  <!-- MISCHRECHNER -->
-  <h2>ZWEITAKT-MISCHRECHNER</h2>
-  <div class="hint">
-    Werkzeug zur Berechnung von Zweitakt-Gemischen.  
-    Ohne Verkauf, ohne Garantie – aber mit Erfahrung.
-  </div>
+<div class="panel">
 
-  <div class="panel">
+<div class="vehicles">
+  <div class="vehicle" data-ratio="50"><img src="trabant.png"><span>Trabant</span></div>
+  <div class="vehicle" data-ratio="50"><img src="simson.png"><span>Simson</span></div>
+  <div class="vehicle" data-ratio="50"><img src="mz.png"><span>MZ</span></div>
+  <div class="vehicle" data-ratio="40"><img src="sonstige_zweitakter.png"><span>Sonstige Zweitakter</span></div>
+</div>
 
-    <div class="vehicles">
-      <div class="vehicle" data-ratio="50"><img src="trabant.png"><span>Trabant</span></div>
-      <div class="vehicle" data-ratio="50"><img src="simson.png"><span>Simson</span></div>
-      <div class="vehicle" data-ratio="50"><img src="mz.png"><span>MZ</span></div>
-      <div class="vehicle" data-ratio="40"><img src="sonstige_zweitakter.png"><span>Sonstige</span></div>
+<div id="settings" style="display:none;">
+  <div class="row">
+    <div class="col">
+      <label>Mischungsverhältnis</label>
+      <select id="ratioSelect"></select>
     </div>
-
-    <div id="settings" style="display:none;">
-
-      <div class="row">
-        <div class="col">
-          <label>Mischungsverhältnis</label>
-          <select id="ratioSelect"></select>
-        </div>
-        <div class="col">
-          <label>Modus</label>
-          <select id="mode">
-            <option value="oil">Benzin → Öl</option>
-            <option value="fuel">Öl → Benzin</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col">
-          <label>Eingabemenge</label>
-          <input type="number" id="amount" placeholder="z. B. 5">
-        </div>
-      </div>
-
-      <button onclick="calculate()">Berechnen</button>
-
-      <div id="output" class="result" style="display:none;"></div>
-
+    <div class="col">
+      <label>Modus</label>
+      <select id="mode">
+        <option value="oil">Benzin → Öl</option>
+        <option value="fuel">Öl → Benzin</option>
+      </select>
     </div>
-
   </div>
 
-  <!-- MOCKUP SHOP -->
-  <h2>DEKO & MERCH – IDEEN</h2>
-  <div class="hint">
-    Beispiele & Mockups. Kein Verkauf.  
-    Interesse und Anfragen bitte über unsere Social-Media-Kanäle.
+  <div class="row">
+    <div class="col">
+      <label>Menge</label>
+      <input type="number" id="amount" placeholder="z. B. 5">
+    </div>
   </div>
 
-  <div class="panel mockups">
-    <div class="mockup"><img src="shirt_mockup.png"><span>T-Shirt</span></div>
-    <div class="mockup"><img src="sticker_mockup.png"><span>Aufkleber</span></div>
-    <div class="mockup"><img src="deko_mockup.png"><span>Werkstatt-Deko</span></div>
-    <div class="mockup"><img src="tasse_mockup.png"><span>Tasse</span></div>
-    <div class="mockup"><img src="keychain_mockup.png"><span>Schlüsselanhänger</span></div>
-    <div class="mockup"><img src="plasticcup_mockup.png"><span>Trinkbecher</span></div>
-    <div class="mockup"><img src="cap_mockup.png"><span>Cap</span></div>
-    <div class="mockup"><img src="jacket_mockup.png"><span>Werkstattjacke</span></div>
-    <div class="mockup"><img src="banner_mockup.png"><span>Banner</span></div>
-  </div>
+  <button onclick="calculate()">Wert ermitteln</button>
 
-  <!-- TERMINE -->
-  <h2>TREFFEN & VERANSTALTUNGEN</h2>
-  <div class="hint">
-    Treffen, bei denen man uns eventuell antreffen kann.  
-    Angaben ohne Gewähr – Änderungen vorbehalten.
-  </div>
+  <div id="output" class="result" style="display:none;"></div>
+</div>
 
-  <div class="panel dates">
-    <div class="date"><strong>18. Oldtimertreffen Alt Tucheband</strong>Alt Tucheband</div>
-    <div class="date"><strong>IFA & Oldtimertreffen Herzfelde</strong>Herzfelde</div>
-    <div class="date"><strong>Ostfahrzeugtreffen Finowfurt</strong>Finowfurt</div>
-  </div>
+</div>
+</div>
 
-</main>
+<!-- GEMEINSCHAFT -->
+<div class="section">
+<h2>DIE GEMEINSCHAFT</h2>
+<div class="hint">
+Lose Gemeinschaft aus Schraubern, Fahrern und Zweitakt-Interessierten.
+Die Gemeinschaft wächst, weitere Beteiligte und Mitwirkende
+werden nach und nach sichtbar und eingebunden.
+Kein Verein, kein Shop, keine Verpflichtung.
+</div>
+</div>
+
+<!-- TERMINE -->
+<div class="section">
+<h2>WO WIR EVTL. ZU FINDEN SIND</h2>
+<div class="hint">
+Unverbindliche Hinweise auf Treffen und Veranstaltungen.
+</div>
+
+<div class="panel">
+  <div class="term"><div class="term-date">April 2026</div><div class="term-info">19. Ostfahrzeugtreffen · Finowfurt</div></div>
+  <div class="term"><div class="term-date">Mai 2026</div><div class="term-info">IFA & Oldtimertreffen · Herzfelde</div></div>
+  <div class="term"><div class="term-date">Mai 2026</div><div class="term-info">18. Oldtimertreffen · Alt Tucheband</div></div>
+  <div class="term"><div class="term-date">Sommer 2026</div><div class="term-info">Weitere Ostfahrzeug- & Zweitakt-Treffen</div></div>
+</div>
+</div>
+
+<!-- MOCKUP SHOP -->
+<div class="section">
+<h2>DEKO & MERCH – IDEEN</h2>
+<div class="hint">
+Beispiele & Mockups. Kein Verkauf.
+Interesse über Social Media.
+</div>
+
+<div class="panel mockups">
+  <div class="mockup"><img src="shirt_mockup.png"><span>T-Shirt</span></div>
+  <div class="mockup"><img src="sticker_mockup.png"><span>Aufkleber</span></div>
+  <div class="mockup"><img src="deko_mockup.png"><span>Werkstatt-Deko</span></div>
+  <div class="mockup"><img src="tasse_mockup.png"><span>Tasse</span></div>
+  <div class="mockup"><img src="keychain_mockup.png"><span>Schlüsselanhänger</span></div>
+  <div class="mockup"><img src="plasticcup_mockup.png"><span>Trinkbecher</span></div>
+  <div class="mockup"><img src="cap_mockup.png"><span>Cap</span></div>
+  <div class="mockup"><img src="jacket_mockup.png"><span>Werkstattjacke</span></div>
+  <div class="mockup"><img src="banner_mockup.png"><span>Banner</span></div>
+</div>
+</div>
+
+<!-- SOCIAL -->
+<div class="section">
+<h2>FOLGE DER GEMEINSCHAFT</h2>
+<div class="hint">
+Mehrere Leute, eine Schrauberleidenschaft.
+</div>
+
+<div class="panel social">
+  <a href="https://www.instagram.com/isolator_jan" target="_blank">
+    <img src="icon_instagram.png"> Instagram besuchen
+  </a>
+  <a href="https://www.facebook.com/share/1Gk158Fub9" target="_blank">
+    <img src="icon_facebook.png"> Facebook-Seite öffnen
+  </a>
+  <a href="https://www.tiktok.com/@mullemannjan" target="_blank">
+    <img src="icon_tiktok.png"> TikTok-Kanal ansehen
+  </a>
+</div>
+</div>
 
 <footer>
-  © die Isolatoren Deluxe – Gemeinschaft von Zweitakt-Begeisterten
+Impressum<br>
+Fam. Sonneborn · privates, nicht-kommerzielles Projekt · 2026<br>
+Kontakt ausschließlich über die verlinkten Social-Media-Profile.
 </footer>
 
+</div>
+
 <script>
-let selectedRatio = null;
+let baseRatio=null;
 
-document.querySelectorAll('.vehicle').forEach(v => {
-  v.addEventListener('click', () => {
-    document.querySelectorAll('.vehicle').forEach(x => x.classList.remove('active'));
+document.querySelectorAll('.vehicle').forEach(v=>{
+  v.onclick=()=>{
+    document.querySelectorAll('.vehicle').forEach(x=>x.classList.remove('active'));
     v.classList.add('active');
+    baseRatio=v.dataset.ratio;
 
-    selectedRatio = v.dataset.ratio;
-    const select = document.getElementById('ratioSelect');
-    select.innerHTML = '';
-
-    [33,40,50].forEach(r => {
-      if (r != selectedRatio) {
-        const o = document.createElement('option');
-        o.value = r;
-        o.textContent = '1:' + r;
-        select.appendChild(o);
+    const sel=document.getElementById("ratioSelect");
+    sel.innerHTML="";
+    [33,40,50].forEach(r=>{
+      if(r!=baseRatio){
+        let o=document.createElement("option");
+        o.value=r;o.textContent="1:"+r;
+        sel.appendChild(o);
       }
     });
+    let f=document.createElement("option");
+    f.value="custom";f.textContent="frei wählbar";
+    sel.appendChild(f);
 
-    const free = document.createElement('option');
-    free.value = 'custom';
-    free.textContent = 'frei wählbar';
-    select.appendChild(free);
-
-    document.getElementById('settings').style.display = 'block';
-  });
+    document.getElementById("settings").style.display="block";
+  };
 });
 
-function calculate() {
-  const amount = parseFloat(document.getElementById('amount').value);
-  const mode = document.getElementById('mode').value;
-  const ratio = document.getElementById('ratioSelect').value;
+function calculate(){
+  const amount=parseFloat(document.getElementById("amount").value);
+  const mode=document.getElementById("mode").value;
+  let ratio=document.getElementById("ratioSelect").value;
+  const out=document.getElementById("output");
 
-  const out = document.getElementById('output');
-  if (!amount || !ratio) {
-    out.style.display = 'block';
-    out.innerHTML = '<span class="warning">Angaben unvollständig – erst rechnen, dann fahren.</span>';
+  if(!amount){
+    out.style.display="block";
+    out.innerHTML='<div class="warning">Werkstatt-Hinweis: Menge eingeben.</div>';
     return;
   }
 
-  let r = ratio === 'custom' ? prompt('Mischungsverhältnis (z. B. 50)') : ratio;
-  r = parseFloat(r);
+  if(ratio==="custom"){
+    ratio=parseFloat(prompt("Mischungsverhältnis (z. B. 50)"));
+  }
 
-  if (r < 25 || r > 100) {
-    out.style.display = 'block';
-    out.innerHTML = '<span class="warning">Das Gemisch ist sportlich… oder lebensmüde.</span>';
+  if(!ratio){
+    out.style.display="block";
+    out.innerHTML='<div class="warning">Werkstatt-Hinweis: Mischverhältnis fehlt.</div>';
     return;
   }
 
-  let result;
-  if (mode === 'oil') {
-    result = (amount * 1000) / r;
-    out.innerHTML = `<strong>${result.toFixed(1)} ml Öl dazugeben</strong><br>„Mehr Öl schadet selten – zu wenig immer.“`;
-  } else {
-    result = (amount * r) / 1000;
-    out.innerHTML = `<strong>${result.toFixed(2)} Liter Benzin dazugeben</strong><br>„Pi mal Auge ist keine Maßeinheit.“`;
+  if(ratio<25||ratio>100){
+    out.style.display="block";
+    out.innerHTML='<div class="warning">Technisch fragwürdiges Gemisch – prüfen empfohlen.</div>';
+    return;
   }
 
-  out.style.display = 'block';
+  if(mode==="oil"){
+    const res=(amount*1000)/ratio;
+    out.innerHTML='<div class="main">'+res.toFixed(1)+' ml Öl dazugeben</div><div class="humor">Mehr Öl schadet selten – zu wenig immer.</div>';
+  }else{
+    const res=(amount*ratio)/1000;
+    out.innerHTML='<div class="main">'+res.toFixed(2)+' Liter Benzin dazugeben</div><div class="humor">Pi mal Auge ist keine Maßeinheit.</div>';
+  }
+  out.style.display="block";
 }
 </script>
 
