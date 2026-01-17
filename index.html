@@ -26,9 +26,9 @@ body {
     content: "";
     position: fixed;
     inset: 0;
-    background: url("logo.png") no-repeat center;
-    background-size: 720px;
-    opacity: 0.035;
+    background: url("logo.png") no-repeat center 55%;
+    background-size: 860px;
+    opacity: 0.055;
     transform: rotate(-12deg);
     pointer-events: none;
   }
@@ -73,6 +73,13 @@ header p {
   padding: 18px;
 }
 
+/* ===== RECHNER INFO ===== */
+.calculator-info {
+  font-size: 11px;
+  color: #bbb;
+  margin-bottom: 14px;
+}
+
 /* ===== ABSCHNITTE ===== */
 .section {
   margin-top: 20px;
@@ -95,6 +102,7 @@ input, select {
   font-size: 16px;
 }
 
+/* ===== BUTTON ===== */
 button.main {
   width: 100%;
   margin-top: 18px;
@@ -120,19 +128,16 @@ button.main {
   cursor: pointer;
 }
 
-.vehicle img {
-  max-width: 90px;
-  display: block;
-  margin: 0 auto 6px;
-  filter: brightness(1.15) contrast(1.1);
-}
-
 .vehicle.active {
   border-color: #d4aa00;
   color: #d4aa00;
 }
 
-/* ===== MISCHSCHILD ===== */
+/* ===== MISCHVERHÄLTNIS ===== */
+#mixArea {
+  display: none;
+}
+
 .mix-sign {
   border: 1px solid #666;
   padding: 10px;
@@ -142,11 +147,10 @@ button.main {
 
 .mix-sign span {
   display: block;
-  font-size: 28px;
+  font-size: 26px;
   color: #d4aa00;
 }
 
-/* ===== MISCHOPTIONEN ===== */
 #mixOptions {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -176,48 +180,124 @@ button.main {
   color: #8cff80;
 }
 
-.result-humor {
+.result-note {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #bbb;
+}
+
+.result-egg {
   margin-top: 6px;
+  font-size: 11px;
+  color: #888;
+}
+
+.result-humor {
+  margin-top: 10px;
   font-size: 12px;
   color: #9aa58c;
 }
 
-/* ===== DDR SKALA ===== */
-.scale {
-  margin-top: 10px;
-  font-size: 11px;
-  color: #aaa;
-}
-
-.scale-track {
-  position: relative;
-  height: 10px;
-  background: repeating-linear-gradient(
-    to right,
-    #777,
-    #777 2px,
-    transparent 2px,
-    transparent 20px
-  );
-  margin-top: 6px;
-}
-
-.scale-marker {
-  position: absolute;
-  top: -4px;
-  width: 4px;
-  height: 18px;
-  background: #d4aa00;
-  left: 0%;
-}
-
 /* ===== HINWEIS ===== */
 .notice {
-  margin-top: 18px;
+  margin-top: 14px;
   padding: 10px;
   border: 1px solid #444;
   font-size: 11px;
   color: #bbb;
+}
+
+/* ===== RESET ===== */
+.reset {
+  margin-top: 10px;
+  font-size: 11px;
+  color: #aaa;
+  cursor: pointer;
+  text-align: center;
+}
+
+/* ===== MOCKUP SHOP ===== */
+.mockup-panel {
+  margin-top: 50px;
+  padding: 18px;
+  background: #141414;
+  border-top: 1px solid #444;
+}
+
+.mockup-panel h2 {
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: #bbb;
+  margin-bottom: 6px;
+}
+
+.mockup-hint {
+  font-size: 11px;
+  color: #888;
+  margin-bottom: 18px;
+}
+
+.mockup-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px 12px;
+}
+
+@media (min-width: 520px) {
+  .mockup-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.mockup-grid figure {
+  margin: 0;
+  text-align: center;
+}
+
+.mockup-grid img {
+  width: 100%;
+  max-width: 160px;
+  margin-bottom: 6px;
+}
+
+.mockup-grid figcaption {
+  font-size: 12px;
+  color: #ccc;
+}
+
+/* ===== TERMINE ===== */
+.terms {
+  margin-top: 40px;
+  padding: 18px;
+  border-top: 1px solid #444;
+}
+
+.terms h2 {
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: #bbb;
+  margin-bottom: 14px;
+}
+
+.term {
+  margin-bottom: 16px;
+}
+
+.term-date {
+  font-family: monospace;
+  font-size: 13px;
+  color: #e5e5e5;
+}
+
+.term-info {
+  font-size: 12px;
+  color: #ccc;
+}
+
+.term-link a {
+  font-size: 11px;
+  color: #aaa;
+  text-decoration: underline;
 }
 
 /* ===== SOCIAL ===== */
@@ -252,9 +332,9 @@ button.main {
 .social-buttons img {
   width: 20px;
   height: 20px;
-  opacity: 0.9;
 }
 
+/* ===== IMPRESSUM ===== */
 .impressum {
   margin-top: 14px;
   text-align: center;
@@ -275,6 +355,11 @@ button.main {
 
 <div class="panel">
 
+<div class="calculator-info">
+  Zweitakt-Mischrechner für Benzin-Öl-Gemische.<br>
+  Angaben ohne Gewähr.
+</div>
+
 <div class="section">
   <div class="section-title">1. MODUS</div>
   <select id="mode">
@@ -291,24 +376,17 @@ button.main {
 <div class="section">
   <div class="section-title">3. FAHRZEUG</div>
   <div class="vehicles">
-    <div class="vehicle active" data-ratio="50"><img src="trabant.png">Trabant</div>
-    <div class="vehicle" data-ratio="50"><img src="simson.png">Simson</div>
-    <div class="vehicle" data-ratio="40"><img src="mz.png">MZ</div>
-    <div class="vehicle" data-ratio="0"><img src="sonstige_zweitakter.png">Sonstige</div>
+    <div class="vehicle" data-ratio="50">Trabant</div>
+    <div class="vehicle" data-ratio="50">Simson</div>
+    <div class="vehicle" data-ratio="40">MZ</div>
+    <div class="vehicle" data-ratio="0">Sonstige Zweitakter</div>
   </div>
 </div>
 
-<div class="section">
+<div class="section" id="mixArea">
   <div class="section-title">4. MISCHVERHÄLTNIS</div>
-  <div class="mix-sign">MISCHUNG <span id="mixDisplay">1 : 50</span></div>
-
-  <div id="mixOptions">
-    <button onclick="setRatio(50)">1 : 50</button>
-    <button onclick="setRatio(40)">1 : 40</button>
-    <button onclick="setRatio(33)">1 : 33</button>
-    <button onclick="setRatio(0)">frei</button>
-  </div>
-
+  <div class="mix-sign">AKTIV <span id="mixDisplay"></span></div>
+  <div id="mixOptions"></div>
   <input type="number" id="customRatio" placeholder="Freies Verhältnis" style="display:none;margin-top:10px;">
 </div>
 
@@ -316,34 +394,69 @@ button.main {
 
 <div class="result" id="resultBox" style="display:none;">
   <div class="result-main" id="resultMain"></div>
-  <div class="scale">
-    <span id="scaleLabel">Messskala – Ölmenge (ml)</span>
-    <div class="scale-track">
-      <div class="scale-marker" id="scaleMarker"></div>
-    </div>
-  </div>
+  <div class="result-note" id="resultNote"></div>
+  <div class="result-egg" id="resultEgg"></div>
   <div class="result-humor" id="resultHumor"></div>
+  <div class="reset" onclick="resetAll()">Eingaben zurücksetzen</div>
 </div>
 
-<div class="notice">
-  <strong>WERKSTATT-HINWEIS</strong><br>
-  Die ermittelten Werte stellen Richtwerte dar.<br>
-  Motorzustand und Einsatzbedingungen beachten.
+<div class="notice" id="notice" style="display:none;"></div>
+
+<div style="margin-top:10px;font-size:10px;color:#777;">
+  Rechnerstand: 2026
 </div>
 
 </div>
 
+<!-- MOCKUP SHOP -->
+<div class="mockup-panel">
+  <h2>DEKO & MERCH – IDEEN</h2>
+  <p class="mockup-hint">Beispiele & Mockups. Kein Verkauf.<br>Interesse über Social Media.</p>
+  <div class="mockup-grid">
+    <figure><img src="sticker_mockup.png"><figcaption>Aufkleber</figcaption></figure>
+    <figure><img src="deko_mockup.png"><figcaption>Werkstatt-Deko</figcaption></figure>
+    <figure><img src="banner_mockup.png"><figcaption>Banner</figcaption></figure>
+    <figure><img src="shirt_mockup.png"><figcaption>T-Shirt</figcaption></figure>
+    <figure><img src="cap_mockup.png"><figcaption>Cap</figcaption></figure>
+    <figure><img src="jacket_mockup.png"><figcaption>Werkstattjacke</figcaption></figure>
+    <figure><img src="tasse_mockup.png"><figcaption>Tasse</figcaption></figure>
+    <figure><img src="plasticcup_mockup.png"><figcaption>Trinkbecher</figcaption></figure>
+    <figure><img src="keychain_mockup.png"><figcaption>Schlüsselanhänger</figcaption></figure>
+  </div>
+</div>
+
+<!-- TERMINE -->
+<div class="terms">
+  <h2>WO WIR ZU FINDEN SIND</h2>
+
+  <div class="term">
+    <div class="term-date">25.–26.04.2026</div>
+    <div class="term-info">19. Ostfahrzeugtreffen – Finowfurt</div>
+  </div>
+
+  <div class="term">
+    <div class="term-date">01.05.2026</div>
+    <div class="term-info">IFA Freunde Ladeburg</div>
+  </div>
+
+  <div class="term">
+    <div class="term-date">09.–10.05.2026</div>
+    <div class="term-info">18. Oldtimertreffen – Alt Tucheband</div>
+  </div>
+</div>
+
+<!-- SOCIAL -->
 <div class="social-panel">
   <div class="social-title">FOLGE DER GEMEINSCHAFT</div>
   <div class="social-buttons">
     <a href="https://www.instagram.com/isolator_jan" target="_blank">
-      <img src="icon_instagram.png"> INSTAGRAM BESUCHEN
+      <img src="icon_instagram.png"> Instagram
     </a>
     <a href="https://www.facebook.com/share/1Gk158Fub9" target="_blank">
-      <img src="icon_facebook.png"> FACEBOOK-SEITE ÖFFNEN
+      <img src="icon_facebook.png"> Facebook
     </a>
     <a href="https://www.tiktok.com/@mullemannjan" target="_blank">
-      <img src="icon_tiktok.png"> TIKTOK-KANAL ANSEHEN
+      <img src="icon_tiktok.png"> TikTok
     </a>
   </div>
 </div>
@@ -355,69 +468,116 @@ button.main {
 </div>
 
 <script>
-let ratio = 50;
-const mode = document.getElementById("mode");
-
-function setRatio(val){
-  ratio = val;
-  if(val === 0){
-    document.getElementById("mixDisplay").innerText = "frei";
-    document.getElementById("customRatio").style.display = "block";
-  } else {
-    document.getElementById("mixDisplay").innerText = "1 : " + val;
-    document.getElementById("customRatio").style.display = "none";
-  }
-}
+let activeRatio = null;
+let hasRecommendation = false;
 
 document.querySelectorAll('.vehicle').forEach(v => {
   v.onclick = () => {
     document.querySelectorAll('.vehicle').forEach(x => x.classList.remove('active'));
     v.classList.add('active');
-    setRatio(parseInt(v.dataset.ratio));
-    document.getElementById("mixOptions").style.display =
-      v.dataset.ratio == 0 ? "none" : "grid";
+    setupMixOptions(parseInt(v.dataset.ratio));
   };
 });
 
-mode.onchange = () => {
-  document.getElementById("amountLabel").innerText =
-    mode.value === "fuel" ? "2. KRAFTSTOFFMENGE (Liter)" : "2. ÖLMENGE (ml)";
-  document.getElementById("scaleLabel").innerText =
-    mode.value === "fuel" ? "Messskala – Ölmenge (ml)" : "Messskala – Kraftstoffmenge (Liter)";
-  document.getElementById("scaleMarker").style.left = "50%";
-};
+function setupMixOptions(rec){
+  document.getElementById("mixArea").style.display = "block";
+  document.getElementById("mixOptions").innerHTML = "";
+  document.getElementById("customRatio").style.display = "none";
+  activeRatio = rec;
+  hasRecommendation = rec !== 0;
+
+  document.getElementById("mixDisplay").innerText =
+    rec === 0 ? "frei" : "1 : " + rec;
+
+  [50,40,33].forEach(r => {
+    if(r !== rec){
+      let b = document.createElement("button");
+      b.innerText = "1 : " + r;
+      b.onclick = () => setRatio(r);
+      document.getElementById("mixOptions").appendChild(b);
+    }
+  });
+
+  if(rec === 0 || true){
+    let f = document.createElement("button");
+    f.innerText = "frei";
+    f.onclick = () => setRatio(0);
+    document.getElementById("mixOptions").appendChild(f);
+  }
+}
+
+function setRatio(r){
+  activeRatio = r;
+  document.getElementById("mixDisplay").innerText = r === 0 ? "frei" : "1 : " + r;
+  document.getElementById("customRatio").style.display = r === 0 ? "block" : "none";
+}
 
 function calculate(){
   const amount = parseFloat(document.getElementById("amount").value);
-  let usedRatio = ratio;
-  if(!amount) return;
+  const mode = document.getElementById("mode").value;
+  const notice = document.getElementById("notice");
 
-  if(ratio === 0){
-    usedRatio = parseFloat(document.getElementById("customRatio").value);
-    if(!usedRatio) return;
+  notice.style.display = "none";
+
+  if(!amount){
+    showNotice("Werkstatt-Hinweis: Menge eingeben.");
+    return;
+  }
+  if(activeRatio === null){
+    showNotice("Werkstatt-Hinweis: Fahrzeug auswählen.");
+    return;
+  }
+  if(activeRatio === 0){
+    activeRatio = parseFloat(document.getElementById("customRatio").value);
+    if(!activeRatio){
+      showNotice("Werkstatt-Hinweis: Freies Mischverhältnis eintragen.");
+      return;
+    }
   }
 
-  let value = 0;
-  if(mode.value === "fuel"){
-    value = (amount / usedRatio) * 1000;
-    document.getElementById("resultMain").innerText =
-      "Ermittelter Ölbedarf, Genosse: " + value.toFixed(0) + " ml";
-    document.getElementById("scaleMarker").style.left =
-      Math.min(value / 300, 1) * 100 + "%";
-  } else {
-    value = (amount * usedRatio) / 1000;
-    document.getElementById("resultMain").innerText =
-      "Ermittelter Kraftstoffbedarf, Genosse: " + value.toFixed(2) + " Liter";
-    document.getElementById("scaleMarker").style.left = "50%";
-  }
+  let value = mode === "fuel"
+    ? (amount / activeRatio) * 1000
+    : (amount * activeRatio) / 1000;
 
-  document.getElementById("resultHumor").innerText =
-    usedRatio == 33 ? "Heute lieber etwas mehr Liebe."
-    : usedRatio == 40 ? "Bewährter Kompromiss."
-    : usedRatio == 50 ? "So fährt die Mehrheit."
-    : "Du weißt, was du tust.";
+  document.getElementById("resultMain").innerText =
+    mode === "fuel"
+    ? value.toFixed(0) + " ml Öl dazugeben"
+    : value.toFixed(2) + " Liter Benzin dazugeben";
+
+  document.getElementById("resultNote").innerText = "";
+  document.getElementById("resultEgg").innerText = "";
+  document.getElementById("resultHumor").innerText = "";
+
+  if(activeRatio < 25)
+    document.getElementById("resultNote").innerText =
+      "Werkstatt-Hinweis: Sehr fettes Gemisch.";
+
+  if(activeRatio > 60)
+    document.getElementById("resultNote").innerText =
+      "Werkstatt-Hinweis: Mageres Gemisch.";
+
+  if(activeRatio < 16 || activeRatio > 100)
+    document.getElementById("resultEgg").innerText =
+      "Interner Vermerk: Versuchsaufbau erkannt.";
+
+  if(hasRecommendation)
+    document.getElementById("resultHumor").innerText =
+      activeRatio == 33 ? "Heute lieber etwas mehr Liebe."
+      : activeRatio == 40 ? "Bewährter Kompromiss."
+      : activeRatio == 50 ? "So fährt die Mehrheit."
+      : "";
 
   document.getElementById("resultBox").style.display = "block";
+}
+
+function showNotice(text){
+  const n = document.getElementById("notice");
+  n.innerText = text;
+  n.style.display = "block";
+}
+
+function resetAll(){
+  location.reload();
 }
 </script>
 
