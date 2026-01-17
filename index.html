@@ -6,7 +6,6 @@
 <title>Zweitakt-Mischrechner – die Isolatoren Deluxe</title>
 
 <style>
-/* ================= BASIS ================= */
 body{
   margin:0;
   background:#0e0e0e;
@@ -20,7 +19,7 @@ body{
   padding:20px;
 }
 
-/* ===== HINTERGRUNDLOGO DESKTOP ===== */
+/* Hintergrundlogo Desktop */
 @media (min-width:900px){
   body::before{
     content:"";
@@ -34,7 +33,6 @@ body{
   }
 }
 
-/* ================= HEADER ================= */
 header{
   text-align:center;
   margin-bottom:30px;
@@ -46,14 +44,13 @@ header p{
   letter-spacing:1px;
 }
 
-/* ================= PANEL ================= */
+/* Panel */
 .panel{
   background:#1a1a1a;
   border:2px solid #555;
   padding:22px;
 }
 
-/* ================= TITEL ================= */
 .title{
   font-size:15px;
   letter-spacing:2px;
@@ -66,15 +63,7 @@ header p{
   margin-bottom:20px;
 }
 
-/* ================= ABSCHNITTE ================= */
-.section{margin-top:18px;}
-.section-title{
-  font-size:12px;
-  color:#bbb;
-  margin-bottom:6px;
-}
-
-/* ================= FAHRZEUGE ================= */
+/* Fahrzeuge */
 .vehicles{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -93,7 +82,7 @@ header p{
   color:#d4aa00;
 }
 
-/* ================= EMPFEHLUNG ================= */
+/* Empfehlung */
 .recommendation{
   margin-top:14px;
   padding:10px;
@@ -103,7 +92,7 @@ header p{
   font-size:13px;
 }
 
-/* ================= MISCHOPTIONEN ================= */
+/* Mischoptionen */
 #ratioOptions button{
   margin-right:6px;
   margin-top:6px;
@@ -118,7 +107,7 @@ header p{
   color:#000;
 }
 
-/* ================= UMSCHALTER ================= */
+/* Umschalter */
 .toggle{
   display:flex;
   gap:6px;
@@ -136,7 +125,6 @@ header p{
   color:#000;
 }
 
-/* ================= INPUT ================= */
 input{
   width:100%;
   padding:12px;
@@ -146,7 +134,6 @@ input{
   font-size:16px;
 }
 
-/* ================= ERGEBNIS ================= */
 .result{
   margin-top:20px;
   background:#111;
@@ -163,7 +150,7 @@ input{
   color:#9aa58c;
 }
 
-/* ================= CONTENT BLÖCKE ================= */
+/* Content */
 .block{margin-top:40px;}
 .block-title{
   font-size:13px;
@@ -177,7 +164,7 @@ input{
   line-height:1.5;
 }
 
-/* ================= SHOP ================= */
+/* Shop */
 .shop-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -190,7 +177,7 @@ input{
   margin-top:4px;
 }
 
-/* ================= SOCIAL ================= */
+/* Social */
 .social a{
   display:block;
   padding:10px;
@@ -201,7 +188,7 @@ input{
   font-size:13px;
 }
 
-/* ================= IMPRESSUM ================= */
+/* Impressum */
 .impressum{
   margin-top:30px;
   font-size:11px;
@@ -222,11 +209,11 @@ input{
 <div class="panel">
   <div class="title">ZWEITAKT-MISCHRECHNER</div>
   <div class="intro">
-    Schritt für Schritt wie in der Werkstatt.<br>
-    Fahrzeug wählen · Menge eingeben · Mischung ermitteln.
+    Fahrzeug auswählen, Mischungsverhältnis festlegen und berechnen –
+    sachlich, technisch korrekt, wie in der Werkstatt.
   </div>
 
-  <!-- FAHRZEUG -->
+  <!-- Fahrzeuge -->
   <div class="section">
     <div class="section-title">1. Fahrzeug auswählen</div>
     <div class="vehicles">
@@ -239,36 +226,36 @@ input{
 
   <div class="recommendation" id="recommendation" style="display:none;"></div>
 
-  <!-- MISCHVERHÄLTNIS -->
+  <!-- Mischverhältnis -->
   <div class="section" id="ratioSection" style="display:none;">
-    <div class="section-title">Abweichendes Mischverhältnis (optional)</div>
+    <div class="section-title">2. Abweichendes Mischverhältnis (optional)</div>
     <div id="ratioOptions"></div>
     <input type="number" id="customRatio" placeholder="Freies Verhältnis (z. B. 45)" style="display:none;margin-top:8px;">
   </div>
 
-  <!-- MODUS -->
+  <!-- Modus -->
   <div class="section" id="modeSection" style="display:none;">
-    <div class="section-title">2. Berechnung wählen</div>
+    <div class="section-title">3. Berechnung wählen</div>
     <div class="toggle">
-      <button id="modeOil">Öl zum Benzin</button>
-      <button id="modeFuel">Benzin zum Öl</button>
+      <button id="modeOil">Öl zum Benzin berechnen</button>
+      <button id="modeFuel">Benzin zum Öl berechnen</button>
     </div>
   </div>
 
-  <!-- MENGE -->
+  <!-- Menge -->
   <div class="section" id="amountSection" style="display:none;">
     <div class="section-title" id="amountLabel"></div>
     <input type="number" id="amount">
   </div>
 
-  <!-- ERGEBNIS -->
+  <!-- Ergebnis -->
   <div class="result" id="result" style="display:none;">
     <div class="result-main" id="resultMain"></div>
     <div class="result-note" id="resultNote"></div>
   </div>
 </div>
 
-<!-- GEMEINSCHAFT -->
+<!-- Gemeinschaft -->
 <div class="block">
   <div class="block-title">DIE GEMEINSCHAFT</div>
   <p>
@@ -278,27 +265,27 @@ input{
   </p>
 </div>
 
-<!-- TERMINE -->
+<!-- Termine -->
 <div class="block">
   <div class="block-title">WO WIR EVTL. ZU FINDEN SIND</div>
   <ul style="font-size:12px;color:#bbb;line-height:1.6;">
-    <li><strong>19.04.2026</strong><br>Ostfahrzeugtreffen · Finowfurt</li>
-    <li><strong>02.05.2026</strong><br>IFA Freunde Ladeburg · Ladeburg</li>
-    <li><strong>09.05.2026</strong><br>18. Oldtimertreffen · Alt Tucheband</li>
-    <li><strong>16.05.2026</strong><br>IFA & Oldtimertreffen · Herzfelde</li>
-    <li><strong>23.05.2026</strong><br>Ostfahrzeugtreffen · Anklam</li>
-    <li><strong>06.06.2026</strong><br>Eens zu Fuffzsch am Ring · Lausitzring</li>
-    <li><strong>20.06.2026</strong><br>Pre Deep One · Zehdenick</li>
-    <li><strong>11.07.2026</strong><br>Ostblock Fahrzeugtreffen · Pütnitz</li>
-    <li><strong>18.07.2026</strong><br>Trabant & VW-Bus Treffen · Kleinzerlang</li>
-    <li><strong>25.07.2026</strong><br>TFO-Treffen · Trabant-Freunde Ostfahrzeuge</li>
-    <li><strong>08.08.2026</strong><br>8. Linumer Simson & Oldtimertreffen · Linum</li>
-    <li><strong>22.08.2026</strong><br>East German Classics · Reitwein</li>
-    <li><strong>05.09.2026</strong><br>7. Ostblockmeeting · Neuhardenberg</li>
+    <li><strong>19.04.2026</strong> · Ostfahrzeugtreffen · Finowfurt</li>
+    <li><strong>02.05.2026</strong> · IFA Freunde Ladeburg · Ladeburg</li>
+    <li><strong>09.05.2026</strong> · 18. Oldtimertreffen · Alt Tucheband</li>
+    <li><strong>16.05.2026</strong> · IFA & Oldtimertreffen · Herzfelde</li>
+    <li><strong>23.05.2026</strong> · Ostfahrzeugtreffen · Anklam</li>
+    <li><strong>06.06.2026</strong> · Eens zu Fuffzsch am Ring · Lausitzring</li>
+    <li><strong>20.06.2026</strong> · Pre Deep One · Zehdenick</li>
+    <li><strong>11.07.2026</strong> · Ostblock Fahrzeugtreffen · Pütnitz</li>
+    <li><strong>18.07.2026</strong> · Trabant & VW-Bus Treffen · Kleinzerlang</li>
+    <li><strong>25.07.2026</strong> · TFO-Treffen · Trabant-Freunde Ostfahrzeuge</li>
+    <li><strong>08.08.2026</strong> · Linumer Simson & Oldtimertreffen · Linum</li>
+    <li><strong>22.08.2026</strong> · East German Classics · Reitwein</li>
+    <li><strong>05.09.2026</strong> · Ostblockmeeting · Neuhardenberg</li>
   </ul>
 </div>
 
-<!-- SHOP -->
+<!-- Shop -->
 <div class="block">
   <div class="block-title">DEKO & MERCH – IDEEN</div>
   <p>Mockups & Beispiele. Kein Verkauf. Kontakt über Social Media.</p>
@@ -314,7 +301,7 @@ input{
   </div>
 </div>
 
-<!-- SOCIAL -->
+<!-- Social -->
 <div class="block social">
   <div class="block-title">FOLGE DER GEMEINSCHAFT</div>
   <a href="https://www.instagram.com/isolator_jan" target="_blank">Instagram</a>
@@ -322,7 +309,6 @@ input{
   <a href="https://www.tiktok.com/@mullemannjan" target="_blank">TikTok</a>
 </div>
 
-<!-- IMPRESSUM -->
 <div class="impressum">
   Fam. Sonneborn · Privates, nicht-kommerzielles Projekt · 2026<br>
   Kontakt über die verlinkten Social-Media-Profile
@@ -352,10 +338,36 @@ document.querySelectorAll(".vehicle").forEach(v=>{
     recommendation.innerText="Empfohlenes Mischverhältnis: 1 : "+baseRatio;
 
     ratioSection.style.display="block";
-    modeSection.style.display="block";
+    modeSection.style.display="none";
     amountSection.style.display="none";
     ratioOptions.innerHTML="";
     customRatio.style.display="none";
+
+    [50,40,33].filter(r=>r!==baseRatio).forEach(r=>{
+      let b=document.createElement("button");
+      b.innerText="1 : "+r;
+      b.onclick=()=>{
+        resetResult();
+        ratio=r;
+        document.querySelectorAll("#ratioOptions button").forEach(x=>x.classList.remove("active"));
+        b.classList.add("active");
+        customRatio.style.display="none";
+        modeSection.style.display="block";
+      };
+      ratioOptions.appendChild(b);
+    });
+
+    let free=document.createElement("button");
+    free.innerText="frei";
+    free.onclick=()=>{
+      resetResult();
+      ratio=null;
+      document.querySelectorAll("#ratioOptions button").forEach(x=>x.classList.remove("active"));
+      free.classList.add("active");
+      customRatio.style.display="block";
+      modeSection.style.display="block";
+    };
+    ratioOptions.appendChild(free);
   };
 });
 
@@ -385,12 +397,14 @@ modeFuel.onclick=()=>{
 amount.oninput=()=>{
   const a=parseFloat(amount.value);
   if(!a||!ratio||!mode) return;
+
   let text="";
   if(mode==="oil"){
     text=(a/ratio*1000).toFixed(0)+" ml Zweitaktöl zugeben";
   }else{
     text=(a*ratio/1000).toFixed(2)+" Liter Kraftstoff zugeben";
   }
+
   result.style.display="block";
   resultMain.innerText="→ "+text;
   resultNote.innerText=
