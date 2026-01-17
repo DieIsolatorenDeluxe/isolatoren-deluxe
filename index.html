@@ -6,7 +6,7 @@
 <title>Zweitakt-Mischrechner – die Isolatoren Deluxe</title>
 
 <style>
-/* ===== BASIS ===== */
+/* ================= BASIS ================= */
 body{
   margin:0;
   background:#0e0e0e;
@@ -20,7 +20,7 @@ body{
   padding:20px;
 }
 
-/* ===== HINTERGRUNDLOGO (DESKTOP) ===== */
+/* ===== HINTERGRUNDLOGO DESKTOP ===== */
 @media (min-width:900px){
   body::before{
     content:"";
@@ -28,35 +28,34 @@ body{
     inset:0;
     background:url("logo.png") no-repeat center;
     background-size:900px;
-    opacity:0.04;
+    opacity:0.05;
     transform:rotate(-12deg);
     pointer-events:none;
   }
 }
 
-/* ===== HEADER ===== */
+/* ================= HEADER ================= */
 header{
   text-align:center;
   margin-bottom:30px;
 }
 header img{max-width:260px;}
 header p{
-  margin-top:6px;
   font-size:12px;
   color:#aaa;
   letter-spacing:1px;
 }
 
-/* ===== PANEL ===== */
+/* ================= PANEL ================= */
 .panel{
   background:#1a1a1a;
   border:2px solid #555;
-  padding:20px;
+  padding:22px;
 }
 
-/* ===== TITEL ===== */
+/* ================= TITEL ================= */
 .title{
-  font-size:14px;
+  font-size:15px;
   letter-spacing:2px;
   color:#d4aa00;
   margin-bottom:10px;
@@ -67,7 +66,7 @@ header p{
   margin-bottom:20px;
 }
 
-/* ===== ABSCHNITTE ===== */
+/* ================= ABSCHNITTE ================= */
 .section{margin-top:18px;}
 .section-title{
   font-size:12px;
@@ -75,7 +74,7 @@ header p{
   margin-bottom:6px;
 }
 
-/* ===== FAHRZEUGE ===== */
+/* ================= FAHRZEUGE ================= */
 .vehicles{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -94,9 +93,9 @@ header p{
   color:#d4aa00;
 }
 
-/* ===== EMPFEHLUNG ===== */
+/* ================= EMPFEHLUNG ================= */
 .recommendation{
-  margin-top:12px;
+  margin-top:14px;
   padding:10px;
   border:1px solid #666;
   background:#111;
@@ -104,9 +103,10 @@ header p{
   font-size:13px;
 }
 
-/* ===== MISCHOPTIONEN ===== */
+/* ================= MISCHOPTIONEN ================= */
 #ratioOptions button{
   margin-right:6px;
+  margin-top:6px;
   padding:6px 10px;
   background:#1a1a1a;
   border:1px solid #666;
@@ -118,7 +118,7 @@ header p{
   color:#000;
 }
 
-/* ===== UMSCHALTER ===== */
+/* ================= UMSCHALTER ================= */
 .toggle{
   display:flex;
   gap:6px;
@@ -136,7 +136,7 @@ header p{
   color:#000;
 }
 
-/* ===== INPUT ===== */
+/* ================= INPUT ================= */
 input{
   width:100%;
   padding:12px;
@@ -146,7 +146,7 @@ input{
   font-size:16px;
 }
 
-/* ===== ERGEBNIS ===== */
+/* ================= ERGEBNIS ================= */
 .result{
   margin-top:20px;
   background:#111;
@@ -163,7 +163,7 @@ input{
   color:#9aa58c;
 }
 
-/* ===== BLÖCKE ===== */
+/* ================= CONTENT BLÖCKE ================= */
 .block{margin-top:40px;}
 .block-title{
   font-size:13px;
@@ -171,18 +171,26 @@ input{
   color:#d4aa00;
   margin-bottom:10px;
 }
-.block p{font-size:12px;color:#bbb;}
+.block p{
+  font-size:12px;
+  color:#bbb;
+  line-height:1.5;
+}
 
-/* ===== SHOP ===== */
+/* ================= SHOP ================= */
 .shop-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:14px;
 }
 .shop-item img{width:100%;}
-.shop-item div{text-align:center;font-size:12px;margin-top:4px;}
+.shop-item div{
+  text-align:center;
+  font-size:12px;
+  margin-top:4px;
+}
 
-/* ===== SOCIAL ===== */
+/* ================= SOCIAL ================= */
 .social a{
   display:block;
   padding:10px;
@@ -190,9 +198,10 @@ input{
   border:1px solid #d4aa00;
   color:#d4aa00;
   text-decoration:none;
+  font-size:13px;
 }
 
-/* ===== IMPRESSUM ===== */
+/* ================= IMPRESSUM ================= */
 .impressum{
   margin-top:30px;
   font-size:11px;
@@ -213,10 +222,11 @@ input{
 <div class="panel">
   <div class="title">ZWEITAKT-MISCHRECHNER</div>
   <div class="intro">
-    In wenigen Schritten zur richtigen Mischung – wie in der Werkstatt.<br>
-    Fahrzeug wählen · Menge eingeben · Ergebnis ablesen
+    Schritt für Schritt wie in der Werkstatt.<br>
+    Fahrzeug wählen · Menge eingeben · Mischung ermitteln.
   </div>
 
+  <!-- FAHRZEUG -->
   <div class="section">
     <div class="section-title">1. Fahrzeug auswählen</div>
     <div class="vehicles">
@@ -229,73 +239,69 @@ input{
 
   <div class="recommendation" id="recommendation" style="display:none;"></div>
 
+  <!-- MISCHVERHÄLTNIS -->
   <div class="section" id="ratioSection" style="display:none;">
     <div class="section-title">Abweichendes Mischverhältnis (optional)</div>
     <div id="ratioOptions"></div>
     <input type="number" id="customRatio" placeholder="Freies Verhältnis (z. B. 45)" style="display:none;margin-top:8px;">
   </div>
 
+  <!-- MODUS -->
   <div class="section" id="modeSection" style="display:none;">
-    <div class="section-title">Was soll berechnet werden?</div>
+    <div class="section-title">2. Berechnung wählen</div>
     <div class="toggle">
-      <button id="modeOil">Öl zum Benzin ermitteln</button>
-      <button id="modeFuel">Benzin zum Öl ermitteln</button>
+      <button id="modeOil">Öl zum Benzin</button>
+      <button id="modeFuel">Benzin zum Öl</button>
     </div>
   </div>
 
+  <!-- MENGE -->
   <div class="section" id="amountSection" style="display:none;">
     <div class="section-title" id="amountLabel"></div>
     <input type="number" id="amount">
   </div>
 
+  <!-- ERGEBNIS -->
   <div class="result" id="result" style="display:none;">
     <div class="result-main" id="resultMain"></div>
     <div class="result-note" id="resultNote"></div>
   </div>
 </div>
 
+<!-- GEMEINSCHAFT -->
 <div class="block">
   <div class="block-title">DIE GEMEINSCHAFT</div>
   <p>
-    Lose Gemeinschaft aus Schraubern, Fahrern und Zweitakt-Interessierten.
-    Die Gemeinschaft wächst, weitere Beteiligte und Mitwirkende
-    werden nach und nach integriert.
-    Kein Verein, kein Shop, keine Verpflichtung.
+    Lose Gemeinschaft von Schraubern, Fahrern und Zweitakt-Interessierten.
+    Die Gemeinschaft wächst und integriert ihre Leute nach und nach.
+    Kein Verein, kein Verkauf, keine Verpflichtung.
   </p>
 </div>
 
+<!-- TERMINE -->
 <div class="block">
   <div class="block-title">WO WIR EVTL. ZU FINDEN SIND</div>
   <ul style="font-size:12px;color:#bbb;line-height:1.6;">
-    <li><strong>April 2026</strong><br>19. Ostfahrzeugtreffen · Finowfurt</li>
-    <li><strong>Mai 2026</strong><br>
-      IFA Freunde Ladeburg · Ladeburg<br>
-      18. Oldtimertreffen · Alt Tucheband<br>
-      IFA & Oldtimertreffen · Herzfelde<br>
-      Ostfahrzeugtreffen · Anklam
-    </li>
-    <li><strong>Juni 2026</strong><br>
-      Eens zu Fuffzsch am Ring · Lausitzring<br>
-      Pre Deep One · Zehdenick
-    </li>
-    <li><strong>Juli 2026</strong><br>
-      Ostblock Fahrzeugtreffen · Pütnitz<br>
-      Trabant & VW-Bus Treffen · Kleinzerlang<br>
-      TFO-Treffen · Trabant-Freunde Ostfahrzeuge
-    </li>
-    <li><strong>August 2026</strong><br>
-      8. Linumer Simson & Oldtimertreffen · Linum<br>
-      East German Classics · Reitwein
-    </li>
-    <li><strong>September 2026</strong><br>
-      7. Ostblockmeeting · Neuhardenberg
-    </li>
+    <li><strong>19.04.2026</strong><br>Ostfahrzeugtreffen · Finowfurt</li>
+    <li><strong>02.05.2026</strong><br>IFA Freunde Ladeburg · Ladeburg</li>
+    <li><strong>09.05.2026</strong><br>18. Oldtimertreffen · Alt Tucheband</li>
+    <li><strong>16.05.2026</strong><br>IFA & Oldtimertreffen · Herzfelde</li>
+    <li><strong>23.05.2026</strong><br>Ostfahrzeugtreffen · Anklam</li>
+    <li><strong>06.06.2026</strong><br>Eens zu Fuffzsch am Ring · Lausitzring</li>
+    <li><strong>20.06.2026</strong><br>Pre Deep One · Zehdenick</li>
+    <li><strong>11.07.2026</strong><br>Ostblock Fahrzeugtreffen · Pütnitz</li>
+    <li><strong>18.07.2026</strong><br>Trabant & VW-Bus Treffen · Kleinzerlang</li>
+    <li><strong>25.07.2026</strong><br>TFO-Treffen · Trabant-Freunde Ostfahrzeuge</li>
+    <li><strong>08.08.2026</strong><br>8. Linumer Simson & Oldtimertreffen · Linum</li>
+    <li><strong>22.08.2026</strong><br>East German Classics · Reitwein</li>
+    <li><strong>05.09.2026</strong><br>7. Ostblockmeeting · Neuhardenberg</li>
   </ul>
 </div>
 
+<!-- SHOP -->
 <div class="block">
   <div class="block-title">DEKO & MERCH – IDEEN</div>
-  <p>Beispiele & Mockups. Kein Verkauf. Kontakt über Social Media.</p>
+  <p>Mockups & Beispiele. Kein Verkauf. Kontakt über Social Media.</p>
   <div class="shop-grid">
     <div class="shop-item"><img src="shirt_mockup.png"><div>T-Shirt</div></div>
     <div class="shop-item"><img src="sticker_mockup.png"><div>Aufkleber</div></div>
@@ -308,6 +314,7 @@ input{
   </div>
 </div>
 
+<!-- SOCIAL -->
 <div class="block social">
   <div class="block-title">FOLGE DER GEMEINSCHAFT</div>
   <a href="https://www.instagram.com/isolator_jan" target="_blank">Instagram</a>
@@ -315,6 +322,7 @@ input{
   <a href="https://www.tiktok.com/@mullemannjan" target="_blank">TikTok</a>
 </div>
 
+<!-- IMPRESSUM -->
 <div class="impressum">
   Fam. Sonneborn · Privates, nicht-kommerzielles Projekt · 2026<br>
   Kontakt über die verlinkten Social-Media-Profile
@@ -325,10 +333,18 @@ input{
 <script>
 let baseRatio=null,ratio=null,mode=null;
 
+function resetResult(){
+  result.style.display="none";
+  resultMain.innerText="";
+  resultNote.innerText="";
+}
+
 document.querySelectorAll(".vehicle").forEach(v=>{
   v.onclick=()=>{
+    resetResult();
     document.querySelectorAll(".vehicle").forEach(x=>x.classList.remove("active"));
     v.classList.add("active");
+
     baseRatio=parseInt(v.dataset.ratio);
     ratio=baseRatio;
 
@@ -337,38 +353,19 @@ document.querySelectorAll(".vehicle").forEach(v=>{
 
     ratioSection.style.display="block";
     modeSection.style.display="block";
+    amountSection.style.display="none";
     ratioOptions.innerHTML="";
     customRatio.style.display="none";
-
-    [50,40,33].filter(r=>r!==baseRatio).forEach(r=>{
-      let b=document.createElement("button");
-      b.innerText="1 : "+r;
-      b.onclick=()=>{
-        ratio=r;
-        document.querySelectorAll("#ratioOptions button").forEach(x=>x.classList.remove("active"));
-        b.classList.add("active");
-        customRatio.style.display="none";
-      };
-      ratioOptions.appendChild(b);
-    });
-
-    let free=document.createElement("button");
-    free.innerText="frei";
-    free.onclick=()=>{
-      document.querySelectorAll("#ratioOptions button").forEach(x=>x.classList.remove("active"));
-      free.classList.add("active");
-      customRatio.style.display="block";
-      ratio=null;
-    };
-    ratioOptions.appendChild(free);
   };
 });
 
 customRatio.oninput=()=>{
+  resetResult();
   if(customRatio.value>0) ratio=parseInt(customRatio.value);
 };
 
 modeOil.onclick=()=>{
+  resetResult();
   mode="oil";
   modeOil.classList.add("active");
   modeFuel.classList.remove("active");
@@ -377,6 +374,7 @@ modeOil.onclick=()=>{
 };
 
 modeFuel.onclick=()=>{
+  resetResult();
   mode="fuel";
   modeFuel.classList.add("active");
   modeOil.classList.remove("active");
