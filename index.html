@@ -135,6 +135,10 @@ button.main {
   filter: brightness(1.1);
 }
 
+.vehicle img.dim {
+  filter: brightness(1.35) contrast(1.15);
+}
+
 .vehicle.active {
   border-color: #d4aa00;
   color: #d4aa00;
@@ -281,6 +285,12 @@ button.main {
   font-size: 13px;
   letter-spacing: 2px;
   color: #bbb;
+  margin-bottom: 4px;
+}
+
+.terms .terms-hint {
+  font-size: 11px;
+  color: #888;
   margin-bottom: 14px;
 }
 
@@ -291,11 +301,12 @@ button.main {
 .term-date {
   font-family: monospace;
   font-size: 13px;
+  color: #e0e0e0;
 }
 
 .term-info {
   font-size: 12px;
-  color: #ccc;
+  color: #9a9a9a;
 }
 
 /* ===== SOCIAL ===== */
@@ -376,8 +387,8 @@ button.main {
   <div class="vehicles">
     <div class="vehicle" data-ratio="50"><img src="trabant.png">Trabant</div>
     <div class="vehicle" data-ratio="50"><img src="simson.png">Simson</div>
-    <div class="vehicle" data-ratio="40"><img src="mz.png">MZ</div>
-    <div class="vehicle" data-ratio="0"><img src="sonstige_zweitakter.png">Sonstige Zweitakter</div>
+    <div class="vehicle" data-ratio="40"><img src="mz.png" class="dim">MZ</div>
+    <div class="vehicle" data-ratio="0"><img src="sonstige_zweitakter.png" class="dim">Sonstige Zweitakter</div>
   </div>
 </div>
 
@@ -425,7 +436,8 @@ button.main {
 
 <!-- TERMINE -->
 <div class="terms">
-  <h2>WO WIR ZU FINDEN SIND</h2>
+  <h2>WO WIR EVTL. ZU FINDEN SIND</h2>
+  <div class="terms-hint">Unverbindliche Hinweise auf Treffen und Veranstaltungen.</div>
 
   <div class="term"><div class="term-date">25.–26.04.2026</div><div class="term-info">19. Ostfahrzeugtreffen – Finowfurt</div></div>
   <div class="term"><div class="term-date">01.05.2026</div><div class="term-info">IFA Freunde Ladeburg</div></div>
