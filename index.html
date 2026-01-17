@@ -8,192 +8,126 @@
 <style>
 body{
   margin:0;
-  background:#0e0e0e;
-  color:#e5e5e5;
   font-family:Arial,Helvetica,sans-serif;
+  background:#0e0e0e;
+  color:#e0e0e0;
 }
-
-.wrapper{
-  max-width:880px;
-  margin:0 auto;
-  padding:20px;
-}
-
-/* Hintergrundlogo Desktop */
-@media (min-width:900px){
+@media(min-width:900px){
   body::before{
     content:"";
     position:fixed;
     inset:0;
     background:url("logo.png") no-repeat center;
-    background-size:900px;
-    opacity:0.05;
-    transform:rotate(-12deg);
+    background-size:700px;
+    opacity:0.04;
     pointer-events:none;
   }
 }
-
+.wrapper{
+  max-width:960px;
+  margin:auto;
+  padding:20px;
+}
 header{
   text-align:center;
-  margin-bottom:30px;
+  margin-bottom:40px;
 }
-header img{max-width:260px;}
-header p{
-  font-size:12px;
+header img{
+  max-width:360px;
+}
+header .claim{
   color:#aaa;
-  letter-spacing:1px;
-}
-
-/* Panel */
-.panel{
-  background:#1a1a1a;
-  border:2px solid #555;
-  padding:22px;
-}
-
-.title{
-  font-size:15px;
   letter-spacing:2px;
+  margin-top:8px;
+}
+.section{
+  border:1px solid #333;
+  background:#141414;
+  padding:25px;
+  margin-bottom:40px;
+}
+.section h2{
   color:#d4aa00;
-  margin-bottom:10px;
+  letter-spacing:2px;
+  margin-top:0;
 }
-.intro{
-  font-size:12px;
-  color:#bbb;
-  margin-bottom:20px;
-}
+.small{font-size:0.9em;color:#aaa;}
 
-/* Fahrzeuge */
-.vehicles{
+.vehicle-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:10px;
+  gap:16px;
+}
+@media(max-width:768px){
+  .vehicle-grid{grid-template-columns:repeat(2,1fr);}
 }
 .vehicle{
-  background:#2a2a2a;
   border:1px solid #444;
-  padding:10px;
-  text-align:center;
-  cursor:pointer;
-}
-.vehicle img{max-width:70px;margin-bottom:6px;}
-.vehicle.active{
-  border-color:#d4aa00;
-  color:#d4aa00;
-}
-
-/* Empfehlung */
-.recommendation{
-  margin-top:14px;
-  padding:10px;
-  border:1px solid #666;
-  background:#111;
-  text-align:center;
-  font-size:13px;
-}
-
-/* Mischoptionen */
-#ratioOptions button{
-  margin-right:6px;
-  margin-top:6px;
-  padding:6px 10px;
-  background:#1a1a1a;
-  border:1px solid #666;
-  color:#d4aa00;
-  cursor:pointer;
-}
-#ratioOptions button.active{
-  background:#d4aa00;
-  color:#000;
-}
-
-/* Umschalter */
-.toggle{
-  display:flex;
-  gap:6px;
-}
-.toggle button{
-  flex:1;
-  padding:10px;
-  background:#1a1a1a;
-  border:1px solid #666;
-  color:#d4aa00;
-  cursor:pointer;
-}
-.toggle button.active{
-  background:#d4aa00;
-  color:#000;
-}
-
-input{
-  width:100%;
   padding:12px;
-  background:#2a2a2a;
+  text-align:center;
+  cursor:pointer;
+}
+.vehicle.active{border-color:#d4aa00;color:#d4aa00;}
+.vehicle img{max-width:100px;margin-bottom:6px;}
+
+button{
+  background:#d4aa00;
+  border:none;
+  padding:10px 16px;
+  cursor:pointer;
+  font-weight:bold;
+}
+button.alt{background:#333;color:#d4aa00;border:1px solid #555;}
+button + button{margin-left:6px;}
+
+input,select{
+  width:100%;
+  padding:10px;
+  margin-top:8px;
+  background:#222;
   border:1px solid #444;
   color:#fff;
-  font-size:16px;
 }
 
 .result{
   margin-top:20px;
-  background:#111;
-  border:1px solid #444;
+  border:1px solid #333;
   padding:15px;
 }
 .result-main{
-  font-size:24px;
+  font-size:1.4em;
   color:#8cff80;
 }
-.result-note{
+.result-humor{
   margin-top:6px;
-  font-size:12px;
+  font-size:0.85em;
   color:#9aa58c;
 }
 
-/* Content */
-.block{margin-top:40px;}
-.block-title{
-  font-size:13px;
-  letter-spacing:2px;
-  color:#d4aa00;
-  margin-bottom:10px;
-}
-.block p{
-  font-size:12px;
-  color:#bbb;
-  line-height:1.5;
-}
-
-/* Shop */
-.shop-grid{
+.mockup-grid{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
   gap:14px;
 }
-.shop-item img{width:100%;}
-.shop-item div{
-  text-align:center;
-  font-size:12px;
-  margin-top:4px;
-}
+.mockup-grid img{width:100%;}
 
-/* Social */
 .social a{
-  display:block;
+  display:flex;
+  align-items:center;
+  gap:10px;
   padding:10px;
-  margin-bottom:8px;
   border:1px solid #d4aa00;
   color:#d4aa00;
   text-decoration:none;
-  font-size:13px;
+  margin-bottom:8px;
 }
+.social img{width:22px;height:22px;}
 
-/* Impressum */
-.impressum{
-  margin-top:30px;
-  font-size:11px;
-  color:#777;
+footer{
   text-align:center;
+  font-size:0.8em;
+  color:#777;
+  margin-top:40px;
 }
 </style>
 </head>
@@ -203,215 +137,151 @@ input{
 
 <header>
   <img src="logo.png" alt="die Isolatoren Deluxe">
-  <p>Technik · Gemeinschaft · Zweitakt</p>
+  <div class="claim">TECHNIK · GEMEINSCHAFT · ZWEITAKT</div>
 </header>
 
-<div class="panel">
-  <div class="title">ZWEITAKT-MISCHRECHNER</div>
-  <div class="intro">
-    Fahrzeug auswählen, Mischungsverhältnis festlegen und berechnen –
-    sachlich, technisch korrekt, wie in der Werkstatt.
-  </div>
+<!-- MISCHRECHNER -->
+<div class="section">
+<h2>ZWEITAKT-MISCHRECHNER</h2>
+<p class="small">Fahrzeug wählen → Mischung festlegen → Benzin eingeben → rechnen.</p>
 
-  <!-- Fahrzeuge -->
-  <div class="section">
-    <div class="section-title">1. Fahrzeug auswählen</div>
-    <div class="vehicles">
-      <div class="vehicle" data-ratio="50"><img src="trabant.png">Trabant</div>
-      <div class="vehicle" data-ratio="50"><img src="simson.png">Simson</div>
-      <div class="vehicle" data-ratio="50"><img src="mz.png">MZ</div>
-      <div class="vehicle" data-ratio="40"><img src="sonstige_zweitakter.png">Sonstige Zweitakter</div>
-    </div>
-  </div>
-
-  <div class="recommendation" id="recommendation" style="display:none;"></div>
-
-  <!-- Mischverhältnis -->
-  <div class="section" id="ratioSection" style="display:none;">
-    <div class="section-title">2. Abweichendes Mischverhältnis (optional)</div>
-    <div id="ratioOptions"></div>
-    <input type="number" id="customRatio" placeholder="Freies Verhältnis (z. B. 45)" style="display:none;margin-top:8px;">
-  </div>
-
-  <!-- Modus -->
-  <div class="section" id="modeSection" style="display:none;">
-    <div class="section-title">3. Berechnung wählen</div>
-    <div class="toggle">
-      <button id="modeOil">Öl zum Benzin berechnen</button>
-      <button id="modeFuel">Benzin zum Öl berechnen</button>
-    </div>
-  </div>
-
-  <!-- Menge -->
-  <div class="section" id="amountSection" style="display:none;">
-    <div class="section-title" id="amountLabel"></div>
-    <input type="number" id="amount">
-  </div>
-
-  <!-- Ergebnis -->
-  <div class="result" id="result" style="display:none;">
-    <div class="result-main" id="resultMain"></div>
-    <div class="result-note" id="resultNote"></div>
-  </div>
+<div class="vehicle-grid" id="vehicles">
+  <div class="vehicle" data-v="trabant"><img src="trabant.png">Trabant</div>
+  <div class="vehicle" data-v="simson"><img src="simson.png">Simson</div>
+  <div class="vehicle" data-v="mz"><img src="mz.png">MZ</div>
+  <div class="vehicle" data-v="sonstige"><img src="sonstige_zweitakter.png">Sonstige Zweitakter</div>
 </div>
 
-<!-- Gemeinschaft -->
-<div class="block">
-  <div class="block-title">DIE GEMEINSCHAFT</div>
-  <p>
-    Lose Gemeinschaft von Schraubern, Fahrern und Zweitakt-Interessierten.
-    Die Gemeinschaft wächst und integriert ihre Leute nach und nach.
-    Kein Verein, kein Verkauf, keine Verpflichtung.
-  </p>
+<div id="mixArea" style="display:none;">
+  <p id="recText"></p>
+  <div id="mixButtons"></div>
+
+  <input type="number" id="fuel" placeholder="Benzinmenge in Litern (z.B. 5)">
+  <button onclick="calculate()">Mischung berechnen</button>
+
+  <div class="result" id="result"></div>
+</div>
 </div>
 
-<!-- Termine -->
-<div class="block">
-  <div class="block-title">WO WIR EVTL. ZU FINDEN SIND</div>
-  <ul style="font-size:12px;color:#bbb;line-height:1.6;">
-    <li><strong>19.04.2026</strong> · Ostfahrzeugtreffen · Finowfurt</li>
-    <li><strong>02.05.2026</strong> · IFA Freunde Ladeburg · Ladeburg</li>
-    <li><strong>09.05.2026</strong> · 18. Oldtimertreffen · Alt Tucheband</li>
-    <li><strong>16.05.2026</strong> · IFA & Oldtimertreffen · Herzfelde</li>
-    <li><strong>23.05.2026</strong> · Ostfahrzeugtreffen · Anklam</li>
-    <li><strong>06.06.2026</strong> · Eens zu Fuffzsch am Ring · Lausitzring</li>
-    <li><strong>20.06.2026</strong> · Pre Deep One · Zehdenick</li>
-    <li><strong>11.07.2026</strong> · Ostblock Fahrzeugtreffen · Pütnitz</li>
-    <li><strong>18.07.2026</strong> · Trabant & VW-Bus Treffen · Kleinzerlang</li>
-    <li><strong>25.07.2026</strong> · TFO-Treffen · Trabant-Freunde Ostfahrzeuge</li>
-    <li><strong>08.08.2026</strong> · Linumer Simson & Oldtimertreffen · Linum</li>
-    <li><strong>22.08.2026</strong> · East German Classics · Reitwein</li>
-    <li><strong>05.09.2026</strong> · Ostblockmeeting · Neuhardenberg</li>
-  </ul>
+<!-- RÜCKRECHNER -->
+<div class="section">
+<h2>RÜCKRECHNER – ÖL VORHANDEN</h2>
+<input type="number" id="oilBack" placeholder="Ölmenge in ml">
+<select id="ratioBack">
+  <option value="50">1:50</option>
+  <option value="40">1:40</option>
+  <option value="33">1:33</option>
+</select>
+<button onclick="backCalc()">Berechnen</button>
+<div class="result" id="backResult"></div>
 </div>
 
-<!-- Shop -->
-<div class="block">
-  <div class="block-title">DEKO & MERCH – IDEEN</div>
-  <p>Mockups & Beispiele. Kein Verkauf. Kontakt über Social Media.</p>
-  <div class="shop-grid">
-    <div class="shop-item"><img src="shirt_mockup.png"><div>T-Shirt</div></div>
-    <div class="shop-item"><img src="sticker_mockup.png"><div>Aufkleber</div></div>
-    <div class="shop-item"><img src="deko_mockup.png"><div>Werkstatt-Deko</div></div>
-    <div class="shop-item"><img src="tasse_mockup.png"><div>Tasse</div></div>
-    <div class="shop-item"><img src="plasticcup_mockup.png"><div>Trinkbecher</div></div>
-    <div class="shop-item"><img src="cap_mockup.png"><div>Cap</div></div>
-    <div class="shop-item"><img src="jacket_mockup.png"><div>Werkstattjacke</div></div>
-    <div class="shop-item"><img src="banner_mockup.png"><div>Banner</div></div>
-  </div>
+<!-- GEMEINSCHAFT -->
+<div class="section">
+<h2>DIE GEMEINSCHAFT</h2>
+<p>
+Lose Gemeinschaft von Schraubern, Fahrern und Zweitakt-Interessierten.
+Kein Verein, kein Zwang. Die Gemeinschaft wächst, Leute kommen dazu
+und werden nach und nach integriert.
+</p>
 </div>
 
-<!-- Social -->
-<div class="block social">
-  <div class="block-title">FOLGE DER GEMEINSCHAFT</div>
-  <a href="https://www.instagram.com/isolator_jan" target="_blank">Instagram</a>
-  <a href="https://www.facebook.com/share/1Gk158Fub9" target="_blank">Facebook</a>
-  <a href="https://www.tiktok.com/@mullemannjan" target="_blank">TikTok</a>
+<!-- TERMINE -->
+<div class="section">
+<h2>WO WIR EVTL. ZU FINDEN SIND</h2>
+<ul class="small">
+<li>01.04.2026 – IFA & Oldtimertreffen Herzfelde</li>
+<li>18.05.2026 – Oldtimertreffen Alt Tucheband</li>
+<li>07.06.2026 – Ostblockmeeting „Erichs Erben“</li>
+<li>19.07.2026 – Ostfahrzeugtreffen Finowfurt</li>
+<li>09.08.2026 – Simson- & Oldtimertreffen Linum</li>
+</ul>
+<p class="small">Keine festen Zusagen – Treffpunkte & Optionen für Interessierte.</p>
 </div>
 
-<div class="impressum">
-  Fam. Sonneborn · Privates, nicht-kommerzielles Projekt · 2026<br>
-  Kontakt über die verlinkten Social-Media-Profile
+<!-- MOCKUP SHOP -->
+<div class="section">
+<h2>DEKO & MERCH – IDEEN</h2>
+<p class="small">Beispiele & Mockups. Kein Verkauf. Interesse über Social Media.</p>
+<div class="mockup-grid">
+  <img src="shirt_mockup.png">
+  <img src="sticker_mockup.png">
+  <img src="deko_mockup.png">
+  <img src="tasse_mockup.png">
+  <img src="keychain_mockup.png">
+  <img src="plasticcup_mockup.png">
+  <img src="cap_mockup.png">
+  <img src="jacket_mockup.png">
+  <img src="banner_mockup.png">
 </div>
+</div>
+
+<!-- SOCIAL -->
+<div class="section social">
+<h2>FOLGE DER GEMEINSCHAFT</h2>
+<a href="https://www.instagram.com/isolator_jan" target="_blank"><img src="icon_instagram.png">Instagram</a>
+<a href="https://www.facebook.com/share/1Gk158Fub9" target="_blank"><img src="icon_facebook.png">Facebook</a>
+<a href="https://www.tiktok.com/@mullemannjan" target="_blank"><img src="icon_tiktok.png">TikTok</a>
+</div>
+
+<footer>
+Impressum: Fam. Sonneborn · 2026
+</footer>
 
 </div>
 
 <script>
-let baseRatio=null,ratio=null,mode=null;
+const data={
+  trabant:{rec:50,alt:[40,33]},
+  simson:{rec:50,alt:[40,33]},
+  mz:{rec:50,alt:[40,33]},
+  sonstige:{rec:40,alt:[50,33]}
+};
+let ratio=null;
 
-function resetResult(){
-  result.style.display="none";
-  resultMain.innerText="";
-  resultNote.innerText="";
-}
-
-document.querySelectorAll(".vehicle").forEach(v=>{
+document.querySelectorAll('.vehicle').forEach(v=>{
   v.onclick=()=>{
-    resetResult();
-    document.querySelectorAll(".vehicle").forEach(x=>x.classList.remove("active"));
-    v.classList.add("active");
-
-    baseRatio=parseInt(v.dataset.ratio);
-    ratio=baseRatio;
-
-    recommendation.style.display="block";
-    recommendation.innerText="Empfohlenes Mischverhältnis: 1 : "+baseRatio;
-
-    ratioSection.style.display="block";
-    modeSection.style.display="none";
-    amountSection.style.display="none";
-    ratioOptions.innerHTML="";
-    customRatio.style.display="none";
-
-    [50,40,33].filter(r=>r!==baseRatio).forEach(r=>{
-      let b=document.createElement("button");
-      b.innerText="1 : "+r;
-      b.onclick=()=>{
-        resetResult();
-        ratio=r;
-        document.querySelectorAll("#ratioOptions button").forEach(x=>x.classList.remove("active"));
-        b.classList.add("active");
-        customRatio.style.display="none";
-        modeSection.style.display="block";
-      };
-      ratioOptions.appendChild(b);
+    document.querySelectorAll('.vehicle').forEach(x=>x.classList.remove('active'));
+    v.classList.add('active');
+    ratio=data[v.dataset.v].rec;
+    document.getElementById('fuel').value='';
+    document.getElementById('result').innerHTML='';
+    document.getElementById('mixArea').style.display='block';
+    document.getElementById('recText').innerHTML=
+      `Empfohlenes Mischverhältnis: <strong>1:${ratio}</strong>`;
+    let btns='';
+    data[v.dataset.v].alt.forEach(r=>{
+      btns+=`<button class="alt" onclick="setRatio(${r})">1:${r}</button>`;
     });
-
-    let free=document.createElement("button");
-    free.innerText="frei";
-    free.onclick=()=>{
-      resetResult();
-      ratio=null;
-      document.querySelectorAll("#ratioOptions button").forEach(x=>x.classList.remove("active"));
-      free.classList.add("active");
-      customRatio.style.display="block";
-      modeSection.style.display="block";
-    };
-    ratioOptions.appendChild(free);
+    btns+=`<button class="alt" onclick="setRatio('free')">frei</button>`;
+    document.getElementById('mixButtons').innerHTML=btns;
   };
 });
 
-customRatio.oninput=()=>{
-  resetResult();
-  if(customRatio.value>0) ratio=parseInt(customRatio.value);
-};
+function setRatio(r){
+  ratio=r==='free'?prompt('Mischungsverhältnis eingeben (z.B. 45)'):r;
+  document.getElementById('fuel').value='';
+  document.getElementById('result').innerHTML='';
+}
 
-modeOil.onclick=()=>{
-  resetResult();
-  mode="oil";
-  modeOil.classList.add("active");
-  modeFuel.classList.remove("active");
-  amountSection.style.display="block";
-  amountLabel.innerText="Vorhandene Kraftstoffmenge (Liter)";
-};
+function calculate(){
+  const f=parseFloat(document.getElementById('fuel').value);
+  if(!f||!ratio)return alert('Eingaben unvollständig.');
+  const oil=(f*1000)/ratio;
+  document.getElementById('result').innerHTML=
+    `<div class="result-main">${oil.toFixed(0)} ml Öl zugeben</div>
+     <div class="result-humor">Bewährte Mischung – so hätte es auch der Meister gemacht.</div>`;
+}
 
-modeFuel.onclick=()=>{
-  resetResult();
-  mode="fuel";
-  modeFuel.classList.add("active");
-  modeOil.classList.remove("active");
-  amountSection.style.display="block";
-  amountLabel.innerText="Vorhandene Ölmenge (ml)";
-};
-
-amount.oninput=()=>{
-  const a=parseFloat(amount.value);
-  if(!a||!ratio||!mode) return;
-
-  let text="";
-  if(mode==="oil"){
-    text=(a/ratio*1000).toFixed(0)+" ml Zweitaktöl zugeben";
-  }else{
-    text=(a*ratio/1000).toFixed(2)+" Liter Kraftstoff zugeben";
-  }
-
-  result.style.display="block";
-  resultMain.innerText="→ "+text;
-  resultNote.innerText=
-    ratio<baseRatio?"Mageres Gemisch – Motorschutz beachten.":
-    ratio>baseRatio?"Etwas fetter als Serie – schadet selten.":
-    "Bewährte Mischung – so fährt die Mehrheit.";
-};
+function backCalc(){
+  const o=parseFloat(document.getElementById('oilBack').value);
+  const r=parseInt(document.getElementById('ratioBack').value);
+  if(!o)return alert('Ölmenge fehlt.');
+  const f=(o*r)/1000;
+  document.getElementById('backResult').innerHTML=
+    `<div class="result-main">${f.toFixed(2)} Liter Benzin</div>
+     <div class="result-humor">Rechner sagt: Das passt zusammen.</div>`;
+}
 </script>
 
 </body>
