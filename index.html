@@ -6,7 +6,6 @@
 <title>Zweitakt-Mischrechner – Die Isolatoren Deluxe</title>
 
 <style>
-/* ================= BASIS ================= */
 :root{
   --bg:#0e0e0e;
   --panel:#1a1a1a;
@@ -25,7 +24,7 @@ body{
   font-family:Arial,Helvetica,sans-serif;
 }
 
-/* Hintergrundlogo nur Desktop */
+/* Hintergrundlogo Desktop */
 @media(min-width:900px){
   body::before{
     content:"";
@@ -44,21 +43,17 @@ body{
   padding:20px;
 }
 
-/* ================= HEADER ================= */
 header{
   text-align:center;
   margin-bottom:40px;
 }
-header img{
-  max-width:340px;
-}
+header img{max-width:340px}
 header p{
   margin-top:10px;
   letter-spacing:2px;
   color:#bbb;
 }
 
-/* ================= SECTIONS ================= */
 .section{
   background:var(--panel);
   border:1px solid var(--border);
@@ -76,7 +71,6 @@ header p{
   line-height:1.5;
 }
 
-/* ================= BUTTONS / INPUTS ================= */
 button,input{
   width:100%;
   padding:12px;
@@ -100,7 +94,6 @@ input{
   margin-top:12px;
 }
 
-/* ================= VEHICLES ================= */
 .vehicle-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -128,7 +121,6 @@ input{
   filter:brightness(1.3);
 }
 
-/* ================= RESULT ================= */
 .result{
   margin-top:16px;
   border:1px solid #333;
@@ -149,7 +141,6 @@ input{
   color:#9aa58c;
 }
 
-/* ================= MODAL ================= */
 .modal{
   position:fixed;
   inset:0;
@@ -176,11 +167,8 @@ input{
   border-bottom:1px solid #333;
   cursor:pointer;
 }
-.option:hover{
-  background:#222;
-}
+.option:hover{background:#222}
 
-/* ================= SHOP ================= */
 .shop-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
@@ -188,7 +176,6 @@ input{
 }
 .shop-grid img{width:100%}
 
-/* ================= SOCIAL ================= */
 .social a{
   display:flex;
   align-items:center;
@@ -202,7 +189,6 @@ input{
   font-size:13px;
 }
 
-/* ================= FOOTER ================= */
 footer{
   text-align:center;
   font-size:11px;
@@ -210,11 +196,8 @@ footer{
   margin:40px 0;
 }
 
-/* ================= MOBILE ================= */
 @media(max-width:600px){
-  .vehicle-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
+  .vehicle-grid{grid-template-columns:repeat(2,1fr)}
 }
 </style>
 </head>
@@ -227,11 +210,11 @@ footer{
   <p>TECHNIK · GEMEINSCHAFT · ZWEITAKT</p>
 </header>
 
-<!-- ================= MISCHRECHNER ================= -->
+<!-- MISCHRECHNER -->
 <div class="section">
 <h2>ZWEITAKT-MISCHRECHNER</h2>
 
-<div class="vehicle-grid" id="vehicles">
+<div class="vehicle-grid">
   <div class="vehicle" data-name="Trabant" data-rec="50"><img src="trabant.png"><div>Trabant</div></div>
   <div class="vehicle" data-name="Simson" data-rec="50"><img src="simson.png"><div>Simson</div></div>
   <div class="vehicle" data-name="MZ" data-rec="50"><img src="mz.png"><div>MZ</div></div>
@@ -248,7 +231,7 @@ footer{
 <div class="result" id="mixResult" style="display:none;"></div>
 </div>
 
-<!-- ================= RÜCKRECHNER ================= -->
+<!-- RÜCKRECHNER -->
 <div class="section">
 <h2>RÜCKRECHNER – ÖL → BENZIN</h2>
 
@@ -265,16 +248,16 @@ footer{
 <div class="result" id="backResult" style="display:none;"></div>
 </div>
 
-<!-- ================= GEMEINSCHAFT ================= -->
+<!-- GEMEINSCHAFT -->
 <div class="section">
 <h2>DIE GEMEINSCHAFT</h2>
 <p>
 Lose Gemeinschaft von Schraubern, Fahrern und Zweitakt-Interessierten.<br>
-Kein Verein, kein Zwang, kein Verkauf. Technik, Austausch und gemeinsame Interessen stehen im Mittelpunkt.
+Kein Verein, kein Zwang, kein Verkauf.
 </p>
 </div>
 
-<!-- ================= TERMINE ================= -->
+<!-- TERMINE -->
 <div class="section">
 <h2>TERMINE 2026</h2>
 <ul>
@@ -297,7 +280,7 @@ Kein Verein, kein Zwang, kein Verkauf. Technik, Austausch und gemeinsame Interes
 <p style="font-size:12px;color:#aaa;">Termine ohne Gewähr.</p>
 </div>
 
-<!-- ================= SHOP ================= -->
+<!-- SHOP -->
 <div class="section">
 <h2>DEKO & MERCH – IDEEN</h2>
 <p style="font-size:12px;color:#aaa;">Mockups & Beispiele. Kein Verkauf.</p>
@@ -314,7 +297,7 @@ Kein Verein, kein Zwang, kein Verkauf. Technik, Austausch und gemeinsame Interes
 </div>
 </div>
 
-<!-- ================= SOCIAL ================= -->
+<!-- SOCIAL -->
 <div class="section social">
 <h2>FOLGE DER GEMEINSCHAFT</h2>
 <a href="https://www.instagram.com/isolator_jan" target="_blank">Instagram</a>
@@ -329,7 +312,7 @@ Privates, nicht kommerzielles Projekt
 
 </div>
 
-<!-- ================= MODAL ================= -->
+<!-- MODAL -->
 <div class="modal" id="ratioModal">
   <div class="modal-box">
     <h3>Mischungsverhältnis</h3>
@@ -343,22 +326,18 @@ let vehicle=null;
 let recommendedRatio=null;
 let activeRatio=null;
 
-/* Reset */
 function resetResults(){
   document.getElementById("mixResult").style.display="none";
   document.getElementById("backResult").style.display="none";
 }
 
-/* Fahrzeugwahl */
 document.querySelectorAll(".vehicle").forEach(v=>{
   v.onclick=()=>{
     document.querySelectorAll(".vehicle").forEach(x=>x.classList.remove("active"));
     v.classList.add("active");
-
     vehicle=v.dataset.name;
     recommendedRatio=v.dataset.rec?parseInt(v.dataset.rec):null;
     activeRatio=recommendedRatio;
-
     resetResults();
     updateMixState();
   };
@@ -376,15 +355,12 @@ function updateMixState(){
   document.getElementById("mixState").innerText=text;
 }
 
-/* Modal */
 function openRatioModal(){
   if(!vehicle) return;
   const box=document.getElementById("ratioOptions");
   box.innerHTML="";
-
   if(recommendedRatio){
-    const alts=[33,40,50].filter(r=>r!==recommendedRatio);
-    alts.forEach(r=>{
+    [33,40,50].filter(r=>r!==recommendedRatio).forEach(r=>{
       const d=document.createElement("div");
       d.className="option";
       d.innerText=`1 : ${r}`;
@@ -392,18 +368,14 @@ function openRatioModal(){
       box.appendChild(d);
     });
   }
-
   const free=document.createElement("div");
   free.className="option";
   free.innerText="Freie Eingabe";
   free.onclick=()=>{
     const val=parseInt(prompt("Mischungsverhältnis (1 : X, max. 100)"));
-    if(val>0 && val<=100){
-      setRatio(val);
-    }
+    if(val>0 && val<=100) setRatio(val);
   };
   box.appendChild(free);
-
   document.getElementById("ratioModal").classList.add("active");
 }
 
@@ -418,18 +390,15 @@ function setRatio(r){
   closeRatioModal();
 }
 
-/* Berechnung vorwärts */
 function calculateMix(){
   const fuel=parseFloat(document.getElementById("fuelInput").value);
   if(!activeRatio || !fuel) return;
-
   const oil=Math.round((fuel*1000)/activeRatio);
   let humor="Bewährte Mischung.";
   if(recommendedRatio){
     if(activeRatio<recommendedRatio) humor="Etwas fetter gemischt – Kolben freut sich.";
     if(activeRatio>recommendedRatio) humor="Mager unterwegs – Technik im Auge behalten.";
   }
-
   const box=document.getElementById("mixResult");
   box.style.display="block";
   box.innerHTML=`
@@ -439,8 +408,9 @@ function calculateMix(){
   `;
 }
 
-/* Rückrechner */
-document.getElementById("backRatioInput").oninput=()=>{
+/* RÜCKRECHNER – FIX: NUR FREI, KEIN „EMPFOHLEN“ */
+const backRatioInput=document.getElementById("backRatioInput");
+backRatioInput.oninput=()=>{
   const r=parseInt(backRatioInput.value);
   document.getElementById("backResult").style.display="none";
   if(r>0 && r<=100){
@@ -454,7 +424,6 @@ function calculateBack(){
   const ratio=parseInt(backRatioInput.value);
   const oil=parseFloat(document.getElementById("oilInput").value);
   if(!ratio || !oil) return;
-
   const fuel=(oil*ratio/1000).toFixed(2);
   const box=document.getElementById("backResult");
   box.style.display="block";
