@@ -43,6 +43,7 @@ body{
   padding:20px;
 }
 
+/* HEADER */
 header{
   text-align:center;
   margin-bottom:40px;
@@ -54,6 +55,7 @@ header p{
   color:#bbb;
 }
 
+/* SECTIONS */
 .section{
   background:var(--panel);
   border:1px solid var(--border);
@@ -71,6 +73,7 @@ header p{
   line-height:1.5;
 }
 
+/* BUTTONS / INPUTS */
 button,input{
   width:100%;
   padding:12px;
@@ -94,6 +97,7 @@ input{
   margin-top:12px;
 }
 
+/* VEHICLES */
 .vehicle-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -121,6 +125,7 @@ input{
   filter:brightness(1.3);
 }
 
+/* RESULT */
 .result{
   margin-top:16px;
   border:1px solid #333;
@@ -141,6 +146,7 @@ input{
   color:#9aa58c;
 }
 
+/* MODAL */
 .modal{
   position:fixed;
   inset:0;
@@ -169,6 +175,17 @@ input{
 }
 .option:hover{background:#222}
 
+/* TERMINE */
+.section ul{list-style:none;padding-left:0}
+.section li{margin-bottom:6px}
+.date{
+  color:var(--gold);
+  font-weight:bold;
+  display:inline-block;
+  min-width:120px;
+}
+
+/* SHOP */
 .shop-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
@@ -176,6 +193,7 @@ input{
 }
 .shop-grid img{width:100%}
 
+/* SOCIAL */
 .social a{
   display:flex;
   align-items:center;
@@ -188,7 +206,9 @@ input{
   text-decoration:none;
   font-size:13px;
 }
+.social img{width:20px;height:20px}
 
+/* FOOTER */
 footer{
   text-align:center;
   font-size:11px;
@@ -196,8 +216,10 @@ footer{
   margin:40px 0;
 }
 
+/* MOBILE */
 @media(max-width:600px){
   .vehicle-grid{grid-template-columns:repeat(2,1fr)}
+  .date{display:block;min-width:auto}
 }
 </style>
 </head>
@@ -235,13 +257,11 @@ footer{
 <div class="section">
 <h2>RÜCKRECHNER – ÖL → BENZIN</h2>
 
-<p id="backState" style="font-size:13px;color:#bbb;">Kein Mischungsverhältnis gewählt</p>
+<p id="backState" style="font-size:14px;color:#bbb;">
+Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
+</p>
 
-<div style="display:flex;gap:8px;align-items:center;margin-top:10px;">
-  <span>1 :</span>
-  <input type="number" id="backRatioInput" placeholder="z. B. 50" max="100" style="margin-top:0;">
-</div>
-
+<input type="number" id="backRatioInput" placeholder="Mischungsverhältnis (z.B. 50 = 1:50)" max="100">
 <input type="number" id="oilInput" placeholder="Ölmenge in ml">
 <button onclick="calculateBack()">Berechnen</button>
 
@@ -253,7 +273,10 @@ footer{
 <h2>DIE GEMEINSCHAFT</h2>
 <p>
 Lose Gemeinschaft von Schraubern, Fahrern und Zweitakt-Interessierten.<br>
-Kein Verein, kein Zwang, kein Verkauf.
+Kein Verein, kein Zwang, kein Verkauf.<br><br>
+Die Gemeinschaft wächst stetig: Neue Leute kommen dazu, Kontakte entstehen
+und werden nach und nach integriert. Alles entwickelt sich organisch –
+mit Fokus auf Technik, Austausch und gemeinsame Interessen rund um den Zweitakt.
 </p>
 </div>
 
@@ -261,21 +284,21 @@ Kein Verein, kein Zwang, kein Verkauf.
 <div class="section">
 <h2>TERMINE 2026</h2>
 <ul>
-<li>25.04.2026 – 19. Ostfahrzeugtreffen Finowfurt</li>
-<li>01.05.2026 – IFA Freunde Ladeburg</li>
-<li>09.05.2026 – 18. Oldtimertreffen Alt Tucheband</li>
-<li>14.05.2026 – Anklam</li>
-<li>14.05.2026 – Herrentagstour German East Driver</li>
-<li>23.05.2026 – IFA & Oldtimertreffen Herzfelde</li>
-<li>30.05.2026 – 8. Linumer Simson & Oldtimertreffen</li>
-<li>06.06.2026 – Eens zu Fuffzsch am Ring</li>
-<li>06.06.2026 – Pre Deep One Zehdenick</li>
-<li>04.07.2026 – Simson Treffen Vietznitz</li>
-<li>04.07.2026 – Ostblock Fahrzeugtreffen</li>
-<li>25.07.2026 – TFO-Treffen</li>
-<li>01.08.2026 – Trabant & VW-Bus Treffen Kleinzerlang</li>
-<li>07.–09.08.2026 – East German Classics Reitwein</li>
-<li>12.09.2026 – Ostblockmeeting „Erichs Erben“</li>
+<li><span class="date">25.04.2026</span> 19. Ostfahrzeugtreffen Finowfurt</li>
+<li><span class="date">01.05.2026</span> IFA Freunde Ladeburg</li>
+<li><span class="date">09.05.2026</span> 18. Oldtimertreffen Alt Tucheband</li>
+<li><span class="date">14.05.2026</span> Anklam</li>
+<li><span class="date">14.05.2026</span> Herrentagstour German East Driver</li>
+<li><span class="date">23.05.2026</span> IFA & Oldtimertreffen Herzfelde</li>
+<li><span class="date">30.05.2026</span> 8. Linumer Simson & Oldtimertreffen</li>
+<li><span class="date">06.06.2026</span> Eens zu Fuffzsch am Ring</li>
+<li><span class="date">06.06.2026</span> Pre Deep One Zehdenick</li>
+<li><span class="date">04.07.2026</span> Simson Treffen Vietznitz</li>
+<li><span class="date">04.07.2026</span> Ostblock Fahrzeugtreffen</li>
+<li><span class="date">25.07.2026</span> TFO-Treffen</li>
+<li><span class="date">01.08.2026</span> Trabant & VW-Bus Treffen Kleinzerlang</li>
+<li><span class="date">07.–09.08.2026</span> East German Classics Reitwein</li>
+<li><span class="date">12.09.2026</span> Ostblockmeeting „Erichs Erben“</li>
 </ul>
 <p style="font-size:12px;color:#aaa;">Termine ohne Gewähr.</p>
 </div>
@@ -300,9 +323,9 @@ Kein Verein, kein Zwang, kein Verkauf.
 <!-- SOCIAL -->
 <div class="section social">
 <h2>FOLGE DER GEMEINSCHAFT</h2>
-<a href="https://www.instagram.com/isolator_jan" target="_blank">Instagram</a>
-<a href="https://www.facebook.com/share/1Gk158Fub9" target="_blank">Facebook</a>
-<a href="https://www.tiktok.com/@mullemannjan" target="_blank">TikTok</a>
+<a href="https://www.instagram.com/isolator_jan" target="_blank"><img src="icon_instagram.png">Instagram</a>
+<a href="https://www.facebook.com/share/1Gk158Fub9" target="_blank"><img src="icon_facebook.png">Facebook</a>
+<a href="https://www.tiktok.com/@mullemannjan" target="_blank"><img src="icon_tiktok.png">TikTok</a>
 </div>
 
 <footer>
@@ -312,23 +335,13 @@ Privates, nicht kommerzielles Projekt
 
 </div>
 
-<!-- MODAL -->
-<div class="modal" id="ratioModal">
-  <div class="modal-box">
-    <h3>Mischungsverhältnis</h3>
-    <div id="ratioOptions"></div>
-    <button class="secondary" onclick="closeRatioModal()" style="margin-top:12px;">Schließen</button>
-  </div>
-</div>
-
 <script>
-let vehicle=null;
-let recommendedRatio=null;
-let activeRatio=null;
+/* --- Mischrechner-Logik (unverändert) --- */
+let vehicle=null, recommendedRatio=null, activeRatio=null;
 
 function resetResults(){
-  document.getElementById("mixResult").style.display="none";
-  document.getElementById("backResult").style.display="none";
+  mixResult.style.display="none";
+  backResult.style.display="none";
 }
 
 document.querySelectorAll(".vehicle").forEach(v=>{
@@ -344,94 +357,70 @@ document.querySelectorAll(".vehicle").forEach(v=>{
 });
 
 function updateMixState(){
-  let text="";
-  if(!vehicle){
-    text="";
-  }else if(!recommendedRatio){
-    text=`Ausgewählt: ${vehicle} · Kein empfohlenes Mischungsverhältnis`;
+  if(!vehicle){mixState.innerText="";return;}
+  if(!recommendedRatio){
+    mixState.innerText=`Ausgewählt: ${vehicle} · Kein empfohlenes Mischungsverhältnis`;
   }else{
-    text=`Ausgewählt: ${vehicle} · Aktiv: 1 : ${activeRatio} (${activeRatio===recommendedRatio?"empfohlen":"manuell"})`;
+    mixState.innerText=`Ausgewählt: ${vehicle} · Aktiv: 1 : ${activeRatio} (${activeRatio===recommendedRatio?"empfohlen":"manuell"})`;
   }
-  document.getElementById("mixState").innerText=text;
 }
 
 function openRatioModal(){
   if(!vehicle) return;
-  const box=document.getElementById("ratioOptions");
-  box.innerHTML="";
+  ratioOptions.innerHTML="";
   if(recommendedRatio){
     [33,40,50].filter(r=>r!==recommendedRatio).forEach(r=>{
       const d=document.createElement("div");
       d.className="option";
       d.innerText=`1 : ${r}`;
       d.onclick=()=>setRatio(r);
-      box.appendChild(d);
+      ratioOptions.appendChild(d);
     });
   }
   const free=document.createElement("div");
   free.className="option";
   free.innerText="Freie Eingabe";
   free.onclick=()=>{
-    const val=parseInt(prompt("Mischungsverhältnis (1 : X, max. 100)"));
-    if(val>0 && val<=100) setRatio(val);
+    const v=parseInt(prompt("Mischungsverhältnis (1:X, max. 100)"));
+    if(v>0 && v<=100) setRatio(v);
   };
-  box.appendChild(free);
-  document.getElementById("ratioModal").classList.add("active");
+  ratioOptions.appendChild(free);
+  ratioModal.classList.add("active");
 }
-
-function closeRatioModal(){
-  document.getElementById("ratioModal").classList.remove("active");
-}
-
-function setRatio(r){
-  activeRatio=r;
-  resetResults();
-  updateMixState();
-  closeRatioModal();
-}
+function closeRatioModal(){ratioModal.classList.remove("active");}
+function setRatio(r){activeRatio=r;resetResults();updateMixState();closeRatioModal();}
 
 function calculateMix(){
-  const fuel=parseFloat(document.getElementById("fuelInput").value);
-  if(!activeRatio || !fuel) return;
+  const fuel=parseFloat(fuelInput.value);
+  if(!activeRatio||!fuel) return;
   const oil=Math.round((fuel*1000)/activeRatio);
   let humor="Bewährte Mischung.";
   if(recommendedRatio){
     if(activeRatio<recommendedRatio) humor="Etwas fetter gemischt – Kolben freut sich.";
     if(activeRatio>recommendedRatio) humor="Mager unterwegs – Technik im Auge behalten.";
   }
-  const box=document.getElementById("mixResult");
-  box.style.display="block";
-  box.innerHTML=`
-    <div class="result-main">${oil} ml Öl zugeben</div>
-    <div class="result-info">Berechnet mit 1 : ${activeRatio}</div>
-    <div class="result-humor">${humor}</div>
-  `;
+  mixResult.style.display="block";
+  mixResult.innerHTML=`<div class="result-main">${oil} ml Öl zugeben</div>
+  <div class="result-info">Berechnet mit 1 : ${activeRatio}</div>
+  <div class="result-humor">${humor}</div>`;
 }
 
-/* RÜCKRECHNER – FIX: NUR FREI, KEIN „EMPFOHLEN“ */
-const backRatioInput=document.getElementById("backRatioInput");
+/* --- Rückrechner (frei, klar sichtbar) --- */
 backRatioInput.oninput=()=>{
+  backResult.style.display="none";
   const r=parseInt(backRatioInput.value);
-  document.getElementById("backResult").style.display="none";
-  if(r>0 && r<=100){
-    document.getElementById("backState").innerText=`Aktives Mischungsverhältnis: 1 : ${r}`;
-  }else{
-    document.getElementById("backState").innerText="Kein Mischungsverhältnis gewählt";
-  }
+  backState.innerHTML=(r>0&&r<=100)?
+    `Aktives Mischungsverhältnis: <strong>1 : ${r}</strong>`:
+    `Aktives Mischungsverhältnis: <strong>keines gewählt</strong>`;
 };
-
 function calculateBack(){
-  const ratio=parseInt(backRatioInput.value);
-  const oil=parseFloat(document.getElementById("oilInput").value);
-  if(!ratio || !oil) return;
-  const fuel=(oil*ratio/1000).toFixed(2);
-  const box=document.getElementById("backResult");
-  box.style.display="block";
-  box.innerHTML=`
-    <div class="result-main">${fuel} Liter Benzin</div>
-    <div class="result-info">Berechnet mit 1 : ${ratio}</div>
-    <div class="result-humor">Rechnerisch sauber – jetzt weißt du, was in den Kanister gehört.</div>
-  `;
+  const r=parseInt(backRatioInput.value), o=parseFloat(oilInput.value);
+  if(!r||!o) return;
+  const f=(o*r/1000).toFixed(2);
+  backResult.style.display="block";
+  backResult.innerHTML=`<div class="result-main">${f} Liter Benzin</div>
+  <div class="result-info">Berechnet mit 1 : ${r}</div>
+  <div class="result-humor">Rechnerisch sauber – jetzt weißt du, was in den Kanister gehört.</div>`;
 }
 </script>
 
