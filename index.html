@@ -43,7 +43,6 @@ body{
   padding:20px;
 }
 
-/* HEADER */
 header{
   text-align:center;
   margin-bottom:40px;
@@ -55,7 +54,6 @@ header p{
   color:#bbb;
 }
 
-/* SECTIONS */
 .section{
   background:var(--panel);
   border:1px solid var(--border);
@@ -73,7 +71,6 @@ header p{
   line-height:1.5;
 }
 
-/* BUTTONS / INPUTS */
 button,input{
   width:100%;
   padding:12px;
@@ -97,7 +94,7 @@ input{
   margin-top:12px;
 }
 
-/* VEHICLES */
+/* Fahrzeuge */
 .vehicle-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -125,7 +122,7 @@ input{
   filter:brightness(1.3);
 }
 
-/* RESULT */
+/* Ergebnisse */
 .result{
   margin-top:16px;
   border:1px solid #333;
@@ -146,7 +143,7 @@ input{
   color:#9aa58c;
 }
 
-/* MODAL */
+/* Modal */
 .modal{
   position:fixed;
   inset:0;
@@ -175,9 +172,14 @@ input{
 }
 .option:hover{background:#222}
 
-/* TERMINE */
-.section ul{list-style:none;padding-left:0}
-.section li{margin-bottom:6px}
+/* Termine */
+.section ul{
+  list-style:none;
+  padding-left:0;
+}
+.section li{
+  margin-bottom:6px;
+}
 .date{
   color:var(--gold);
   font-weight:bold;
@@ -185,7 +187,7 @@ input{
   min-width:120px;
 }
 
-/* SHOP */
+/* Shop */
 .shop-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
@@ -193,7 +195,7 @@ input{
 }
 .shop-grid img{width:100%}
 
-/* SOCIAL */
+/* Social */
 .social a{
   display:flex;
   align-items:center;
@@ -206,9 +208,11 @@ input{
   text-decoration:none;
   font-size:13px;
 }
-.social img{width:20px;height:20px}
+.social img{
+  width:20px;
+  height:20px;
+}
 
-/* FOOTER */
 footer{
   text-align:center;
   font-size:11px;
@@ -216,7 +220,6 @@ footer{
   margin:40px 0;
 }
 
-/* MOBILE */
 @media(max-width:600px){
   .vehicle-grid{grid-template-columns:repeat(2,1fr)}
   .date{display:block;min-width:auto}
@@ -246,10 +249,8 @@ footer{
 <p id="mixState" style="margin-top:10px;font-size:13px;color:#bbb;"></p>
 
 <button class="secondary" onclick="openRatioModal()">Mischungsverhältnis wählen</button>
-
 <input type="number" id="fuelInput" placeholder="Benzinmenge in Litern">
 <button onclick="calculateMix()">Berechnen</button>
-
 <div class="result" id="mixResult" style="display:none;"></div>
 </div>
 
@@ -261,7 +262,7 @@ footer{
 Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
 </p>
 
-<input type="number" id="backRatioInput" placeholder="Mischungsverhältnis (z.B. 50 = 1:50)" max="100">
+<button class="secondary" onclick="openBackModal()">Mischungsverhältnis wählen</button>
 <input type="number" id="oilInput" placeholder="Ölmenge in ml">
 <button onclick="calculateBack()">Berechnen</button>
 
@@ -275,7 +276,7 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
 Lose Gemeinschaft von Schraubern, Fahrern und Zweitakt-Interessierten.<br>
 Kein Verein, kein Zwang, kein Verkauf.<br><br>
 Die Gemeinschaft wächst stetig: Neue Leute kommen dazu, Kontakte entstehen
-und werden nach und nach integriert. Alles entwickelt sich organisch –
+und Interessierte werden nach und nach integriert. Alles entwickelt sich organisch –
 mit Fokus auf Technik, Austausch und gemeinsame Interessen rund um den Zweitakt.
 </p>
 </div>
@@ -335,15 +336,37 @@ Privates, nicht kommerzielles Projekt
 
 </div>
 
-<script>
-/* --- Mischrechner-Logik (unverändert) --- */
-let vehicle=null, recommendedRatio=null, activeRatio=null;
+<!-- MODAL MISCHRECHNER (unverändert) -->
+<div class="modal" id="ratioModal">
+  <div class="modal-box">
+    <h3>Mischungsverhältnis</h3>
+    <div id="ratioOptions"></div>
+    <button class="secondary" onclick="closeRatioModal()">Schließen</button>
+  </div>
+</div>
 
+<!-- MODAL RÜCKRECHNER -->
+<div class="modal" id="backModal">
+  <div class="modal-box">
+    <h3>Rückrechner – Mischungsverhältnis</h3>
+    <div class="option" onclick="setBackRatio()">Freie Eingabe (1 : X)</div>
+    <button class="secondary" onclick="closeBackModal()">Schließen</button>
+  </div>
+</div>
+
+<script>
+let vehicle=null;
+let recommendedRatio=null;
+let activeRatio=null;
+let backRatio=null;
+
+/* Reset */
 function resetResults(){
   mixResult.style.display="none";
   backResult.style.display="none";
 }
 
+/* Fahrzeugwahl */
 document.querySelectorAll(".vehicle").forEach(v=>{
   v.onclick=()=>{
     document.querySelectorAll(".vehicle").forEach(x=>x.classList.remove("active"));
@@ -365,6 +388,7 @@ function updateMixState(){
   }
 }
 
+/* Mischrechner Modal */
 function openRatioModal(){
   if(!vehicle) return;
   ratioOptions.innerHTML="";
@@ -390,6 +414,7 @@ function openRatioModal(){
 function closeRatioModal(){ratioModal.classList.remove("active");}
 function setRatio(r){activeRatio=r;resetResults();updateMixState();closeRatioModal();}
 
+/* Berechnung Mischrechner */
 function calculateMix(){
   const fuel=parseFloat(fuelInput.value);
   if(!activeRatio||!fuel) return;
@@ -400,27 +425,36 @@ function calculateMix(){
     if(activeRatio>recommendedRatio) humor="Mager unterwegs – Technik im Auge behalten.";
   }
   mixResult.style.display="block";
-  mixResult.innerHTML=`<div class="result-main">${oil} ml Öl zugeben</div>
-  <div class="result-info">Berechnet mit 1 : ${activeRatio}</div>
-  <div class="result-humor">${humor}</div>`;
+  mixResult.innerHTML=`
+    <div class="result-main">${oil} ml Öl zugeben</div>
+    <div class="result-info">Berechnet mit 1 : ${activeRatio}</div>
+    <div class="result-humor">${humor}</div>`;
 }
 
-/* --- Rückrechner (frei, klar sichtbar) --- */
-backRatioInput.oninput=()=>{
-  backResult.style.display="none";
-  const r=parseInt(backRatioInput.value);
-  backState.innerHTML=(r>0&&r<=100)?
-    `Aktives Mischungsverhältnis: <strong>1 : ${r}</strong>`:
-    `Aktives Mischungsverhältnis: <strong>keines gewählt</strong>`;
-};
+/* Rückrechner Modal */
+function openBackModal(){backModal.classList.add("active");}
+function closeBackModal(){backModal.classList.remove("active");}
+function setBackRatio(){
+  const v=parseInt(prompt("Mischungsverhältnis 1:X (max. 100)"));
+  if(v>0 && v<=100){
+    backRatio=v;
+    backState.innerHTML=`Aktives Mischungsverhältnis: <strong>1 : ${v}</strong>`;
+    backResult.style.display="none";
+  }
+  closeBackModal();
+}
+
+/* Berechnung Rückrechner */
 function calculateBack(){
-  const r=parseInt(backRatioInput.value), o=parseFloat(oilInput.value);
-  if(!r||!o) return;
-  const f=(o*r/1000).toFixed(2);
+  if(!backRatio) return;
+  const oil=parseFloat(oilInput.value);
+  if(!oil) return;
+  const fuel=(oil*backRatio/1000).toFixed(2);
   backResult.style.display="block";
-  backResult.innerHTML=`<div class="result-main">${f} Liter Benzin</div>
-  <div class="result-info">Berechnet mit 1 : ${r}</div>
-  <div class="result-humor">Rechnerisch sauber – jetzt weißt du, was in den Kanister gehört.</div>`;
+  backResult.innerHTML=`
+    <div class="result-main">${fuel} Liter Benzin</div>
+    <div class="result-info">Berechnet mit 1 : ${backRatio}</div>
+    <div class="result-humor">Rechnerisch sauber – jetzt weißt du, was in den Kanister gehört.</div>`;
 }
 </script>
 
