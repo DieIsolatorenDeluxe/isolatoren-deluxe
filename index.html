@@ -6,13 +6,14 @@
 <title>Zweitakt-Mischrechner – Die Isolatoren Deluxe</title>
 
 <style>
+/* ================= BASIS ================= */
 :root{
   --bg:#0e0e0e;
   --panel:#1a1a1a;
   --border:#333;
   --gold:#d4aa00;
   --text:#e5e5e5;
-  --green:#7CFF7C;
+  --green:#7cff7c;
 }
 
 *{box-sizing:border-box}
@@ -24,7 +25,7 @@ body{
   font-family:Arial,Helvetica,sans-serif;
 }
 
-/* Hintergrundlogo Desktop */
+/* Hintergrundlogo nur Desktop */
 @media(min-width:900px){
   body::before{
     content:"";
@@ -43,6 +44,7 @@ body{
   padding:20px;
 }
 
+/* ================= HEADER ================= */
 header{
   text-align:center;
   margin-bottom:40px;
@@ -56,7 +58,7 @@ header p{
   color:#bbb;
 }
 
-/* ===== Panels ===== */
+/* ================= SECTIONS ================= */
 .section{
   background:var(--panel);
   border:1px solid var(--border);
@@ -74,11 +76,15 @@ header p{
   line-height:1.5;
 }
 
-/* ===== Buttons ===== */
+/* ================= BUTTONS / INPUTS ================= */
+button,input{
+  width:100%;
+  padding:12px;
+  font-size:16px;
+}
 button{
   background:var(--gold);
   border:none;
-  padding:12px 16px;
   font-weight:bold;
   cursor:pointer;
 }
@@ -87,21 +93,44 @@ button.secondary{
   border:1px solid #555;
   color:var(--gold);
 }
-
-/* ===== Inputs ===== */
 input{
-  width:100%;
-  padding:12px;
-  margin-top:12px;
   background:#111;
   border:1px solid #444;
   color:#fff;
-  font-size:16px;
+  margin-top:12px;
 }
 
-/* ===== Result ===== */
+/* ================= VEHICLES ================= */
+.vehicle-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+}
+.vehicle{
+  background:#222;
+  border:2px solid #222;
+  padding:12px;
+  text-align:center;
+  cursor:pointer;
+  transition:all .2s ease;
+}
+.vehicle img{
+  max-width:90px;
+  transition:.2s;
+}
+.vehicle.active{
+  border-color:var(--gold);
+  box-shadow:0 0 12px rgba(212,170,0,.6);
+  transform:translateY(-4px);
+}
+.vehicle.active img{
+  transform:scale(1.15);
+  filter:brightness(1.3);
+}
+
+/* ================= RESULT ================= */
 .result{
-  margin-top:18px;
+  margin-top:16px;
   border:1px solid #333;
   padding:14px;
 }
@@ -120,32 +149,11 @@ input{
   color:#9aa58c;
 }
 
-/* ===== Vehicle Icons ===== */
-.vehicle-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:14px;
-}
-.vehicle{
-  background:#222;
-  border:2px solid transparent;
-  padding:10px;
-  text-align:center;
-  cursor:pointer;
-}
-.vehicle.active{
-  border-color:var(--gold);
-}
-.vehicle img{
-  max-width:90px;
-  filter:brightness(1.15);
-}
-
-/* ===== Modals ===== */
+/* ================= MODAL ================= */
 .modal{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.75);
+  background:rgba(0,0,0,.75);
   display:none;
   align-items:flex-end;
   z-index:1000;
@@ -168,12 +176,11 @@ input{
   border-bottom:1px solid #333;
   cursor:pointer;
 }
-.option.active{
+.option:hover{
   background:#222;
-  color:var(--gold);
 }
 
-/* ===== Shop ===== */
+/* ================= SHOP ================= */
 .shop-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
@@ -181,7 +188,7 @@ input{
 }
 .shop-grid img{width:100%}
 
-/* ===== Social ===== */
+/* ================= SOCIAL ================= */
 .social a{
   display:flex;
   align-items:center;
@@ -194,25 +201,21 @@ input{
   text-decoration:none;
   font-size:13px;
 }
-.social img{width:20px;height:20px}
 
+/* ================= FOOTER ================= */
 footer{
   text-align:center;
   font-size:11px;
   color:#777;
   margin:40px 0;
 }
-@media (max-width: 600px) {
-  .ratio-btn {
-    width: 100%;
-    box-sizing: border-box;
-    display: block;
-    text-align: center;
-    margin: 0;
+
+/* ================= MOBILE ================= */
+@media(max-width:600px){
+  .vehicle-grid{
+    grid-template-columns:repeat(2,1fr);
   }
 }
-
-
 </style>
 </head>
 
@@ -227,28 +230,20 @@ footer{
 <!-- ================= MISCHRECHNER ================= -->
 <div class="section">
 <h2>ZWEITAKT-MISCHRECHNER</h2>
-<p>
-Fahrzeug auswählen, Mischungsverhältnis festlegen, Benzinmenge eingeben.<br>
-Sachlich gerechnet – Verantwortung bleibt beim Fahrer.
-</p>
 
 <div class="vehicle-grid" id="vehicles">
-  <div class="vehicle" data-name="Trabant" data-ratio="50"><img src="trabant.png"><div>Trabant</div></div>
-  <div class="vehicle" data-name="Simson" data-ratio="50"><img src="simson.png"><div>Simson</div></div>
-  <div class="vehicle" data-name="MZ" data-ratio="50"><img src="mz.png"><div>MZ</div></div>
-  <div class="vehicle" data-name="Sonstige Zweitakter" data-ratio="40"><img src="sonstige_zweitakter.png"><div>Sonstige</div></div>
+  <div class="vehicle" data-name="Trabant" data-rec="50"><img src="trabant.png"><div>Trabant</div></div>
+  <div class="vehicle" data-name="Simson" data-rec="50"><img src="simson.png"><div>Simson</div></div>
+  <div class="vehicle" data-name="MZ" data-rec="50"><img src="mz.png"><div>MZ</div></div>
+  <div class="vehicle" data-name="Sonstige Zweitakter" data-rec=""><img src="sonstige_zweitakter.png"><div>Sonstige</div></div>
 </div>
 
-<div id="mixInfo" style="margin-top:14px;"></div>
+<p id="mixState" style="margin-top:10px;font-size:13px;color:#bbb;"></p>
 
-<button class="secondary ratio-btn" onclick="openRatioModal()" style="margin-top:12px;">
-  Mischungsverhältnis wählen
-</button>
+<button class="secondary" onclick="openRatioModal()">Mischungsverhältnis wählen</button>
 
-
-<input id="fuelInput" type="number" placeholder="Benzinmenge in Litern">
-
-<button onclick="calculateMix()" style="margin-top:12px;">Berechnen</button>
+<input type="number" id="fuelInput" placeholder="Benzinmenge in Litern">
+<button onclick="calculateMix()">Berechnen</button>
 
 <div class="result" id="mixResult" style="display:none;"></div>
 </div>
@@ -257,11 +252,15 @@ Sachlich gerechnet – Verantwortung bleibt beim Fahrer.
 <div class="section">
 <h2>RÜCKRECHNER – ÖL → BENZIN</h2>
 
-<button class="secondary" onclick="openRatioModal(true)">Mischungsverhältnis wählen</button>
+<p id="backState" style="font-size:13px;color:#bbb;">Kein Mischungsverhältnis gewählt</p>
 
-<input id="oilInput" type="number" placeholder="Ölmenge in ml">
+<div style="display:flex;gap:8px;align-items:center;margin-top:10px;">
+  <span>1 :</span>
+  <input type="number" id="backRatioInput" placeholder="z. B. 50" max="100" style="margin-top:0;">
+</div>
 
-<button onclick="calculateBack()" style="margin-top:12px;">Berechnen</button>
+<input type="number" id="oilInput" placeholder="Ölmenge in ml">
+<button onclick="calculateBack()">Berechnen</button>
 
 <div class="result" id="backResult" style="display:none;"></div>
 </div>
@@ -271,19 +270,19 @@ Sachlich gerechnet – Verantwortung bleibt beim Fahrer.
 <h2>DIE GEMEINSCHAFT</h2>
 <p>
 Lose Gemeinschaft von Schraubern, Fahrern und Zweitakt-Interessierten.<br>
-Kein Verein, kein Zwang. Die Gemeinschaft wächst und integriert ihre Leute nach und nach.
+Kein Verein, kein Zwang, kein Verkauf. Technik, Austausch und gemeinsame Interessen stehen im Mittelpunkt.
 </p>
 </div>
 
 <!-- ================= TERMINE ================= -->
 <div class="section">
-<h2>WO WIR EVTL. ZU FINDEN SIND</h2>
+<h2>TERMINE 2026</h2>
 <ul>
 <li>25.04.2026 – 19. Ostfahrzeugtreffen Finowfurt</li>
 <li>01.05.2026 – IFA Freunde Ladeburg</li>
 <li>09.05.2026 – 18. Oldtimertreffen Alt Tucheband</li>
 <li>14.05.2026 – Anklam</li>
-<li>14.05.2026 – Herrentagstour German East Driver (parallel)</li>
+<li>14.05.2026 – Herrentagstour German East Driver</li>
 <li>23.05.2026 – IFA & Oldtimertreffen Herzfelde</li>
 <li>30.05.2026 – 8. Linumer Simson & Oldtimertreffen</li>
 <li>06.06.2026 – Eens zu Fuffzsch am Ring</li>
@@ -295,7 +294,7 @@ Kein Verein, kein Zwang. Die Gemeinschaft wächst und integriert ihre Leute nach
 <li>07.–09.08.2026 – East German Classics Reitwein</li>
 <li>12.09.2026 – Ostblockmeeting „Erichs Erben“</li>
 </ul>
-<p style="font-size:12px;color:#aaa;">Treffen als Optionen – keine Zusagen.</p>
+<p style="font-size:12px;color:#aaa;">Termine ohne Gewähr.</p>
 </div>
 
 <!-- ================= SHOP ================= -->
@@ -318,9 +317,9 @@ Kein Verein, kein Zwang. Die Gemeinschaft wächst und integriert ihre Leute nach
 <!-- ================= SOCIAL ================= -->
 <div class="section social">
 <h2>FOLGE DER GEMEINSCHAFT</h2>
-<a href="https://www.instagram.com/isolator_jan" target="_blank"><img src="icon_instagram.png">Instagram</a>
-<a href="https://www.facebook.com/share/1Gk158Fub9" target="_blank"><img src="icon_facebook.png">Facebook</a>
-<a href="https://www.tiktok.com/@mullemannjan" target="_blank"><img src="icon_tiktok.png">TikTok</a>
+<a href="https://www.instagram.com/isolator_jan" target="_blank">Instagram</a>
+<a href="https://www.facebook.com/share/1Gk158Fub9" target="_blank">Facebook</a>
+<a href="https://www.tiktok.com/@mullemannjan" target="_blank">TikTok</a>
 </div>
 
 <footer>
@@ -334,10 +333,7 @@ Privates, nicht kommerzielles Projekt
 <div class="modal" id="ratioModal">
   <div class="modal-box">
     <h3>Mischungsverhältnis</h3>
-    <div class="option" onclick="selectRatio('recommended')">Empfohlen</div>
-    <div class="option" onclick="selectRatio(40)">1 : 40</div>
-    <div class="option" onclick="selectRatio(33)">1 : 33</div>
-    <div class="option" onclick="openFreeRatio()">Freie Wahl</div>
+    <div id="ratioOptions"></div>
     <button class="secondary" onclick="closeRatioModal()" style="margin-top:12px;">Schließen</button>
   </div>
 </div>
@@ -345,87 +341,128 @@ Privates, nicht kommerzielles Projekt
 <script>
 let vehicle=null;
 let recommendedRatio=null;
-let selectedRatio=null;
-let isBack=false;
+let activeRatio=null;
 
-document.querySelectorAll('.vehicle').forEach(v=>{
+/* Reset */
+function resetResults(){
+  document.getElementById("mixResult").style.display="none";
+  document.getElementById("backResult").style.display="none";
+}
+
+/* Fahrzeugwahl */
+document.querySelectorAll(".vehicle").forEach(v=>{
   v.onclick=()=>{
-    document.querySelectorAll('.vehicle').forEach(x=>x.classList.remove('active'));
-    v.classList.add('active');
+    document.querySelectorAll(".vehicle").forEach(x=>x.classList.remove("active"));
+    v.classList.add("active");
+
     vehicle=v.dataset.name;
-    recommendedRatio=parseInt(v.dataset.ratio);
-    selectedRatio=recommendedRatio;
-    updateInfo();
+    recommendedRatio=v.dataset.rec?parseInt(v.dataset.rec):null;
+    activeRatio=recommendedRatio;
+
     resetResults();
-  }
+    updateMixState();
+  };
 });
 
-function updateInfo(){
-  document.getElementById('mixInfo').innerHTML=
-    `<strong>Empfohlenes Mischungsverhältnis:</strong> 1 : ${recommendedRatio}<br>
-     <span style="font-size:13px;color:#bbb;">Aktiv: 1 : ${selectedRatio}</span>`;
+function updateMixState(){
+  let text="";
+  if(!vehicle){
+    text="";
+  }else if(!recommendedRatio){
+    text=`Ausgewählt: ${vehicle} · Kein empfohlenes Mischungsverhältnis`;
+  }else{
+    text=`Ausgewählt: ${vehicle} · Aktiv: 1 : ${activeRatio} (${activeRatio===recommendedRatio?"empfohlen":"manuell"})`;
+  }
+  document.getElementById("mixState").innerText=text;
 }
 
-function resetResults(){
-  document.getElementById('mixResult').style.display="none";
-  document.getElementById('backResult').style.display="none";
-}
+/* Modal */
+function openRatioModal(){
+  if(!vehicle) return;
+  const box=document.getElementById("ratioOptions");
+  box.innerHTML="";
 
-function openRatioModal(back=false){
-  if(!vehicle && !back) return;
-  isBack=back;
-  document.getElementById('ratioModal').classList.add('active');
+  if(recommendedRatio){
+    const alts=[33,40,50].filter(r=>r!==recommendedRatio);
+    alts.forEach(r=>{
+      const d=document.createElement("div");
+      d.className="option";
+      d.innerText=`1 : ${r}`;
+      d.onclick=()=>setRatio(r);
+      box.appendChild(d);
+    });
+  }
+
+  const free=document.createElement("div");
+  free.className="option";
+  free.innerText="Freie Eingabe";
+  free.onclick=()=>{
+    const val=parseInt(prompt("Mischungsverhältnis (1 : X, max. 100)"));
+    if(val>0 && val<=100){
+      setRatio(val);
+    }
+  };
+  box.appendChild(free);
+
+  document.getElementById("ratioModal").classList.add("active");
 }
 
 function closeRatioModal(){
-  document.getElementById('ratioModal').classList.remove('active');
+  document.getElementById("ratioModal").classList.remove("active");
 }
 
-function selectRatio(val){
-  if(val==="recommended") selectedRatio=recommendedRatio;
-  else selectedRatio=val;
-  updateInfo();
+function setRatio(r){
+  activeRatio=r;
   resetResults();
+  updateMixState();
   closeRatioModal();
 }
 
-function openFreeRatio(){
-  let val=prompt("Mischungsverhältnis eingeben (z.B. 45)");
-  if(val && val>0){
-    selectedRatio=parseInt(val);
-    updateInfo();
-    resetResults();
-  }
-  closeRatioModal();
-}
-
+/* Berechnung vorwärts */
 function calculateMix(){
-  let fuel=parseFloat(document.getElementById('fuelInput').value);
-  if(!vehicle || !selectedRatio || !fuel) return;
-  let oil=Math.round((fuel*1000)/selectedRatio);
-  let humor= selectedRatio===recommendedRatio
-    ? "Bewährte Mischung – so hätte es auch der Meister gemacht."
-    : selectedRatio<recommendedRatio
-      ? "Etwas fetter gemischt – Kolben sagt Danke."
-      : "Mager unterwegs – Technik im Auge behalten.";
-  let box=document.getElementById('mixResult');
+  const fuel=parseFloat(document.getElementById("fuelInput").value);
+  if(!activeRatio || !fuel) return;
+
+  const oil=Math.round((fuel*1000)/activeRatio);
+  let humor="Bewährte Mischung.";
+  if(recommendedRatio){
+    if(activeRatio<recommendedRatio) humor="Etwas fetter gemischt – Kolben freut sich.";
+    if(activeRatio>recommendedRatio) humor="Mager unterwegs – Technik im Auge behalten.";
+  }
+
+  const box=document.getElementById("mixResult");
   box.style.display="block";
-  box.innerHTML=
-    `<div class="result-main">${oil} ml Öl zugeben</div>
-     <div class="result-info">Berechnet mit 1 : ${selectedRatio}</div>
-     <div class="result-humor">${humor}</div>`;
+  box.innerHTML=`
+    <div class="result-main">${oil} ml Öl zugeben</div>
+    <div class="result-info">Berechnet mit 1 : ${activeRatio}</div>
+    <div class="result-humor">${humor}</div>
+  `;
 }
+
+/* Rückrechner */
+document.getElementById("backRatioInput").oninput=()=>{
+  const r=parseInt(backRatioInput.value);
+  document.getElementById("backResult").style.display="none";
+  if(r>0 && r<=100){
+    document.getElementById("backState").innerText=`Aktives Mischungsverhältnis: 1 : ${r}`;
+  }else{
+    document.getElementById("backState").innerText="Kein Mischungsverhältnis gewählt";
+  }
+};
 
 function calculateBack(){
-  let oil=parseFloat(document.getElementById('oilInput').value);
-  if(!selectedRatio || !oil) return;
-  let fuel=(oil*selectedRatio/1000).toFixed(2);
-  let box=document.getElementById('backResult');
+  const ratio=parseInt(backRatioInput.value);
+  const oil=parseFloat(document.getElementById("oilInput").value);
+  if(!ratio || !oil) return;
+
+  const fuel=(oil*ratio/1000).toFixed(2);
+  const box=document.getElementById("backResult");
   box.style.display="block";
-  box.innerHTML=
-    `<div class="result-main">${fuel} Liter Benzin</div>
-     <div class="result-info">Berechnet mit 1 : ${selectedRatio}</div>
-     <div class="result-humor">Rechnerisch sauber – jetzt weißt du, was in den Kanister gehört.</div>`;
+  box.innerHTML=`
+    <div class="result-main">${fuel} Liter Benzin</div>
+    <div class="result-info">Berechnet mit 1 : ${ratio}</div>
+    <div class="result-humor">Rechnerisch sauber – jetzt weißt du, was in den Kanister gehört.</div>
+  `;
 }
 </script>
 
