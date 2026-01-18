@@ -202,6 +202,14 @@ footer{
   color:#777;
   margin:40px 0;
 }
+@media (max-width: 600px) {
+  .ratio-btn {
+    width: 100%;
+    display: block;
+    text-align: center;
+  }
+}
+
 </style>
 </head>
 
@@ -230,7 +238,10 @@ Sachlich gerechnet – Verantwortung bleibt beim Fahrer.
 
 <div id="mixInfo" style="margin-top:14px;"></div>
 
-<button class="secondary" onclick="openRatioModal()" style="margin-top:12px;">Mischungsverhältnis wählen</button>
+<button class="secondary ratio-btn" onclick="openRatioModal()" style="margin-top:12px;">
+  Mischungsverhältnis wählen
+</button>
+
 
 <input id="fuelInput" type="number" placeholder="Benzinmenge in Litern">
 
