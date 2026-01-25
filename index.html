@@ -227,6 +227,87 @@ footer{
   .vehicle-grid{grid-template-columns:repeat(2,1fr)}
   .date{display:block;min-width:auto}
 }
+/* ===== GEMEINSCHAFT / SOCIAL ICONS ===== */
+
+.community-block{
+  margin-top:10px;
+}
+
+.section-subtitle{
+  margin-top:26px;
+  margin-bottom:10px;
+  color:var(--gold);
+  letter-spacing:2px;
+  font-size:15px;
+}
+
+.section-hint{
+  font-size:13px;
+  color:#aaa;
+  margin-bottom:20px;
+}
+
+.person-block{
+  margin-bottom:26px;
+}
+
+.person-name{
+  display:block;
+  font-size:16px;
+  margin-bottom:10px;
+}
+
+.social-row{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+/* KACHEL */
+.social-tile{
+  width:88px;
+  height:88px;
+  background:#151515;
+  border:1px solid #333;
+  border-radius:12px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  text-decoration:none;
+  transition:all .2s ease;
+}
+
+.social-tile:hover{
+  border-color:var(--gold);
+  box-shadow:0 0 10px rgba(212,170,0,.4);
+  transform:translateY(-3px);
+}
+
+/* ICON */
+.social-tile img{
+  width:64px;
+  height:64px;
+}
+
+/* TEXT UNTER ICON */
+.social-tile span{
+  font-size:11px;
+  color:#bbb;
+  letter-spacing:1px;
+}
+
+/* Platzhalter */
+.person-block.placeholder{
+  opacity:.7;
+}
+.placeholder-text{
+  font-size:13px;
+  color:#888;
+  font-style:italic;
+}
+
 </style>
 </head>
 
@@ -283,106 +364,100 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
     Folge der Gemeinschaft über die einzelnen Mitwirkenden.
   </p>
 
-  <!-- ERSTELLER -->
-  <p style="
-    margin:0 0 12px 0;
-    color:#d4aa00;
-    letter-spacing:2px;
-    font-size:14px;
-  ">
-    ERSTELLER
+<!-- ERSTELLER & MITWIRKENDE -->
+<div class="community-block">
+
+  <h3 class="section-subtitle">ERSTELLER</h3>
+  <p class="section-hint">
+    Folge der Gemeinschaft über die einzelnen Mitwirkenden.
   </p>
 
   <!-- JAN -->
-  <div style="margin-bottom:30px;">
-    <strong style="font-size:16px;">Jan</strong>
-    <div style="margin-top:16px;">
-      <a href="https://www.instagram.com/isolator_jan" target="_blank">
-        <img src="icon_instagram.png" width="52"
-             style="padding:8px;background:#1e1e1e;border-radius:8px;margin-right:20px;">
+  <div class="person-block">
+    <strong class="person-name">Jan</strong>
+    <div class="social-row">
+      <a href="#" class="social-tile">
+        <img src="icon_instagram.png" alt="Instagram">
+        <span>Instagram</span>
       </a>
-      <a href="https://www.facebook.com/share/1Gk158Fub9" target="_blank">
-        <img src="icon_facebook.png" width="52"
-             style="padding:8px;background:#1e1e1e;border-radius:8px;margin-right:20px;">
+      <a href="#" class="social-tile">
+        <img src="icon_facebook.png" alt="Facebook">
+        <span>Facebook</span>
       </a>
-      <a href="https://www.tiktok.com/@mullemannjan" target="_blank">
-        <img src="icon_tiktok.png" width="52"
-             style="padding:8px;background:#1e1e1e;border-radius:8px;">
+      <a href="#" class="social-tile">
+        <img src="icon_tiktok.png" alt="TikTok">
+        <span>TikTok</span>
       </a>
     </div>
   </div>
 
   <!-- MULLE -->
-  <div style="margin-bottom:30px;">
-    <strong style="font-size:16px;">Mulle</strong>
-    <div style="margin-top:16px;">
-      <a href="https://www.instagram.com/prinzepessa84" target="_blank">
-        <img src="icon_instagram.png" width="52"
-             style="padding:8px;background:#1e1e1e;border-radius:8px;margin-right:20px;">
+  <div class="person-block">
+    <strong class="person-name">Mulle</strong>
+    <div class="social-row">
+      <a href="#" class="social-tile">
+        <img src="icon_instagram.png" alt="Instagram">
+        <span>Instagram</span>
       </a>
-      <a href="https://www.facebook.com/share/184oxeF15g/" target="_blank">
-        <img src="icon_facebook.png" width="52"
-             style="padding:8px;background:#1e1e1e;border-radius:8px;margin-right:20px;">
+      <a href="#" class="social-tile">
+        <img src="icon_facebook.png" alt="Facebook">
+        <span>Facebook</span>
       </a>
-      <a href="https://www.tiktok.com/@mulle_2020" target="_blank">
-        <img src="icon_tiktok.png" width="52"
-             style="padding:8px;background:#1e1e1e;border-radius:8px;">
+      <a href="#" class="social-tile">
+        <img src="icon_tiktok.png" alt="TikTok">
+        <span>TikTok</span>
       </a>
     </div>
   </div>
 
-  <!-- MITWIRKENDE -->
-  <p style="
-    margin:20px 0 12px 0;
-    color:#b89a2a;
-    letter-spacing:1.5px;
-    font-size:13px;
-  ">
-    MITWIRKENDE
-  </p>
+  <h3 class="section-subtitle">MITWIRKENDE</h3>
 
   <!-- MAUSEJULE -->
-  <div style="margin-bottom:30px;">
-    <strong style="font-size:16px;">Mausejule</strong>
-    <div style="margin-top:16px;">
-      <a href="https://www.tiktok.com/@mausejule70" target="_blank">
-        <img src="icon_tiktok.png" width="52"
-             style="padding:8px;background:#1e1e1e;border-radius:8px;">
+  <div class="person-block">
+    <strong class="person-name">Mausejule</strong>
+    <div class="social-row">
+      <a href="https://www.tiktok.com/@mausejule70" class="social-tile">
+        <img src="icon_tiktok.png" alt="TikTok">
+        <span>TikTok</span>
       </a>
     </div>
   </div>
 
   <!-- MATZE -->
-  <div style="margin-bottom:30px;">
-    <strong style="font-size:16px;">Matze</strong>
-    <div style="margin-top:16px;">
-      <a href="https://www.instagram.com/knopfmathias" target="_blank">
-        <img src="icon_instagram.png" width="52"
-             style="padding:8px;background:#1e1e1e;border-radius:8px;margin-right:20px;">
+  <div class="person-block">
+    <strong class="person-name">Matze</strong>
+    <div class="social-row">
+      <a href="https://www.instagram.com/knopfmathias" class="social-tile">
+        <img src="icon_instagram.png" alt="Instagram">
+        <span>Instagram</span>
       </a>
-      <a href="https://www.facebook.com/share/1D8dGaghNa/" target="_blank">
-        <img src="icon_facebook.png" width="52"
-             style="padding:8px;background:#1e1e1e;border-radius:8px;">
+      <a href="https://www.facebook.com/share/1D8dGaghNa/" class="social-tile">
+        <img src="icon_facebook.png" alt="Facebook">
+        <span>Facebook</span>
       </a>
     </div>
   </div>
 
   <!-- TILL -->
-  <div style="margin-bottom:30px;">
-    <strong style="font-size:16px;">Till</strong>
-    <div style="margin-top:16px;">
-      <a href="https://www.tiktok.com/@bert_199h" target="_blank">
-        <img src="icon_tiktok.png" width="52"
-             style="padding:8px;background:#1e1e1e;border-radius:8px;">
+  <div class="person-block">
+    <strong class="person-name">Till</strong>
+    <div class="social-row">
+      <a href="https://www.tiktok.com/@bert_199h" class="social-tile">
+        <img src="icon_tiktok.png" alt="TikTok">
+        <span>TikTok</span>
       </a>
     </div>
   </div>
 
-  <!-- PLATZHALTER -->
-  <strong>Weitere Personen</strong><br>
-  <span style="font-size:13px;color:#888;font-style:italic;">
-    Weitere Personen kommen nach und nach dazu.
-  </span>
+  <!-- WEITERE -->
+  <div class="person-block placeholder">
+    <strong class="person-name">Weitere Personen</strong>
+    <p class="placeholder-text">
+      Weitere Mitwirkende kommen nach und nach dazu.
+    </p>
+  </div>
+
+</div>
 
 </div>
 
