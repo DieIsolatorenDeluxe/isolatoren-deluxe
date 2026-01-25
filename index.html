@@ -672,10 +672,11 @@ function openRatioModal(){
   const free=document.createElement("div");
   free.className="option";
   free.innerText="Freie Eingabe";
-  free.onclick=()=>{
-    const v=parseInt(prompt("Mischungsverhältnis (1:X, max. 100)"));
-    if(v>0 && v<=100) setRatio(v);
-  };
+free.onclick=()=>{
+  const v=parseInt(prompt("Nur die ZAHL eingeben!\nBeispiel: für 1:50 → 50\n(max. 100)"));
+  if(v>0 && v<=100) setRatio(v);
+};
+  
   ratioOptions.appendChild(free);
   ratioModal.classList.add("active");
 }
@@ -703,7 +704,8 @@ function calculateMix(){
 function openBackModal(){backModal.classList.add("active");}
 function closeBackModal(){backModal.classList.remove("active");}
 function setBackRatio(){
-  const v=parseInt(prompt("Mischungsverhältnis 1:X (max. 100)"));
+  const v=parseInt(prompt("Nur die ZAHL eingeben!\nBeispiel: für 1:50 → 50\n(max. 100)"));
+
   if(v>0 && v<=100){
     backRatio=v;
     backState.innerHTML=`Aktives Mischungsverhältnis: <strong>1 : ${v}</strong>`;
