@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+
 <title>Zweitakt-Mischrechner | Trabant · Simson · MZ – Die Isolatoren Deluxe</title>
 <meta name="description" content="Zweitakt-Mischrechner für Trabant, Simson, MZ und andere Zweitakter. Benzin-Öl-Mischung berechnen, Rückrechner nutzen, Termine & Gemeinschaft entdecken.">
 
@@ -227,6 +229,87 @@ footer{
   .vehicle-grid{grid-template-columns:repeat(2,1fr)}
   .date{display:block;min-width:auto}
 }
+/* ===== GEMEINSCHAFT / SOCIAL ICONS ===== */
+
+.community-block{
+  margin-top:10px;
+}
+
+.section-subtitle{
+  margin-top:26px;
+  margin-bottom:10px;
+  color:var(--gold);
+  letter-spacing:2px;
+  font-size:15px;
+}
+
+.section-hint{
+  font-size:13px;
+  color:#aaa;
+  margin-bottom:20px;
+}
+
+.person-block{
+  margin-bottom:26px;
+}
+
+.person-name{
+  display:block;
+  font-size:16px;
+  margin-bottom:10px;
+}
+
+.social-row{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+/* KACHEL */
+.social-tile{
+  width:88px;
+  height:88px;
+  background:#151515;
+  border:1px solid #333;
+  border-radius:12px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  text-decoration:none;
+  transition:all .2s ease;
+}
+
+.social-tile:hover{
+  border-color:var(--gold);
+  box-shadow:0 0 10px rgba(212,170,0,.4);
+  transform:translateY(-3px);
+}
+
+/* ICON */
+.social-tile img{
+  width:64px;
+  height:64px;
+}
+
+/* TEXT UNTER ICON */
+.social-tile span{
+  font-size:11px;
+  color:#bbb;
+  letter-spacing:1px;
+}
+
+/* Platzhalter */
+.person-block.placeholder{
+  opacity:.7;
+}
+.placeholder-text{
+  font-size:13px;
+  color:#888;
+  font-style:italic;
+}
+
 </style>
 </head>
 
@@ -283,130 +366,240 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
     Folge der Gemeinschaft über die einzelnen Mitwirkenden.
   </p>
 
-  <!-- ERSTELLER -->
-  <p style="
-    margin:0 0 12px 0;
-    color:#d4aa00;
-    letter-spacing:2px;
-    font-size:14px;
-  ">
-    ERSTELLER
-  </p>
+  <div class="community-block">
 
-  <!-- JAN -->
-  <div style="margin-bottom:30px;">
-    <strong style="font-size:16px;">Jan</strong>
-    <div style="margin-top:16px;">
-      <a href="https://www.instagram.com/isolator_jan" target="_blank">
-        <img src="icon_instagram.png" width="52"
-             style="padding:8px;background:#1e1e1e;border-radius:8px;margin-right:20px;">
-      </a>
-      <a href="https://www.facebook.com/share/1Gk158Fub9" target="_blank">
-        <img src="icon_facebook.png" width="52"
-             style="padding:8px;background:#1e1e1e;border-radius:8px;margin-right:20px;">
-      </a>
-      <a href="https://www.tiktok.com/@mullemannjan" target="_blank">
-        <img src="icon_tiktok.png" width="52"
-             style="padding:8px;background:#1e1e1e;border-radius:8px;">
-      </a>
+    <!-- ERSTELLER -->
+    <h3 class="section-subtitle">ERSTELLER</h3>
+
+    <!-- JAN -->
+    <div class="person-block">
+      <strong class="person-name">Jan</strong>
+      <div class="social-row">
+        <a href="https://www.instagram.com/isolator_jan" target="_blank" class="social-tile">
+          <img src="icon_instagram.png" alt="Instagram"><span>Instagram</span>
+        </a>
+        <a href="https://www.facebook.com/share/1Gk158Fub9" target="_blank" class="social-tile">
+          <img src="icon_facebook.png" alt="Facebook"><span>Facebook</span>
+        </a>
+        <a href="https://www.tiktok.com/@mullemannjan" target="_blank" class="social-tile">
+          <img src="icon_tiktok.png" alt="TikTok"><span>TikTok</span>
+        </a>
+      </div>
     </div>
-  </div>
 
-  <!-- MULLE -->
-  <div style="margin-bottom:30px;">
-    <strong style="font-size:16px;">Mulle</strong>
-    <div style="margin-top:16px;">
-      <a href="https://www.instagram.com/prinzepessa84" target="_blank">
-        <img src="icon_instagram.png" width="52"
-             style="padding:8px;background:#1e1e1e;border-radius:8px;margin-right:20px;">
-      </a>
-      <a href="https://www.facebook.com/share/184oxeF15g/" target="_blank">
-        <img src="icon_facebook.png" width="52"
-             style="padding:8px;background:#1e1e1e;border-radius:8px;margin-right:20px;">
-      </a>
-      <a href="https://www.tiktok.com/@mulle_2020" target="_blank">
-        <img src="icon_tiktok.png" width="52"
-             style="padding:8px;background:#1e1e1e;border-radius:8px;">
-      </a>
+    <!-- MULLE -->
+    <div class="person-block">
+      <strong class="person-name">Mulle</strong>
+      <div class="social-row">
+        <a href="https://www.instagram.com/prinzepessa84" target="_blank" class="social-tile">
+          <img src="icon_instagram.png" alt="Instagram"><span>Instagram</span>
+        </a>
+        <a href="https://www.facebook.com/share/184oxeF15g/" target="_blank" class="social-tile">
+          <img src="icon_facebook.png" alt="Facebook"><span>Facebook</span>
+        </a>
+        <a href="https://www.tiktok.com/@mulle_2020" target="_blank" class="social-tile">
+          <img src="icon_tiktok.png" alt="TikTok"><span>TikTok</span>
+        </a>
+      </div>
     </div>
-  </div>
 
-  <!-- MITWIRKENDE -->
-  <p style="
-    margin:20px 0 12px 0;
-    color:#b89a2a;
-    letter-spacing:1.5px;
-    font-size:13px;
-  ">
-    MITWIRKENDE
-  </p>
+    <!-- MITWIRKENDE -->
+    <h3 class="section-subtitle">MITWIRKENDE</h3>
 
-  <!-- MAUSEJULE -->
-  <div style="margin-bottom:30px;">
-    <strong style="font-size:16px;">Mausejule</strong>
-    <div style="margin-top:16px;">
-      <a href="https://www.tiktok.com/@mausejule70" target="_blank">
-        <img src="icon_tiktok.png" width="52"
-             style="padding:8px;background:#1e1e1e;border-radius:8px;">
-      </a>
+    <!-- Mausejule -->
+    <div class="person-block">
+      <strong class="person-name">Mausejule</strong>
+      <div class="social-row">
+        <a href="https://www.tiktok.com/@mausejule70" target="_blank" class="social-tile">
+          <img src="icon_tiktok.png" alt="TikTok"><span>TikTok</span>
+        </a>
+      </div>
     </div>
-  </div>
 
-  <!-- MATZE -->
-  <div style="margin-bottom:30px;">
-    <strong style="font-size:16px;">Matze</strong>
-    <div style="margin-top:16px;">
-      <a href="https://www.instagram.com/knopfmathias" target="_blank">
-        <img src="icon_instagram.png" width="52"
-             style="padding:8px;background:#1e1e1e;border-radius:8px;margin-right:20px;">
-      </a>
-      <a href="https://www.facebook.com/share/1D8dGaghNa/" target="_blank">
-        <img src="icon_facebook.png" width="52"
-             style="padding:8px;background:#1e1e1e;border-radius:8px;">
-      </a>
+    <!-- Matze -->
+    <div class="person-block">
+      <strong class="person-name">Matze</strong>
+      <div class="social-row">
+        <a href="https://www.instagram.com/knopfmathias" target="_blank" class="social-tile">
+          <img src="icon_instagram.png" alt="Instagram"><span>Instagram</span>
+        </a>
+        <a href="https://www.facebook.com/share/1D8dGaghNa/" target="_blank" class="social-tile">
+          <img src="icon_facebook.png" alt="Facebook"><span>Facebook</span>
+        </a>
+      </div>
     </div>
-  </div>
 
-  <!-- TILL -->
-  <div style="margin-bottom:30px;">
-    <strong style="font-size:16px;">Till</strong>
-    <div style="margin-top:16px;">
-      <a href="https://www.tiktok.com/@bert_199h" target="_blank">
-        <img src="icon_tiktok.png" width="52"
-             style="padding:8px;background:#1e1e1e;border-radius:8px;">
-      </a>
+    <!-- Till -->
+    <div class="person-block">
+      <strong class="person-name">Till</strong>
+      <div class="social-row">
+        <a href="https://www.tiktok.com/@bert_199h" target="_blank" class="social-tile">
+          <img src="icon_tiktok.png" alt="TikTok"><span>TikTok</span>
+        </a>
+      </div>
     </div>
+
+    <!-- Ronny -->
+    <div class="person-block">
+      <strong class="person-name">Ronny</strong>
+      <div class="social-row">
+        <a href="https://www.instagram.com/ronny.buttkau" target="_blank" class="social-tile">
+          <img src="icon_instagram.png" alt="Instagram"><span>Instagram</span>
+        </a>
+        <a href="https://www.facebook.com/share/1CHzpmpkCp/" target="_blank" class="social-tile">
+          <img src="icon_facebook.png" alt="Facebook"><span>Facebook</span>
+        </a>
+        <a href="https://www.tiktok.com/@_ronny89_" target="_blank" class="social-tile">
+          <img src="icon_tiktok.png" alt="TikTok"><span>TikTok</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Piefke -->
+    <div class="person-block">
+      <strong class="person-name">Piefke</strong>
+      <div class="social-row">
+        <a href="https://www.instagram.com/isolator_piefke" target="_blank" class="social-tile">
+          <img src="icon_instagram.png" alt="Instagram"><span>Instagram</span>
+        </a>
+        <a href="https://www.facebook.com/share/1AbPofk5Xe/" target="_blank" class="social-tile">
+          <img src="icon_facebook.png" alt="Facebook"><span>Facebook</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Diiva -->
+    <div class="person-block">
+      <strong class="person-name">Diiva</strong>
+      <div class="social-row">
+        <a href="https://www.instagram.com/_diiva_91" target="_blank" class="social-tile">
+          <img src="icon_instagram.png" alt="Instagram"><span>Instagram</span>
+        </a>
+        <a href="https://www.tiktok.com/@the_queen_of_diamant" target="_blank" class="social-tile">
+          <img src="icon_tiktok.png" alt="TikTok"><span>TikTok</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Holly -->
+    <div class="person-block">
+      <strong class="person-name">Holly</strong>
+      <div class="social-row">
+        <a href="https://www.instagram.com/isolator__holger" target="_blank" class="social-tile">
+          <img src="icon_instagram.png" alt="Instagram"><span>Instagram</span>
+        </a>
+        <a href="https://www.facebook.com/share/1G7hPdjRZC/" target="_blank" class="social-tile">
+          <img src="icon_facebook.png" alt="Facebook"><span>Facebook</span>
+        </a>
+        <a href="https://www.tiktok.com/@82holger82" target="_blank" class="social-tile">
+          <img src="icon_tiktok.png" alt="TikTok"><span>TikTok</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Stiv -->
+    <div class="person-block">
+      <strong class="person-name">Stiv</strong>
+      <div class="social-row">
+        <a href="https://www.instagram.com/isolator_stiv" target="_blank" class="social-tile">
+          <img src="icon_instagram.png" alt="Instagram"><span>Instagram</span>
+        </a>
+        <a href="https://www.facebook.com/steven.franke.18" target="_blank" class="social-tile">
+          <img src="icon_facebook.png" alt="Facebook"><span>Facebook</span>
+        </a>
+        <a href="https://www.tiktok.com/@stivmeister0" target="_blank" class="social-tile">
+          <img src="icon_tiktok.png" alt="TikTok"><span>TikTok</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Collie -->
+    <div class="person-block">
+      <strong class="person-name">Collie</strong>
+      <div class="social-row">
+        <a href="https://www.instagram.com/isolator_colle" target="_blank" class="social-tile">
+          <img src="icon_instagram.png" alt="Instagram"><span>Instagram</span>
+        </a>
+        <a href="https://www.facebook.com/share/1ACgNjkes8/" target="_blank" class="social-tile">
+          <img src="icon_facebook.png" alt="Facebook"><span>Facebook</span>
+        </a>
+        <a href="https://www.tiktok.com/@isolatorcolle" target="_blank" class="social-tile">
+          <img src="icon_tiktok.png" alt="TikTok"><span>TikTok</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Cutte -->
+    <div class="person-block">
+      <strong class="person-name">Cutte</strong>
+      <div class="social-row">
+        <a href="https://www.instagram.com/cxdy_brn" target="_blank" class="social-tile">
+          <img src="icon_instagram.png" alt="Instagram"><span>Instagram</span>
+        </a>
+        <a href="https://www.facebook.com/share/16Cz7eZd8A/" target="_blank" class="social-tile">
+          <img src="icon_facebook.png" alt="Facebook"><span>Facebook</span>
+        </a>
+        <a href="https://www.tiktok.com/@cxdy_brn" target="_blank" class="social-tile">
+          <img src="icon_tiktok.png" alt="TikTok"><span>TikTok</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Max -->
+    <div class="person-block">
+      <strong class="person-name">Max</strong>
+      <div class="social-row">
+        <a href="https://www.instagram.com/zweitakter601" target="_blank" class="social-tile">
+          <img src="icon_instagram.png" alt="Instagram"><span>Instagram</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Tini -->
+    <div class="person-block">
+      <strong class="person-name">Tini</strong>
+      <div class="social-row">
+        <a href="https://www.instagram.com/xx_mrs_601_xx" target="_blank" class="social-tile">
+          <img src="icon_instagram.png" alt="Instagram"><span>Instagram</span>
+        </a>
+        <a href="https://www.tiktok.com/@_mrs.601_" target="_blank" class="social-tile">
+          <img src="icon_tiktok.png" alt="TikTok"><span>TikTok</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- PLATZHALTER -->
+    <div class="person-block placeholder">
+      <strong class="person-name">Weitere Personen</strong>
+      <p class="placeholder-text">
+        Weitere Mitwirkende kommen nach und nach dazu.
+      </p>
+    </div>
+
   </div>
-
-  <!-- PLATZHALTER -->
-  <strong>Weitere Personen</strong><br>
-  <span style="font-size:13px;color:#888;font-style:italic;">
-    Weitere Personen kommen nach und nach dazu.
-  </span>
-
 </div>
 
 <!-- TERMINE -->
 <div class="section">
-<h2>TERMINE 2026</h2>
-<ul>
-<li><span class="date">25.04.2026</span> 19. Ostfahrzeugtreffen Finowfurt</li>
-<li><span class="date">01.05.2026</span> Simson Treffen Ladeburg</li>
-<li><span class="date">09.05.2026</span> 18. Oldtimertreffen Alt Tucheband</li>
-<li><span class="date">14.05.2026</span> Anklam</li>
-<li><span class="date">14.05.2026</span> Herrentagstour German East Driver</li>
-<li><span class="date">23.05.2026</span> IFA & Oldtimertreffen Herzfelde</li>
-<li><span class="date">30.05.2026</span> 8. Linumer Simson & Oldtimertreffen</li>
-<li><span class="date">06.06.2026</span> Eens zu Fuffzsch am Ring</li>
-<li><span class="date">06.06.2026</span> Pre Deep One Zehdenick</li>
-<li><span class="date">04.07.2026</span> Simson Treffen Vietznitz</li>
-<li><span class="date">04.07.2026</span> Ostblock Fahrzeugtreffen</li>
-<li><span class="date">25.07.2026</span> TFO-Treffen</li>
-<li><span class="date">01.08.2026</span> Trabant & VW-Bus Treffen Kleinzerlang</li>
-<li><span class="date">07.–09.08.2026</span> East German Classics Reitwein</li>
-<li><span class="date">12.09.2026</span> Ostblockmeeting „Erichs Erben“</li>
-</ul>
-<p style="font-size:12px;color:#aaa;">Termine ohne Gewähr.</p>
+  <h2>TERMINE 2026</h2>
+  <ul>
+    <li><span class="date">25.04.2026</span> 19. Ostfahrzeugtreffen Finowfurt</li>
+    <li><span class="date">01.05.2026</span> Simson Treffen Ladeburg</li>
+    <li><span class="date">09.05.2026</span> 18. Oldtimertreffen Alt Tucheband</li>
+    <li><span class="date">14.05.2026</span> Anklam</li>
+    <li><span class="date">14.05.2026</span> Herrentagstour German East Driver</li>
+    <li><span class="date">23.05.2026</span> IFA & Oldtimertreffen Herzfelde</li>
+    <li><span class="date">30.05.2026</span> 8. Linumer Simson & Oldtimertreffen</li>
+    <li><span class="date">06.06.2026</span> Eens zu Fuffzsch am Ring</li>
+    <li><span class="date">06.06.2026</span> Pre Deep One Zehdenick</li>
+    <li><span class="date">04.07.2026</span> Simson Treffen Vietznitz</li>
+    <li><span class="date">04.07.2026</span> Ostblock Fahrzeugtreffen</li>
+    <li><span class="date">25.07.2026</span> TFO-Treffen</li>
+    <li><span class="date">01.08.2026</span> Trabant & VW-Bus Treffen Kleinzerlang</li>
+    <li><span class="date">07.–09.08.2026</span> East German Classics Reitwein</li>
+    <li><span class="date">12.09.2026</span> Ostblockmeeting „Erichs Erben“</li>
+  </ul>
+  <p style="font-size:12px;color:#aaa;">Termine ohne Gewähr.</p>
 </div>
 
 <!-- SHOP -->
@@ -505,10 +698,11 @@ function openRatioModal(){
   const free=document.createElement("div");
   free.className="option";
   free.innerText="Freie Eingabe";
-  free.onclick=()=>{
-    const v=parseInt(prompt("Mischungsverhältnis (1:X, max. 100)"));
-    if(v>0 && v<=100) setRatio(v);
-  };
+free.onclick=()=>{
+  const v=parseInt(prompt("Nur die ZAHL eingeben!\nBeispiel: für 1:50 → 50\n(max. 100)"));
+  if(v>0 && v<=100) setRatio(v);
+};
+  
   ratioOptions.appendChild(free);
   ratioModal.classList.add("active");
 }
@@ -536,7 +730,8 @@ function calculateMix(){
 function openBackModal(){backModal.classList.add("active");}
 function closeBackModal(){backModal.classList.remove("active");}
 function setBackRatio(){
-  const v=parseInt(prompt("Mischungsverhältnis 1:X (max. 100)"));
+  const v=parseInt(prompt("Nur die ZAHL eingeben!\nBeispiel: für 1:50 → 50\n(max. 100)"));
+
   if(v>0 && v<=100){
     backRatio=v;
     backState.innerHTML=`Aktives Mischungsverhältnis: <strong>1 : ${v}</strong>`;
