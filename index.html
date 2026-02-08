@@ -1,15 +1,45 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="favicon.ico" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Zweitakt-Mischrechner | Trabant · Simson · MZ – Die Isolatoren Deluxe</title>
-<meta name="description" content="Zweitakt-Mischrechner für Trabant, Simson, MZ und andere Zweitakter. Benzin-Öl-Mischung berechnen, Rückrechner nutzen, Termine & Gemeinschaft entdecken.">
+  <!-- TITLE & SEO -->
+  <title>2-Takt Gemischrechner für Ostfahrzeuge, Motoren & Geräte</title>
+  <meta name="description" content="Benzin-Öl-Mischung für 2-Takt-Motoren berechnen: Trabant, Simson, MZ, Wartburg, Lada sowie Boote, Kettensägen und andere Motorgeräte. Einfach & offline nutzbar.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Die Isolatoren Deluxe">
+  <meta name="theme-color" content="#0e0e0e">
 
+  <!-- FAVICONS -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
+  <!-- PWA / MANIFEST -->
+  <link rel="manifest" href="manifest.json">
 
+  <!-- APPLE WEB APP -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Gemischrechner">
+
+  <!-- SOCIAL SHARING -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="2-Takt Gemischrechner für Ostfahrzeuge & Motorgeräte">
+  <meta property="og:description" content="Gemisch für Trabant, Simson, MZ, Wartburg & Lada – ebenso für Boote, Kettensägen und andere 2-Takt-Motoren. Rechner auch offline nutzbar.">
+  <meta property="og:image" content="logo.png">
+
+  <!-- SCHEMA.ORG -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Gemischrechner – 2-Takt Mischungsverhältnis",
+    "applicationCategory": "Calculator",
+    "operatingSystem": "All",
+    "description": "2-Takt Gemischrechner für Ostfahrzeuge, Boote, Motorgeräte und andere 2-Takt-Motoren."
+  }
+  </script>
 <style>
 :root{
   --bg:#0e0e0e;
@@ -314,6 +344,47 @@ footer{
 </head>
 
 <body>
+<!-- iOS Install Hinweis -->
+<div id="ios-install-hint" style="
+  display:none;
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:#1a1a1a;
+  border-top:2px solid #d4aa00;
+  color:#e5e5e5;
+  padding:12px 16px;
+  font-size:13px;
+  z-index:9999;
+">
+  <strong>📲 App installieren:</strong>
+  Tippe auf <strong>Teilen</strong> und wähle
+  <strong>„Zum Home-Bildschirm“</strong>.
+  <button onclick="document.getElementById('ios-install-hint').style.display='none'"
+    style="
+      float:right;
+      background:none;
+      border:1px solid #555;
+      color:#d4aa00;
+      padding:4px 8px;
+      cursor:pointer;
+    ">
+    ✕
+  </button>
+</div>
+
+<script>
+(function () {
+  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  const isStandalone = window.navigator.standalone === true;
+
+  if (isIOS && isSafari && !isStandalone) {
+    document.getElementById("ios-install-hint").style.display = "block";
+  }
+})();
+</script>  
 <div class="wrapper">
 
 <header>
@@ -753,6 +824,12 @@ function calculateBack(){
     <div class="result-humor">Rechnerisch sauber – jetzt weißt du, was in den Kanister gehört.</div>`;
 }
 </script>
-
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js");
+  });
+}
+</script>
 </body>
 </html>
