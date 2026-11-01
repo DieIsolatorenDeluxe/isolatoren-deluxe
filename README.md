@@ -18,7 +18,7 @@ Browserprüfungen für Darstellung, Dialoge und Tastaturbedienung kommen ergänz
 `index.html`, `calculator.js` und `sw.js` gemeinsam im Stammordner des Repositorys
 aktualisieren. Die vorhandenen Bilder und die Manifest-Datei bleiben erforderlich.
 GitHub Pages veröffentlicht nach dem Push über die vorhandene Projektkonfiguration.
-Cache-Version v4 aktualisiert HTML und Rechnerlogik zuerst aus dem Netz, nutzt offline den Cache und lädt alte App-Fenster beim Versionswechsel neu.
+Cache-Version v5 aktualisiert HTML und Rechnerlogik zuerst aus dem Netz, nutzt offline den Cache und lädt alte App-Fenster beim Versionswechsel neu.
 Sie speichert auch die kompakten WebP-Bilder, Social-Icons und App-Icons.
 
 ## Android und iPhone
@@ -37,6 +37,6 @@ zusätzlich auf den jeweiligen Geräten geprüft werden.
 
 „Am PC speichern“ erklärt die App-Installation in Chrome/Edge, „Zum Dock hinzufügen“
 in Safari und das Anlegen eines Lesezeichens. Zusätzlich stehen normale URL-Verknüpfungen
-für Windows (`gemischrechner.url`) und Mac (`gemischrechner.webloc`) zum Download bereit.
+für Windows (`gemischrechner.url`) und Mac (`gemischrechner.webloc`) in `desktop-verknuepfungen.zip` zum Download bereit.
 Diese öffnen die veröffentlichte Website, sie enthalten keine ausführbaren Programme.
 DDR Zweitakt Gemischrechner &amp; Gemeinschaft
