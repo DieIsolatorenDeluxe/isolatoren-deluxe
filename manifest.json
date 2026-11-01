@@ -1,7 +1,7 @@
 {
   "name": "Gemischrechner – 2-Takt Mischungsverhältnis",
   "short_name": "Gemischrechner",
-  "start_url": ".",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#0e0e0e",
   "theme_color": "#0e0e0e",
@@ -15,6 +15,20 @@
       "src": "android-chrome-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
+    },
+    {
+      "src": "app-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
+  ],
+  "id": "./",
+  "scope": "./",
+  "lang": "de",
+  "description": "Benzin und Zweitaktöl berechnen – auch offline.",
+  "display_override": [
+    "standalone",
+    "minimal-ui"
   ]
 }

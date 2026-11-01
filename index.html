@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
   <!-- TITLE & SEO -->
   <title>2-Takt Gemischrechner für Ostfahrzeuge, Motoren & Geräte</title>
@@ -65,7 +65,7 @@ body{
     content:"";
     position:fixed;
     inset:0;
-    background:url("logo.png") no-repeat center;
+    background:url("logo.webp") no-repeat center;
     background-size:720px;
     opacity:0.04;
     pointer-events:none;
@@ -352,57 +352,39 @@ label { display:block; margin-top:12px; }
 dialog.modal { position:fixed; inset:0; width:min(900px,100%); max-height:90vh; padding:0; border:1px solid #444; color:var(--text); margin:auto; background:var(--panel); }
 dialog.modal[open] { display:block; }
 dialog::backdrop { background:rgba(0,0,0,.75); }
+
+[hidden] { display:none !important; }
+body { padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px); }
+.app-tools { margin:-16px 0 28px; padding:16px; border:1px solid var(--border); background:var(--panel); }
+.app-tools p { margin:0 0 12px; font-size:13px; line-height:1.5; color:#bbb; }
+.app-tools p:last-child:empty { display:none; }
+.app-actions { display:flex; flex-wrap:wrap; gap:10px; }
+.app-actions button { flex:1 1 140px; min-height:44px; }
+.save-link { display:inline-block; color:var(--gold); padding:10px 0; min-height:44px; }
+#appFeedback:not(:empty) { margin:12px 0 0; }
+.social-tile { min-width:88px; min-height:88px; touch-action:manipulation; }
+.modal-box { padding-bottom:max(20px,env(safe-area-inset-bottom,0px)); }
+.modal-box p, .modal-box li { line-height:1.5; }
+@media(prefers-reduced-motion:reduce) { *, *::before, *::after { transition:none !important; animation:none !important; } }
 </style>
 </head>
 
 <body>
-<!-- iOS Install Hinweis -->
-<div id="ios-install-hint" style="
-  display:none;
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  background:#1a1a1a;
-  border-top:2px solid #d4aa00;
-  color:#e5e5e5;
-  padding:12px 16px;
-  font-size:13px;
-  z-index:9999;
-">
-  <strong>📲 App installieren:</strong>
-  Tippe auf <strong>Teilen</strong> und wähle
-  <strong>„Zum Home-Bildschirm“</strong>.
-  <button onclick="document.getElementById('ios-install-hint').style.display='none'"
-    style="
-      float:right;
-      background:none;
-      border:1px solid #555;
-      color:#d4aa00;
-      padding:4px 8px;
-      cursor:pointer;
-    ">
-    ✕
-  </button>
-</div>
-
-<script>
-(function () {
-  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-  const isStandalone = window.navigator.standalone === true;
-
-  if (isIOS && isSafari && !isStandalone) {
-    document.getElementById("ios-install-hint").style.display = "block";
-  }
-})();
-</script>  
 <div class="wrapper">
 
 <header>
-  <img src="logo.png" alt="Die Isolatoren Deluxe">
+  <img src="logo.webp" alt="Die Isolatoren Deluxe" width="340" height="340" style="height:auto">
   <p>TECHNIK · GEMEINSCHAFT · ZWEITAKT</p>
 </header>
+<section class="app-tools" aria-label="Web-App und Teilen">
+ <p id="connectionStatus" role="status">Rechner für unterwegs – auch ohne Internet nutzbar, sobald die App gespeichert ist.</p>
+ <div class="app-actions">
+  <button id="installApp" type="button" class="secondary" aria-haspopup="dialog">App installieren</button>
+  <button id="shareApp" type="button" class="secondary">Seite teilen</button>
+  <button id="saveDesktop" type="button" class="secondary" aria-haspopup="dialog" hidden>Am PC speichern</button>
+ </div>
+ <p id="appFeedback" role="status"></p>
+</section>
 
 <!-- MISCHRECHNER -->
 <div class="section">
@@ -413,10 +395,10 @@ Benzinmenge eingeben und berechnen.
 </p>
 
 <div class="vehicle-grid">
-  <button type="button" class="vehicle" data-name="Trabant" data-rec="50" aria-pressed="false"><img src="trabant.png" alt=""><span>Trabant</span></button>
-  <button type="button" class="vehicle" data-name="Simson" data-rec="50" aria-pressed="false"><img src="simson.png" alt=""><span>Simson</span></button>
-  <button type="button" class="vehicle" data-name="MZ" data-rec="50" aria-pressed="false"><img src="mz.png" alt=""><span>MZ</span></button>
-  <button type="button" class="vehicle" data-name="Sonstige Zweitakter" data-rec="" aria-pressed="false"><img src="sonstige_zweitakter.png" alt=""><span>Sonstige</span></button>
+  <button type="button" class="vehicle" data-name="Trabant" data-rec="50" aria-pressed="false"><img src="trabant.webp" alt=""><span>Trabant</span></button>
+  <button type="button" class="vehicle" data-name="Simson" data-rec="50" aria-pressed="false"><img src="simson.webp" alt=""><span>Simson</span></button>
+  <button type="button" class="vehicle" data-name="MZ" data-rec="50" aria-pressed="false"><img src="mz.webp" alt=""><span>MZ</span></button>
+  <button type="button" class="vehicle" data-name="Sonstige Zweitakter" data-rec="" aria-pressed="false"><img src="sonstige_zweitakter.webp" alt=""><span>Sonstige</span></button>
 </div>
 
 <p id="mixState" style="margin-top:10px;font-size:13px;color:#bbb;"></p>
@@ -450,7 +432,7 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
   <h2>DIE GEMEINSCHAFT</h2>
 
   <p style="margin-bottom:24px;color:#bbb;">
-    Folge der Gemeinschaft über die einzelnen Mitwirkenden.
+    Folge der Gemeinschaft über die einzelnen Mitwirkenden. Die Links öffnen das Profil in einem neuen Fenster; ob die jeweilige App startet, entscheidet dein Gerät.
   </p>
 
   <div class="community-block">
@@ -462,14 +444,14 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
     <div class="person-block">
       <strong class="person-name">Jan</strong>
       <div class="social-row">
-        <a href="https://www.instagram.com/isolator_jan" target="_blank" class="social-tile">
-          <img src="icon_instagram.png" alt="Instagram"><span>Instagram</span>
+        <a href="https://www.instagram.com/isolator_jan" target="_blank" rel="noopener noreferrer external" class="social-tile" aria-label="Jan auf Instagram (öffnet neues Fenster)">
+          <img src="icon_instagram.webp" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Instagram</span>
         </a>
-        <a href="https://www.facebook.com/share/1Gk158Fub9" target="_blank" class="social-tile">
-          <img src="icon_facebook.png" alt="Facebook"><span>Facebook</span>
+        <a href="https://www.facebook.com/share/1Gk158Fub9" target="_blank" rel="noopener noreferrer external" class="social-tile" aria-label="Jan auf Facebook (öffnet neues Fenster)">
+          <img src="icon_facebook.webp" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Facebook</span>
         </a>
-        <a href="https://www.tiktok.com/@mullemannjan" target="_blank" class="social-tile">
-          <img src="icon_tiktok.png" alt="TikTok"><span>TikTok</span>
+        <a href="https://www.tiktok.com/@mullemannjan" target="_blank" rel="noopener noreferrer external" class="social-tile" aria-label="Jan auf TikTok (öffnet neues Fenster)">
+          <img src="icon_tiktok.webp" alt="" width="64" height="64" loading="lazy" decoding="async"><span>TikTok</span>
         </a>
       </div>
     </div>
@@ -478,14 +460,14 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
     <div class="person-block">
       <strong class="person-name">Mulle</strong>
       <div class="social-row">
-        <a href="https://www.instagram.com/prinzepessa84" target="_blank" class="social-tile">
-          <img src="icon_instagram.png" alt="Instagram"><span>Instagram</span>
+        <a href="https://www.instagram.com/prinzepessa84" target="_blank" rel="noopener noreferrer external" class="social-tile" aria-label="Mulle auf Instagram (öffnet neues Fenster)">
+          <img src="icon_instagram.webp" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Instagram</span>
         </a>
-        <a href="https://www.facebook.com/share/184oxeF15g/" target="_blank" class="social-tile">
-          <img src="icon_facebook.png" alt="Facebook"><span>Facebook</span>
+        <a href="https://www.facebook.com/share/184oxeF15g/" target="_blank" rel="noopener noreferrer external" class="social-tile" aria-label="Mulle auf Facebook (öffnet neues Fenster)">
+          <img src="icon_facebook.webp" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Facebook</span>
         </a>
-        <a href="https://www.tiktok.com/@mulle_2020" target="_blank" class="social-tile">
-          <img src="icon_tiktok.png" alt="TikTok"><span>TikTok</span>
+        <a href="https://www.tiktok.com/@mulle_2020" target="_blank" rel="noopener noreferrer external" class="social-tile" aria-label="Mulle auf TikTok (öffnet neues Fenster)">
+          <img src="icon_tiktok.webp" alt="" width="64" height="64" loading="lazy" decoding="async"><span>TikTok</span>
         </a>
       </div>
     </div>
@@ -497,14 +479,14 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
     <div class="person-block">
       <strong class="person-name">Ronny</strong>
       <div class="social-row">
-        <a href="https://www.instagram.com/ronny.buttkau" target="_blank" class="social-tile">
-          <img src="icon_instagram.png" alt="Instagram"><span>Instagram</span>
+        <a href="https://www.instagram.com/ronny.buttkau" target="_blank" rel="noopener noreferrer external" class="social-tile" aria-label="Ronny auf Instagram (öffnet neues Fenster)">
+          <img src="icon_instagram.webp" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Instagram</span>
         </a>
-        <a href="https://www.facebook.com/share/1CHzpmpkCp/" target="_blank" class="social-tile">
-          <img src="icon_facebook.png" alt="Facebook"><span>Facebook</span>
+        <a href="https://www.facebook.com/share/1CHzpmpkCp/" target="_blank" rel="noopener noreferrer external" class="social-tile" aria-label="Ronny auf Facebook (öffnet neues Fenster)">
+          <img src="icon_facebook.webp" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Facebook</span>
         </a>
-        <a href="https://www.tiktok.com/@_ronny89_" target="_blank" class="social-tile">
-          <img src="icon_tiktok.png" alt="TikTok"><span>TikTok</span>
+        <a href="https://www.tiktok.com/@_ronny89_" target="_blank" rel="noopener noreferrer external" class="social-tile" aria-label="Ronny auf TikTok (öffnet neues Fenster)">
+          <img src="icon_tiktok.webp" alt="" width="64" height="64" loading="lazy" decoding="async"><span>TikTok</span>
         </a>
       </div>
     </div>
@@ -513,11 +495,11 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
     <div class="person-block">
       <strong class="person-name">Piefke</strong>
       <div class="social-row">
-        <a href="https://www.instagram.com/isolator_piefke" target="_blank" class="social-tile">
-          <img src="icon_instagram.png" alt="Instagram"><span>Instagram</span>
+        <a href="https://www.instagram.com/isolator_piefke" target="_blank" rel="noopener noreferrer external" class="social-tile" aria-label="Piefke auf Instagram (öffnet neues Fenster)">
+          <img src="icon_instagram.webp" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Instagram</span>
         </a>
-        <a href="https://www.facebook.com/share/1AbPofk5Xe/" target="_blank" class="social-tile">
-          <img src="icon_facebook.png" alt="Facebook"><span>Facebook</span>
+        <a href="https://www.facebook.com/share/1AbPofk5Xe/" target="_blank" rel="noopener noreferrer external" class="social-tile" aria-label="Piefke auf Facebook (öffnet neues Fenster)">
+          <img src="icon_facebook.webp" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Facebook</span>
         </a>
       </div>
     </div>
@@ -526,11 +508,11 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
     <div class="person-block">
       <strong class="person-name">Diiva</strong>
       <div class="social-row">
-        <a href="https://www.instagram.com/_diiva_91" target="_blank" class="social-tile">
-          <img src="icon_instagram.png" alt="Instagram"><span>Instagram</span>
+        <a href="https://www.instagram.com/_diiva_91" target="_blank" rel="noopener noreferrer external" class="social-tile" aria-label="Diiva auf Instagram (öffnet neues Fenster)">
+          <img src="icon_instagram.webp" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Instagram</span>
         </a>
-        <a href="https://www.tiktok.com/@the_queen_of_diamant" target="_blank" class="social-tile">
-          <img src="icon_tiktok.png" alt="TikTok"><span>TikTok</span>
+        <a href="https://www.tiktok.com/@the_queen_of_diamant" target="_blank" rel="noopener noreferrer external" class="social-tile" aria-label="Diiva auf TikTok (öffnet neues Fenster)">
+          <img src="icon_tiktok.webp" alt="" width="64" height="64" loading="lazy" decoding="async"><span>TikTok</span>
         </a>
       </div>
     </div>
@@ -539,14 +521,14 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
     <div class="person-block">
       <strong class="person-name">Holly</strong>
       <div class="social-row">
-        <a href="https://www.instagram.com/isolator__holger" target="_blank" class="social-tile">
-          <img src="icon_instagram.png" alt="Instagram"><span>Instagram</span>
+        <a href="https://www.instagram.com/isolator__holger" target="_blank" rel="noopener noreferrer external" class="social-tile" aria-label="Holly auf Instagram (öffnet neues Fenster)">
+          <img src="icon_instagram.webp" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Instagram</span>
         </a>
-        <a href="https://www.facebook.com/share/1G7hPdjRZC/" target="_blank" class="social-tile">
-          <img src="icon_facebook.png" alt="Facebook"><span>Facebook</span>
+        <a href="https://www.facebook.com/share/1G7hPdjRZC/" target="_blank" rel="noopener noreferrer external" class="social-tile" aria-label="Holly auf Facebook (öffnet neues Fenster)">
+          <img src="icon_facebook.webp" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Facebook</span>
         </a>
-        <a href="https://www.tiktok.com/@82holger82" target="_blank" class="social-tile">
-          <img src="icon_tiktok.png" alt="TikTok"><span>TikTok</span>
+        <a href="https://www.tiktok.com/@82holger82" target="_blank" rel="noopener noreferrer external" class="social-tile" aria-label="Holly auf TikTok (öffnet neues Fenster)">
+          <img src="icon_tiktok.webp" alt="" width="64" height="64" loading="lazy" decoding="async"><span>TikTok</span>
         </a>
       </div>
     </div>
@@ -555,14 +537,14 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
     <div class="person-block">
       <strong class="person-name">Stiv</strong>
       <div class="social-row">
-        <a href="https://www.instagram.com/isolator_stiv" target="_blank" class="social-tile">
-          <img src="icon_instagram.png" alt="Instagram"><span>Instagram</span>
+        <a href="https://www.instagram.com/isolator_stiv" target="_blank" rel="noopener noreferrer external" class="social-tile" aria-label="Stiv auf Instagram (öffnet neues Fenster)">
+          <img src="icon_instagram.webp" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Instagram</span>
         </a>
-        <a href="https://www.facebook.com/steven.franke.18" target="_blank" class="social-tile">
-          <img src="icon_facebook.png" alt="Facebook"><span>Facebook</span>
+        <a href="https://www.facebook.com/steven.franke.18" target="_blank" rel="noopener noreferrer external" class="social-tile" aria-label="Stiv auf Facebook (öffnet neues Fenster)">
+          <img src="icon_facebook.webp" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Facebook</span>
         </a>
-        <a href="https://www.tiktok.com/@stivmeister0" target="_blank" class="social-tile">
-          <img src="icon_tiktok.png" alt="TikTok"><span>TikTok</span>
+        <a href="https://www.tiktok.com/@stivmeister0" target="_blank" rel="noopener noreferrer external" class="social-tile" aria-label="Stiv auf TikTok (öffnet neues Fenster)">
+          <img src="icon_tiktok.webp" alt="" width="64" height="64" loading="lazy" decoding="async"><span>TikTok</span>
         </a>
       </div>
     </div>
@@ -571,14 +553,14 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
     <div class="person-block">
       <strong class="person-name">Collie</strong>
       <div class="social-row">
-        <a href="https://www.instagram.com/isolator_colle" target="_blank" class="social-tile">
-          <img src="icon_instagram.png" alt="Instagram"><span>Instagram</span>
+        <a href="https://www.instagram.com/isolator_colle" target="_blank" rel="noopener noreferrer external" class="social-tile" aria-label="Collie auf Instagram (öffnet neues Fenster)">
+          <img src="icon_instagram.webp" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Instagram</span>
         </a>
-        <a href="https://www.facebook.com/share/1ACgNjkes8/" target="_blank" class="social-tile">
-          <img src="icon_facebook.png" alt="Facebook"><span>Facebook</span>
+        <a href="https://www.facebook.com/share/1ACgNjkes8/" target="_blank" rel="noopener noreferrer external" class="social-tile" aria-label="Collie auf Facebook (öffnet neues Fenster)">
+          <img src="icon_facebook.webp" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Facebook</span>
         </a>
-        <a href="https://www.tiktok.com/@isolatorcolle" target="_blank" class="social-tile">
-          <img src="icon_tiktok.png" alt="TikTok"><span>TikTok</span>
+        <a href="https://www.tiktok.com/@isolatorcolle" target="_blank" rel="noopener noreferrer external" class="social-tile" aria-label="Collie auf TikTok (öffnet neues Fenster)">
+          <img src="icon_tiktok.webp" alt="" width="64" height="64" loading="lazy" decoding="async"><span>TikTok</span>
         </a>
       </div>
     </div>
@@ -587,8 +569,8 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
     <div class="person-block">
       <strong class="person-name">Max</strong>
       <div class="social-row">
-        <a href="https://www.instagram.com/zweitakter601" target="_blank" class="social-tile">
-          <img src="icon_instagram.png" alt="Instagram"><span>Instagram</span>
+        <a href="https://www.instagram.com/zweitakter601" target="_blank" rel="noopener noreferrer external" class="social-tile" aria-label="Max auf Instagram (öffnet neues Fenster)">
+          <img src="icon_instagram.webp" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Instagram</span>
         </a>
       </div>
     </div>
@@ -682,14 +664,32 @@ Privates, nicht kommerzielles Projekt
   <button class="secondary" onclick="closeBackModal()">Schließen</button>
  </div>
 </dialog>
+<dialog class="modal" id="installHelp" aria-labelledby="installTitle">
+ <div class="modal-box">
+  <h3 id="installTitle">Als App installieren oder speichern</h3>
+  <div id="desktopInstructions">
+   <h4>Windows, Mac und Linux</h4>
+   <p><strong>Als eigene App:</strong> In Chrome oder Edge auf „App installieren“ oder das Installationssymbol in der Adressleiste klicken. Alternativ im Browsermenü nach „Apps“ oder „Installieren“ suchen. Nach der Installation kannst du die App an Startmenü oder Taskleiste anheften.</p>
+   <p><strong>Safari auf dem Mac:</strong> In unterstützten Versionen „Ablage“ → „Zum Dock hinzufügen“ wählen.</p>
+   <p><strong>Als Lesezeichen:</strong> Strg + D drücken, auf dem Mac ⌘ + D. Du kannst auch das Symbol neben der Webadresse auf den Desktop ziehen.</p>
+   <p><a class="save-link" href="gemischrechner.url" download>Windows-Verknüpfung herunterladen (.url)</a></p>
+   <p><a class="save-link" href="gemischrechner.webloc" download>Mac-Verknüpfung herunterladen (.webloc)</a></p>
+   <p>Die heruntergeladene Verknüpfung auf dem Desktop ablegen. Sie öffnet die Website; für ein eigenes App-Fenster bitte die App installieren.</p>
+  </div>
+  <div id="iosInstructions">
+   <h4>iPhone und iPad</h4>
+   <ol><li>Diese Seite in Safari öffnen.</li><li>Im Menü auf „Teilen“ tippen.</li><li>„Zum Home-Bildschirm“ wählen. Falls angezeigt, „Als Web-App öffnen“ einschalten und mit „Hinzufügen“ bestätigen.</li></ol>
+  </div>
+  <div id="androidInstructions">
+   <h4>Android</h4>
+   <p>Diese Seite in Chrome oder einem anderen Browser mit Web-App-Unterstützung öffnen. Im Browsermenü „App installieren“ oder „Zum Startbildschirm hinzufügen“ wählen. Die Bezeichnung hängt vom Browser ab.</p>
+  </div>
+  <p>Einmal mit Internet öffnen, damit der Rechner offline gespeichert wird. Social-Media-Profile benötigen weiterhin Internet.</p>
+  <button id="closeInstallHelp" type="button" class="secondary">Schließen</button>
+ </div>
+</dialog>
 <script src="calculator.js"></script>
 
-<script>
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("sw.js");
-  });
-}
-</script>
+<script src="app.js"></script>
 </body>
 </html>

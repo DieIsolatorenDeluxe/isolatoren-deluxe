@@ -1,6 +1,13 @@
-const CACHE_NAME = 'gemischrechner-v3';
+const CACHE_NAME = 'gemischrechner-v4';
 const APP_SCOPE = self.registration.scope;
-const CORE_FILES = ['./', './index.html', './calculator.js', './manifest.json'];
+const CORE_FILES = [
+  './', './index.html', './calculator.js', './app.js', './manifest.json',
+  './logo.webp', './trabant.webp', './simson.webp', './mz.webp', './sonstige_zweitakter.webp',
+  './icon_instagram.webp', './icon_facebook.webp', './icon_tiktok.webp',
+  './gemischrechner.url', './gemischrechner.webloc',
+  './apple-touch-icon.png', './android-chrome-192x192.png',
+  './android-chrome-512x512.png', './app-maskable-512.png'
+];
 
 self.addEventListener('install', event => {
   event.waitUntil((async () => {
