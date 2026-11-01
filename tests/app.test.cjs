@@ -59,6 +59,8 @@ test('desktop shortcut files open the published HTTPS website',()=>{
   assert.match(windows,/URL=https:\/\/dieisolatorendeluxe.github.io\/isolatoren-deluxe\//);
   assert.match(mac,/<key>URL<\/key>/);
   assert.match(mac,/<string>https:\/\/dieisolatorendeluxe.github.io\/isolatoren-deluxe\/<\/string>/);
+  assert.equal(fs.readFileSync(path.join(root,'desktop-verknuepfungen.zip')).subarray(0,2).toString(),'PK');
+  assert.ok(fs.readFileSync(path.join(root,'index.html'),'utf8').includes('href="desktop-verknuepfungen.zip"'));
 });
 test('native Android installation requires a button click and handles dismissal',async()=>{
   const app=setup();let prompted=0,prevented=false;
