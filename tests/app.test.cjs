@@ -136,6 +136,24 @@ test('manifest stays inside the project and supplies a separate maskable icon',(
     assert.equal(`${png.readUInt32BE(16)}x${png.readUInt32BE(20)}`,icon.sizes);
   }
 });
+test('iPhone icon has the declared size and uses a new cache-safe filename',()=>{
+  const root=path.join(__dirname,'..');
+  const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
+  assert.ok(html.includes('rel="apple-touch-icon" href="app-icon-180.png" sizes="180x180"'));
+  const image=fs.readFileSync(path.join(root,'app-icon-180.png'));
+  assert.equal(image.readUInt32BE(16),180);assert.equal(image.readUInt32BE(20),180);
+});
+test('desktop icon contains valid images for small and large displays',()=>{
+  const ico=fs.readFileSync(path.join(__dirname,'../app-icon.ico'));
+  assert.equal(ico.readUInt16LE(0),0);assert.equal(ico.readUInt16LE(2),1);
+  assert.equal(ico.readUInt16LE(4),6);
+  for(let i=0;i<6;i++){
+    const start=6+i*16,bytes=ico.readUInt32LE(start+8),offset=ico.readUInt32LE(start+12);
+    assert.ok(offset+bytes<=ico.length);
+    assert.equal(ico.subarray(offset,offset+8).toString('hex'),'89504e470d0a1a0a');
+    assert.equal(ico.readUInt32BE(offset+16),ico[start]||256);
+  }
+});
 test('all social links are named, external HTTPS links with compact local icons',()=>{
   const root=path.join(__dirname,'..');
   const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
