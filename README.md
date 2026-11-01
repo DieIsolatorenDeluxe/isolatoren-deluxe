@@ -18,14 +18,18 @@ Browserprüfungen für Darstellung, Dialoge und Tastaturbedienung kommen ergänz
 `index.html`, `calculator.js` und `sw.js` gemeinsam im Stammordner des Repositorys
 aktualisieren. Die vorhandenen Bilder und die Manifest-Datei bleiben erforderlich.
 GitHub Pages veröffentlicht nach dem Push über die vorhandene Projektkonfiguration.
-Cache-Version v5 aktualisiert HTML und Rechnerlogik zuerst aus dem Netz, nutzt offline den Cache und lädt alte App-Fenster beim Versionswechsel neu.
+Cache-Version v6 aktualisiert HTML und Rechnerlogik zuerst aus dem Netz, nutzt offline den Cache und lädt alte App-Fenster beim Versionswechsel neu.
 Sie speichert auch die kompakten WebP-Bilder, Social-Icons und App-Icons.
 
 ## Android und iPhone
 
 Der Knopf „App installieren“ nutzt den Installationsdialog des Browsers, wenn verfügbar.
-Andernfalls erscheint eine Anleitung. Auf iPhone/iPad führt sie über Safari und
-„Teilen“ → „Zum Home-Bildschirm“. In der gestarteten Web-App wird der Knopf ausgeblendet.
+Andernfalls erscheint eine Anleitung. Auf iPhone/iPad führt sie über das Teilen-Menü
+unterstützender Browser; Safari dient als Ausweichweg, wenn eine Option fehlt.
+Android-Anleitungen berücksichtigen Chrome, Edge, Firefox und Samsung Internet.
+Für integrierte Browser in Social-Apps gibt es Hinweise und einen Knopf zum Kopieren
+des Links. Bei falscher Geräteerkennung lassen sich alle Anleitungen anzeigen.
+In der gestarteten Web-App wird der Installationsknopf ausgeblendet.
 „Seite teilen“ nutzt die native Teilen-Funktion oder kopiert den öffentlichen Link.
 
 Die Social-Links öffnen die bereits hinterlegten HTTPS-Adressen in einem neuen Fenster.

@@ -48,6 +48,7 @@
     feedback.textContent = 'App installiert. Du findest sie auf deinem Startbildschirm.';
   });
   function openHelp() {
+    get('installFeedback').textContent = '';
     if (typeof help.showModal === 'function') help.showModal();
     else help.setAttribute('open', '');
   }
@@ -72,9 +73,20 @@
     if (typeof help.close === 'function') help.close();
     else help.removeAttribute('open');
   });
+  get('showAllInstructions').addEventListener('click', () => {
+    for (const id of ['iosInstructions','androidInstructions','desktopInstructions']) get(id).hidden = false;
+    get('showAllInstructions').hidden = true;
+  });
 
   // Share only the public home page, never input values or URL parameters.
   const appUrl = new URL('./', window.location.href).href;
+  async function copyLink(target) {
+    try {
+      await navigator.clipboard.writeText(appUrl);
+      target.textContent = 'Link kopiert – du kannst ihn jetzt in einem anderen Browser öffnen oder teilen.';
+    } catch { target.textContent = `Link zum Kopieren: ${appUrl}`; }
+  }
+  get('copyAppLink').addEventListener('click', () => copyLink(get('installFeedback')));
   share.addEventListener('click', async () => {
     feedback.textContent = '';
     if (typeof navigator.share === 'function') {
@@ -85,10 +97,7 @@
       }
       return;
     }
-    try {
-      await navigator.clipboard.writeText(appUrl);
-      feedback.textContent = 'Link kopiert – du kannst ihn jetzt einfügen und teilen.';
-    } catch { feedback.textContent = `Link zum Kopieren: ${appUrl}`; }
+    await copyLink(feedback);
   });
 
   function checkForUpdate() {
@@ -109,5 +118,7 @@
       .catch(() => {
         status.textContent = 'Offline-Speicherung nicht verfügbar. Mit Internet kannst du den Rechner weiter nutzen.';
       });
+  } else {
+    status.textContent = 'Dieser Browser unterstützt keine Offline-Speicherung. Der Rechner funktioniert als Website mit Internet.';
   }
 })();
