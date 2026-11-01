@@ -41,6 +41,25 @@ test('installed app hides installation action',()=>{
   assert.equal(setup({standalone:true}).nodes.installApp.hidden,true);
   assert.equal(setup({navigator:{standalone:true}}).nodes.installApp.hidden,true);
 });
+test('desktop offers saving and keeps mobile installation help out of its dialog',async()=>{
+  const app=setup({navigator:{userAgent:'Windows Chrome',platform:'Win32'}});
+  assert.equal(app.nodes.saveDesktop.hidden,false);
+  assert.equal(app.nodes.desktopInstructions.hidden,false);
+  assert.equal(app.nodes.iosInstructions.hidden,true);
+  assert.equal(app.nodes.androidInstructions.hidden,true);
+  await app.nodes.saveDesktop.listeners.click();
+  assert.equal(app.nodes.installHelp.open,true);
+  assert.equal(setup().nodes.saveDesktop.hidden,true);
+});
+test('desktop shortcut files open the published HTTPS website',()=>{
+  const root=path.join(__dirname,'..');
+  const windows=fs.readFileSync(path.join(root,'gemischrechner.url'),'utf8');
+  const mac=fs.readFileSync(path.join(root,'gemischrechner.webloc'),'utf8');
+  assert.match(windows,/\[InternetShortcut\]/);
+  assert.match(windows,/URL=https:\/\/dieisolatorendeluxe.github.io\/isolatoren-deluxe\//);
+  assert.match(mac,/<key>URL<\/key>/);
+  assert.match(mac,/<string>https:\/\/dieisolatorendeluxe.github.io\/isolatoren-deluxe\/<\/string>/);
+});
 test('native Android installation requires a button click and handles dismissal',async()=>{
   const app=setup();let prompted=0,prevented=false;
   app.events.beforeinstallprompt({preventDefault(){prevented=true;},prompt:async()=>{prompted++;},userChoice:Promise.resolve({outcome:'dismissed'})});

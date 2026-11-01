@@ -37,7 +37,7 @@ function setup(oldKeys = []) {
 }
 test('install fetches the complete calculator shell without using HTTP cache',async () => {
   const app=setup(); await app.dispatch('install');
-  assert.equal(app.entries.size,17); assert.equal(app.waiting,true);
+  assert.equal(app.entries.size,19); assert.equal(app.waiting,true);
   assert.ok(app.entries.has(app.scope+'calculator.js'));
   for (const file of ['app.js','icon_instagram.webp','icon_facebook.webp','icon_tiktok.webp','app-maskable-512.png']) {
     assert.ok(app.entries.has(app.scope+file));
