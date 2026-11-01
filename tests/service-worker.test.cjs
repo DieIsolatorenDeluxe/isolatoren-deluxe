@@ -19,7 +19,7 @@ function setup(oldKeys = []) {
     url, navigate:async target => navigated.push(target)
   }));
   const context = vm.createContext({Request,Response,URL,
-    caches:{open:async () => cache, keys:async () => [...oldKeys,'gemischrechner-v8'],
+    caches:{open:async () => cache, keys:async () => [...oldKeys,'gemischrechner-v9'],
       delete:async key => deleted.push(key)},
     self:{registration:{scope},addEventListener:(type,fn) => handlers[type]=fn,
       skipWaiting:async () => {waiting=true;},clients:{claim:async () => {claimed=true;},matchAll:async () => windows}},

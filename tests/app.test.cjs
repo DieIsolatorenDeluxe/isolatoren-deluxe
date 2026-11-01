@@ -96,6 +96,33 @@ test('Mac Safari gets a three-step Add to Dock guide',()=>{
   assert.match(app.nodes.desktopStep2.textContent,/Zum Dock hinzufügen/);
   assert.match(app.nodes.desktopStep3.textContent,/Hinzufügen/);
 });
+
+test('desktop browser detection and manual selection show distinct installation and icon instructions',()=>{
+  for(const [userAgent,browser,expected] of [
+    ['Windows Chrome/150 Edg/150','edge',/Weitere Tools/],
+    ['Windows Firefox/150','firefox',/Firefox/],
+    ['Windows Chrome/150 OPR/130','other',/Lesezeichen/]
+  ]){
+    const app=setup({navigator:{userAgent,platform:'Win32'}});
+    assert.equal(app.nodes.desktopBrowser.value,browser);
+    assert.match(app.nodes.desktopStep2.textContent+app.nodes.desktopStep3.textContent,expected);
+    app.nodes.desktopBrowser.value='chrome';app.nodes.desktopBrowser.listeners.change();
+    assert.match(app.nodes.shortcutStep1.textContent,/chrome:\/\/apps/);
+    assert.match(app.nodes.shortcutStep3.textContent,/Desktop/);
+    app.nodes.desktopBrowser.value='safari';app.nodes.desktopBrowser.listeners.change();
+    assert.equal(app.nodes.desktopStep4.hidden,true);
+    assert.match(app.nodes.desktopLocation.textContent,/Dock/);
+    app.nodes.desktopBrowser.value='other';app.nodes.desktopBrowser.listeners.change();
+    assert.equal(app.nodes.browserHelpLink.hidden,true);
+  }
+});
+
+test('desktop installation feedback does not promise a mobile homescreen icon',()=>{
+  const app=setup({navigator:{userAgent:'Windows Chrome/150',platform:'Win32'}});
+  app.events.appinstalled();
+  assert.match(app.nodes.appFeedback.textContent,/Desktop-Symbol/);
+  assert.doesNotMatch(app.nodes.appFeedback.textContent,/Startbildschirm/);
+});
 test('installation does not offer ZIP downloads or manual desktop shortcuts',()=>{
   const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8');
   assert.doesNotMatch(html,/desktop-verknuepfungen|gemischrechner\.(url|webloc)|saveDesktop/);
