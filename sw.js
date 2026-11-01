@@ -1,8 +1,9 @@
-const CACHE_NAME = "gemischrechner-v1";
+const CACHE_NAME = "gemischrechner-v2";
 
 const FILES_TO_CACHE = [
   "./",
   "./index.html",
+  "./calculator.js",
   "./manifest.json",
   "./logo.png",
   "./favicon.ico",
@@ -31,7 +32,7 @@ self.addEventListener("activate", event => {
     caches.keys().then(keys =>
       Promise.all(
         keys.map(key => {
-          if (key !== CACHE_NAME) {
+          if (key.startsWith("gemischrechner-") && key !== CACHE_NAME) {
             return caches.delete(key);
           }
         })

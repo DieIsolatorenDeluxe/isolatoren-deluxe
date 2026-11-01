@@ -82,7 +82,7 @@ header{
   text-align:center;
   margin-bottom:40px;
 }
-header img{max-width:340px}
+header img{max-width:min(340px,100%)}
 header p{
   margin-top:10px;
   letter-spacing:2px;
@@ -340,6 +340,18 @@ footer{
   font-style:italic;
 }
 
+
+button { color:var(--text); }
+button:not(.secondary):not(.vehicle):not(.option) { color:#111; }
+button:focus-visible, input:focus-visible, a:focus-visible { outline:3px solid var(--gold); outline-offset:3px; }
+.vehicle { font-weight:normal; }
+.vehicle span { display:block; }
+.option { background:#222; color:var(--text); text-align:left; }
+label { display:block; margin-top:12px; }
+.error { color:#ffb4b4; }
+dialog.modal { position:fixed; inset:0; width:min(900px,100%); max-height:90vh; padding:0; border:1px solid #444; color:var(--text); margin:auto; background:var(--panel); }
+dialog.modal[open] { display:block; }
+dialog::backdrop { background:rgba(0,0,0,.75); }
 </style>
 </head>
 
@@ -401,18 +413,20 @@ Benzinmenge eingeben und berechnen.
 </p>
 
 <div class="vehicle-grid">
-  <div class="vehicle" data-name="Trabant" data-rec="50"><img src="trabant.png"><div>Trabant</div></div>
-  <div class="vehicle" data-name="Simson" data-rec="50"><img src="simson.png"><div>Simson</div></div>
-  <div class="vehicle" data-name="MZ" data-rec="50"><img src="mz.png"><div>MZ</div></div>
-  <div class="vehicle" data-name="Sonstige Zweitakter" data-rec=""><img src="sonstige_zweitakter.png"><div>Sonstige</div></div>
+  <button type="button" class="vehicle" data-name="Trabant" data-rec="50" aria-pressed="false"><img src="trabant.png" alt=""><span>Trabant</span></button>
+  <button type="button" class="vehicle" data-name="Simson" data-rec="50" aria-pressed="false"><img src="simson.png" alt=""><span>Simson</span></button>
+  <button type="button" class="vehicle" data-name="MZ" data-rec="50" aria-pressed="false"><img src="mz.png" alt=""><span>MZ</span></button>
+  <button type="button" class="vehicle" data-name="Sonstige Zweitakter" data-rec="" aria-pressed="false"><img src="sonstige_zweitakter.png" alt=""><span>Sonstige</span></button>
 </div>
 
 <p id="mixState" style="margin-top:10px;font-size:13px;color:#bbb;"></p>
 
 <button class="secondary" onclick="openRatioModal()">Mischungsverhältnis wählen</button>
-<input type="number" id="fuelInput" placeholder="Benzinmenge in Litern">
+<label for="fuelInput">Benzinmenge in Litern</label>
+<input type="number" id="fuelInput" min="0" step="any" inputmode="decimal" aria-describedby="mixError">
+<p id="mixError" class="error" role="alert"></p>
 <button onclick="calculateMix()">Berechnen</button>
-<div class="result" id="mixResult" style="display:none;"></div>
+<div class="result" role="status" id="mixResult" style="display:none;"></div>
 </div>
 
 <!-- RÜCKRECHNER -->
@@ -424,10 +438,12 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
 </p>
 
 <button class="secondary" onclick="openBackModal()">Mischungsverhältnis wählen</button>
-<input type="number" id="oilInput" placeholder="Ölmenge in ml">
+<label for="oilInput">Ölmenge in ml</label>
+<input type="number" id="oilInput" min="0" step="any" inputmode="decimal" aria-describedby="backError">
+<p id="backError" class="error" role="alert"></p>
 <button onclick="calculateBack()">Berechnen</button>
 
-<div class="result" id="backResult" style="display:none;"></div>
+<div class="result" role="status" id="backResult" style="display:none;"></div>
 </div>
 <!-- GEMEINSCHAFT -->
 <div class="section">
@@ -590,7 +606,8 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
 
 <!-- TERMINE -->
 <div class="section">
-  <h2>TERMINE 2026</h2>
+  <h2>TERMINARCHIV 2026</h2>
+  <p>Vergangene Termine aus 2026. Neue Termine werden hier ergänzt, sobald sie feststehen.</p>
   <ul>
     <li><span class="date">25.04.2026</span> 19. Ostfahrzeugtreffen Finowfurt</li>
     <li><span class="date">01.05.2026</span> Simson Treffen Ladeburg</li>
@@ -639,129 +656,34 @@ Privates, nicht kommerzielles Projekt
 
 </div>
 
-<!-- MODAL MISCHRECHNER (unverändert) -->
-<div class="modal" id="ratioModal">
-  <div class="modal-box">
-    <h3>Mischungsverhältnis</h3>
-    <div id="ratioOptions"></div>
-    <button class="secondary" onclick="closeRatioModal()">Schließen</button>
-  </div>
-</div>
+<!-- Verhältnisauswahl -->
+<dialog class="modal" id="ratioModal" aria-labelledby="ratioTitle">
+ <div class="modal-box">
+  <h3 id="ratioTitle">Mischungsverhältnis</h3>
+  <div id="ratioOptions"></div>
+  <form id="ratioForm" novalidate>
+   <label for="ratioInput">Freie Eingabe (1 : X, ganze Zahl von 1 bis 100)</label>
+   <input id="ratioInput" type="number" min="1" max="100" step="1" inputmode="numeric" aria-describedby="ratioError">
+   <p id="ratioError" class="error" role="alert"></p>
+   <button type="submit">Verhältnis übernehmen</button>
+  </form>
+  <button class="secondary" onclick="closeRatioModal()">Schließen</button>
+ </div>
+</dialog>
+<dialog class="modal" id="backModal" aria-labelledby="backTitle">
+ <div class="modal-box">
+  <h3 id="backTitle">Rückrechner – Mischungsverhältnis</h3>
+  <form id="backRatioForm" novalidate>
+   <label for="backRatioInput">Freie Eingabe (1 : X, ganze Zahl von 1 bis 100)</label>
+   <input id="backRatioInput" type="number" min="1" max="100" step="1" inputmode="numeric" aria-describedby="backRatioError">
+   <p id="backRatioError" class="error" role="alert"></p>
+   <button type="submit">Verhältnis übernehmen</button>
+  </form>
+  <button class="secondary" onclick="closeBackModal()">Schließen</button>
+ </div>
+</dialog>
+<script src="calculator.js"></script>
 
-<!-- MODAL RÜCKRECHNER -->
-<div class="modal" id="backModal">
-  <div class="modal-box">
-    <h3>Rückrechner – Mischungsverhältnis</h3>
-    <div class="option" onclick="setBackRatio()">Freie Eingabe (1 : X)</div>
-    <button class="secondary" onclick="closeBackModal()">Schließen</button>
-  </div>
-</div>
-
-<script>
-let vehicle=null;
-let recommendedRatio=null;
-let activeRatio=null;
-let backRatio=null;
-
-/* Reset */
-function resetResults(){
-  mixResult.style.display="none";
-  backResult.style.display="none";
-}
-
-/* Fahrzeugwahl */
-document.querySelectorAll(".vehicle").forEach(v=>{
-  v.onclick=()=>{
-    document.querySelectorAll(".vehicle").forEach(x=>x.classList.remove("active"));
-    v.classList.add("active");
-    vehicle=v.dataset.name;
-    recommendedRatio=v.dataset.rec?parseInt(v.dataset.rec):null;
-    activeRatio=recommendedRatio;
-    resetResults();
-    updateMixState();
-  };
-});
-
-function updateMixState(){
-  if(!vehicle){mixState.innerText="";return;}
-  if(!recommendedRatio){
-    mixState.innerText=`Ausgewählt: ${vehicle} · Kein empfohlenes Mischungsverhältnis`;
-  }else{
-    mixState.innerText=`Ausgewählt: ${vehicle} · Aktiv: 1 : ${activeRatio} (${activeRatio===recommendedRatio?"empfohlen":"manuell"})`;
-  }
-}
-
-/* Mischrechner Modal */
-function openRatioModal(){
-  if(!vehicle) return;
-  ratioOptions.innerHTML="";
-  if(recommendedRatio){
-    [33,40,50].filter(r=>r!==recommendedRatio).forEach(r=>{
-      const d=document.createElement("div");
-      d.className="option";
-      d.innerText=`1 : ${r}`;
-      d.onclick=()=>setRatio(r);
-      ratioOptions.appendChild(d);
-    });
-  }
-  const free=document.createElement("div");
-  free.className="option";
-  free.innerText="Freie Eingabe";
-free.onclick=()=>{
-  const v=parseInt(prompt("Nur die ZAHL eingeben!\nBeispiel: für 1:50 → 50\n(max. 100)"));
-  if(v>0 && v<=100) setRatio(v);
-};
-  
-  ratioOptions.appendChild(free);
-  ratioModal.classList.add("active");
-}
-function closeRatioModal(){ratioModal.classList.remove("active");}
-function setRatio(r){activeRatio=r;resetResults();updateMixState();closeRatioModal();}
-
-/* Berechnung Mischrechner */
-function calculateMix(){
-  const fuel=parseFloat(fuelInput.value);
-  if(!activeRatio||!fuel) return;
-  const oil=Math.round((fuel*1000)/activeRatio);
-  let humor="Bewährte Mischung.";
-  if(recommendedRatio){
-    if(activeRatio<recommendedRatio) humor="Etwas fetter gemischt – Kolben freut sich.";
-    if(activeRatio>recommendedRatio) humor="Mager unterwegs – Technik im Auge behalten.";
-  }
-  mixResult.style.display="block";
-  mixResult.innerHTML=`
-    <div class="result-main">${oil} ml Öl zugeben</div>
-    <div class="result-info">Berechnet mit 1 : ${activeRatio}</div>
-    <div class="result-humor">${humor}</div>`;
-}
-
-/* Rückrechner Modal */
-function openBackModal(){backModal.classList.add("active");}
-function closeBackModal(){backModal.classList.remove("active");}
-function setBackRatio(){
-  const v=parseInt(prompt("Nur die ZAHL eingeben!\nBeispiel: für 1:50 → 50\n(max. 100)"));
-
-  if(v>0 && v<=100){
-    backRatio=v;
-    backState.innerHTML=`Aktives Mischungsverhältnis: <strong>1 : ${v}</strong>`;
-    backResult.style.display="none";
-  }
-  closeBackModal();
-}
-
-/* Berechnung Rückrechner */
-function calculateBack(){
-  if(!backRatio) return;
-  const oil=parseFloat(oilInput.value);
-  if(!oil) return;
-  const fuel=(oil*backRatio/1000).toFixed(2);
-  backResult.style.display="block";
-  backResult.innerHTML=`
-    <div class="result-main">${fuel} Liter Benzin</div>
-    <div class="result-info">Berechnet mit 1 : ${backRatio}</div>
-    <div class="result-humor">Rechnerisch sauber – jetzt weißt du, was in den Kanister gehört.</div>`;
-}
-</script>
 <script>
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
