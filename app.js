@@ -3,7 +3,6 @@
   const get = id => document.getElementById(id);
   const install = get('installApp');
   const share = get('shareApp');
-  const saveDesktop = get('saveDesktop');
   const help = get('installHelp');
   const feedback = get('appFeedback');
   const status = get('connectionStatus');
@@ -29,7 +28,15 @@
   get('iosInstructions').hidden = !isIOS;
   get('androidInstructions').hidden = !isAndroid;
   get('desktopInstructions').hidden = isIOS || isAndroid;
-  saveDesktop.hidden = isIOS || isAndroid;
+  const isDesktopChrome = !isIOS && !isAndroid && /Chrome|Chromium/.test(navigator.userAgent) && !/Edg|OPR/.test(navigator.userAgent);
+  if (isDesktopChrome) {
+    get('desktopStep1').textContent = 'Oben rechts in Chrome das Dreipunkt-Menü (⋮) öffnen.';
+    get('desktopStep2').textContent = '„Streamen, speichern und teilen“ → „Seite als App installieren…“ wählen.';
+  } else if (!isIOS && !isAndroid && /Mac/.test(navigator.platform) && /Safari/.test(navigator.userAgent) && !/Chrome|Chromium|Edg/.test(navigator.userAgent)) {
+    get('desktopStep1').textContent = 'In Safari oben das Menü „Ablage“ öffnen.';
+    get('desktopStep2').textContent = '„Zum Dock hinzufügen“ wählen.';
+    get('desktopStep3').textContent = 'Mit „Hinzufügen“ bestätigen.';
+  }
   updateInstall();
   updateStatus();
   standalone.addEventListener?.('change', updateInstall);
@@ -49,10 +56,10 @@
   });
   function openHelp() {
     get('installFeedback').textContent = '';
+    get('moreInstallHelp').open = false;
     if (typeof help.showModal === 'function') help.showModal();
     else help.setAttribute('open', '');
   }
-  saveDesktop.addEventListener('click', openHelp);
   install.addEventListener('click', async () => {
     if (!pendingInstall) {
       openHelp();
@@ -66,12 +73,22 @@
       const choice = await prompt.userChoice;
       if (choice.outcome === 'accepted') feedback.textContent = 'Installation bestätigt. Dein Browser richtet die App ein.';
     } catch {
-      feedback.textContent = 'Bitte die App über das Menü deines Browsers hinzufügen.';
+      openHelp();
     } finally { install.disabled = false; }
   });
   get('closeInstallHelp').addEventListener('click', () => {
     if (typeof help.close === 'function') help.close();
     else help.removeAttribute('open');
+  });
+  get('showQRCode').addEventListener('click', () => {
+    const dialog = get('qrHelp');
+    if (typeof dialog.showModal === 'function') dialog.showModal();
+    else dialog.setAttribute('open', '');
+  });
+  get('closeQRCode').addEventListener('click', () => {
+    const dialog = get('qrHelp');
+    if (typeof dialog.close === 'function') dialog.close();
+    else dialog.removeAttribute('open');
   });
   get('showAllInstructions').addEventListener('click', () => {
     for (const id of ['iosInstructions','androidInstructions','desktopInstructions']) get(id).hidden = false;

@@ -18,7 +18,7 @@ Browserprüfungen für Darstellung, Dialoge und Tastaturbedienung kommen ergänz
 `index.html`, `calculator.js` und `sw.js` gemeinsam im Stammordner des Repositorys
 aktualisieren. Die vorhandenen Bilder und die Manifest-Datei bleiben erforderlich.
 GitHub Pages veröffentlicht nach dem Push über die vorhandene Projektkonfiguration.
-Cache-Version v7 aktualisiert HTML und Rechnerlogik zuerst aus dem Netz, nutzt offline den Cache und lädt alte App-Fenster beim Versionswechsel neu.
+Cache-Version v8 aktualisiert HTML und Rechnerlogik zuerst aus dem Netz, nutzt offline den Cache und lädt alte App-Fenster beim Versionswechsel neu.
 Sie speichert auch die kompakten WebP-Bilder, Social-Icons und App-Icons.
 
 ## Android und iPhone
@@ -39,10 +39,11 @@ zusätzlich auf den jeweiligen Geräten geprüft werden.
 
 ## Desktop speichern
 
-„Am PC speichern“ erklärt die App-Installation in Chrome/Edge, „Zum Dock hinzufügen“
-in Safari und das Anlegen eines Lesezeichens. Zusätzlich stehen normale URL-Verknüpfungen
-für Windows (`gemischrechner.url`) und Mac (`gemischrechner.webloc`) in `desktop-verknuepfungen.zip` zum Download bereit.
-Diese öffnen die veröffentlichte Website, sie enthalten keine ausführbaren Programme.
+„App installieren“ startet die unterstützte Installation direkt oder zeigt drei kurze
+Schritte für das erkannte Gerät. Unter „Weitere Möglichkeiten“ stehen Browserhinweise,
+Linkkopie und Lesezeichen. ZIP-Downloads und manuell anzulegende Verknüpfungen
+werden im Installationsablauf nicht angeboten. Chrome bekommt bei Bedarf den
+genauen Menüpfad „Streamen, speichern und teilen“ → „Seite als App installieren…“.
 
 ## App-Symbol
 
@@ -51,5 +52,10 @@ als Android-Maskable-Icon und als ICO mit sechs Größen ausgeliefert.
 Neue Dateinamen vermeiden alte zwischengespeicherte Symbole.
 Installierte Apps können ihr Symbol je nach Betriebssystem verzögert aktualisieren;
 bei Bedarf die alte Verknüpfung entfernen und die Seite erneut hinzufügen.
-Das Desktop-ZIP enthält zusätzlich ICO, PNG und Hinweise für manuelle Symbole.
+
+## QR-Code teilen
+
+Der Knopf „QR-Code“ zeigt einen lokal gespeicherten QR-Code zur öffentlichen Website.
+Er kann als PNG gespeichert werden, etwa für Flyer, Ausdrucke oder zum Weitergeben.
+Der Code enthält nur die feste Website-Adresse und keine Eingaben oder Trackingparameter.
 DDR Zweitakt Gemischrechner &amp; Gemeinschaft

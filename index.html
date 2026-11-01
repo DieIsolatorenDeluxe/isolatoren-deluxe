@@ -360,9 +360,18 @@ body { padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(s
 .app-tools p { margin:0 0 12px; font-size:13px; line-height:1.5; color:#bbb; }
 .app-tools p:last-child:empty { display:none; }
 .app-actions { display:flex; flex-wrap:wrap; gap:10px; }
-.app-actions button { flex:1 1 140px; min-height:44px; }
+.app-actions button { flex:1 1 110px; min-height:44px; }
+#installApp { flex-basis:100%; }
+.qr-image { display:block; width:min(100%,280px); height:auto; margin:16px auto; background:#fff; }
+.qr-link { color:var(--gold); overflow-wrap:anywhere; }
 .save-link { display:inline-block; color:var(--gold); padding:10px 0; min-height:44px; }
-.install-icon { display:block; width:80px; height:80px; margin:0 0 16px; border-radius:16px; }
+.install-icon { display:block; width:64px; height:64px; margin:0 0 12px; border-radius:14px; }
+.install-steps { padding-left:24px; }
+.install-steps li { margin:0 0 12px; padding-left:4px; }
+.install-note { font-size:13px; color:#bbb; }
+#moreInstallHelp { margin:16px 0; font-size:14px; }
+#moreInstallHelp summary { color:var(--gold); cursor:pointer; padding:8px 0; min-height:44px; }
+#closeInstallHelp { margin-top:12px; }
 #appFeedback:not(:empty) { margin:12px 0 0; }
 .social-tile { min-width:88px; min-height:88px; touch-action:manipulation; }
 .modal-box { padding-bottom:max(20px,env(safe-area-inset-bottom,0px)); }
@@ -381,9 +390,9 @@ body { padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(s
 <section class="app-tools" aria-label="Web-App und Teilen">
  <p id="connectionStatus" role="status">Rechner für unterwegs – auch ohne Internet nutzbar, sobald die App gespeichert ist.</p>
  <div class="app-actions">
-  <button id="installApp" type="button" class="secondary" aria-haspopup="dialog">App installieren</button>
+  <button id="installApp" type="button" aria-haspopup="dialog">App installieren</button>
   <button id="shareApp" type="button" class="secondary">Seite teilen</button>
-  <button id="saveDesktop" type="button" class="secondary" aria-haspopup="dialog" hidden>Am PC speichern</button>
+  <button id="showQRCode" type="button" class="secondary" aria-haspopup="dialog">QR-Code</button>
  </div>
  <p id="appFeedback" role="status"></p>
 </section>
@@ -668,34 +677,41 @@ Privates, nicht kommerzielles Projekt
 </dialog>
 <dialog class="modal" id="installHelp" aria-labelledby="installTitle">
  <div class="modal-box">
-  <h3 id="installTitle">Als App installieren oder speichern</h3>
-  <img class="install-icon" src="app-icon-192.png" alt="App-Symbol: Die Isolatoren Deluxe" width="80" height="80">
-  <div id="desktopInstructions">
-   <h4>Windows, Mac und Linux</h4>
-   <p><strong>Als eigene App:</strong> In Chrome oder Edge auf „App installieren“ oder das Installationssymbol in der Adressleiste klicken. Alternativ im Browsermenü nach „Apps“ oder „Installieren“ suchen. Nach der Installation kannst du die App an Startmenü oder Taskleiste anheften.</p>
-   <p><strong>Safari auf dem Mac:</strong> In unterstützten Versionen „Ablage“ → „Zum Dock hinzufügen“ wählen.</p>
-   <p><strong>Als Lesezeichen:</strong> Strg + D drücken, auf dem Mac ⌘ + D. Du kannst auch das Symbol neben der Webadresse auf den Desktop ziehen.</p>
-   <p><a class="save-link" href="desktop-verknuepfungen.zip" download="Gemischrechner-Desktop.zip">Desktop-Verknüpfungen herunterladen (.zip)</a></p>
-   <p>Die ZIP-Datei entpacken und die passende Verknüpfung auf dem Desktop ablegen: .url für Windows, .webloc für Mac. Sie öffnet die Website; für ein eigenes App-Fenster bitte die App installieren.</p>
-   <p>Für ein eigenes Symbol bei einer einfachen Verknüpfung liegen Logo und Icon-Datei im ZIP. Bei einer installierten Web-App wird das App-Symbol vom Browser übernommen.</p>
-  </div>
+  <h3 id="installTitle">App installieren</h3>
+  <img class="install-icon" src="app-icon-192.png" alt="App-Symbol: Die Isolatoren Deluxe" width="64" height="64">
   <div id="iosInstructions">
-   <h4>iPhone und iPad</h4>
-   <ol><li>Diese Seite im Browser öffnen, zum Beispiel Safari, Chrome, Edge oder Firefox.</li><li>„Teilen“ öffnen. Je nach Browser liegt das Symbol an der Adressleiste oder im Menü.</li><li>Falls verfügbar, „Zum Home-Bildschirm“ wählen. Falls angezeigt, „Als Web-App öffnen“ einschalten und mit „Hinzufügen“ bestätigen.</li></ol>
-   <p>Fehlt die Option in deinem Browser oder deiner iOS-Version? Den Link kopieren und in Safari öffnen. Dort erneut über „Teilen“ zum Home-Bildschirm hinzufügen.</p>
+   <h4>Auf iPhone oder iPad</h4>
+   <ol class="install-steps"><li>Im Browser auf <strong>Teilen</strong> tippen.</li><li><strong>Zum Home-Bildschirm</strong> wählen.</li><li>Mit <strong>Hinzufügen</strong> bestätigen. Falls „Als Web-App öffnen“ erscheint, eingeschaltet lassen.</li></ol>
   </div>
   <div id="androidInstructions">
-   <h4>Android</h4>
-   <p>Chrome, Edge, Samsung Internet, Firefox und andere unterstützende Browser können die Seite zum Startbildschirm hinzufügen. Falls kein Installationsdialog erscheint, das Browsermenü öffnen:</p>
-   <ul><li><strong>Chrome und Edge:</strong> Nach „App installieren“ oder „Zum Startbildschirm hinzufügen“ suchen.</li><li><strong>Samsung Internet:</strong> Nach „Seite hinzufügen zu“ → „Startbildschirm“ oder einem Installationssymbol suchen.</li><li><strong>Firefox:</strong> Nach „Installieren“ oder „Zum Startbildschirm hinzufügen“ suchen.</li></ul>
-   <p>Die verfügbaren Funktionen und Bezeichnungen hängen von Browser und Version ab. Fehlt die Installation, lässt sich der Rechner weiterhin als Website oder Lesezeichen nutzen.</p>
+   <h4>Auf Android</h4>
+   <ol class="install-steps"><li>Das <strong>Browsermenü</strong> öffnen (⋮ oder ☰).</li><li><strong>App installieren</strong> oder <strong>Zum Startbildschirm hinzufügen</strong> wählen.</li><li>Mit <strong>Installieren</strong> oder <strong>Hinzufügen</strong> bestätigen.</li></ol>
   </div>
-  <p><strong>In Instagram, Facebook, TikTok oder anderen Apps geöffnet?</strong> Im Menü der App „Im Browser öffnen“ wählen. Falls das fehlt, den Link kopieren und in einem normalen Browser öffnen.</p>
-  <button id="copyAppLink" type="button" class="secondary">Link kopieren</button>
-  <p id="installFeedback" role="status"></p>
-  <button id="showAllInstructions" type="button" class="secondary">Alle Geräte-Anleitungen anzeigen</button>
-  <p>Einmal mit Internet öffnen, damit der Rechner offline gespeichert wird. Social-Media-Profile benötigen weiterhin Internet.</p>
-  <button id="closeInstallHelp" type="button" class="secondary">Schließen</button>
+  <div id="desktopInstructions">
+   <h4>Auf dem Computer</h4>
+   <ol class="install-steps"><li id="desktopStep1">Das <strong>Browsermenü</strong> oben rechts öffnen.</li><li id="desktopStep2">Nach <strong>App installieren</strong> suchen.</li><li id="desktopStep3">Mit <strong>Installieren</strong> bestätigen.</li></ol>
+  </div>
+  <p class="install-note">Danach findest du den Rechner als App mit unserem Logo. Einmal mit Internet öffnen, damit er offline gespeichert wird.</p>
+  <details id="moreInstallHelp">
+   <summary>Weitere Möglichkeiten</summary>
+   <p><strong>Kein Installationsmenü?</strong> Du kannst den Rechner weiterhin als Website nutzen. Auf iPhone/iPad nach „Teilen“ suchen oder den Link in Safari öffnen. Auf Android bieten unter anderem Chrome, Edge, Firefox und Samsung Internet passende Menüpunkte; die Bezeichnung hängt von der Version ab.</p>
+   <p><strong>In Instagram, Facebook oder TikTok geöffnet?</strong> Dort im Menü „Im Browser öffnen“ wählen. Falls das fehlt, den Link kopieren und im normalen Browser öffnen.</p>
+   <button id="copyAppLink" type="button" class="secondary">Link kopieren</button>
+   <p id="installFeedback" role="status"></p>
+   <p>Als Lesezeichen speichern: Strg + D, auf dem Mac ⌘ + D.</p>
+   <button id="showAllInstructions" type="button" class="secondary">Andere Geräte-Anleitungen anzeigen</button>
+  </details>
+  <button id="closeInstallHelp" type="button" class="secondary">Fertig</button>
+ </div>
+</dialog>
+<dialog class="modal" id="qrHelp" aria-labelledby="qrTitle">
+ <div class="modal-box">
+  <h3 id="qrTitle">Scannen und weitergeben</h3>
+  <img class="qr-image" src="teilen-qr.png" alt="QR-Code zur Website Die Isolatoren Deluxe" width="768" height="768">
+  <p>Mit der Handy-Kamera scannen und die Website öffnen. Dort lässt sich die App installieren.</p>
+  <p><a class="qr-link" href="https://dieisolatorendeluxe.github.io/isolatoren-deluxe/" target="_blank" rel="noopener noreferrer">dieisolatorendeluxe.github.io/isolatoren-deluxe/</a></p>
+  <p><a class="save-link" href="teilen-qr.png" download="Isolatoren-Deluxe-QR.png">QR-Code als Bild speichern</a></p>
+  <button id="closeQRCode" type="button" class="secondary">Fertig</button>
  </div>
 </dialog>
 <script src="calculator.js"></script>
