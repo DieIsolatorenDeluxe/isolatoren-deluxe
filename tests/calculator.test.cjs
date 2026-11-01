@@ -47,7 +47,7 @@ test('5 litres at 1:50 gives 100 ml; decimals at 1:33 round correctly', () => {
   assert.match(app.result('mix'), /76 ml/);
 });
 test('invalid fuel amounts remove previous results and explain the error', () => {
-  for (const value of ['-5','0','','Infinity','NaN']) {
+  for (const value of ['-2','-5','0','','Infinity','NaN']) {
     const app=setup(); app.vehicles[1].onclick();
     app.nodes.fuelInput.value='5'; app.context.calculateMix();
     app.nodes.fuelInput.value=value; app.context.calculateMix();
