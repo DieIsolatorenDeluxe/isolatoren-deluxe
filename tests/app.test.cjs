@@ -37,6 +37,35 @@ test('iPhone and desktop-mode iPad show Apple instructions',()=>{
     assert.equal(app.nodes.iosInstructions.hidden,false);
   }
 });
+test('mobile browser variants keep the same installation fallback available',async()=>{
+  const variants=[
+    ['iPhone Safari','iosInstructions'],['iPhone CriOS/143','iosInstructions'],
+    ['iPhone FxiOS/145','iosInstructions'],['iPhone EdgiOS/143','iosInstructions'],
+    ['Android Chrome/143','androidInstructions'],['Android Firefox/145','androidInstructions'],
+    ['Android SamsungBrowser/29','androidInstructions'],['Android EdgA/143','androidInstructions'],
+    ['iPhone Instagram','iosInstructions'],['Android FBAN/FB4A','androidInstructions']
+  ];
+  for(const [userAgent,id] of variants){
+    const app=setup({navigator:{userAgent}});
+    await app.nodes.installApp.listeners.click();
+    assert.equal(app.nodes.installHelp.open,true,userAgent);
+    assert.equal(app.nodes[id].hidden,false,userAgent);
+    assert.equal(app.nodes.saveDesktop.hidden,true,userAgent);
+  }
+});
+test('installation help can copy a link even without native sharing',async()=>{
+  let copied;
+  const app=setup({navigator:{clipboard:{writeText:async value=>copied=value}}});
+  await app.nodes.copyAppLink.listeners.click();
+  assert.equal(copied,'https://example.test/isolatoren-deluxe/');
+  assert.match(app.nodes.installFeedback.textContent,/Link kopiert/);
+  const blocked=setup();await blocked.nodes.copyAppLink.listeners.click();
+  assert.match(blocked.nodes.installFeedback.textContent,/Link zum Kopieren/);
+});
+test('all instructions can be shown if the browser hides its device identity',()=>{
+  const app=setup();app.nodes.showAllInstructions.listeners.click();
+  for(const id of ['iosInstructions','androidInstructions','desktopInstructions']) assert.equal(app.nodes[id].hidden,false);
+});
 test('installed app hides installation action',()=>{
   assert.equal(setup({standalone:true}).nodes.installApp.hidden,true);
   assert.equal(setup({navigator:{standalone:true}}).nodes.installApp.hidden,true);
