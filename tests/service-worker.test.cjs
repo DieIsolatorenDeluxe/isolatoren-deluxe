@@ -19,7 +19,7 @@ function setup(oldKeys = []) {
     url, navigate:async target => navigated.push(target)
   }));
   const context = vm.createContext({Request,Response,URL,
-    caches:{open:async () => cache, keys:async () => [...oldKeys,'gemischrechner-v3'],
+    caches:{open:async () => cache, keys:async () => [...oldKeys,'gemischrechner-v4'],
       delete:async key => deleted.push(key)},
     self:{registration:{scope},addEventListener:(type,fn) => handlers[type]=fn,
       skipWaiting:async () => {waiting=true;},clients:{claim:async () => {claimed=true;},matchAll:async () => windows}},
@@ -37,8 +37,11 @@ function setup(oldKeys = []) {
 }
 test('install fetches the complete calculator shell without using HTTP cache',async () => {
   const app=setup(); await app.dispatch('install');
-  assert.equal(app.entries.size,4); assert.equal(app.waiting,true);
+  assert.equal(app.entries.size,17); assert.equal(app.waiting,true);
   assert.ok(app.entries.has(app.scope+'calculator.js'));
+  for (const file of ['app.js','icon_instagram.webp','icon_facebook.webp','icon_tiktok.webp','app-maskable-512.png']) {
+    assert.ok(app.entries.has(app.scope+file));
+  }
 });
 test('upgrading from v1 refreshes old app windows and preserves unrelated caches',async () => {
   const app=setup(['gemischrechner-v1','another-project']);
