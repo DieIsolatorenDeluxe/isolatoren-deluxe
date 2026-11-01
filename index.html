@@ -369,6 +369,10 @@ body { padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(s
 .install-steps { padding-left:24px; }
 .install-steps li { margin:0 0 12px; padding-left:4px; }
 .install-note { font-size:13px; color:#bbb; }
+.browser-choice { display:block; width:100%; margin:8px 0 16px; padding:12px; border:1px solid #777; border-radius:8px; background:#181818; color:#fff; font:inherit; }
+#desktopShortcutHelp { margin:16px 0; padding:12px; border:1px solid #777; border-radius:8px; }
+#desktopShortcutHelp summary { cursor:pointer; font-weight:bold; }
+#browserHelpLink { color:#ffd86b; }
 #moreInstallHelp { margin:16px 0; font-size:14px; }
 #moreInstallHelp summary { color:var(--gold); cursor:pointer; padding:8px 0; min-height:44px; }
 #closeInstallHelp { margin-top:12px; }
@@ -689,9 +693,14 @@ Privates, nicht kommerzielles Projekt
   </div>
   <div id="desktopInstructions">
    <h4>Auf dem Computer</h4>
-   <ol class="install-steps"><li id="desktopStep1">Das <strong>Browsermenü</strong> oben rechts öffnen.</li><li id="desktopStep2">Nach <strong>App installieren</strong> suchen.</li><li id="desktopStep3">Mit <strong>Installieren</strong> bestätigen.</li></ol>
+   <label for="desktopBrowser">Welchen Browser benutzt du?</label>
+   <select id="desktopBrowser" class="browser-choice"><option value="chrome">Google Chrome</option><option value="edge">Microsoft Edge</option><option value="safari">Safari auf dem Mac</option><option value="firefox">Mozilla Firefox</option><option value="other">Anderer Browser / weiß ich nicht</option></select>
+   <ol class="install-steps"><li id="desktopStep1"></li><li id="desktopStep2"></li><li id="desktopStep3"></li><li id="desktopStep4"></li></ol>
+   <p id="desktopLocation" role="status"></p>
+   <details id="desktopShortcutHelp"><summary>Installiert, aber kein Symbol sichtbar?</summary><ol class="install-steps"><li id="shortcutStep1"></li><li id="shortcutStep2"></li><li id="shortcutStep3"></li></ol></details>
+   <a id="browserHelpLink" href="https://support.google.com/chrome/answer/9658361?hl=de" target="_blank" rel="noopener noreferrer">Offizielle Browser-Hilfe öffnen ↗</a>
   </div>
-  <p class="install-note">Danach findest du den Rechner als App mit unserem Logo. Einmal mit Internet öffnen, damit er offline gespeichert wird.</p>
+  <p class="install-note">Die Installation hängt von deinem Browser ab. Einmal mit Internet öffnen, damit der Rechner offline gespeichert wird.</p>
   <details id="moreInstallHelp">
    <summary>Weitere Möglichkeiten</summary>
    <p><strong>Kein Installationsmenü?</strong> Du kannst den Rechner weiterhin als Website nutzen. Auf iPhone/iPad nach „Teilen“ suchen oder den Link in Safari öffnen. Auf Android bieten unter anderem Chrome, Edge, Firefox und Samsung Internet passende Menüpunkte; die Bezeichnung hängt von der Version ab.</p>

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'gemischrechner-v8';
+const CACHE_NAME = 'gemischrechner-v9';
 const APP_SCOPE = self.registration.scope;
 const CORE_FILES = [
   './', './index.html', './calculator.js', './app.js', './manifest.json', './teilen-qr.png',

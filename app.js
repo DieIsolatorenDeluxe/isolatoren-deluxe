@@ -28,15 +28,60 @@
   get('iosInstructions').hidden = !isIOS;
   get('androidInstructions').hidden = !isAndroid;
   get('desktopInstructions').hidden = isIOS || isAndroid;
-  const isDesktopChrome = !isIOS && !isAndroid && /Chrome|Chromium/.test(navigator.userAgent) && !/Edg|OPR/.test(navigator.userAgent);
-  if (isDesktopChrome) {
-    get('desktopStep1').textContent = 'Oben rechts in Chrome das Dreipunkt-Menü (⋮) öffnen.';
-    get('desktopStep2').textContent = '„Streamen, speichern und teilen“ → „Seite als App installieren…“ wählen.';
-  } else if (!isIOS && !isAndroid && /Mac/.test(navigator.platform) && /Safari/.test(navigator.userAgent) && !/Chrome|Chromium|Edg/.test(navigator.userAgent)) {
-    get('desktopStep1').textContent = 'In Safari oben das Menü „Ablage“ öffnen.';
-    get('desktopStep2').textContent = '„Zum Dock hinzufügen“ wählen.';
-    get('desktopStep3').textContent = 'Mit „Hinzufügen“ bestätigen.';
+  const ua = navigator.userAgent;
+  const browserChoice = get('desktopBrowser');
+  browserChoice.value = /Edg\//.test(ua) ? 'edge' : /Firefox\//.test(ua) ? 'firefox' :
+    /OPR\/|Opera/.test(ua) ? 'other' : /Chrome|Chromium/.test(ua) ? 'chrome' :
+    /Safari/.test(ua) && /Mac/.test(navigator.platform) ? 'safari' : 'other';
+  const guides = {
+    chrome: {
+      steps: ['Oben rechts in Chrome auf die drei Punkte (⋮) klicken.', '„Streamen, speichern und teilen“ öffnen.', '„Seite als App installieren…“ auswählen.', 'Im neuen Fenster auf „Installieren“ klicken.'],
+      location: 'Unter Windows: Startmenü öffnen und nach „Gemischrechner“ suchen. Ein Desktop-Symbol wird nicht immer automatisch angelegt.',
+      shortcut: ['In einem neuen Chrome-Tab chrome://apps in die Adresszeile eingeben und Enter drücken.', 'Mit der rechten Maustaste auf den Gemischrechner klicken und „Verknüpfung erstellen“ wählen.', '„Desktop“ auswählen und mit „Erstellen“ bestätigen.'],
+      url: 'https://support.google.com/chrome/answer/9658361?hl=de'
+    },
+    edge: {
+      steps: ['Oben rechts in Edge auf die drei Punkte (…) klicken.', '„Weitere Tools“ öffnen, dann „Apps“ auswählen. Je nach Version steht „Apps“ direkt im Hauptmenü.', '„Diese Website als App installieren“ auswählen.', 'Mit „Installieren“ bestätigen. Falls angeboten, „Desktopverknüpfung erstellen“ aktivieren.'],
+      location: 'Die App findest du in Edge unter edge://apps. Unter Windows kannst du sie auch im Startmenü suchen.',
+      shortcut: ['In einem neuen Edge-Tab edge://apps in die Adresszeile eingeben und Enter drücken.', 'Beim Gemischrechner auf „Details“ klicken.', '„Desktopverknüpfung erstellen“ auswählen. Dort lässt sich die App auch an die Taskleiste anheften.'],
+      url: 'https://support.microsoft.com/de-de/edge/install-manage-or-uninstall-apps-in-microsoft-edge'
+    },
+    safari: {
+      steps: ['In Safari auf dem Mac oben in der Menüleiste „Ablage“ öffnen.', '„Zum Dock hinzufügen“ wählen.', 'Mit „Hinzufügen“ bestätigen.'],
+      location: 'Du findest die App mit unserem Logo unten im Dock und im Ordner „Programme“ deines Benutzerordners. Safari erstellt dabei kein Symbol auf dem Schreibtisch. Die Funktion benötigt macOS Sonoma oder neuer.',
+      shortcut: ['Die App direkt über das Logo im Dock öffnen.', 'Fehlt sie dort, im Finder den Ordner „Programme“ deines Benutzerordners öffnen und den Gemischrechner ins Dock ziehen.'],
+      url: 'https://support.apple.com/de-de/104996'
+    },
+    firefox: {
+      steps: ['Unter Windows rechts in der Firefox-Adressleiste auf das Web-App-Symbol klicken.', 'Firefox öffnet die Seite als App und legt einen Eintrag im Startmenü an.', 'Bei der Frage zum Anheften an die Taskleiste auf „Ja“ klicken.'],
+      location: 'Unter Windows findest du die App im Startmenü, meist im Ordner „Firefox Web Apps“. Voraussetzung: Firefox ab Version 143, bei der Microsoft-Store-Version ab 150. Auf Mac und Linux bietet Firefox diese Installation derzeit nicht an; dort kannst du ein Lesezeichen verwenden.',
+      shortcut: ['Unter Windows das Startmenü öffnen und nach „Gemischrechner“ suchen.', 'Die App öffnen. Mit der rechten Maustaste auf ihr Symbol unten in der Taskleiste klicken und „An Taskleiste anheften“ wählen. Ein Desktop-Symbol legt Firefox nicht automatisch an.'],
+      url: 'https://support.mozilla.org/en-US/kb/web-apps-firefox-windows'
+    },
+    other: {
+      steps: ['Das Browsermenü öffnen und nach „App installieren“ oder „Zum Startbildschirm hinzufügen“ suchen.', 'Falls vorhanden, auswählen und die Installation bestätigen.', 'Fehlt diese Funktion, die Seite als Lesezeichen speichern: unter Windows/Linux Strg + D, auf dem Mac ⌘ + D.'],
+      location: 'Ob eine eigene App möglich ist und wo ihr Symbol erscheint, bestimmt dein Browser. Als Website bleibt der Rechner nutzbar.',
+      shortcut: ['Die Hilfe deines Browsers für „Web-App installieren“ öffnen. Nicht jeder Browser bietet eine App- oder Desktop-Verknüpfung an.'],
+      url: 'https://dieisolatorendeluxe.github.io/isolatoren-deluxe/'
+    }
+  };
+  function renderDesktopGuide() {
+    const guide = guides[browserChoice.value] || guides.other;
+    for (let i = 1; i <= 4; i++) {
+      get(`desktopStep${i}`).textContent = guide.steps[i - 1] || '';
+      get(`desktopStep${i}`).hidden = !guide.steps[i - 1];
+    }
+    for (let i = 1; i <= 3; i++) {
+      get(`shortcutStep${i}`).textContent = guide.shortcut[i - 1] || '';
+      get(`shortcutStep${i}`).hidden = !guide.shortcut[i - 1];
+    }
+    get('desktopLocation').textContent = guide.location;
+    get('browserHelpLink').href = guide.url;
+    get('browserHelpLink').hidden = browserChoice.value === 'other';
+    get('desktopShortcutHelp').open = false;
   }
+  browserChoice.addEventListener('change', renderDesktopGuide);
+  renderDesktopGuide();
   updateInstall();
   updateStatus();
   standalone.addEventListener?.('change', updateInstall);
@@ -52,7 +97,9 @@
     installed = true;
     pendingInstall = null;
     updateInstall();
-    feedback.textContent = 'App installiert. Du findest sie auf deinem Startbildschirm.';
+    feedback.textContent = isIOS || isAndroid
+      ? 'App installiert. Du findest sie auf deinem Startbildschirm.'
+      : 'App installiert. Du findest sie im App-Menü deines Computers. Ein Desktop-Symbol wird je nach Browser separat angelegt.';
   });
   function openHelp() {
     get('installFeedback').textContent = '';
