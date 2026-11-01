@@ -50,7 +50,6 @@ test('mobile browser variants keep the same installation fallback available',asy
     await app.nodes.installApp.listeners.click();
     assert.equal(app.nodes.installHelp.open,true,userAgent);
     assert.equal(app.nodes[id].hidden,false,userAgent);
-    assert.equal(app.nodes.saveDesktop.hidden,true,userAgent);
   }
 });
 test('installation help can copy a link even without native sharing',async()=>{
@@ -70,26 +69,47 @@ test('installed app hides installation action',()=>{
   assert.equal(setup({standalone:true}).nodes.installApp.hidden,true);
   assert.equal(setup({navigator:{standalone:true}}).nodes.installApp.hidden,true);
 });
-test('desktop offers saving and keeps mobile installation help out of its dialog',async()=>{
+test('desktop Chrome gets exact menu instructions and only matching device help',async()=>{
   const app=setup({navigator:{userAgent:'Windows Chrome',platform:'Win32'}});
-  assert.equal(app.nodes.saveDesktop.hidden,false);
   assert.equal(app.nodes.desktopInstructions.hidden,false);
   assert.equal(app.nodes.iosInstructions.hidden,true);
   assert.equal(app.nodes.androidInstructions.hidden,true);
-  await app.nodes.saveDesktop.listeners.click();
+  await app.nodes.installApp.listeners.click();
   assert.equal(app.nodes.installHelp.open,true);
-  assert.equal(setup().nodes.saveDesktop.hidden,true);
+  assert.match(app.nodes.desktopStep1.textContent,/Chrome/);
+  assert.match(app.nodes.desktopStep2.textContent,/Streamen, speichern und teilen/);
 });
-test('desktop shortcut files open the published HTTPS website',()=>{
-  const root=path.join(__dirname,'..');
-  const windows=fs.readFileSync(path.join(root,'gemischrechner.url'),'utf8');
-  const mac=fs.readFileSync(path.join(root,'gemischrechner.webloc'),'utf8');
-  assert.match(windows,/\[InternetShortcut\]/);
-  assert.match(windows,/URL=https:\/\/dieisolatorendeluxe.github.io\/isolatoren-deluxe\//);
-  assert.match(mac,/<key>URL<\/key>/);
-  assert.match(mac,/<string>https:\/\/dieisolatorendeluxe.github.io\/isolatoren-deluxe\/<\/string>/);
-  assert.equal(fs.readFileSync(path.join(root,'desktop-verknuepfungen.zip')).subarray(0,2).toString(),'PK');
-  assert.ok(fs.readFileSync(path.join(root,'index.html'),'utf8').includes('href="desktop-verknuepfungen.zip"'));
+test('manual installation opens a short guide with advanced options collapsed',async()=>{
+  const app=setup();await app.nodes.installApp.listeners.click();
+  app.nodes.moreInstallHelp.open=true;
+  app.nodes.closeInstallHelp.listeners.click();
+  await app.nodes.installApp.listeners.click();
+  assert.equal(app.nodes.installHelp.open,true);
+  assert.equal(app.nodes.moreInstallHelp.open,false);
+  const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8');
+  assert.ok(html.includes('<summary>Weitere Möglichkeiten</summary>'));
+  assert.ok(html.includes('id="installApp" type="button" aria-haspopup="dialog"'));
+});
+test('Mac Safari gets a three-step Add to Dock guide',()=>{
+  const app=setup({navigator:{userAgent:'Macintosh Safari',platform:'MacIntel'}});
+  assert.match(app.nodes.desktopStep1.textContent,/Ablage/);
+  assert.match(app.nodes.desktopStep2.textContent,/Zum Dock hinzufügen/);
+  assert.match(app.nodes.desktopStep3.textContent,/Hinzufügen/);
+});
+test('installation does not offer ZIP downloads or manual desktop shortcuts',()=>{
+  const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8');
+  assert.doesNotMatch(html,/desktop-verknuepfungen|gemischrechner\.(url|webloc)|saveDesktop/);
+  assert.equal((html.match(/id="installApp"/g)||[]).length,1);
+});
+test('QR code opens in a separate dialog and links to the public installation page',()=>{
+  const app=setup();app.nodes.showQRCode.listeners.click();
+  assert.equal(app.nodes.qrHelp.open,true);
+  app.nodes.closeQRCode.listeners.click();assert.equal(app.nodes.qrHelp.open,false);
+  const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8');
+  assert.ok(html.includes('src="teilen-qr.png"'));
+  assert.ok(html.includes('href="teilen-qr.png" download="Isolatoren-Deluxe-QR.png"'));
+  const png=fs.readFileSync(path.join(__dirname,'../teilen-qr.png'));
+  assert.equal(png.readUInt32BE(16),768);assert.equal(png.readUInt32BE(20),768);
 });
 test('native Android installation requires a button click and handles dismissal',async()=>{
   const app=setup();let prompted=0,prevented=false;
