@@ -12,8 +12,9 @@
   <meta name="theme-color" content="#0e0e0e">
 
   <!-- FAVICONS -->
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" href="app-icon.ico" type="image/x-icon">
+  <link rel="icon" href="app-icon-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="app-icon-180.png" sizes="180x180">
 
   <!-- PWA / MANIFEST -->
   <link rel="manifest" href="manifest.json">
@@ -361,6 +362,7 @@ body { padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(s
 .app-actions { display:flex; flex-wrap:wrap; gap:10px; }
 .app-actions button { flex:1 1 140px; min-height:44px; }
 .save-link { display:inline-block; color:var(--gold); padding:10px 0; min-height:44px; }
+.install-icon { display:block; width:80px; height:80px; margin:0 0 16px; border-radius:16px; }
 #appFeedback:not(:empty) { margin:12px 0 0; }
 .social-tile { min-width:88px; min-height:88px; touch-action:manipulation; }
 .modal-box { padding-bottom:max(20px,env(safe-area-inset-bottom,0px)); }
@@ -667,6 +669,7 @@ Privates, nicht kommerzielles Projekt
 <dialog class="modal" id="installHelp" aria-labelledby="installTitle">
  <div class="modal-box">
   <h3 id="installTitle">Als App installieren oder speichern</h3>
+  <img class="install-icon" src="app-icon-192.png" alt="App-Symbol: Die Isolatoren Deluxe" width="80" height="80">
   <div id="desktopInstructions">
    <h4>Windows, Mac und Linux</h4>
    <p><strong>Als eigene App:</strong> In Chrome oder Edge auf „App installieren“ oder das Installationssymbol in der Adressleiste klicken. Alternativ im Browsermenü nach „Apps“ oder „Installieren“ suchen. Nach der Installation kannst du die App an Startmenü oder Taskleiste anheften.</p>
@@ -674,6 +677,7 @@ Privates, nicht kommerzielles Projekt
    <p><strong>Als Lesezeichen:</strong> Strg + D drücken, auf dem Mac ⌘ + D. Du kannst auch das Symbol neben der Webadresse auf den Desktop ziehen.</p>
    <p><a class="save-link" href="desktop-verknuepfungen.zip" download="Gemischrechner-Desktop.zip">Desktop-Verknüpfungen herunterladen (.zip)</a></p>
    <p>Die ZIP-Datei entpacken und die passende Verknüpfung auf dem Desktop ablegen: .url für Windows, .webloc für Mac. Sie öffnet die Website; für ein eigenes App-Fenster bitte die App installieren.</p>
+   <p>Für ein eigenes Symbol bei einer einfachen Verknüpfung liegen Logo und Icon-Datei im ZIP. Bei einer installierten Web-App wird das App-Symbol vom Browser übernommen.</p>
   </div>
   <div id="iosInstructions">
    <h4>iPhone und iPad</h4>

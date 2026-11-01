@@ -1,0 +1,15 @@
+Die Isolatoren Deluxe – Desktop-Verknüpfungen
+
+Für ein eigenes App-Fenster mit App-Symbol:
+Auf der Website „App installieren“ wählen und die Anleitung des Browsers befolgen.
+
+Einfache Verknüpfung:
+ZIP vollständig entpacken. Unter Windows die Datei gemischrechner.url, auf dem Mac
+gemischrechner.webloc auf dem Desktop ablegen. Sie öffnet die Website im Browser.
+Das Symbol einfacher Verknüpfungen wird vom Betriebssystem bestimmt.
+
+Eigenes Windows-Symbol zuweisen:
+app-icon.ico an einem festen Ort behalten. Rechtsklick auf die Verknüpfung,
+„Eigenschaften“ > „Webdokument“ > „Anderes Symbol“ > „Durchsuchen“ und die ICO-Datei wählen.
+
+Für die manuelle Symbolauswahl auf dem Mac ist das Logo als app-icon-512.png enthalten.

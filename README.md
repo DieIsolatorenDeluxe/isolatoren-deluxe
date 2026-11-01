@@ -18,7 +18,7 @@ Browserprüfungen für Darstellung, Dialoge und Tastaturbedienung kommen ergänz
 `index.html`, `calculator.js` und `sw.js` gemeinsam im Stammordner des Repositorys
 aktualisieren. Die vorhandenen Bilder und die Manifest-Datei bleiben erforderlich.
 GitHub Pages veröffentlicht nach dem Push über die vorhandene Projektkonfiguration.
-Cache-Version v6 aktualisiert HTML und Rechnerlogik zuerst aus dem Netz, nutzt offline den Cache und lädt alte App-Fenster beim Versionswechsel neu.
+Cache-Version v7 aktualisiert HTML und Rechnerlogik zuerst aus dem Netz, nutzt offline den Cache und lädt alte App-Fenster beim Versionswechsel neu.
 Sie speichert auch die kompakten WebP-Bilder, Social-Icons und App-Icons.
 
 ## Android und iPhone
@@ -43,4 +43,13 @@ zusätzlich auf den jeweiligen Geräten geprüft werden.
 in Safari und das Anlegen eines Lesezeichens. Zusätzlich stehen normale URL-Verknüpfungen
 für Windows (`gemischrechner.url`) und Mac (`gemischrechner.webloc`) in `desktop-verknuepfungen.zip` zum Download bereit.
 Diese öffnen die veröffentlichte Website, sie enthalten keine ausführbaren Programme.
+
+## App-Symbol
+
+Das bestehende Logo wird unverzerrt in eigenen PNG-Größen (180, 192, 512 Pixel),
+als Android-Maskable-Icon und als ICO mit sechs Größen ausgeliefert.
+Neue Dateinamen vermeiden alte zwischengespeicherte Symbole.
+Installierte Apps können ihr Symbol je nach Betriebssystem verzögert aktualisieren;
+bei Bedarf die alte Verknüpfung entfernen und die Seite erneut hinzufügen.
+Das Desktop-ZIP enthält zusätzlich ICO, PNG und Hinweise für manuelle Symbole.
 DDR Zweitakt Gemischrechner &amp; Gemeinschaft
