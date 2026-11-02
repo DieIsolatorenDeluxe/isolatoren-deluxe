@@ -363,6 +363,10 @@ body { padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(s
 .app-actions button { flex:1 1 110px; min-height:44px; }
 #installApp { flex-basis:100%; }
 .qr-image { display:block; width:min(100%,280px); height:auto; margin:16px auto; background:#fff; }
+.qr-poster { position:relative; margin:16px auto; max-width:520px; }
+.qr-poster-art { display:block; width:100%; height:auto; }
+.qr-poster .qr-image { position:absolute; left:27.7%; top:43.85%; width:44.4%; margin:0; height:auto; }
+#qrHelp { width:min(96vw,580px); }
 .qr-link { color:var(--gold); overflow-wrap:anywhere; }
 .save-link { display:inline-block; color:var(--gold); padding:10px 0; min-height:44px; }
 .install-icon { display:block; width:64px; height:64px; margin:0 0 12px; border-radius:14px; }
@@ -716,7 +720,10 @@ Privates, nicht kommerzielles Projekt
 <dialog class="modal" id="qrHelp" aria-labelledby="qrTitle">
  <div class="modal-box">
   <h3 id="qrTitle">Scannen und weitergeben</h3>
-  <img class="qr-image" src="teilen-qr.png" alt="QR-Code zur Website Die Isolatoren Deluxe" width="768" height="768">
+  <div class="qr-poster">
+   <img class="qr-poster-art" src="qr-plakat.webp" alt="Die Isolatoren Deluxe. Dein Gemisch. Schnell berechnet. 2-Takt-Gemischrechner fürs Handy. Scannen. Rechnen. Losfahren. Kostenlos und ohne Anmeldung." width="1054" height="1492" loading="lazy">
+   <img class="qr-image" src="teilen-qr.png" alt="QR-Code zur Website Die Isolatoren Deluxe" width="768" height="768">
+  </div>
   <p>Mit der Handy-Kamera scannen und die Website öffnen. Dort lässt sich die App installieren.</p>
   <p><a class="qr-link" href="https://dieisolatorendeluxe.github.io/isolatoren-deluxe/" target="_blank" rel="noopener noreferrer">dieisolatorendeluxe.github.io/isolatoren-deluxe/</a></p>
   <p><a class="save-link" href="teilen-qr.png" download="Isolatoren-Deluxe-QR.png">QR-Code als Bild speichern</a></p>
