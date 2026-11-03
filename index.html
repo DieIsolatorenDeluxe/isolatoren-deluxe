@@ -659,6 +659,13 @@ button, input, select, .section-nav a { min-height:44px; }
 .action-qr-poster strong { display:block; color:#ffdc79; font-size:1.25rem; }
 .action-qr-poster p { margin:8px 0; }
 .action-qr-poster img { display:block; width:min(100%,240px); height:auto; margin:16px auto; }
+
+#befreundete-gemeinschaften { scroll-margin-top:16px; }
+.friends-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,18rem),1fr)); gap:16px; }
+.friend-card { width:100%; max-width:32rem; min-width:0; box-sizing:border-box; padding:16px; border:1px solid #997248; border-radius:12px; background:#18130f; }
+.friend-card > img { display:block; width:min(100%,220px); height:auto; margin:0 auto 12px; }
+.friend-card summary { cursor:pointer; padding:10px 0; color:#ffdc79; font-weight:bold; }
+.friend-card a { overflow-wrap:anywhere; }
 </style>
 </head>
 
@@ -673,6 +680,7 @@ button, input, select, .section-nav a { min-height:44px; }
   <a class="nav-primary" href="#rechner">Mischrechner</a>
   <a href="#kronkorkenaktion">Kronkorkenaktion</a>
   <a href="#gemeinschaft">Gemeinschaft</a>
+  <a href="#befreundete-gemeinschaften">Befreundete Gemeinschaften</a>
   <a href="#termine">Termine</a>
   <a href="#merch">Deko &amp; Merch</a>
 </nav>
@@ -910,6 +918,32 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
 </div>
 
 <!-- TERMINE -->
+<section class="section" id="befreundete-gemeinschaften" aria-labelledby="friends-title">
+  <h2 id="friends-title">Befreundete Gemeinschaften</h2>
+  <div class="friends-grid">
+    <!-- Weitere Gemeinschaften als eigene friend-card ergänzen. -->
+    <article class="friend-card">
+      <img src="Zweitakt_Brigade_FRW_Logo.png" width="969" height="970" alt="" loading="lazy" decoding="async">
+      <h3>🇩🇪 ZWEITAKT-BRIGADE FRW 🇩🇪</h3>
+      <p>Eine eigenständige Ostfahrzeug-Gemeinschaft mit gemeinsamer Leidenschaft für DDR-Fahrzeuge, Zweitakttechnik, Oldtimer und Ostalgie.</p>
+      <details>
+        <summary>Mehr zur Zweitakt-Brigade FRW</summary>
+        <p><a href="https://www.tiktok.com/@zweitaktbrigade.frw">Zweitakt-Brigade FRW auf TikTok</a></p>
+        <details>
+          <summary>Mitglieder anzeigen</summary>
+          <ul>
+            <li>Duroplastbomber601</li>
+            <li><a href="https://www.tiktok.com/@dersechsnulleins_85">Dersechsnulleins_85 auf TikTok</a></li>
+            <li>Sille</li>
+            <li>xMischex31</li>
+            <li>Pustekuchen</li>
+          </ul>
+        </details>
+      </details>
+    </article>
+  </div>
+</section>
+
 <div class="section" id="termine">
   <h2>TERMINARCHIV 2026</h2>
   <p>Hier findest du vergangene Treffen aus 2026. Neue Termine ergänzen wir, sobald sie feststehen.</p>
