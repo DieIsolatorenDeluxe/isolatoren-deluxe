@@ -394,8 +394,10 @@ body { padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(s
 .action-intro img { width:100%; max-width:360px; height:auto; justify-self:center; }
 .action-card { background:#191919; border:1px solid #555; border-radius:12px; padding:16px; }
 .action-card h3 { margin-top:0; }
-.action-yes { color:#a6de71; }
-.action-no { color:#ff958b; }
+.action-card.rules-yes { border-color:#397b50; background:#14261b; }
+.action-card.rules-no { border-color:#a74747; background:#2d191b; }
+.action-yes { color:#a9efb6; }
+.action-no { color:#ffaaaa; }
 .action-social { display:flex; align-items:center; flex-wrap:wrap; gap:8px; }
 .action-social a { display:inline-grid; place-items:center; width:44px; height:44px; border:1px solid #777; border-radius:8px; }
 .action-social a img { display:block; width:28px; height:28px; }
@@ -564,6 +566,86 @@ button, input, select, .section-nav a { min-height:44px; }
   .section-nav a { padding:9px 10px; }
   .site-header img { width:84px; }
 }
+.site-header {
+  border:0;
+  border-radius:0;
+  background:radial-gradient(ellipse at 12% 50%,#403019,transparent 72%);
+}
+.section-nav {
+  border-bottom:1px solid var(--border);
+  padding-bottom:10px;
+}
+.section-nav a:not(.nav-primary) { border-color:transparent; background:transparent; }
+.section-nav a:not(.nav-primary):hover { background:#382d20; }
+#kronkorkenaktion, #gemeinschaft, #termine, #merch {
+  background:none;
+  border:0;
+  border-top:1px solid var(--border);
+  border-radius:0;
+  padding:28px 0 0;
+}
+#kronkorkenaktion { border-top-color:#6c8e4b; }
+.action-grid, .community-grid { gap:clamp(12px,3vw,26px); }
+.action-card, .community-grid .person-block {
+  background:none;
+  border:0;
+  border-top:1px solid var(--border);
+  border-radius:0;
+  padding:14px 0 0;
+}
+.action-card.rules-yes, .action-card.rules-no {
+  background:none;
+  padding-inline-start:14px;
+  border-top:0;
+  border-inline-start:3px solid;
+}
+.action-card.rules-yes { border-inline-start-color:#70c784; }
+.action-card.rules-no { border-inline-start-color:#e87575; }
+.community-founders .person-block { border-top-color:#98743e; }
+.archive-list li {
+  background:none;
+  border:0;
+  border-bottom:1px solid var(--border);
+  border-radius:0;
+}
+.archive-list .date { background:none; }
+.merch-card { border:0; border-radius:0; background:none; }
+.merch-card figcaption { padding-inline:0; }
+.reverse-calculator, .app-tools {
+  background:none;
+  border:0;
+  border-bottom:1px solid var(--border);
+  border-radius:0;
+}
+.site-header {
+  flex-direction:column;
+  text-align:center;
+  gap:8px;
+  background:radial-gradient(ellipse at 50% 40%,#403019,transparent 72%);
+}
+.site-header img { width:min(380px,85vw,100%); box-shadow:none; }
+#rechner { border:0; border-radius:0; background:transparent; padding-inline:0; }
+.vehicle {
+  border:1px solid #715a37;
+  border-radius:12px;
+  background:linear-gradient(150deg,#29241b,#171615);
+}
+.vehicle img { width:min(100%,176px); height:auto; aspect-ratio:4/3; object-fit:contain; border-radius:8px; filter:drop-shadow(0 2px 5px #e8bd7240); }
+.vehicle.active { border-color:var(--gold); }
+.action-card.rules-yes, .action-card.rules-no { padding:12px 14px; }
+.action-card.rules-yes { background:#14261b; }
+.action-card.rules-no { background:#2d191b; }
+.action-qr-poster {
+  margin:14px 0 10px;
+  padding:20px 14px;
+  text-align:center;
+  color:#f1eeea;
+  background:radial-gradient(ellipse at top,#213923,#131512 65%);
+  border:1px solid #8aa653;
+}
+.action-qr-poster strong { display:block; color:#ffdc79; font-size:1.25rem; }
+.action-qr-poster p { margin:8px 0; }
+.action-qr-poster img { display:block; width:min(100%,240px); height:auto; margin:16px auto; }
 </style>
 </head>
 
@@ -590,11 +672,12 @@ Wähle dein Fahrzeug, prüfe das Mischungsverhältnis und gib die Benzinmenge in
 </p>
 
 <div class="vehicle-grid">
-  <button type="button" class="vehicle" data-name="Trabant" data-rec="50" aria-pressed="false"><img src="fahrzeug-trabant.svg" alt=""><span>Trabant</span></button>
-  <button type="button" class="vehicle" data-name="Simson" data-rec="50" aria-pressed="false"><img src="fahrzeug-simson.svg" alt=""><span>Simson</span></button>
-  <button type="button" class="vehicle" data-name="MZ" data-rec="50" aria-pressed="false"><img src="fahrzeug-mz.svg" alt=""><span>MZ</span></button>
-  <button type="button" class="vehicle" data-name="Sonstige Zweitakter" data-rec="" aria-pressed="false"><img src="fahrzeug-sonstige_zweitakter.svg" alt=""><span>Sonstige</span></button>
+  <button type="button" class="vehicle" data-name="Trabant" data-rec="50" aria-pressed="false"><img src="foto-trabi.webp" alt=""><span>Trabant</span></button>
+  <button type="button" class="vehicle" data-name="Simson" data-rec="50" aria-pressed="false"><img src="foto-simson.webp" alt=""><span>Simson</span></button>
+  <button type="button" class="vehicle" data-name="MZ" data-rec="50" aria-pressed="false"><img src="foto-mz.webp" alt=""><span>MZ</span></button>
+  <button type="button" class="vehicle" data-name="Sonstige Zweitakter" data-rec="" aria-pressed="false"><img src="fahrzeug-sonstige_zweitakter.svg" alt=""><span>Sonstige Zweitakter</span></button>
 </div>
+<p class="section-note">Für Boote, Kettensägen und andere Zweitakter: das vom Hersteller vorgegebene Mischungsverhältnis einstellen.</p>
 
 <p id="mixState" class="section-note"></p>
 
@@ -606,6 +689,15 @@ Wähle dein Fahrzeug, prüfe das Mischungsverhältnis und gib die Benzinmenge in
 <div class="result" role="status" id="mixResult" style="display:none;"></div>
 </div>
 
+<details class="section-note">
+  <summary>Bildnachweise der Fahrzeugfotos</summary>
+  <ul>
+    <li>Trabant 601 S – Image by Renée Kools via Wikimedia Commons, CC-BY-4.0. <a href="https://commons.wikimedia.org/wiki/File:Cream_Trabant_601_S_side_view.jpg">Originalfoto</a> · <a href="https://creativecommons.org/licenses/by/4.0/">Lizenz</a></li>
+    <li>Simson S51 – Yarl, Wikimedia Commons. <a href="https://commons.wikimedia.org/wiki/File:Simson_S51.jpg">Originalfoto</a> · <a href="https://creativecommons.org/licenses/by-sa/2.5/">CC BY-SA 2.5</a></li>
+    <li>MZ ETZ 250 – Thargor wetton, Wikimedia Commons. <a href="https://commons.wikimedia.org/wiki/File:MZ_ETZ250.JPG">Originalfoto</a> · <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a></li>
+  </ul>
+  <p>Für die Website verkleinert und als WebP gespeichert. Die jeweilige Lizenz gilt auch für diese Fassungen.</p>
+</details>
 <!-- RÜCKRECHNER -->
 <details class="section reverse-calculator">
 <summary>Rückwärts rechnen: Öl → Benzin</summary>
@@ -646,10 +738,10 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
     </div>
   </div>
   <div class="action-grid">
-    <div class="action-card"><h3 class="action-yes">Das sammeln wir</h3>
+    <div class="action-card rules-yes"><h3 class="action-yes"><span aria-hidden="true">✓</span> Ja, das sammeln wir</h3>
       <ul><li>Kronkorken</li><li>Blechdeckel von Schraubgläsern</li><li>Flaschendeckel aus Metall</li><li>Bügel von Sektflaschen, ohne Korken</li></ul>
     </div>
-    <div class="action-card"><h3 class="action-no">Das gehört nicht hinein</h3>
+    <div class="action-card rules-no"><h3 class="action-no"><span aria-hidden="true">✕</span> Nein, das gehört nicht hinein</h3>
       <ul><li>Dosen</li><li>Teelichter</li><li>Tierfutterschalen</li><li>Tierfuttertüten</li></ul>
     </div>
     <div class="action-card"><h3>Jan &amp; Steffi Sonneborn</h3>
@@ -673,7 +765,12 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
     <a class="action-primary" href="kronkorken-flyer.webp">Offiziellen Vereinsflyer ansehen</a>
     <details>
       <summary>Aktion teilen / QR-Code</summary>
-      <img class=action-qr-flyer src=kronkorken-qr-flyer.png width=900 height=1130 alt="Kleine Deckel. Große Hilfe. QR-Code zur Kronkorkenaktion in Berlin und Brandenburg" loading=lazy>
+      <figure class="action-qr-poster">
+        <strong>Kleine Deckel. Große Hilfe.</strong>
+        <p>Kronkorkenaktion · Berlin und Brandenburg</p>
+        <img src="kronkorken-qr.png" width="512" height="512" alt="QR-Code direkt zur Kronkorkenaktion" loading="lazy">
+        <figcaption>Scannen und mitmachen</figcaption>
+      </figure>
       <a href="https://dieisolatorendeluxe.github.io/isolatoren-deluxe/#kronkorkenaktion">Direktlink zur Kronkorkenaktion</a>
     </details>
   </div>
