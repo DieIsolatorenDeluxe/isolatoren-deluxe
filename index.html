@@ -385,6 +385,24 @@ body { padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(s
 .modal-box { padding-bottom:max(20px,env(safe-area-inset-bottom,0px)); }
 .modal-box p, .modal-box li { line-height:1.5; }
 @media(prefers-reduced-motion:reduce) { *, *::before, *::after { transition:none !important; animation:none !important; } }
+#kronkorkenaktion { scroll-margin-top:16px; overflow-wrap:anywhere; }
+#kronkorkenaktion a { color:#ffdc79; }
+.action-eyebrow { color:#a6de71; text-transform:uppercase; letter-spacing:.12em; }
+.action-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+.action-intro { align-items:center; margin-bottom:16px; }
+.action-intro img { width:100%; max-width:360px; height:auto; justify-self:center; }
+.action-card { background:#191919; border:1px solid #555; border-radius:12px; padding:16px; }
+.action-card h3 { margin-top:0; }
+.action-yes { color:#a6de71; }
+.action-no { color:#ff958b; }
+.action-social { display:flex; align-items:center; flex-wrap:wrap; gap:8px; }
+.action-social a { padding:8px; border:1px solid #777; border-radius:6px; }
+.action-logo { float:right; object-fit:contain; max-width:30%; height:auto; margin-left:8px; }
+.action-referral { clear:both; border-top:1px solid #b58b35; padding-top:12px; }
+.action-footer { margin-top:16px; align-items:start; }
+#kronkorkenaktion .action-primary, .action-footer summary { display:block; background:#ffdc79; color:#181108; border-radius:8px; padding:12px; font-weight:bold; }
+.action-footer summary { display:list-item; cursor:pointer; }
+@media (max-width:640px) { .action-grid { grid-template-columns:1fr; } }
 </style>
 </head>
 
@@ -604,6 +622,53 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
 
   </div>
 </div>
+
+<section class="section" id="kronkorkenaktion" aria-labelledby="kronkorken-title">
+  <p class="action-eyebrow">Unser Herzensprojekt</p>
+  <h2 id="kronkorken-title">Kleine Deckel. Große Hilfe.</h2>
+  <div class="action-grid action-intro">
+    <img src="kronkorken-region.webp" alt="Jan und Steffi sammeln Kronkorken in Berlin und Brandenburg" width="640" height="640" loading="lazy">
+    <div>
+      <h3>Gemeinsam sammeln. Gemeinsam helfen.</h3>
+      <p>Wir sind Jan &amp; Steffi Sonneborn – Die Isolatoren Deluxe aus Berlin und Brandenburg. Wir sammeln für „Kronkorken fürs Kinderhospiz e. V.“ und unterstützen regional das Kinderhospiz „Berliner Herz“.</p>
+      <p>Die Metallverschlüsse werden recycelt. Der Erlös geht an den Verein, der damit Kinderhospize unterstützt.</p>
+      <a class="action-primary" href="mailto:js.sonneborn@gmail.com?subject=Kronkorkenaktion%20Berlin%20und%20Brandenburg">Abgabe / Abholung anfragen</a>
+      <p>Übergabe und mögliche Abholung nach Absprache.</p>
+    </div>
+  </div>
+  <div class="action-grid">
+    <div class="action-card"><h3 class="action-yes">Das sammeln wir</h3>
+      <ul><li>Kronkorken</li><li>Blechdeckel von Schraubgläsern</li><li>Flaschendeckel aus Metall</li><li>Bügel von Sektflaschen, ohne Korken</li></ul>
+    </div>
+    <div class="action-card"><h3 class="action-no">Das gehört nicht hinein</h3>
+      <ul><li>Dosen</li><li>Teelichter</li><li>Tierfutterschalen</li><li>Tierfuttertüten</li></ul>
+    </div>
+    <div class="action-card"><h3>Jan &amp; Steffi Sonneborn</h3>
+      <p>Die Isolatoren Deluxe · Berlin / Brandenburg</p>
+      <p><a href="mailto:js.sonneborn@gmail.com">js.sonneborn@gmail.com</a></p>
+      <p class="action-social"><strong>Jan</strong> <a href="https://www.facebook.com/share/1Gk158Fub9" aria-label="Jan auf Facebook">Facebook</a> <a href="https://www.instagram.com/isolator_jan/" aria-label="Jan auf Instagram">Instagram</a> <a href="https://www.tiktok.com/@mullemannjan" aria-label="Jan auf TikTok">TikTok</a></p>
+      <p class="action-social"><strong>Steffi</strong> <a href="https://www.facebook.com/share/184oxeF15g/" aria-label="Steffi auf Facebook">Facebook</a> <a href="https://www.instagram.com/prinzepessa84/" aria-label="Steffi auf Instagram">Instagram</a> <a href="https://www.tiktok.com/@mulle_2020" aria-label="Steffi auf TikTok">TikTok</a></p>
+    </div>
+    <div class="action-card">
+      <img class="action-logo" src="kronkorken-verein.webp" width="96" height="96" alt="Vereinslogo" loading="lazy">
+      <h3>Der Verein</h3>
+      <p>Kronkorken fürs Kinderhospiz e. V.</p>
+      <p><a href="https://kronkorken-kinderhospiz.de/">Offizielle Vereinswebsite</a></p>
+      <p class="action-social"><strong>Verein</strong> <a href="https://www.facebook.com/groups/2481106385498380" aria-label="Verein auf Facebook">Facebook</a> <a href="https://www.instagram.com/kronkorken_kinderhospizev/" aria-label="Verein auf Instagram">Instagram</a> <a href="https://www.tiktok.com/@kronkorkenkinderhospiz24" aria-label="Verein auf TikTok">TikTok</a></p>
+      <p class="action-referral"><strong>Du möchtest spenden? Bitte wende dich direkt an den Verein.</strong><br>
+        <a href="mailto:info@kronkorken-kinderhospiz.de">info@kronkorken-kinderhospiz.de</a>
+      </p>
+    </div>
+  </div>
+  <div class="action-grid action-footer">
+    <a class="action-primary" href="kronkorken-flyer.webp">Offiziellen Vereinsflyer ansehen</a>
+    <details>
+      <summary>Aktion teilen / QR-Code</summary>
+      <img class="qr-image" src="kronkorken-qr.png" width="512" height="512" alt="QR-Code direkt zur Kronkorkenaktion" loading="lazy">
+      <a href="https://dieisolatorendeluxe.github.io/isolatoren-deluxe/#kronkorkenaktion">Direktlink zur Kronkorkenaktion</a>
+    </details>
+  </div>
+</section>
 
 <!-- TERMINE -->
 <div class="section">
