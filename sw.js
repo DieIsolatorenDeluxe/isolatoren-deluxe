@@ -1,8 +1,8 @@
-const CACHE_NAME = 'gemischrechner-v15';
+const CACHE_NAME = 'gemischrechner-v16';
 const APP_SCOPE = self.registration.scope;
 const CORE_FILES = [
   './', './index.html', './calculator.js', './app.js', './manifest.json', './teilen-qr.png', './qr-plakat.webp',
-  './logo.webp', './foto-trabi.webp', './foto-simson.webp', './foto-mz.webp', './foto-kettensaege.jpg', './foto-aussenborder.jpg',
+  './logo.webp', './foto-trabi.webp', './foto-simson.webp', './foto-mz.webp', './foto-kettensaege.jpg',
   './icon_instagram.webp', './icon_facebook.webp', './icon_tiktok.webp',
   './app-icon-180.png', './app-icon-192.png', './app-icon-512.png',
   './app-icon-maskable-512.png', './app-icon.ico'

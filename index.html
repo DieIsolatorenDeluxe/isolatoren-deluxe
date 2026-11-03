@@ -630,8 +630,7 @@ button, input, select, .section-nav a { min-height:44px; }
   border-radius:12px;
   background:linear-gradient(150deg,#29241b,#171615);
 }
-.vehicle-photo-pair { display:grid; grid-template-columns:3fr 2fr; align-items:center; gap:6px; width:min(100%,176px); aspect-ratio:4/3; }
-.vehicle .vehicle-photo-pair img { width:100%; aspect-ratio:auto; max-height:132px; }
+.vehicle img.vehicle-photo-compact { width:min(100%,128px); }
 .vehicle img { width:min(100%,176px); height:auto; aspect-ratio:4/3; object-fit:contain; border-radius:8px; filter:drop-shadow(0 2px 5px #e8bd7240); }
 .vehicle.active { border-color:var(--gold); }
 .action-card.rules-yes, .action-card.rules-no { padding:12px 14px; }
@@ -689,7 +688,7 @@ Wähle dein Fahrzeug, prüfe das Mischungsverhältnis und gib die Benzinmenge in
   <button type="button" class="vehicle" data-name="Trabant" data-rec="50" aria-pressed="false"><img src="foto-trabi.webp" alt=""><span>Trabant</span></button>
   <button type="button" class="vehicle" data-name="Simson" data-rec="50" aria-pressed="false"><img src="foto-simson.webp" alt=""><span>Simson</span></button>
   <button type="button" class="vehicle" data-name="MZ" data-rec="50" aria-pressed="false"><img src="foto-mz.webp" alt=""><span>MZ</span></button>
-  <button type="button" class="vehicle" data-name="Sonstige Zweitakter" data-rec="" aria-pressed="false"><span class="vehicle-photo-pair" aria-hidden="true"><img src="foto-kettensaege.jpg" alt=""><img src="foto-aussenborder.jpg" alt=""></span><span>Sonstige Zweitakter</span></button>
+  <button type="button" class="vehicle" data-name="Sonstige Zweitakter" data-rec="" aria-pressed="false"><img class="vehicle-photo-compact" src="foto-kettensaege.jpg" alt=""><span>Sonstige Zweitakter</span></button>
 </div>
 <p class="section-note">Für Boote, Kettensägen und andere Zweitakter: das vom Hersteller vorgegebene Mischungsverhältnis einstellen.</p>
 
@@ -710,7 +709,6 @@ Wähle dein Fahrzeug, prüfe das Mischungsverhältnis und gib die Benzinmenge in
     <li>Simson S51 – Yarl, Wikimedia Commons. <a href="https://commons.wikimedia.org/wiki/File:Simson_S51.jpg">Originalfoto</a> · <a href="https://creativecommons.org/licenses/by-sa/2.5/">CC BY-SA 2.5</a></li>
     <li>MZ ETZ 250 – Thargor wetton, Wikimedia Commons. <a href="https://commons.wikimedia.org/wiki/File:MZ_ETZ250.JPG">Originalfoto</a> · <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a></li>
     <li>Stihl MS 170 – Bene16 und Hic et nunc, Wikimedia Commons (verkleinert). <a href="https://commons.wikimedia.org/wiki/File:Stihl_MS_170.JPG">Originalfoto</a> · <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a></li>
-    <li>Yamaha PC-3, 1963 – Rainmaker47, Wikimedia Commons (verkleinert). <a href="https://commons.wikimedia.org/wiki/File:Yamaha_outboard_motor_pc-3.JPG">Originalfoto</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></li>
   </ul>
   <p>Für die Website verkleinert und als WebP gespeichert. Die jeweilige Lizenz gilt auch für diese Fassungen.</p>
 </details>
