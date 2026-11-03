@@ -1,8 +1,8 @@
-const CACHE_NAME = 'gemischrechner-v10';
+const CACHE_NAME = 'gemischrechner-v11';
 const APP_SCOPE = self.registration.scope;
 const CORE_FILES = [
   './', './index.html', './calculator.js', './app.js', './manifest.json', './teilen-qr.png', './qr-plakat.webp',
-  './logo.webp', './trabant.webp', './simson.webp', './mz.webp', './sonstige_zweitakter.webp',
+  './logo.webp', './fahrzeug-trabant.svg', './fahrzeug-simson.svg', './fahrzeug-mz.svg', './fahrzeug-sonstige_zweitakter.svg',
   './icon_instagram.webp', './icon_facebook.webp', './icon_tiktok.webp',
   './app-icon-180.png', './app-icon-192.png', './app-icon-512.png',
   './app-icon-maskable-512.png', './app-icon.ico'

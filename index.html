@@ -44,11 +44,11 @@
 <style>
 :root{
   --bg:#0e0e0e;
-  --panel:#1a1a1a;
-  --border:#333;
-  --gold:#d4aa00;
-  --text:#e5e5e5;
-  --green:#7cff7c;
+  --panel:#191817;
+  --border:#433a2c;
+  --gold:#e8bd72;
+  --text:#f1eeea;
+  --green:#a6de71;
 }
 
 *{box-sizing:border-box}
@@ -60,17 +60,18 @@ body{
   font-family:Arial,Helvetica,sans-serif;
 }
 
-/* Hintergrundlogo Desktop */
-@media(min-width:900px){
-  body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    background:url("logo.webp") no-repeat center;
-    background-size:720px;
-    opacity:0.04;
-    pointer-events:none;
-  }
+/* Das Hauptlogo bleibt als Wasserzeichen hinter den Inhaltsflächen. */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:url("logo.webp") no-repeat center;
+  background-size:min(86vw,720px);
+  opacity:.12;
+  pointer-events:none;
+}
+.wrapper{
+  position:relative;
 }
 
 .wrapper{
@@ -398,6 +399,25 @@ body { padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(s
 .action-social { display:flex; align-items:center; flex-wrap:wrap; gap:8px; }
 .action-social a { display:inline-grid; place-items:center; width:44px; height:44px; border:1px solid #777; border-radius:8px; }
 .action-social a img { display:block; width:28px; height:28px; }
+.social-tile, .action-social a {
+  background:linear-gradient(150deg,#29251e,#151515 75%);
+  border:1px solid #796343;
+  border-radius:14px;
+  box-shadow:inset 0 1px 0 #ffffff14,0 3px 8px #0005;
+}
+.action-social a { width:48px; height:48px; touch-action:manipulation; }
+.social-tile img, .action-social a img {
+  object-fit:contain;
+  border-radius:7px;
+}
+.social-tile:hover, .action-social a:hover {
+  background:linear-gradient(150deg,#3b3020,#191919 75%);
+  border-color:#e6bf71;
+}
+.social-tile:focus-visible, .action-social a:focus-visible {
+  outline:2px solid #ffdc79;
+  outline-offset:3px;
+}
 .action-qr-flyer { display:block; width:100%; height:auto; margin:12px auto; border-radius:8px; }
 .action-logo { float:right; object-fit:contain; max-width:30%; height:auto; margin-left:8px; }
 .action-referral { clear:both; border-top:1px solid #b58b35; padding-top:12px; }
@@ -405,42 +425,178 @@ body { padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(s
 #kronkorkenaktion .action-primary, .action-footer summary { display:block; background:#ffdc79; color:#181108; border-radius:8px; padding:12px; font-weight:bold; }
 .action-footer summary { display:list-item; cursor:pointer; }
 @media (max-width:640px) { .action-grid { grid-template-columns:1fr; } }
+
+.section-nav {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:8px;
+  margin:0 0 20px;
+}
+.section-nav a, .event-archive summary {
+  background:#211c15;
+  color:#ffdc79;
+  border:1px solid #796343;
+  border-radius:10px;
+  padding:12px 14px;
+  font-weight:bold;
+}
+.section-nav a { text-decoration:none; }
+.section-nav a:hover, .event-archive summary:hover { background:#382d20; }
+.section-nav a:focus-visible, .event-archive summary:focus-visible {
+  outline:2px solid #ffdc79;
+  outline-offset:3px;
+}
+.event-archive summary { cursor:pointer; }
+#rechner, #termine, #gemeinschaft, #merch { scroll-margin-top:16px; }
+
+.site-header {
+  display:flex;
+  align-items:center;
+  gap:clamp(12px,3vw,28px);
+  padding:clamp(10px,2vw,20px);
+  text-align:left;
+  margin-bottom:14px;
+  border:1px solid #796343;
+  border-radius:16px;
+  background:radial-gradient(ellipse at 12% 50%,#403019,#1b1711 50%,#141414 82%);
+}
+.site-header img {
+  width:clamp(88px,22vw,152px);
+  height:auto;
+  flex:none;
+  border-radius:12px;
+  box-shadow:0 4px 16px #0009;
+}
+.site-header strong { font-size:clamp(19px,5vw,36px); color:#ffdc79; }
+.site-header p { margin:4px 0 0; font-size:13px; letter-spacing:0; }
+.section-nav { justify-content:flex-start; }
+.section-nav .nav-primary { background:#ffdc79; color:#21160b; }
+#rechner { border-color:#a77f3c; border-radius:14px; margin-bottom:12px; }
+.reverse-calculator { border-radius:12px; margin-bottom:12px; padding:14px 18px; }
+.reverse-calculator summary { cursor:pointer; color:#ffdc79; font-weight:bold; }
+.reverse-calculator summary:focus-visible { outline:2px solid #ffdc79; outline-offset:4px; }
+.app-tools { margin:0 0 30px; border-radius:12px; }
+.app-actions #installApp { flex-basis:110px; }
+#kronkorkenaktion { border-top:3px solid #a6de71; border-radius:14px; }
+@media (max-width:640px) {
+  .section-nav { gap:6px; margin-bottom:12px; }
+  .section-nav a { padding:10px; font-size:13px; }
+  #rechner { padding:16px; }
+}
+
+.community-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));
+  gap:12px;
+}
+.community-founders { grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr)); }
+.community-grid .person-block {
+  margin:0;
+  padding:16px;
+  border:1px solid #514433;
+  border-radius:12px;
+  background:#1b1916;
+}
+.community-founders .person-block { border-color:#98743e; background:#242017; }
+.community-grid .person-name { color:#ffdc79; font-size:18px; }
+.community-grid .social-row { gap:8px; }
+.community-grid .social-tile { width:48px; height:48px; min-width:48px; min-height:48px; padding:0; }
+.community-grid .social-tile img { width:26px; height:26px; }
+.community-grid .social-tile span { display:none; }
+
+.archive-list { display:grid; gap:8px; list-style:none; padding:0; }
+.archive-list li {
+  display:grid;
+  grid-template-columns:minmax(116px,auto) 1fr;
+  align-items:center;
+  gap:12px;
+  padding:10px;
+  background:#1c1915;
+  border:1px solid #544631;
+  border-radius:9px;
+}
+.archive-list .date { background:#392c18; color:#ffdc79; padding:7px; border-radius:6px; text-align:center; }
+.event-name { overflow-wrap:anywhere; }
+.shop-grid { grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr)); }
+.merch-card { margin:0; background:#1c1915; border:1px solid #544631; border-radius:12px; overflow:hidden; }
+.merch-card a { display:block; background:#121212; }
+.merch-card a:focus-visible { outline:2px solid #ffdc79; outline-offset:-3px; }
+.merch-card img { display:block; width:100%; aspect-ratio:4/3; object-fit:contain; }
+.merch-card figcaption { padding:12px; color:#ffdc79; font-weight:bold; }
+@media (max-width:420px) {
+  .archive-list li { grid-template-columns:1fr; gap:6px; }
+  .archive-list .date { justify-self:start; }
+}
+/* System fonts keep the page readable even when it is used offline. */
+body {
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  font-size:1rem;
+  font-size:clamp(1rem,.96rem + .25vw,1.125rem);
+  line-height:1.55;
+}
+.section h2 {
+  font-size:1.5rem;
+  font-size:clamp(1.375rem,1.15rem + 1vw,2rem);
+  line-height:1.18;
+  letter-spacing:.025em;
+}
+#rechner h2 {
+  font-size:1.625rem;
+  font-size:clamp(1.5rem,1.25rem + 1.3vw,2.25rem);
+  overflow-wrap:anywhere;
+}
+.section h3, .modal h3 { font-size:1.125rem; line-height:1.25; }
+.section .section-subtitle { font-size:.9375rem; letter-spacing:.09em; }
+.site-header p, .app-tools p, .install-note, #moreInstallHelp,
+#mixState, #backState, .section-note { font-size:.9375rem; line-height:1.5; }
+.section-note { color:#bbb; }
+.section-nav a { font-size:.9375rem; }
+button, input, select {
+  font-family:inherit;
+  font-size:1rem;
+  font-size:max(16px,1rem);
+}
+button, input, select, .section-nav a { min-height:44px; }
+@media (max-width:420px) {
+  .wrapper { padding:12px; }
+  .section { padding:16px; }
+  .section-nav a { padding:9px 10px; }
+  .site-header img { width:84px; }
+}
 </style>
 </head>
 
 <body>
 <div class="wrapper">
 
-<header>
-  <img src="logo.webp" alt="Die Isolatoren Deluxe" width="340" height="340" style="height:auto">
-  <p>TECHNIK · GEMEINSCHAFT · ZWEITAKT</p>
+<header class="site-header">
+  <img src="logo.webp" alt="" width="152" height="152">
+  <div><strong>Die Isolatoren Deluxe</strong><p>Technik · Gemeinschaft · Zweitakt</p></div>
 </header>
-<section class="app-tools" aria-label="Web-App und Teilen">
- <p id="connectionStatus" role="status">Rechner für unterwegs – auch ohne Internet nutzbar, sobald die App gespeichert ist.</p>
- <div class="app-actions">
-  <button id="installApp" type="button" aria-haspopup="dialog">App installieren</button>
-  <button id="shareApp" type="button" class="secondary">Seite teilen</button>
-  <button id="showQRCode" type="button" class="secondary" aria-haspopup="dialog">QR-Code</button>
- </div>
- <p id="appFeedback" role="status"></p>
-</section>
+<nav class="section-nav" aria-label="Seitenbereiche">
+  <a class="nav-primary" href="#rechner">Mischrechner</a>
+  <a href="#kronkorkenaktion">Kronkorkenaktion</a>
+  <a href="#gemeinschaft">Gemeinschaft</a>
+  <a href="#termine">Termine</a>
+  <a href="#merch">Deko &amp; Merch</a>
+</nav>
 
 <!-- MISCHRECHNER -->
-<div class="section">
+<div class="section" id="rechner">
 <h2>ZWEITAKT-MISCHRECHNER</h2>
-<p style="font-size:14px;color:#bbb;">
-Fahrzeug auswählen, Mischungsverhältnis prüfen oder anpassen,
-Benzinmenge eingeben und berechnen.
+<p class="section-note">
+Wähle dein Fahrzeug, prüfe das Mischungsverhältnis und gib die Benzinmenge in Litern ein.
 </p>
 
 <div class="vehicle-grid">
-  <button type="button" class="vehicle" data-name="Trabant" data-rec="50" aria-pressed="false"><img src="trabant.webp" alt=""><span>Trabant</span></button>
-  <button type="button" class="vehicle" data-name="Simson" data-rec="50" aria-pressed="false"><img src="simson.webp" alt=""><span>Simson</span></button>
-  <button type="button" class="vehicle" data-name="MZ" data-rec="50" aria-pressed="false"><img src="mz.webp" alt=""><span>MZ</span></button>
-  <button type="button" class="vehicle" data-name="Sonstige Zweitakter" data-rec="" aria-pressed="false"><img src="sonstige_zweitakter.webp" alt=""><span>Sonstige</span></button>
+  <button type="button" class="vehicle" data-name="Trabant" data-rec="50" aria-pressed="false"><img src="fahrzeug-trabant.svg" alt=""><span>Trabant</span></button>
+  <button type="button" class="vehicle" data-name="Simson" data-rec="50" aria-pressed="false"><img src="fahrzeug-simson.svg" alt=""><span>Simson</span></button>
+  <button type="button" class="vehicle" data-name="MZ" data-rec="50" aria-pressed="false"><img src="fahrzeug-mz.svg" alt=""><span>MZ</span></button>
+  <button type="button" class="vehicle" data-name="Sonstige Zweitakter" data-rec="" aria-pressed="false"><img src="fahrzeug-sonstige_zweitakter.svg" alt=""><span>Sonstige</span></button>
 </div>
 
-<p id="mixState" style="margin-top:10px;font-size:13px;color:#bbb;"></p>
+<p id="mixState" class="section-note"></p>
 
 <button class="secondary" onclick="openRatioModal()">Mischungsverhältnis wählen</button>
 <label for="fuelInput">Benzinmenge in Litern</label>
@@ -451,10 +607,10 @@ Benzinmenge eingeben und berechnen.
 </div>
 
 <!-- RÜCKRECHNER -->
-<div class="section">
-<h2>RÜCKRECHNER – ÖL → BENZIN</h2>
+<details class="section reverse-calculator">
+<summary>Rückwärts rechnen: Öl → Benzin</summary>
 
-<p id="backState" style="font-size:14px;color:#bbb;">
+<p id="backState" class="section-note">
 Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
 </p>
 
@@ -465,13 +621,70 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
 <button onclick="calculateBack()">Berechnen</button>
 
 <div class="result" role="status" id="backResult" style="display:none;"></div>
-</div>
+</details>
+<section class="app-tools" aria-label="Web-App und Teilen">
+ <p id="connectionStatus" role="status">Rechner für unterwegs – auch ohne Internet nutzbar, sobald die App gespeichert ist.</p>
+ <div class="app-actions">
+  <button id="installApp" type="button" aria-haspopup="dialog">App installieren</button>
+  <button id="shareApp" type="button" class="secondary">Seite teilen</button>
+  <button id="showQRCode" type="button" class="secondary" aria-haspopup="dialog">QR-Code</button>
+ </div>
+ <p id="appFeedback" role="status"></p>
+</section>
+
+<section class="section" id="kronkorkenaktion" aria-labelledby="kronkorken-title">
+  <p class="action-eyebrow">Unser Herzensprojekt</p>
+  <h2 id="kronkorken-title">Kleine Deckel. Große Hilfe.</h2>
+  <div class="action-grid action-intro">
+    <img src="kronkorken-region.webp" alt="Jan und Steffi sammeln Kronkorken in Berlin und Brandenburg" width="640" height="640" loading="lazy">
+    <div>
+      <h3>Gemeinsam sammeln. Gemeinsam helfen.</h3>
+      <p>Wir sind Jan und Steffi Sonneborn aus Berlin und Brandenburg. Wir sammeln für „Kronkorken fürs Kinderhospiz e. V.“ und unterstützen in unserer Region das Kinderhospiz „Berliner Herz“.</p>
+      <p>Der Verein unterstützt Kinderhospize mit dem Erlös aus dem Recycling der Metallverschlüsse.</p>
+      <a class="action-primary" href="mailto:js.sonneborn@gmail.com?subject=Kronkorkenaktion%20Berlin%20und%20Brandenburg">Abgabe / Abholung anfragen</a>
+      <p>Übergabe und mögliche Abholung nach Absprache.</p>
+    </div>
+  </div>
+  <div class="action-grid">
+    <div class="action-card"><h3 class="action-yes">Das sammeln wir</h3>
+      <ul><li>Kronkorken</li><li>Blechdeckel von Schraubgläsern</li><li>Flaschendeckel aus Metall</li><li>Bügel von Sektflaschen, ohne Korken</li></ul>
+    </div>
+    <div class="action-card"><h3 class="action-no">Das gehört nicht hinein</h3>
+      <ul><li>Dosen</li><li>Teelichter</li><li>Tierfutterschalen</li><li>Tierfuttertüten</li></ul>
+    </div>
+    <div class="action-card"><h3>Jan &amp; Steffi Sonneborn</h3>
+      <p>Die Isolatoren Deluxe · Berlin / Brandenburg</p>
+      <p><a href="mailto:js.sonneborn@gmail.com">js.sonneborn@gmail.com</a></p>
+      <p class="action-social"><strong>Jan</strong> <a href="https://www.facebook.com/share/1Gk158Fub9" aria-label="Jan auf Facebook"><img src="icon_facebook.webp" alt="" width=28 height=28 loading=lazy></a> <a href="https://www.instagram.com/isolator_jan/" aria-label="Jan auf Instagram"><img src="icon_instagram.webp" alt="" width=28 height=28 loading=lazy></a> <a href="https://www.tiktok.com/@mullemannjan" aria-label="Jan auf TikTok"><img src="icon_tiktok.webp" alt="" width=28 height=28 loading=lazy></a></p>
+      <p class="action-social"><strong>Steffi</strong> <a href="https://www.facebook.com/share/184oxeF15g/" aria-label="Steffi auf Facebook"><img src="icon_facebook.webp" alt="" width=28 height=28 loading=lazy></a> <a href="https://www.instagram.com/prinzepessa84/" aria-label="Steffi auf Instagram"><img src="icon_instagram.webp" alt="" width=28 height=28 loading=lazy></a> <a href="https://www.tiktok.com/@mulle_2020" aria-label="Steffi auf TikTok"><img src="icon_tiktok.webp" alt="" width=28 height=28 loading=lazy></a></p>
+    </div>
+    <div class="action-card">
+      <img class="action-logo" src="kronkorken-verein.webp" width="96" height="96" alt="Vereinslogo" loading="lazy">
+      <h3>Der Verein</h3>
+      <p>Kronkorken fürs Kinderhospiz e. V.</p>
+      <p><a href="https://kronkorken-kinderhospiz.de/">Offizielle Vereinswebsite</a></p>
+      <p class="action-social"><strong>Verein</strong> <a href="https://www.facebook.com/groups/2481106385498380" aria-label="Verein auf Facebook"><img src="icon_facebook.webp" alt="" width=28 height=28 loading=lazy></a> <a href="https://www.instagram.com/kronkorken_kinderhospizev/" aria-label="Verein auf Instagram"><img src="icon_instagram.webp" alt="" width=28 height=28 loading=lazy></a> <a href="https://www.tiktok.com/@kronkorkenkinderhospiz24" aria-label="Verein auf TikTok"><img src="icon_tiktok.webp" alt="" width=28 height=28 loading=lazy></a></p>
+      <p class="action-referral"><strong>Du möchtest spenden? Bitte wende dich direkt an den Verein.</strong><br>
+        <a href="mailto:info@kronkorken-kinderhospiz.de">info@kronkorken-kinderhospiz.de</a>
+      </p>
+    </div>
+  </div>
+  <div class="action-grid action-footer">
+    <a class="action-primary" href="kronkorken-flyer.webp">Offiziellen Vereinsflyer ansehen</a>
+    <details>
+      <summary>Aktion teilen / QR-Code</summary>
+      <img class=action-qr-flyer src=kronkorken-qr-flyer.png width=900 height=1130 alt="Kleine Deckel. Große Hilfe. QR-Code zur Kronkorkenaktion in Berlin und Brandenburg" loading=lazy>
+      <a href="https://dieisolatorendeluxe.github.io/isolatoren-deluxe/#kronkorkenaktion">Direktlink zur Kronkorkenaktion</a>
+    </details>
+  </div>
+</section>
+
 <!-- GEMEINSCHAFT -->
-<div class="section">
+<div class="section" id="gemeinschaft">
   <h2>DIE GEMEINSCHAFT</h2>
 
   <p style="margin-bottom:24px;color:#bbb;">
-    Folge der Gemeinschaft über die einzelnen Mitwirkenden. Die Links öffnen das Profil in einem neuen Fenster; ob die jeweilige App startet, entscheidet dein Gerät.
+    Hier findest du die Menschen hinter den Isolatoren Deluxe und ihre Profile.
   </p>
 
   <div class="community-block">
@@ -479,6 +692,7 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
     <!-- ERSTELLER -->
     <h3 class="section-subtitle">ERSTELLER</h3>
 
+    <div class="community-grid community-founders">
     <!-- JAN -->
     <div class="person-block">
       <strong class="person-name">Jan</strong>
@@ -497,7 +711,7 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
 
     <!-- MULLE -->
     <div class="person-block">
-      <strong class="person-name">Mulle</strong>
+      <strong class="person-name">Steffi (Mulle)</strong>
       <div class="social-row">
         <a href="https://www.instagram.com/prinzepessa84" target="_blank" rel="noopener noreferrer external" class="social-tile" aria-label="Mulle auf Instagram (öffnet neues Fenster)">
           <img src="icon_instagram.webp" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Instagram</span>
@@ -511,9 +725,12 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
       </div>
     </div>
 
+    </div>
+
     <!-- MITWIRKENDE -->
     <h3 class="section-subtitle">MITWIRKENDE</h3>
 
+    <div class="community-grid">
     <!-- Ronny -->
     <div class="person-block">
       <strong class="person-name">Ronny</strong>
@@ -556,54 +773,6 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
       </div>
     </div>
 
-    <!-- Holly -->
-    <div class="person-block">
-      <strong class="person-name">Holly</strong>
-      <div class="social-row">
-        <a href="https://www.instagram.com/isolator__holger" target="_blank" rel="noopener noreferrer external" class="social-tile" aria-label="Holly auf Instagram (öffnet neues Fenster)">
-          <img src="icon_instagram.webp" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Instagram</span>
-        </a>
-        <a href="https://www.facebook.com/share/1G7hPdjRZC/" target="_blank" rel="noopener noreferrer external" class="social-tile" aria-label="Holly auf Facebook (öffnet neues Fenster)">
-          <img src="icon_facebook.webp" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Facebook</span>
-        </a>
-        <a href="https://www.tiktok.com/@82holger82" target="_blank" rel="noopener noreferrer external" class="social-tile" aria-label="Holly auf TikTok (öffnet neues Fenster)">
-          <img src="icon_tiktok.webp" alt="" width="64" height="64" loading="lazy" decoding="async"><span>TikTok</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- Stiv -->
-    <div class="person-block">
-      <strong class="person-name">Stiv</strong>
-      <div class="social-row">
-        <a href="https://www.instagram.com/isolator_stiv" target="_blank" rel="noopener noreferrer external" class="social-tile" aria-label="Stiv auf Instagram (öffnet neues Fenster)">
-          <img src="icon_instagram.webp" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Instagram</span>
-        </a>
-        <a href="https://www.facebook.com/steven.franke.18" target="_blank" rel="noopener noreferrer external" class="social-tile" aria-label="Stiv auf Facebook (öffnet neues Fenster)">
-          <img src="icon_facebook.webp" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Facebook</span>
-        </a>
-        <a href="https://www.tiktok.com/@stivmeister0" target="_blank" rel="noopener noreferrer external" class="social-tile" aria-label="Stiv auf TikTok (öffnet neues Fenster)">
-          <img src="icon_tiktok.webp" alt="" width="64" height="64" loading="lazy" decoding="async"><span>TikTok</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- Collie -->
-    <div class="person-block">
-      <strong class="person-name">Collie</strong>
-      <div class="social-row">
-        <a href="https://www.instagram.com/isolator_colle" target="_blank" rel="noopener noreferrer external" class="social-tile" aria-label="Collie auf Instagram (öffnet neues Fenster)">
-          <img src="icon_instagram.webp" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Instagram</span>
-        </a>
-        <a href="https://www.facebook.com/share/1ACgNjkes8/" target="_blank" rel="noopener noreferrer external" class="social-tile" aria-label="Collie auf Facebook (öffnet neues Fenster)">
-          <img src="icon_facebook.webp" alt="" width="64" height="64" loading="lazy" decoding="async"><span>Facebook</span>
-        </a>
-        <a href="https://www.tiktok.com/@isolatorcolle" target="_blank" rel="noopener noreferrer external" class="social-tile" aria-label="Collie auf TikTok (öffnet neues Fenster)">
-          <img src="icon_tiktok.webp" alt="" width="64" height="64" loading="lazy" decoding="async"><span>TikTok</span>
-        </a>
-      </div>
-    </div>
-
     <!-- Max -->
     <div class="person-block">
       <strong class="person-name">Max</strong>
@@ -614,106 +783,100 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
       </div>
     </div>
 
-    <!-- PLATZHALTER -->
-    <div class="person-block placeholder">
-      <strong class="person-name">Weitere Personen</strong>
-      <p class="placeholder-text">
-        Weitere Mitwirkende kommen nach und nach dazu.
-      </p>
     </div>
-
   </div>
 </div>
 
-<section class="section" id="kronkorkenaktion" aria-labelledby="kronkorken-title">
-  <p class="action-eyebrow">Unser Herzensprojekt</p>
-  <h2 id="kronkorken-title">Kleine Deckel. Große Hilfe.</h2>
-  <div class="action-grid action-intro">
-    <img src="kronkorken-region.webp" alt="Jan und Steffi sammeln Kronkorken in Berlin und Brandenburg" width="640" height="640" loading="lazy">
-    <div>
-      <h3>Gemeinsam sammeln. Gemeinsam helfen.</h3>
-      <p>Wir sind Jan &amp; Steffi Sonneborn – Die Isolatoren Deluxe aus Berlin und Brandenburg. Wir sammeln für „Kronkorken fürs Kinderhospiz e. V.“ und unterstützen regional das Kinderhospiz „Berliner Herz“.</p>
-      <p>Die Metallverschlüsse werden recycelt. Der Erlös geht an den Verein, der damit Kinderhospize unterstützt.</p>
-      <a class="action-primary" href="mailto:js.sonneborn@gmail.com?subject=Kronkorkenaktion%20Berlin%20und%20Brandenburg">Abgabe / Abholung anfragen</a>
-      <p>Übergabe und mögliche Abholung nach Absprache.</p>
-    </div>
-  </div>
-  <div class="action-grid">
-    <div class="action-card"><h3 class="action-yes">Das sammeln wir</h3>
-      <ul><li>Kronkorken</li><li>Blechdeckel von Schraubgläsern</li><li>Flaschendeckel aus Metall</li><li>Bügel von Sektflaschen, ohne Korken</li></ul>
-    </div>
-    <div class="action-card"><h3 class="action-no">Das gehört nicht hinein</h3>
-      <ul><li>Dosen</li><li>Teelichter</li><li>Tierfutterschalen</li><li>Tierfuttertüten</li></ul>
-    </div>
-    <div class="action-card"><h3>Jan &amp; Steffi Sonneborn</h3>
-      <p>Die Isolatoren Deluxe · Berlin / Brandenburg</p>
-      <p><a href="mailto:js.sonneborn@gmail.com">js.sonneborn@gmail.com</a></p>
-      <p class="action-social"><strong>Jan</strong> <a href="https://www.facebook.com/share/1Gk158Fub9" aria-label="Jan auf Facebook"><img src="icon_facebook.webp" alt="" width=28 height=28 loading=lazy></a> <a href="https://www.instagram.com/isolator_jan/" aria-label="Jan auf Instagram"><img src="icon_instagram.webp" alt="" width=28 height=28 loading=lazy></a> <a href="https://www.tiktok.com/@mullemannjan" aria-label="Jan auf TikTok"><img src="icon_tiktok.webp" alt="" width=28 height=28 loading=lazy></a></p>
-      <p class="action-social"><strong>Steffi</strong> <a href="https://www.facebook.com/share/184oxeF15g/" aria-label="Steffi auf Facebook"><img src="icon_facebook.webp" alt="" width=28 height=28 loading=lazy></a> <a href="https://www.instagram.com/prinzepessa84/" aria-label="Steffi auf Instagram"><img src="icon_instagram.webp" alt="" width=28 height=28 loading=lazy></a> <a href="https://www.tiktok.com/@mulle_2020" aria-label="Steffi auf TikTok"><img src="icon_tiktok.webp" alt="" width=28 height=28 loading=lazy></a></p>
-    </div>
-    <div class="action-card">
-      <img class="action-logo" src="kronkorken-verein.webp" width="96" height="96" alt="Vereinslogo" loading="lazy">
-      <h3>Der Verein</h3>
-      <p>Kronkorken fürs Kinderhospiz e. V.</p>
-      <p><a href="https://kronkorken-kinderhospiz.de/">Offizielle Vereinswebsite</a></p>
-      <p class="action-social"><strong>Verein</strong> <a href="https://www.facebook.com/groups/2481106385498380" aria-label="Verein auf Facebook"><img src="icon_facebook.webp" alt="" width=28 height=28 loading=lazy></a> <a href="https://www.instagram.com/kronkorken_kinderhospizev/" aria-label="Verein auf Instagram"><img src="icon_instagram.webp" alt="" width=28 height=28 loading=lazy></a> <a href="https://www.tiktok.com/@kronkorkenkinderhospiz24" aria-label="Verein auf TikTok"><img src="icon_tiktok.webp" alt="" width=28 height=28 loading=lazy></a></p>
-      <p class="action-referral"><strong>Du möchtest spenden? Bitte wende dich direkt an den Verein.</strong><br>
-        <a href="mailto:info@kronkorken-kinderhospiz.de">info@kronkorken-kinderhospiz.de</a>
-      </p>
-    </div>
-  </div>
-  <div class="action-grid action-footer">
-    <a class="action-primary" href="kronkorken-flyer.webp">Offiziellen Vereinsflyer ansehen</a>
-    <details>
-      <summary>Aktion teilen / QR-Code</summary>
-      <img class=action-qr-flyer src=kronkorken-qr-flyer.png width=900 height=1130 alt="Kleine Deckel. Große Hilfe. QR-Code zur Kronkorkenaktion in Berlin und Brandenburg" loading=lazy>
-      <a href="https://dieisolatorendeluxe.github.io/isolatoren-deluxe/#kronkorkenaktion">Direktlink zur Kronkorkenaktion</a>
-    </details>
-  </div>
-</section>
-
 <!-- TERMINE -->
-<div class="section">
+<div class="section" id="termine">
   <h2>TERMINARCHIV 2026</h2>
-  <p>Vergangene Termine aus 2026. Neue Termine werden hier ergänzt, sobald sie feststehen.</p>
-  <ul>
-    <li><span class="date">25.04.2026</span> 19. Ostfahrzeugtreffen Finowfurt</li>
-    <li><span class="date">01.05.2026</span> Simson Treffen Ladeburg</li>
-    <li><span class="date">09.05.2026</span> 18. Oldtimertreffen Alt Tucheband</li>
+  <p>Hier findest du vergangene Treffen aus 2026. Neue Termine ergänzen wir, sobald sie feststehen.</p>
+  <details class="event-archive">
+   <summary>Vergangene Treffen 2026 anzeigen</summary>
+   <ul class="archive-list">
+    <li><span class="date">25.04.2026</span><span class="event-name">19. Ostfahrzeugtreffen Finowfurt</span></li>
+    <li><span class="date">01.05.2026</span><span class="event-name">Simson Treffen Ladeburg</span></li>
+    <li><span class="date">09.05.2026</span><span class="event-name">18. Oldtimertreffen Alt Tucheband</span></li>
     
-    <li><span class="date">14.05.2026</span> Herrentagstour German East Driver</li>
+    <li><span class="date">14.05.2026</span><span class="event-name">Herrentagstour German East Driver</span></li>
   
-    <li><span class="date">30.05.2026</span> 8. Linumer Simson & Oldtimertreffen</li>
-    <li><span class="date">06.06.2026</span> Eens zu Fuffzsch am Ring</li>
-    <li><span class="date">06.06.2026</span> Pre Deep One Zehdenick</li>
-    <li><span class="date">04.07.2026</span> Simson Treffen Vietznitz</li>
-    <li><span class="date">04.07.2026</span> Ostblock Fahrzeugtreffen</li>
-    <li><span class="date">25.07.2026</span> TFO-Treffen</li>
-    <li><span class="date">01.08.2026</span> Trabant & VW-Bus Treffen Kleinzerlang</li>
-    <li><span class="date">07.–09.08.2026</span> East German Classics Reitwein</li>
-    <li><span class="date">12.09.2026</span> Ostblockmeeting „Erichs Erben“</li>
+    <li><span class="date">30.05.2026</span><span class="event-name">8. Linumer Simson & Oldtimertreffen</span></li>
+    <li><span class="date">06.06.2026</span><span class="event-name">Eens zu Fuffzsch am Ring</span></li>
+    <li><span class="date">06.06.2026</span><span class="event-name">Pre Deep One Zehdenick</span></li>
+    <li><span class="date">04.07.2026</span><span class="event-name">Simson Treffen Vietznitz</span></li>
+    <li><span class="date">04.07.2026</span><span class="event-name">Ostblock Fahrzeugtreffen</span></li>
+    <li><span class="date">25.07.2026</span><span class="event-name">TFO-Treffen</span></li>
+    <li><span class="date">01.08.2026</span><span class="event-name">Trabant & VW-Bus Treffen Kleinzerlang</span></li>
+    <li><span class="date">07.–09.08.2026</span><span class="event-name">East German Classics Reitwein</span></li>
+    <li><span class="date">12.09.2026</span><span class="event-name">Ostblockmeeting „Erichs Erben“</span></li>
   </ul>
-  <p style="font-size:12px;color:#aaa;">Termine ohne Gewähr.</p>
+   <p class="section-note">Termine ohne Gewähr.</p>
+  </details>
 </div>
 
 <!-- SHOP -->
-<div class="section">
+<div class="section" id="merch">
 <h2>DEKO & MERCH – IDEEN</h2>
-<p style="font-size:12px;color:#aaa;">
-Mockups & Beispiele. Kein Verkauf.<br>
-Bei Interesse an Merch oder Deko bitte Kontaktaufnahme über unsere Social-Media-Kanäle.
+<p class="section-note">
+<strong>Designentwürfe · Kein Verkauf</strong><br>
+Tippe auf ein Motiv, um es groß anzusehen.
 </p>
 
 <div class="shop-grid">
-  <img src="shirt_mockup.png">
-  <img src="sticker_mockup.png">
-  <img src="deko_mockup.png">
-  <img src="tasse_mockup.png">
-  <img src="keychain_mockup.png">
-  <img src="plasticcup_mockup.png">
-  <img src="cap_mockup.png">
-  <img src="jacket_mockup.png">
-  <img src="banner_mockup.png">
+  <figure class="merch-card">
+    <a href="shirt_mockup.png" aria-label="T-Shirt als Designentwurf groß ansehen">
+      <img src="shirt_mockup.png" alt="" loading="lazy" decoding="async">
+    </a>
+    <figcaption>T-Shirt</figcaption>
+  </figure>
+  <figure class="merch-card">
+    <a href="sticker_mockup.png" aria-label="Aufkleber als Designentwurf groß ansehen">
+      <img src="sticker_mockup.png" alt="" loading="lazy" decoding="async">
+    </a>
+    <figcaption>Aufkleber</figcaption>
+  </figure>
+  <figure class="merch-card">
+    <a href="deko_mockup.png" aria-label="Deko als Designentwurf groß ansehen">
+      <img src="deko_mockup.png" alt="" loading="lazy" decoding="async">
+    </a>
+    <figcaption>Deko</figcaption>
+  </figure>
+  <figure class="merch-card">
+    <a href="tasse_mockup.png" aria-label="Tasse als Designentwurf groß ansehen">
+      <img src="tasse_mockup.png" alt="" loading="lazy" decoding="async">
+    </a>
+    <figcaption>Tasse</figcaption>
+  </figure>
+  <figure class="merch-card">
+    <a href="keychain_mockup.png" aria-label="Schlüsselanhänger als Designentwurf groß ansehen">
+      <img src="keychain_mockup.png" alt="" loading="lazy" decoding="async">
+    </a>
+    <figcaption>Schlüsselanhänger</figcaption>
+  </figure>
+  <figure class="merch-card">
+    <a href="plasticcup_mockup.png" aria-label="Becher als Designentwurf groß ansehen">
+      <img src="plasticcup_mockup.png" alt="" loading="lazy" decoding="async">
+    </a>
+    <figcaption>Becher</figcaption>
+  </figure>
+  <figure class="merch-card">
+    <a href="cap_mockup.png" aria-label="Cap als Designentwurf groß ansehen">
+      <img src="cap_mockup.png" alt="" loading="lazy" decoding="async">
+    </a>
+    <figcaption>Cap</figcaption>
+  </figure>
+  <figure class="merch-card">
+    <a href="jacket_mockup.png" aria-label="Jacke als Designentwurf groß ansehen">
+      <img src="jacket_mockup.png" alt="" loading="lazy" decoding="async">
+    </a>
+    <figcaption>Jacke</figcaption>
+  </figure>
+  <figure class="merch-card">
+    <a href="banner_mockup.png" aria-label="Banner als Designentwurf groß ansehen">
+      <img src="banner_mockup.png" alt="" loading="lazy" decoding="async">
+    </a>
+    <figcaption>Banner</figcaption>
+  </figure>
 </div>
 </div>
 
