@@ -630,6 +630,8 @@ button, input, select, .section-nav a { min-height:44px; }
   border-radius:12px;
   background:linear-gradient(150deg,#29241b,#171615);
 }
+.vehicle-photo-pair { display:grid; grid-template-columns:3fr 2fr; align-items:center; gap:6px; width:min(100%,176px); aspect-ratio:4/3; }
+.vehicle .vehicle-photo-pair img { width:100%; aspect-ratio:auto; max-height:132px; }
 .vehicle img { width:min(100%,176px); height:auto; aspect-ratio:4/3; object-fit:contain; border-radius:8px; filter:drop-shadow(0 2px 5px #e8bd7240); }
 .vehicle.active { border-color:var(--gold); }
 .action-card.rules-yes, .action-card.rules-no { padding:12px 14px; }
@@ -654,6 +656,7 @@ button, input, select, .section-nav a { min-height:44px; }
   background:radial-gradient(ellipse at top,#213923,#131512 65%);
   border:1px solid #8aa653;
 }
+.action-qr-poster .action-qr-art { display:block; width:100%; aspect-ratio:1131 / 443; background:url("kronkorken-flyer.webp") center top / 100% auto no-repeat; border-radius:8px; margin-bottom:14px; }
 .action-qr-poster strong { display:block; color:#ffdc79; font-size:1.25rem; }
 .action-qr-poster p { margin:8px 0; }
 .action-qr-poster img { display:block; width:min(100%,240px); height:auto; margin:16px auto; }
@@ -686,7 +689,7 @@ Wähle dein Fahrzeug, prüfe das Mischungsverhältnis und gib die Benzinmenge in
   <button type="button" class="vehicle" data-name="Trabant" data-rec="50" aria-pressed="false"><img src="foto-trabi.webp" alt=""><span>Trabant</span></button>
   <button type="button" class="vehicle" data-name="Simson" data-rec="50" aria-pressed="false"><img src="foto-simson.webp" alt=""><span>Simson</span></button>
   <button type="button" class="vehicle" data-name="MZ" data-rec="50" aria-pressed="false"><img src="foto-mz.webp" alt=""><span>MZ</span></button>
-  <button type="button" class="vehicle" data-name="Sonstige Zweitakter" data-rec="" aria-pressed="false"><img src="fahrzeug-sonstige_zweitakter.svg" alt=""><span>Sonstige Zweitakter</span></button>
+  <button type="button" class="vehicle" data-name="Sonstige Zweitakter" data-rec="" aria-pressed="false"><span class="vehicle-photo-pair" aria-hidden="true"><img src="foto-kettensaege.jpg" alt=""><img src="foto-aussenborder.jpg" alt=""></span><span>Sonstige Zweitakter</span></button>
 </div>
 <p class="section-note">Für Boote, Kettensägen und andere Zweitakter: das vom Hersteller vorgegebene Mischungsverhältnis einstellen.</p>
 
@@ -706,6 +709,8 @@ Wähle dein Fahrzeug, prüfe das Mischungsverhältnis und gib die Benzinmenge in
     <li>Trabant 601 S – Image by Renée Kools via Wikimedia Commons, CC-BY-4.0. <a href="https://commons.wikimedia.org/wiki/File:Cream_Trabant_601_S_side_view.jpg">Originalfoto</a> · <a href="https://creativecommons.org/licenses/by/4.0/">Lizenz</a></li>
     <li>Simson S51 – Yarl, Wikimedia Commons. <a href="https://commons.wikimedia.org/wiki/File:Simson_S51.jpg">Originalfoto</a> · <a href="https://creativecommons.org/licenses/by-sa/2.5/">CC BY-SA 2.5</a></li>
     <li>MZ ETZ 250 – Thargor wetton, Wikimedia Commons. <a href="https://commons.wikimedia.org/wiki/File:MZ_ETZ250.JPG">Originalfoto</a> · <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a></li>
+    <li>Stihl MS 170 – Bene16 und Hic et nunc, Wikimedia Commons (verkleinert). <a href="https://commons.wikimedia.org/wiki/File:Stihl_MS_170.JPG">Originalfoto</a> · <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a></li>
+    <li>Yamaha PC-3, 1963 – Rainmaker47, Wikimedia Commons (verkleinert). <a href="https://commons.wikimedia.org/wiki/File:Yamaha_outboard_motor_pc-3.JPG">Originalfoto</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></li>
   </ul>
   <p>Für die Website verkleinert und als WebP gespeichert. Die jeweilige Lizenz gilt auch für diese Fassungen.</p>
 </details>
@@ -784,16 +789,16 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
   </div>
   <div class="action-grid action-footer">
     <a class="action-primary" href="kronkorken-flyer.webp">Offiziellen Vereinsflyer ansehen</a>
-    <details>
-      <summary>Aktion teilen / QR-Code</summary>
+    <div>
       <figure class="action-qr-poster">
+        <span class="action-qr-art" aria-hidden="true"></span>
         <strong>Kleine Deckel. Große Hilfe.</strong>
         <p>Kronkorkenaktion · Berlin und Brandenburg</p>
         <img src="kronkorken-qr.png" width="512" height="512" alt="QR-Code direkt zur Kronkorkenaktion" loading="lazy">
-        <figcaption>Scannen und mitmachen</figcaption>
+        <figcaption>Scannen und die Aktion in Berlin und Brandenburg teilen</figcaption>
       </figure>
       <a href="https://dieisolatorendeluxe.github.io/isolatoren-deluxe/#kronkorkenaktion">Direktlink zur Kronkorkenaktion</a>
-    </details>
+    </div>
   </div>
 </section>
 
