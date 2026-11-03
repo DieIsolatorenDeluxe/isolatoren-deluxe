@@ -633,8 +633,19 @@ button, input, select, .section-nav a { min-height:44px; }
 .vehicle img { width:min(100%,176px); height:auto; aspect-ratio:4/3; object-fit:contain; border-radius:8px; filter:drop-shadow(0 2px 5px #e8bd7240); }
 .vehicle.active { border-color:var(--gold); }
 .action-card.rules-yes, .action-card.rules-no { padding:12px 14px; }
-.action-card.rules-yes { background:#14261b; }
-.action-card.rules-no { background:#2d191b; }
+.action-card.rules-yes { background:#14261b; --rule-color:#a9efb6; --rule-label:#176137; }
+.action-card.rules-no { background:#2d191b; --rule-color:#ffaaaa; --rule-label:#962b36; }
+.rule-label {
+  display:inline-block;
+  padding:3px 8px;
+  margin-inline-end:6px;
+  border-radius:4px;
+  background:var(--rule-label);
+  color:#fff;
+}
+.action-card:is(.rules-yes,.rules-no) ul { list-style:none; padding-inline-start:0; }
+.action-card:is(.rules-yes,.rules-no) li { display:flex; gap:8px; }
+.rule-icon { color:var(--rule-color); font-weight:bold; flex:none; }
 .action-qr-poster {
   margin:14px 0 10px;
   padding:20px 14px;
@@ -738,11 +749,21 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
     </div>
   </div>
   <div class="action-grid">
-    <div class="action-card rules-yes"><h3 class="action-yes"><span aria-hidden="true">✓</span> Ja, das sammeln wir</h3>
-      <ul><li>Kronkorken</li><li>Blechdeckel von Schraubgläsern</li><li>Flaschendeckel aus Metall</li><li>Bügel von Sektflaschen, ohne Korken</li></ul>
+    <div class="action-card rules-yes"><h3 class="action-yes"><span class="rule-label">JA</span> Das sammeln wir</h3>
+      <ul role="list">
+        <li><span class="rule-icon" aria-hidden="true">✓</span> Kronkorken</li>
+        <li><span class="rule-icon" aria-hidden="true">✓</span> Blechdeckel von Schraubgläsern</li>
+        <li><span class="rule-icon" aria-hidden="true">✓</span> Flaschendeckel aus Metall</li>
+        <li><span class="rule-icon" aria-hidden="true">✓</span> Bügel von Sektflaschen, ohne Korken</li>
+      </ul>
     </div>
-    <div class="action-card rules-no"><h3 class="action-no"><span aria-hidden="true">✕</span> Nein, das gehört nicht hinein</h3>
-      <ul><li>Dosen</li><li>Teelichter</li><li>Tierfutterschalen</li><li>Tierfuttertüten</li></ul>
+    <div class="action-card rules-no"><h3 class="action-no"><span class="rule-label">NEIN</span> Das gehört nicht hinein</h3>
+      <ul role="list">
+        <li><span class="rule-icon" aria-hidden="true">✕</span> Dosen</li>
+        <li><span class="rule-icon" aria-hidden="true">✕</span> Teelichter</li>
+        <li><span class="rule-icon" aria-hidden="true">✕</span> Tierfutterschalen</li>
+        <li><span class="rule-icon" aria-hidden="true">✕</span> Tierfuttertüten</li>
+      </ul>
     </div>
     <div class="action-card"><h3>Jan &amp; Steffi Sonneborn</h3>
       <p>Die Isolatoren Deluxe · Berlin / Brandenburg</p>
