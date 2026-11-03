@@ -396,7 +396,9 @@ body { padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(s
 .action-yes { color:#a6de71; }
 .action-no { color:#ff958b; }
 .action-social { display:flex; align-items:center; flex-wrap:wrap; gap:8px; }
-.action-social a { padding:8px; border:1px solid #777; border-radius:6px; }
+.action-social a { display:inline-grid; place-items:center; width:44px; height:44px; border:1px solid #777; border-radius:8px; }
+.action-social a img { display:block; width:28px; height:28px; }
+.action-qr-flyer { display:block; width:100%; height:auto; margin:12px auto; border-radius:8px; }
 .action-logo { float:right; object-fit:contain; max-width:30%; height:auto; margin-left:8px; }
 .action-referral { clear:both; border-top:1px solid #b58b35; padding-top:12px; }
 .action-footer { margin-top:16px; align-items:start; }
@@ -646,15 +648,15 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
     <div class="action-card"><h3>Jan &amp; Steffi Sonneborn</h3>
       <p>Die Isolatoren Deluxe · Berlin / Brandenburg</p>
       <p><a href="mailto:js.sonneborn@gmail.com">js.sonneborn@gmail.com</a></p>
-      <p class="action-social"><strong>Jan</strong> <a href="https://www.facebook.com/share/1Gk158Fub9" aria-label="Jan auf Facebook">Facebook</a> <a href="https://www.instagram.com/isolator_jan/" aria-label="Jan auf Instagram">Instagram</a> <a href="https://www.tiktok.com/@mullemannjan" aria-label="Jan auf TikTok">TikTok</a></p>
-      <p class="action-social"><strong>Steffi</strong> <a href="https://www.facebook.com/share/184oxeF15g/" aria-label="Steffi auf Facebook">Facebook</a> <a href="https://www.instagram.com/prinzepessa84/" aria-label="Steffi auf Instagram">Instagram</a> <a href="https://www.tiktok.com/@mulle_2020" aria-label="Steffi auf TikTok">TikTok</a></p>
+      <p class="action-social"><strong>Jan</strong> <a href="https://www.facebook.com/share/1Gk158Fub9" aria-label="Jan auf Facebook"><img src="icon_facebook.webp" alt="" width=28 height=28 loading=lazy></a> <a href="https://www.instagram.com/isolator_jan/" aria-label="Jan auf Instagram"><img src="icon_instagram.webp" alt="" width=28 height=28 loading=lazy></a> <a href="https://www.tiktok.com/@mullemannjan" aria-label="Jan auf TikTok"><img src="icon_tiktok.webp" alt="" width=28 height=28 loading=lazy></a></p>
+      <p class="action-social"><strong>Steffi</strong> <a href="https://www.facebook.com/share/184oxeF15g/" aria-label="Steffi auf Facebook"><img src="icon_facebook.webp" alt="" width=28 height=28 loading=lazy></a> <a href="https://www.instagram.com/prinzepessa84/" aria-label="Steffi auf Instagram"><img src="icon_instagram.webp" alt="" width=28 height=28 loading=lazy></a> <a href="https://www.tiktok.com/@mulle_2020" aria-label="Steffi auf TikTok"><img src="icon_tiktok.webp" alt="" width=28 height=28 loading=lazy></a></p>
     </div>
     <div class="action-card">
       <img class="action-logo" src="kronkorken-verein.webp" width="96" height="96" alt="Vereinslogo" loading="lazy">
       <h3>Der Verein</h3>
       <p>Kronkorken fürs Kinderhospiz e. V.</p>
       <p><a href="https://kronkorken-kinderhospiz.de/">Offizielle Vereinswebsite</a></p>
-      <p class="action-social"><strong>Verein</strong> <a href="https://www.facebook.com/groups/2481106385498380" aria-label="Verein auf Facebook">Facebook</a> <a href="https://www.instagram.com/kronkorken_kinderhospizev/" aria-label="Verein auf Instagram">Instagram</a> <a href="https://www.tiktok.com/@kronkorkenkinderhospiz24" aria-label="Verein auf TikTok">TikTok</a></p>
+      <p class="action-social"><strong>Verein</strong> <a href="https://www.facebook.com/groups/2481106385498380" aria-label="Verein auf Facebook"><img src="icon_facebook.webp" alt="" width=28 height=28 loading=lazy></a> <a href="https://www.instagram.com/kronkorken_kinderhospizev/" aria-label="Verein auf Instagram"><img src="icon_instagram.webp" alt="" width=28 height=28 loading=lazy></a> <a href="https://www.tiktok.com/@kronkorkenkinderhospiz24" aria-label="Verein auf TikTok"><img src="icon_tiktok.webp" alt="" width=28 height=28 loading=lazy></a></p>
       <p class="action-referral"><strong>Du möchtest spenden? Bitte wende dich direkt an den Verein.</strong><br>
         <a href="mailto:info@kronkorken-kinderhospiz.de">info@kronkorken-kinderhospiz.de</a>
       </p>
@@ -664,7 +666,7 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
     <a class="action-primary" href="kronkorken-flyer.webp">Offiziellen Vereinsflyer ansehen</a>
     <details>
       <summary>Aktion teilen / QR-Code</summary>
-      <img class="qr-image" src="kronkorken-qr.png" width="512" height="512" alt="QR-Code direkt zur Kronkorkenaktion" loading="lazy">
+      <img class=action-qr-flyer src=kronkorken-qr-flyer.png width=900 height=1130 alt="Kleine Deckel. Große Hilfe. QR-Code zur Kronkorkenaktion in Berlin und Brandenburg" loading=lazy>
       <a href="https://dieisolatorendeluxe.github.io/isolatoren-deluxe/#kronkorkenaktion">Direktlink zur Kronkorkenaktion</a>
     </details>
   </div>
