@@ -470,7 +470,16 @@ body { padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(s
   border-radius:12px;
   box-shadow:0 4px 16px #0009;
 }
-.site-header strong { font-size:clamp(19px,5vw,36px); color:#ffdc79; }
+.site-header strong {
+  display:block;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(1.65rem,6vw,3.4rem);
+  font-style:italic;
+  font-weight:700;
+  line-height:1.1;
+  color:#ffdc79;
+  text-shadow:0 2px 0 #704116,0 4px 12px #000;
+}
 .site-header p { margin:4px 0 0; font-size:13px; letter-spacing:0; }
 .section-nav { justify-content:flex-start; }
 .section-nav .nav-primary { background:#ffdc79; color:#21160b; }
