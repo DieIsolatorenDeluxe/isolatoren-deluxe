@@ -529,7 +529,13 @@ body { padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(s
 }
 .archive-list .date { background:#392c18; color:#ffdc79; padding:7px; border-radius:6px; text-align:center; }
 .event-name { overflow-wrap:anywhere; }
-.shop-grid { grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr)); }
+#merch { text-align:center; }
+#merch .shop-grid {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+#merch .merch-card { flex:0 0 min(100%,max(160px,calc((100% - 28px) / 3))); }
 .merch-card { margin:0; background:#1c1915; border:1px solid #544631; border-radius:12px; overflow:hidden; }
 .merch-card a { display:block; background:#121212; }
 .merch-card a:focus-visible { outline:2px solid #ffdc79; outline-offset:-3px; }
@@ -685,6 +691,20 @@ button, input, select, .section-nav a { min-height:44px; }
 .partner-qr-poster img { display:block; height:auto; margin:0 auto 12px; }
 .partner-qr-art { width:100%; border-radius:0; }
 .partner-share [role="status"] { overflow-wrap:anywhere; }
+.section > h2,
+#kronkorkenaktion > h2,
+.section > .section-note {
+  text-align:center;
+}
+.section-nav {
+  justify-content:center;
+}
+.friend-card {
+  justify-self:center;
+}
+.partner-qr-poster {
+  margin-inline:auto;
+}
 </style>
 </head>
 
