@@ -144,11 +144,11 @@
 
   // Share only the public home page, never input values or URL parameters.
   const appUrl = new URL('./', window.location.href).href;
-  async function copyLink(target) {
+  async function copyLink(target, url = appUrl) {
     try {
-      await navigator.clipboard.writeText(appUrl);
+      await navigator.clipboard.writeText(url);
       target.textContent = 'Link kopiert – du kannst ihn jetzt in einem anderen Browser öffnen oder teilen.';
-    } catch { target.textContent = `Link zum Kopieren: ${appUrl}`; }
+    } catch { target.textContent = `Link zum Kopieren: ${url}`; }
   }
   get('copyAppLink').addEventListener('click', () => copyLink(get('installFeedback')));
   share.addEventListener('click', async () => {
@@ -163,6 +163,14 @@
     }
     await copyLink(feedback);
   });
+
+  for (const button of document.querySelectorAll?.('[data-copy-partner-link]') ?? []) {
+    const panel = button.closest('details');
+    const link = panel.querySelector('a');
+    const status = panel.querySelector('[role="status"]');
+    button.hidden = false;
+    button.addEventListener('click', () => copyLink(status, link.href));
+  }
 
   function checkForUpdate() {
     if (!registration || navigator.onLine === false || updateCheck) return;
