@@ -728,6 +728,9 @@ button, input, select, .section-nav a { min-height:44px; }
 .partner-invitation { margin-top:24px; padding-top:16px; border-top:1px solid var(--border); text-align:center; }
 .partner-invitation p { margin:0 auto 12px; max-width:42rem; }
 .partner-invitation-link { display:inline-flex; align-items:center; min-height:44px; padding:0 16px; border-radius:8px; background:#ffdc79; color:#21160b; font-weight:700; }
+.partner-contact { margin-top:12px !important; overflow-wrap:anywhere; }
+.partner-contact button { margin:4px; }
+.partner-contact [role="status"] { display:block; }
 </style>
 </head>
 
@@ -985,7 +988,7 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
   <p class="section-note">Menschen und Gemeinschaften, die mit uns die Begeisterung für Ostfahrzeuge, Zweitakt und gemeinsame Projekte teilen.</p>
   <div class="friends-grid">
     <article class="friend-card" id="erichs-erben">
-      <details class="partner-card-details">
+      <details class="partner-card-details" name="partner-gallery">
         <summary><img src="partner-erichs-erben.jpg" width="1391" height="1529" alt="" loading="lazy" decoding="async"><strong>Erichs Erben – Ostblock Clothing</strong></summary>
         <div class="partner-card-body">
       <p>Bekleidung und Accessoires mit Ostblock-Motiven, verbunden mit der Ostfahrzeugszene.</p>
@@ -1005,7 +1008,7 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
       </details>
     </article>
     <article class="friend-card" id="fresh-home-made">
-      <details class="partner-card-details">
+      <details class="partner-card-details" name="partner-gallery">
         <summary><img src="partner-fresh-home-made.jpg" width="1250" height="1250" alt="" loading="lazy" decoding="async"><strong>Fresh Home Made</strong></summary>
         <div class="partner-card-body">
       <p>Das Küken auf der goldenen Simson steht für die gemeinsame Begeisterung für Zweitakter.</p>
@@ -1026,7 +1029,7 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
       </details>
     </article>
     <article class="friend-card" id="goldostblockstar">
-      <details class="partner-card-details">
+      <details class="partner-card-details" name="partner-gallery">
         <summary><img src="partner-goldostblockstar.jpg" width="1254" height="1254" alt="" loading="lazy" decoding="async"><strong>Goldostblockstar</strong></summary>
         <div class="partner-card-body">
       <p>Eine violett-goldene Simson vor Berliner Skyline steht für die Verbindung zur Ostfahrzeugkultur.</p>
@@ -1047,7 +1050,7 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
       </details>
     </article>
     <article class="friend-card" id="kultvoegel">
-      <details class="partner-card-details">
+      <details class="partner-card-details" name="partner-gallery">
         <summary><img src="partner-kultvoegel.jpg" width="1500" height="1500" alt="" loading="lazy" decoding="async"><strong>KultVögel</strong></summary>
         <div class="partner-card-body">
       <p>Trabant, Schwalbe und IFA verbinden uns mit den KultVögeln.</p>
@@ -1072,7 +1075,7 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
       </details>
     </article>
     <article class="friend-card" id="maschenkult-manufaktur">
-      <details class="partner-card-details">
+      <details class="partner-card-details" name="partner-gallery">
         <summary><img src="partner-maschenkult-manufaktur.png" width="488" height="488" alt="" loading="lazy" decoding="async"><strong>Maschenkult Manufaktur</strong></summary>
         <div class="partner-card-body">
       <p>Handarbeit trifft Ostfahrzeugkultur. Unikat statt Duplikat.</p>
@@ -1092,7 +1095,7 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
       </details>
     </article>
     <article class="friend-card" id="ostdoedelz">
-      <details class="partner-card-details">
+      <details class="partner-card-details" name="partner-gallery">
         <summary><img src="partner-ostdoedelz.jpg" width="1254" height="1254" alt="" loading="lazy" decoding="async"><strong>Ostdödelz</strong></summary>
         <div class="partner-card-body">
       <p>Mit blauem Trabant im Logo und einer gemeinsamen Begeisterung für Ostfahrzeuge.</p>
@@ -1112,7 +1115,7 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
       </details>
     </article>
     <article class="friend-card" id="pappediepapp-deluxe">
-      <details class="partner-card-details">
+      <details class="partner-card-details" name="partner-gallery">
         <summary><img src="partner-pappediepapp-deluxe.jpg" width="1250" height="1250" alt="" loading="lazy" decoding="async"><strong>Pappediepapp Deluxe</strong></summary>
         <div class="partner-card-body">
       <p>Ein grüner Trabant und Graffiti geben Pappediepapp Deluxe seinen eigenen Stil.</p>
@@ -1133,7 +1136,7 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
       </details>
     </article>
     <article class="friend-card" id="goldstuebchen">
-      <details class="partner-card-details">
+      <details class="partner-card-details" name="partner-gallery">
         <summary><img src="partner-goldstuebchen.jpg" width="1254" height="1254" alt="" loading="lazy" decoding="async"><strong>René Schlonsinger – Schlonsingers Goldstübchen</strong></summary>
         <div class="partner-card-body">
       <p>René fertigt in Velten individuelle Arbeiten aus Gold, Silber und Bronze.</p>
@@ -1154,7 +1157,7 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
       </details>
     </article>
     <article class="friend-card" id="zweitakt-brigade-frw">
-      <details class="partner-card-details">
+      <details class="partner-card-details" name="partner-gallery">
         <summary><img src="Zweitakt_Brigade_FRW_Logo.png" width="969" height="970" alt="" loading="lazy" decoding="async"><strong>Zweitakt- Brigade FRW</strong></summary>
         <div class="partner-card-body">
       <p>Eine eigenständige Ostfahrzeug- und Oldtimer-Gemeinschaft mit gemeinsamer Leidenschaft für DDR-Fahrzeuge, Zweitakttechnik und Ostalgie.</p>
@@ -1186,7 +1189,7 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
       </details>
     </article>
     <article class="friend-card" id="zweitaktcrew-barnim">
-      <details class="partner-card-details">
+      <details class="partner-card-details" name="partner-gallery">
         <summary><img src="partner-zweitaktcrew-barnim.jpg" width="1080" height="1080" alt="" loading="lazy" decoding="async"><strong>Zweitaktcrew Barnim</strong></summary>
         <div class="partner-card-body">
       <p>Die Crew aus dem Barnim teilt unsere Begeisterung für Zweitakttechnik und Ostfahrzeuge.</p>
@@ -1210,6 +1213,10 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
     <p><strong>Eure Gemeinschaft soll hier auch dabei sein?</strong><br>
     Schickt uns eine kurze Vorstellung, euer Logo als Anhang und die Links, die auf eurer Karte erscheinen sollen.</p>
     <a class="partner-invitation-link" href="mailto:js.sonneborn@gmail.com?subject=Anfrage%20f%C3%BCr%20Freunde%20%26%20Partnersupport&amp;body=Hallo%20Isolatoren%20Deluxe%2C%0D%0A%0D%0Awir%20m%C3%B6chten%20uns%20f%C3%BCr%20euren%20Bereich%20%E2%80%9EFreunde%20%26%20Partnersupport%E2%80%9C%20vorstellen.%0D%0A%0D%0AName%20unserer%20Gemeinschaft%3A%0D%0A%0D%0AKurzvorstellung%20(2%E2%80%933%20S%C3%A4tze)%3A%0D%0A%0D%0AVollst%C3%A4ndige%20Links%20f%C3%BCr%20unsere%20Partnerkarte%20(Website%2C%20Instagram%2C%20Facebook%2C%20TikTok%2C%20YouTube%20oder%20andere)%3A%0D%0A%0D%0ALogo%3A%20Bitte%20als%20PNG%2C%20JPG%20oder%20WebP%20anh%C3%A4ngen.%0D%0AD%C3%BCrfen%20wir%20euer%20Logo%2C%20eure%20Vorstellung%20und%20die%20angegebenen%20Links%20auf%20unserer%20Website%20zeigen%3F%20Bitte%20kurz%20best%C3%A4tigen.%0D%0A%0D%0AViele%20Gr%C3%BC%C3%9Fe">Gemeinschaft vorstellen</a>
+    <p class="partner-contact"><a href="mailto:js.sonneborn@gmail.com">js.sonneborn@gmail.com</a>
+      <button type="button" class="secondary" id="copyPartnerEmail" hidden>Adresse kopieren</button>
+      <span id="partnerEmailFeedback" role="status"></span>
+    </p>
   </div>
 </section>
 

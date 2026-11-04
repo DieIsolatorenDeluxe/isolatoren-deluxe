@@ -195,6 +195,21 @@
     });
   }
 
+  const copyPartnerEmail = get('copyPartnerEmail');
+  if (copyPartnerEmail?.previousElementSibling) {
+    const email = copyPartnerEmail.previousElementSibling.textContent.trim();
+    const status = get('partnerEmailFeedback');
+    copyPartnerEmail.hidden = false;
+    copyPartnerEmail.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(email);
+        status.textContent = 'E-Mail-Adresse kopiert.';
+      } catch {
+        status.textContent = 'Du kannst die E-Mail-Adresse oben markieren und kopieren.';
+      }
+    });
+  }
+
   function openLinkedPartner() {
     const id = window.location.hash?.slice(1);
     const card = id && document.getElementById(id);
