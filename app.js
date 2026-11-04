@@ -172,6 +172,41 @@
     button.addEventListener('click', () => copyLink(status, link.href));
   }
 
+  for (const link of document.querySelectorAll?.('[data-share-entry]') ?? []) {
+    link.addEventListener('click', async event => {
+      event.preventDefault();
+      const status = link.parentElement;
+      if (typeof navigator.share === 'function') {
+        try {
+          await navigator.share({url:link.href});
+          return;
+        } catch (error) {
+          if (error.name === 'AbortError') return;
+        }
+      }
+      let feedback = status.querySelector('[data-share-feedback]');
+      if (!feedback) {
+        feedback = document.createElement('span');
+        feedback.setAttribute('data-share-feedback', '');
+        feedback.setAttribute('role', 'status');
+        status.append(feedback);
+      }
+      await copyLink(feedback, link.href);
+    });
+  }
+
+  function openLinkedPartner() {
+    const id = window.location.hash?.slice(1);
+    const card = id && document.getElementById(id);
+    const details = card?.querySelector('.partner-card-details');
+    if (details) {
+      details.open = true;
+      details.scrollIntoView();
+    }
+  }
+  window.addEventListener('hashchange', openLinkedPartner);
+  openLinkedPartner();
+
   function checkForUpdate() {
     if (!registration || navigator.onLine === false || updateCheck) return;
     updateCheck = registration.update().catch(() => {}).finally(() => { updateCheck = null; });

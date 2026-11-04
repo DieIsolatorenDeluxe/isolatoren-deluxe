@@ -705,6 +705,26 @@ button, input, select, .section-nav a { min-height:44px; }
 .partner-qr-poster {
   margin-inline:auto;
 }
+.friends-grid { grid-template-columns:repeat(2,minmax(0,1fr)); align-items:start; }
+@media (max-width:680px) { .friends-grid { grid-template-columns:1fr; } }
+.friend-card > img { height:clamp(120px,25vw,180px); object-fit:contain; }
+.partner-actions [role="status"], [data-share-feedback] { display:block; overflow-wrap:anywhere; }
+.partner-social { display:flex; flex-wrap:wrap; gap:8px; }
+.partner-social .social-tile { width:44px; height:44px; min-width:44px; min-height:44px; padding:0; }
+.partner-social svg, .partner-label svg, .partner-label img { width:24px; height:24px; }
+.partner-label { display:inline-flex; align-items:center; gap:7px; }
+.partner-qr-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,10rem),1fr)); gap:8px; }
+.partner-qr-grid .partner-qr-poster { width:100%; box-sizing:border-box; padding:8px; }
+.partner-qr-code { width:min(100%,208px); background:white; }
+
+.friends-grid { grid-template-columns:repeat(4,minmax(0,1fr)); }
+.friend-card { padding:10px; }
+.friend-card:has(.partner-card-details[open]) { grid-column:span 2; max-width:none; }
+.partner-card-details > summary { display:flex; flex-direction:column; align-items:center; text-align:center; gap:8px; overflow-wrap:anywhere; }
+.partner-card-details > summary img { width:100%; height:clamp(86px,16vw,150px); object-fit:contain; }
+.partner-card-details > summary::after { content:"+"; }
+.partner-card-details[open] > summary::after { content:"−"; }
+@media (max-width:760px) { .friends-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 </style>
 </head>
 
@@ -719,7 +739,7 @@ button, input, select, .section-nav a { min-height:44px; }
   <a class="nav-primary" href="#rechner">Mischrechner</a>
   <a href="#kronkorkenaktion">Kronkorkenaktion</a>
   <a href="#gemeinschaft">Gemeinschaft</a>
-  <a href="#befreundete-gemeinschaften">Befreundete Gemeinschaften</a>
+  <a href="#befreundete-gemeinschaften">Freunde &amp; Partnersupport</a>
   <a href="#termine">Termine</a>
   <a href="#merch">Deko &amp; Merch</a>
 </nav>
@@ -958,14 +978,143 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
 
 <!-- TERMINE -->
 <section class="section" id="befreundete-gemeinschaften" aria-labelledby="friends-title">
-  <h2 id="friends-title">Befreundete Gemeinschaften</h2>
+  <h2 id="friends-title">Freunde &amp; Partnersupport</h2>
+  <p class="section-note">Menschen und Gemeinschaften, die mit uns die Begeisterung für Ostfahrzeuge, Zweitakt und gemeinsame Projekte teilen.</p>
   <div class="friends-grid">
-    <!-- Weitere Gemeinschaften als eigene friend-card ergänzen. -->
+    <article class="friend-card" id="erichs-erben">
+      <details class="partner-card-details">
+        <summary><img src="partner-erichs-erben.jpg" width="1391" height="1529" alt="" loading="lazy" decoding="async"><strong>Erichs Erben – Ostblock Clothing</strong></summary>
+        <div class="partner-card-body">
+      <p>Bekleidung und Accessoires mit Ostblock-Motiven, verbunden mit der Ostfahrzeugszene.</p>
+      <div class="partner-social"><a class="social-tile" href="https://www.erichs-erben.de/" aria-label="Erichs Erben – Ostblock Clothing – Website besuchen"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 12h18M12 3c-5 5-5 13 0 18 5-5 5-13 0-18z" fill="none" stroke="currentColor"/></svg></a> <a class="social-tile" href="https://www.facebook.com/share/19XfgMuoqj/" aria-label="Erichs Erben – Ostblock Clothing – Facebook"><img src="icon_facebook.webp" alt="" width="28" height="28" loading="lazy"></a> <a class="social-tile" href="https://www.instagram.com/erichserben/" aria-label="Erichs Erben – Ostblock Clothing – Instagram"><img src="icon_instagram.webp" alt="" width="28" height="28" loading="lazy"></a> <a class="social-tile" href="https://www.tiktok.com/@erichs_erben" aria-label="Erichs Erben – Ostblock Clothing – TikTok"><img src="icon_tiktok.webp" alt="" width="28" height="28" loading="lazy"></a> <a class="social-tile" href="https://www.youtube.com/@erichserben" aria-label="Erichs Erben – Ostblock Clothing – YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="5" fill="#e21"/><path d="m10 8 6 4-6 4z" fill="white"/></svg></a></div>
+      <details class="partner-share">
+        <summary>QR-Code anzeigen</summary>
+        <div class="partner-qr-grid">
+          <figure class="partner-qr-poster">
+            <figcaption class="partner-label"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 12h18M12 3c-5 5-5 13 0 18 5-5 5-13 0-18z" fill="none" stroke="currentColor"/></svg> Website besuchen</figcaption>
+            <img class="partner-qr-code" src="partner-erichs-erben-erichs-erben-qr.png" width="512" height="512" loading="lazy" alt="QR-Code: Website besuchen">
+            <a href="partner-erichs-erben-erichs-erben-qr.png" download>PNG herunterladen</a> · <a href="partner-erichs-erben-erichs-erben-qr.png" data-share-entry>QR-Code teilen</a>
+          </figure>
+        </div>
+      </details>
+      <p class="partner-actions"><a data-share-entry href="#erichs-erben">Eintrag teilen</a></p>
+    </div>
+      </details>
+    </article>
+    <article class="friend-card" id="fresh-home-made">
+      <details class="partner-card-details">
+        <summary><img src="partner-fresh-home-made.jpg" width="1250" height="1250" alt="" loading="lazy" decoding="async"><strong>Fresh Home Made</strong></summary>
+        <div class="partner-card-body">
+      <p>Das Küken auf der goldenen Simson steht für die gemeinsame Begeisterung für Zweitakter.</p>
+      <div class="partner-social"><a class="social-tile" href="https://www.instagram.com/fresh_home_made1/" aria-label="Fresh Home Made – Instagram"><img src="icon_instagram.webp" alt="" width="28" height="28" loading="lazy"></a> <a class="social-tile" href="https://www.tiktok.com/@fresh_home_made" aria-label="Fresh Home Made – TikTok"><img src="icon_tiktok.webp" alt="" width="28" height="28" loading="lazy"></a></div>
+      <p><a class="partner-label" href="https://www.mofamerch.de/collections/fresh-home-made-1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16l1 13H3zm4 0V6a4 4 0 0 1 8 0v2" fill="none" stroke="currentColor" stroke-width="2"/></svg> Hier MERCH shoppen</a></p>
+      <details class="partner-share">
+        <summary>QR-Code anzeigen</summary>
+        <div class="partner-qr-grid">
+          <figure class="partner-qr-poster">
+            <figcaption class="partner-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16l1 13H3zm4 0V6a4 4 0 0 1 8 0v2" fill="none" stroke="currentColor" stroke-width="2"/></svg> Hier MERCH shoppen</figcaption>
+            <img class="partner-qr-code" src="partner-fresh-home-made-mofamerch-qr.png" width="512" height="512" loading="lazy" alt="QR-Code: Hier MERCH shoppen">
+            <a href="partner-fresh-home-made-mofamerch-qr.png" download>PNG herunterladen</a> · <a href="partner-fresh-home-made-mofamerch-qr.png" data-share-entry>QR-Code teilen</a>
+          </figure>
+        </div>
+      </details>
+      <p class="partner-actions"><a data-share-entry href="#fresh-home-made">Eintrag teilen</a></p>
+    </div>
+      </details>
+    </article>
+    <article class="friend-card" id="kultvoegel">
+      <details class="partner-card-details">
+        <summary><img src="partner-kultvoegel.jpg" width="1500" height="1500" alt="" loading="lazy" decoding="async"><strong>KultVögel</strong></summary>
+        <div class="partner-card-body">
+      <p>Trabant, Schwalbe und IFA verbinden uns mit den KultVögeln.</p>
+      <div class="partner-social"><a class="social-tile" href="https://www.facebook.com/share/1Fpf43XR7w/" aria-label="KultVögel – Facebook"><img src="icon_facebook.webp" alt="" width="28" height="28" loading="lazy"></a> <a class="social-tile" href="https://www.instagram.com/kltvgl/" aria-label="KultVögel – Instagram"><img src="icon_instagram.webp" alt="" width="28" height="28" loading="lazy"></a> <a class="social-tile" href="https://www.tiktok.com/@kultvgel" aria-label="KultVögel – TikTok"><img src="icon_tiktok.webp" alt="" width="28" height="28" loading="lazy"></a> <a class="social-tile" href="https://www.youtube.com/@kultvogel3324" aria-label="KultVögel – YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="5" fill="#e21"/><path d="m10 8 6 4-6 4z" fill="white"/></svg></a> <a class="social-tile" href="https://whatsapp.com/channel/0029VaV5GaE9sBI3LRwkUP1i" aria-label="KultVögel – WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21l1.3-4A9 9 0 1 1 8 20z" fill="#168451" stroke="white"/><path d="M8 7c-3 4 5 11 8 8l1-2-3-1-1 1c-2-1-3-2-4-4l1-1-1-2z" fill="white"/></svg></a></div>
+      <details class="partner-share">
+        <summary>QR-Code anzeigen</summary>
+        <div class="partner-qr-grid">
+          <figure class="partner-qr-poster">
+            <figcaption class="partner-label"><img src="icon_instagram.webp" alt="" width="28" height="28" loading="lazy"> Instagram</figcaption>
+            <img class="partner-qr-code" src="partner-kultvoegel-instagram-qr.png" width="512" height="512" loading="lazy" alt="QR-Code: Instagram">
+            <a href="partner-kultvoegel-instagram-qr.png" download>PNG herunterladen</a> · <a href="partner-kultvoegel-instagram-qr.png" data-share-entry>QR-Code teilen</a>
+          </figure>
+          <figure class="partner-qr-poster">
+            <figcaption class="partner-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21l1.3-4A9 9 0 1 1 8 20z" fill="#168451" stroke="white"/><path d="M8 7c-3 4 5 11 8 8l1-2-3-1-1 1c-2-1-3-2-4-4l1-1-1-2z" fill="white"/></svg> WhatsApp-Kanal</figcaption>
+            <img class="partner-qr-code" src="partner-kultvoegel-whatsapp-qr.png" width="512" height="512" loading="lazy" alt="QR-Code: WhatsApp-Kanal">
+            <a href="partner-kultvoegel-whatsapp-qr.png" download>PNG herunterladen</a> · <a href="partner-kultvoegel-whatsapp-qr.png" data-share-entry>QR-Code teilen</a>
+          </figure>
+        </div>
+      </details>
+      <p class="partner-actions"><a data-share-entry href="#kultvoegel">Eintrag teilen</a></p>
+    </div>
+      </details>
+    </article>
+    <article class="friend-card" id="ostdoedelz">
+      <details class="partner-card-details">
+        <summary><img src="partner-ostdoedelz.jpg" width="1254" height="1254" alt="" loading="lazy" decoding="async"><strong>Ostdödelz</strong></summary>
+        <div class="partner-card-body">
+      <p>Mit blauem Trabant im Logo und einer gemeinsamen Begeisterung für Ostfahrzeuge.</p>
+      <div class="partner-social"><a class="social-tile" href="https://www.facebook.com/share/19hocYQGrH/" aria-label="Ostdödelz – Facebook"><img src="icon_facebook.webp" alt="" width="28" height="28" loading="lazy"></a> <a class="social-tile" href="https://www.instagram.com/ostdoedelz/" aria-label="Ostdödelz – Instagram"><img src="icon_instagram.webp" alt="" width="28" height="28" loading="lazy"></a> <a class="social-tile" href="https://www.tiktok.com/@ostdoedel" aria-label="Ostdödelz – TikTok"><img src="icon_tiktok.webp" alt="" width="28" height="28" loading="lazy"></a> <a class="social-tile" href="https://www.youtube.com/@ostdodelz" aria-label="Ostdödelz – YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="5" fill="#e21"/><path d="m10 8 6 4-6 4z" fill="white"/></svg></a></div>
+      <details class="partner-share">
+        <summary>QR-Code anzeigen</summary>
+        <div class="partner-qr-grid">
+          <figure class="partner-qr-poster">
+            <figcaption class="partner-label"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="5" fill="#e21"/><path d="m10 8 6 4-6 4z" fill="white"/></svg> YouTube</figcaption>
+            <img class="partner-qr-code" src="partner-ostdoedelz-youtube-qr.png" width="512" height="512" loading="lazy" alt="QR-Code: YouTube">
+            <a href="partner-ostdoedelz-youtube-qr.png" download>PNG herunterladen</a> · <a href="partner-ostdoedelz-youtube-qr.png" data-share-entry>QR-Code teilen</a>
+          </figure>
+        </div>
+      </details>
+      <p class="partner-actions"><a data-share-entry href="#ostdoedelz">Eintrag teilen</a></p>
+    </div>
+      </details>
+    </article>
+    <article class="friend-card" id="pappediepapp-deluxe">
+      <details class="partner-card-details">
+        <summary><img src="partner-pappediepapp-deluxe.jpg" width="1250" height="1250" alt="" loading="lazy" decoding="async"><strong>Pappediepapp Deluxe</strong></summary>
+        <div class="partner-card-body">
+      <p>Ein grüner Trabant und Graffiti geben Pappediepapp Deluxe seinen eigenen Stil.</p>
+      <div class="partner-social"><a class="social-tile" href="https://www.facebook.com/share/1DuLyuZwdG/" aria-label="Pappediepapp Deluxe – Facebook"><img src="icon_facebook.webp" alt="" width="28" height="28" loading="lazy"></a> <a class="social-tile" href="https://www.instagram.com/pappediepapp_deluxe/" aria-label="Pappediepapp Deluxe – Instagram"><img src="icon_instagram.webp" alt="" width="28" height="28" loading="lazy"></a></div>
+      <p><a class="partner-label" href="https://www.mofamerch.de/collections/pappediepapp_deluxe"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16l1 13H3zm4 0V6a4 4 0 0 1 8 0v2" fill="none" stroke="currentColor" stroke-width="2"/></svg> Hier MERCH shoppen</a></p>
+      <details class="partner-share">
+        <summary>QR-Code anzeigen</summary>
+        <div class="partner-qr-grid">
+          <figure class="partner-qr-poster">
+            <figcaption class="partner-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16l1 13H3zm4 0V6a4 4 0 0 1 8 0v2" fill="none" stroke="currentColor" stroke-width="2"/></svg> Hier MERCH shoppen</figcaption>
+            <img class="partner-qr-code" src="partner-pappediepapp-deluxe-mofamerch-qr.png" width="512" height="512" loading="lazy" alt="QR-Code: Hier MERCH shoppen">
+            <a href="partner-pappediepapp-deluxe-mofamerch-qr.png" download>PNG herunterladen</a> · <a href="partner-pappediepapp-deluxe-mofamerch-qr.png" data-share-entry>QR-Code teilen</a>
+          </figure>
+        </div>
+      </details>
+      <p class="partner-actions"><a data-share-entry href="#pappediepapp-deluxe">Eintrag teilen</a></p>
+    </div>
+      </details>
+    </article>
+    <article class="friend-card" id="goldstuebchen">
+      <details class="partner-card-details">
+        <summary><img src="partner-goldstuebchen.jpg" width="1254" height="1254" alt="" loading="lazy" decoding="async"><strong>René Schlonsinger – Schlonsingers Goldstübchen</strong></summary>
+        <div class="partner-card-body">
+      <p>René fertigt in Velten individuelle Arbeiten aus Gold, Silber und Bronze.</p>
+      <p>René ist mir sehr ans Herz gewachsen. Er ist für meine Familie und mich da und packt bei unserer Kronkorkenaktion mit an. Lieber René, danke für deine Freundschaft und dafür, dass wir auf dich zählen können.</p>
+      <div class="partner-social"><a class="social-tile" href="https://www.facebook.com/share/19wQWeGq4t/" aria-label="René Schlonsinger – Schlonsingers Goldstübchen – Facebook"><img src="icon_facebook.webp" alt="" width="28" height="28" loading="lazy"></a> <a class="social-tile" href="https://www.instagram.com/schlonsinger/" aria-label="René Schlonsinger – Schlonsingers Goldstübchen – Instagram"><img src="icon_instagram.webp" alt="" width="28" height="28" loading="lazy"></a></div>
+      <details class="partner-share">
+        <summary>QR-Code anzeigen</summary>
+        <div class="partner-qr-grid">
+          <figure class="partner-qr-poster">
+            <figcaption class="partner-label"><img src="icon_instagram.webp" alt="" width="28" height="28" loading="lazy"> Instagram</figcaption>
+            <img class="partner-qr-code" src="partner-goldstuebchen-instagram-qr.png" width="512" height="512" loading="lazy" alt="QR-Code: Instagram">
+            <a href="partner-goldstuebchen-instagram-qr.png" download>PNG herunterladen</a> · <a href="partner-goldstuebchen-instagram-qr.png" data-share-entry>QR-Code teilen</a>
+          </figure>
+        </div>
+      </details>
+      <p class="partner-actions"><a data-share-entry href="#goldstuebchen">Eintrag teilen</a></p>
+    </div>
+      </details>
+    </article>
     <article class="friend-card" id="zweitakt-brigade-frw">
-      <img src="Zweitakt_Brigade_FRW_Logo.png" width="969" height="970" alt="" loading="lazy" decoding="async">
-      <h3>Zweitakt- Brigade FRW</h3>
+      <details class="partner-card-details">
+        <summary><img src="Zweitakt_Brigade_FRW_Logo.png" width="969" height="970" alt="" loading="lazy" decoding="async"><strong>Zweitakt- Brigade FRW</strong></summary>
+        <div class="partner-card-body">
       <p>Eine eigenständige Ostfahrzeug-Gemeinschaft mit gemeinsamer Leidenschaft für DDR-Fahrzeuge, Zweitakttechnik, Oldtimer und Ostalgie.</p>
-      <p><a href="https://www.tiktok.com/@zweitaktbrigade.frw">Zweitakt- Brigade FRW auf TikTok</a></p>
+      <div class="partner-social"><a class="social-tile" href="https://www.tiktok.com/@zweitaktbrigade.frw" aria-label="Zweitakt- Brigade FRW auf TikTok"><img src="icon_tiktok.webp" alt="" width="28" height="28" loading="lazy"></a></div>
       <h4>Mitglieder</h4>
       <ul>
         <li class="action-social"><strong>Duroplastbomber601</strong> <a href="https://www.tiktok.com/@duroplastbomber601" aria-label="Duroplastbomber601 auf TikTok"><img src="icon_tiktok.webp" alt="" width="28" height="28" loading="lazy"></a></li>
@@ -983,6 +1132,60 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
         <a href="https://www.tiktok.com/@zweitaktbrigade.frw" data-partner-link>Direkt zum TikTok-Profil</a>
         <button type="button" class="secondary" data-copy-partner-link hidden>Link kopieren</button>
         <p role="status"></p>
+      </details>
+      <p class="partner-actions"><a data-share-entry href="#zweitakt-brigade-frw">Eintrag teilen</a></p>
+    </div>
+      </details>
+    </article>
+    <article class="friend-card" id="zweitaktcrew-barnim">
+      <details class="partner-card-details">
+        <summary><img src="partner-zweitaktcrew-barnim.jpg" width="1080" height="1080" alt="" loading="lazy" decoding="async"><strong>Zweitaktcrew Barnim</strong></summary>
+        <div class="partner-card-body">
+      <p>Die Crew aus dem Barnim teilt unsere Begeisterung für Zweitakttechnik und Ostfahrzeuge.</p>
+      <div class="partner-social"><a class="social-tile" href="https://www.facebook.com/share/1KgH7rs2B6/" aria-label="Zweitaktcrew Barnim – Facebook"><img src="icon_facebook.webp" alt="" width="28" height="28" loading="lazy"></a> <a class="social-tile" href="https://www.instagram.com/2taktcrew_barnim/" aria-label="Zweitaktcrew Barnim – Instagram"><img src="icon_instagram.webp" alt="" width="28" height="28" loading="lazy"></a> <a class="social-tile" href="https://www.tiktok.com/@zweitaktcrew_barnim" aria-label="Zweitaktcrew Barnim – TikTok"><img src="icon_tiktok.webp" alt="" width="28" height="28" loading="lazy"></a> <a class="social-tile" href="https://www.youtube.com/@zweitaktcrew" aria-label="Zweitaktcrew Barnim – YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="5" fill="#e21"/><path d="m10 8 6 4-6 4z" fill="white"/></svg></a></div>
+      <details class="partner-share">
+        <summary>QR-Code anzeigen</summary>
+        <div class="partner-qr-grid">
+          <figure class="partner-qr-poster">
+            <figcaption class="partner-label"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="5" fill="#e21"/><path d="m10 8 6 4-6 4z" fill="white"/></svg> YouTube</figcaption>
+            <img class="partner-qr-code" src="partner-zweitaktcrew-barnim-youtube-qr.png" width="512" height="512" loading="lazy" alt="QR-Code: YouTube">
+            <a href="partner-zweitaktcrew-barnim-youtube-qr.png" download>PNG herunterladen</a> · <a href="partner-zweitaktcrew-barnim-youtube-qr.png" data-share-entry>QR-Code teilen</a>
+          </figure>
+        </div>
+      </details>
+      <p class="partner-actions"><a data-share-entry href="#zweitaktcrew-barnim">Eintrag teilen</a></p>
+    </div>
+      </details>
+    </article>
+    <article class="friend-card" id="goldostblockstar">
+      <details class="partner-card-details">
+        <summary><img src="partner-goldostblockstar.jpg" width="1254" height="1254" alt="" loading="lazy" decoding="async"><strong>Goldostblockstar</strong></summary>
+        <div class="partner-card-body">
+      <p>Eine violett-goldene Simson vor Berliner Skyline steht für die Verbindung zur Ostfahrzeugkultur.</p>
+      <div class="partner-social"><a class="social-tile" href="https://www.instagram.com/_goldostblockstar_/" aria-label="Goldostblockstar – Instagram"><img src="icon_instagram.webp" alt="" width="28" height="28" loading="lazy"></a> <a class="social-tile" href="https://www.tiktok.com/@ostblockvogel" aria-label="Goldostblockstar – TikTok"><img src="icon_tiktok.webp" alt="" width="28" height="28" loading="lazy"></a></div>
+      <p><a class="partner-label" href="https://www.mofamerch.de/collections/goldostblockstar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16l1 13H3zm4 0V6a4 4 0 0 1 8 0v2" fill="none" stroke="currentColor" stroke-width="2"/></svg> Hier MERCH shoppen</a></p>
+      <details class="partner-share">
+        <summary>QR-Code anzeigen</summary>
+        <div class="partner-qr-grid">
+          <figure class="partner-qr-poster">
+            <figcaption class="partner-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16l1 13H3zm4 0V6a4 4 0 0 1 8 0v2" fill="none" stroke="currentColor" stroke-width="2"/></svg> Hier MERCH shoppen</figcaption>
+            <img class="partner-qr-code" src="partner-goldostblockstar-mofamerch-qr.png" width="512" height="512" loading="lazy" alt="QR-Code: Hier MERCH shoppen">
+            <a href="partner-goldostblockstar-mofamerch-qr.png" download>PNG herunterladen</a> · <a href="partner-goldostblockstar-mofamerch-qr.png" data-share-entry>QR-Code teilen</a>
+          </figure>
+        </div>
+      </details>
+      <p class="partner-actions"><a data-share-entry href="#goldostblockstar">Eintrag teilen</a></p>
+    </div>
+      </details>
+    </article>
+    <article class="friend-card" id="maschenkult-manufaktur">
+      <details class="partner-card-details">
+        <summary><img src="partner-maschenkult-manufaktur.png" width="488" height="488" alt="" loading="lazy" decoding="async"><strong>Maschenkult Manufaktur</strong></summary>
+        <div class="partner-card-body">
+      <p>Handarbeit trifft Ostfahrzeugkultur. Unikat statt Duplikat.</p>
+      <div class="partner-social"><a class="social-tile" href="https://www.instagram.com/maschenkult_manufaktur/" aria-label="Maschenkult Manufaktur – Instagram"><img src="icon_instagram.webp" alt="" width="28" height="28" loading="lazy"></a></div>
+      <p class="partner-actions"><a data-share-entry href="#maschenkult-manufaktur">Eintrag teilen</a></p>
+    </div>
       </details>
     </article>
   </div>
