@@ -166,7 +166,7 @@
 
   for (const button of document.querySelectorAll?.('[data-copy-partner-link]') ?? []) {
     const panel = button.closest('details');
-    const link = panel.querySelector('a');
+    const link = panel.querySelector('[data-partner-link]');
     const status = panel.querySelector('[role="status"]');
     button.hidden = false;
     button.addEventListener('click', () => copyLink(status, link.href));
