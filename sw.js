@@ -1,7 +1,7 @@
-const CACHE_NAME = 'gemischrechner-v16';
+const CACHE_NAME = 'gemischrechner-v17';
 const APP_SCOPE = self.registration.scope;
 const CORE_FILES = [
-  './', './index.html', './calculator.js', './app.js', './manifest.json', './teilen-qr.png', './qr-plakat.webp',
+  './', './index.html', './theme.css', './calculator.js', './app.js', './manifest.json', './teilen-qr.png', './qr-plakat.webp',
   './logo.webp', './foto-trabi.webp', './foto-simson.webp', './foto-mz.webp', './foto-kettensaege.jpg',
   './icon_instagram.webp', './icon_facebook.webp', './icon_tiktok.webp',
   './app-icon-180.png', './app-icon-192.png', './app-icon-512.png',
@@ -71,6 +71,6 @@ self.addEventListener('fetch', event => {
   const request = event.request;
   if (request.method !== 'GET' || !request.url.startsWith(APP_SCOPE)) return;
   const path = new URL(request.url).pathname;
-  const isAppCode = request.mode === 'navigate' || /\.(html|js|json)$/.test(path);
+  const isAppCode = request.mode === 'navigate' || /\.(html|css|js|json)$/.test(path);
   event.respondWith(isAppCode ? networkFirst(request) : cacheFirst(request));
 });

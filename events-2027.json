@@ -1,0 +1,201 @@
+{
+  "researchDate": "2026-11-05",
+  "events": [
+    {
+      "start": "2027-04-10",
+      "date": "10.04.2027",
+      "name": "ZK24 Saisonauftakt",
+      "place": "Ort noch offen",
+      "status": "Vorläufig · Termin unbestätigt",
+      "source": null,
+      "note": null
+    },
+    {
+      "start": "2027-04-24",
+      "date": "24.04.2027",
+      "name": "Finowfurt",
+      "place": "Finowfurt",
+      "status": "Vorläufig · Termin unbestätigt",
+      "source": null,
+      "note": "Die bisher auffindbare Veranstalterankündigung betrifft den 24.–25.04.2026. Eine Bestätigung für 2027 steht aus."
+    },
+    {
+      "start": "2027-05-01",
+      "date": "01.05.2027",
+      "name": "Bernau",
+      "place": "Bernau",
+      "status": "Vorläufig · Termin unbestätigt",
+      "source": null,
+      "note": null
+    },
+    {
+      "start": "2027-05-05",
+      "date": "05.–09.05.2027",
+      "name": "32. Internationales Trabant-Treffen",
+      "place": "Flugplatz Otto Lilienthal, Am Flugplatz 1, 17389 Anklam",
+      "status": "Laut übermitteltem Google-Screenshot, direkte Veranstalterbestätigung ausstehend",
+      "source": "https://right-now.de/",
+      "note": "Der übermittelte Google-Screenshot zeigt eine Zusammenfassung mit Facebook-Verweis. Der Originalbeitrag wurde bislang nicht geprüft. Zusätzlicher Nachweis: Right Now kündigt einen Auftritt am 08.05.2027 an.",
+      "end": "2027-05-09",
+      "organizer": "Trabbi-Buggy-Club 93 e. V."
+    },
+    {
+      "start": "2027-05-08",
+      "date": "08.05.2027",
+      "name": "Schollene",
+      "place": "Schollene",
+      "status": "Vorläufig · Termin unbestätigt",
+      "source": null,
+      "note": null
+    },
+    {
+      "start": "2027-05-15",
+      "date": "15.–16.05.2027",
+      "name": "IFA- und Oldtimertreffen Herzfelde",
+      "place": "Herzfelde",
+      "status": "Vom Veranstalter angekündigt",
+      "source": "https://www.oldtimerfreunde-herzfelde.de/",
+      "note": null
+    },
+    {
+      "start": "2027-05-22",
+      "date": "22.05.2027",
+      "name": "Podelwitz",
+      "place": "Podelwitz",
+      "status": "Vorläufig · Termin unbestätigt",
+      "source": null,
+      "note": null
+    },
+    {
+      "start": "2027-05-28",
+      "date": "28.–30.05.2027",
+      "name": "19. Oldtimertreffen mit Teilemarkt",
+      "place": "Alt Tucheband",
+      "status": "Vom Veranstalter angekündigt",
+      "source": "https://www.ostfahrzeugtreffen-oderbruch.de/",
+      "note": null
+    },
+    {
+      "start": "2027-05-29",
+      "date": "29.05.2027",
+      "name": "Linum",
+      "place": "Linum",
+      "status": "Vorläufig · Termin unbestätigt",
+      "source": null,
+      "note": null
+    },
+    {
+      "start": "2027-06-05",
+      "date": "05.06.2027",
+      "name": "Lausitzring",
+      "place": "Lausitzring",
+      "status": "Vorläufig · Termin unbestätigt",
+      "source": null,
+      "note": null
+    },
+    {
+      "start": "2027-06-12",
+      "date": "12.06.2027",
+      "name": "Oldtimer-Sommerfest „New Generation“",
+      "place": "Am Baggersee in Gusow",
+      "status": "Vom Veranstalter angekündigt",
+      "source": "https://www.dorfclub1961-gusow-platkow.de/veranstaltungen",
+      "note": null
+    },
+    {
+      "start": "2027-06-27",
+      "date": "27.06.2027",
+      "name": "OTTMA",
+      "place": "Schlossruine, Dahme/Mark",
+      "status": "Veranstalterbestätigung ausstehend",
+      "source": "https://meine-flohmarkt-termine.de/oldtimertreffen-ottma-in-dahmemark/23868084/details",
+      "note": "Kalenderangabe: 9–16 Uhr."
+    },
+    {
+      "start": "2027-07-09",
+      "date": "09.–11.07.2027",
+      "name": "Bitterfelder Trabant- & Ostfahrzeuge-Treffen",
+      "place": "Bitterfeld",
+      "status": "Veranstalterbestätigung ausstehend",
+      "source": "https://www.old-timerfreun.de/termine.html",
+      "note": null
+    },
+    {
+      "start": "2027-07-15",
+      "date": "15.–18.07.2027",
+      "name": "3. Ostblock-Treffen",
+      "place": "Hammer an der Uecker",
+      "status": "Vom Veranstalter angekündigt",
+      "source": "https://www.pommern-kaviar.de/ostblock-simson-treffen-2027/",
+      "note": "Veranstalterangabe gemäß übermittelter Recherche; beim erneuten Abruf war die Quelle gesperrt."
+    },
+    {
+      "start": "2027-08-07",
+      "date": "07.08.2027",
+      "name": "Reitwein",
+      "place": "Reitwein",
+      "status": "Vorläufig · Termin unbestätigt",
+      "source": null,
+      "note": null
+    },
+    {
+      "start": "2027-08-27",
+      "date": "27.–29.08.2027",
+      "name": "Neuhardenberg",
+      "place": "Neuhardenberg",
+      "status": "Vorläufig · Termin unbestätigt",
+      "source": null,
+      "note": null
+    },
+    {
+      "start": "2027-08-28",
+      "date": "28.08.2027",
+      "name": "10. Ostalgietreffen",
+      "place": "Parkplatz am Tierpark, Germendorf",
+      "status": "Veranstalterbestätigung ausstehend",
+      "source": "https://www.oldtimer-map.com/de/events/6ad33dadff4b6322aa2d48e3",
+      "note": null
+    },
+    {
+      "start": "2027-09-03",
+      "date": "03.–05.09.2027",
+      "name": "5. Bernauer IFA- & Oldtimertreffen",
+      "place": "Ladeburg",
+      "status": "Vom Veranstalter angekündigt",
+      "source": "https://www.ifa-halleladeburg.de/Treffen-2023",
+      "note": null
+    },
+    {
+      "start": "2027-09-11",
+      "date": "11.09.2027",
+      "name": "Demnitz",
+      "place": "Demnitz",
+      "status": "Vorläufig · Termin unbestätigt",
+      "source": null,
+      "note": null
+    },
+    {
+      "start": "2027-10-16",
+      "date": "16.10.2027",
+      "name": "Last Season Cruise",
+      "place": "Ort noch offen",
+      "status": "Vorläufig · Termin unbestätigt",
+      "source": null,
+      "note": null
+    },
+    {
+      "start": "2027-10-23",
+      "date": "23.10.2027",
+      "name": "Stopplicht Dabel",
+      "place": "Dabel",
+      "status": "Vorläufig · Termin unbestätigt",
+      "source": null,
+      "note": null
+    }
+  ],
+  "open": [
+    "Der Osten rollt",
+    "Simsoncross",
+    "Kombinat Mopeds Treffen"
+  ]
+}
