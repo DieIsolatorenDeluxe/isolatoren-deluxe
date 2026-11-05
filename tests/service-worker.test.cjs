@@ -3,6 +3,8 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
+const workerSource = fs.readFileSync(path.join(__dirname,'../sw.js'),'utf8');
+const currentCache = workerSource.match(/const CACHE_NAME = '([^']+)'/)[1];
 
 function setup(oldKeys = []) {
   const scope = 'https://example.test/isolatoren-deluxe/';
@@ -19,7 +21,7 @@ function setup(oldKeys = []) {
     url, navigate:async target => navigated.push(target)
   }));
   const context = vm.createContext({Request,Response,URL,
-    caches:{open:async () => cache, keys:async () => [...oldKeys,'gemischrechner-v10'],
+    caches:{open:async () => cache, keys:async () => [...oldKeys,currentCache],
       delete:async key => deleted.push(key)},
     self:{registration:{scope},addEventListener:(type,fn) => handlers[type]=fn,
       skipWaiting:async () => {waiting=true;},clients:{claim:async () => {claimed=true;},matchAll:async () => windows}},
@@ -37,7 +39,8 @@ function setup(oldKeys = []) {
 }
 test('install fetches the complete calculator shell without using HTTP cache',async () => {
   const app=setup(); await app.dispatch('install');
-  assert.equal(app.entries.size,20); assert.equal(app.waiting,true);
+  assert.equal(app.entries.size,21); assert.equal(app.waiting,true);
+  assert.ok(app.entries.has(app.scope+'theme.css'));
   assert.ok(app.entries.has(app.scope+'calculator.js'));
   for (const file of ['qr-plakat.webp','app.js','teilen-qr.png','icon_instagram.webp','icon_facebook.webp','icon_tiktok.webp','app-icon-maskable-512.png','app-icon-180.png','app-icon.ico']) {
     assert.ok(app.entries.has(app.scope+file));
