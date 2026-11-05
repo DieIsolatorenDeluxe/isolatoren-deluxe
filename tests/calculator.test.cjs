@@ -46,6 +46,19 @@ test('5 litres at 1:50 gives 100 ml; decimals at 1:33 round correctly', () => {
   app.context.setRatio(33); app.nodes.fuelInput.value='2.5'; app.context.calculateMix();
   assert.match(app.result('mix'), /76 ml/);
 });
+test('ratio indicator follows custom choices and vehicle changes without stale selection', () => {
+  const app=setup(); app.vehicles[1].onclick();
+  assert.match(app.nodes.activeRatioBadge.textContent,/1 : 50/);
+  app.context.openRatioModal();
+  assert.equal(app.nodes.ratioOptions.children[2].attributes['aria-pressed'],'true');
+  app.submit('ratioForm','ratioInput','25');
+  assert.match(app.nodes.activeRatioBadge.textContent,/1 : 25/);
+  app.context.openRatioModal();
+  assert.ok(app.nodes.ratioOptions.children.every(e=>e.attributes['aria-pressed']==='false'));
+  assert.match(app.nodes.currentRatioModalStatus.textContent,/1 : 25/);
+  app.vehicles[3].onclick();
+  assert.match(app.nodes.activeRatioBadge.textContent,/Bitte Mischungsverhältnis wählen/);
+});
 test('invalid fuel amounts remove previous results and explain the error', () => {
   for (const value of ['-2','-5','0','','Infinity','NaN']) {
     const app=setup(); app.vehicles[1].onclick();
