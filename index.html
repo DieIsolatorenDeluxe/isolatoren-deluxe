@@ -885,13 +885,15 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
         <li><span class="rule-icon" aria-hidden="true">✕</span> Tierfuttertüten</li>
       </ul>
     </div>
-    <div class="action-card"><h3>Jan &amp; Steffi Sonneborn</h3>
+    </div>
+  <div class="action-grid action-contacts">
+    <div class="action-card action-contact"><h3>Jan &amp; Steffi Sonneborn</h3>
       <p>Die Isolatoren Deluxe · Berlin / Brandenburg</p>
       <p><a href="mailto:js.sonneborn@gmail.com">js.sonneborn@gmail.com</a></p>
       <p class="action-social"><strong>Jan</strong> <a href="https://www.facebook.com/share/1Gk158Fub9" aria-label="Jan auf Facebook"><img src="icon_facebook.webp" alt="" width=28 height=28 loading=lazy></a> <a href="https://www.instagram.com/isolator_jan/" aria-label="Jan auf Instagram"><img src="icon_instagram.webp" alt="" width=28 height=28 loading=lazy></a> <a href="https://www.tiktok.com/@mullemannjan" aria-label="Jan auf TikTok"><img src="icon_tiktok.webp" alt="" width=28 height=28 loading=lazy></a></p>
       <p class="action-social"><strong>Steffi</strong> <a href="https://www.facebook.com/share/184oxeF15g/" aria-label="Steffi auf Facebook"><img src="icon_facebook.webp" alt="" width=28 height=28 loading=lazy></a> <a href="https://www.instagram.com/prinzepessa84/" aria-label="Steffi auf Instagram"><img src="icon_instagram.webp" alt="" width=28 height=28 loading=lazy></a> <a href="https://www.tiktok.com/@mulle_2020" aria-label="Steffi auf TikTok"><img src="icon_tiktok.webp" alt="" width=28 height=28 loading=lazy></a></p>
     </div>
-    <div class="action-card">
+    <div class="action-card action-contact">
       <img class="action-logo" src="kronkorken-verein.webp" width="96" height="96" alt="Vereinslogo" loading="lazy">
       <h3>Der Verein</h3>
       <p>Kronkorken fürs Kinderhospiz e. V.</p>
@@ -1395,12 +1397,14 @@ Tippe auf ein Motiv, um es groß anzusehen.
   <h2 id="kontakt-title">Kontakt</h2>
   <p>Fragen zur Kronkorkenaktion, zu unserer Gemeinschaft oder Interesse am Partnersupport? Schreib mir gerne.</p>
   <p><strong>Jan Sonneborn · Die Isolatoren Deluxe</strong></p>
+  <label for="contactTopic">Worum geht es?</label>
+  <select id="contactTopic"><option value="kronkorken">Kronkorkenaktion</option><option value="partner">Freunde &amp; Partnersupport</option><option value="allgemein" selected>Allgemeine Frage</option></select>
   <div class="partner-social">
-    <a class="action-primary" href="https://wa.me/491749837499?text=Hallo%20Jan%2C%20ich%20komme%20%C3%BCber%20die%20Website%20der%20Isolatoren%20Deluxe%20und%20habe%20eine%20Frage." aria-label="Jan auf WhatsApp schreiben"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.5a8.5 8.5 0 0 1-12.7 7.4L3 20l1.1-4.8a8.5 8.5 0 1 1 16.4-3.7Z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 7.5c-1 2.8 2.8 6.6 5.5 7l1.6-1.6-2.2-1.2-.9.8c-1.2-.5-2-1.3-2.5-2.5l.8-.9-1-2Z" fill="currentColor"/></svg> WhatsApp schreiben</a>
-    <a class="partner-invitation-link" href="mailto:js.sonneborn@gmail.com?subject=Kontakt%20%C3%BCber%20Die%20Isolatoren%20Deluxe">E-Mail schreiben</a>
+    <a id="contactWhatsApp" class="action-primary" href="https://wa.me/491749837499?text=Hallo%20Jan%2C%20ich%20komme%20%C3%BCber%20eure%20Website.%0A%0AMeine%20Frage%3A%20%E2%80%A6" aria-label="Jan auf WhatsApp schreiben"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.5a8.5 8.5 0 0 1-12.7 7.4L3 20l1.1-4.8a8.5 8.5 0 1 1 16.4-3.7Z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 7.5c-1 2.8 2.8 6.6 5.5 7l1.6-1.6-2.2-1.2-.9.8c-1.2-.5-2-1.3-2.5-2.5l.8-.9-1-2Z" fill="currentColor"/></svg> WhatsApp schreiben</a>
+    <a id="contactEmail" class="partner-invitation-link" href="mailto:js.sonneborn@gmail.com?subject=Kontakt%20%E2%80%93%20Die%20Isolatoren%20Deluxe&amp;body=Hallo%20Jan%2C%20ich%20komme%20%C3%BCber%20eure%20Website.%0A%0AMeine%20Frage%3A%20%E2%80%A6">E-Mail schreiben</a>
   </div>
-  <p>E-Mail: <a href="mailto:js.sonneborn@gmail.com">js.sonneborn@gmail.com</a></p>
-  <p class="section-note">WhatsApp öffnet den Chat mit einer vorbereiteten Nachricht. Du versendest sie erst selbst. Wir antworten, sobald wir können.</p>
+  <p>E-Mail: <a id="contactEmailAddress" href="mailto:js.sonneborn@gmail.com?subject=Kontakt%20%E2%80%93%20Die%20Isolatoren%20Deluxe&amp;body=Hallo%20Jan%2C%20ich%20komme%20%C3%BCber%20eure%20Website.%0A%0AMeine%20Frage%3A%20%E2%80%A6">js.sonneborn@gmail.com</a></p>
+  <p class="section-note">Wähle dein Anliegen und anschließend WhatsApp oder E-Mail. Die Nachricht wird passend vorbereitet; bei E-Mail auch der Betreff. Ergänze deine Angaben und sende sie selbst ab. Wir antworten, sobald wir können.</p>
 </section>
 
 <footer>
@@ -1487,5 +1491,26 @@ Privates, nicht kommerzielles Projekt
 <script src="calculator.js"></script>
 
 <script src="app.js"></script>
+<script id="contactLinksLogic">
+(() => {
+  const topic = document.getElementById('contactTopic');
+  const whatsapp = document.getElementById('contactWhatsApp');
+  const email = document.getElementById('contactEmail');
+  const address = document.getElementById('contactEmailAddress');
+  const templates = {
+    kronkorken: {subject:'Kronkorkenaktion – Anfrage aus [Ort]', body:'Hallo Jan, ich möchte mich zur Kronkorkenaktion melden.\n\nMein Ort: …\nMein Anliegen: …'},
+    partner: {subject:'Anfrage – Freunde & Partnersupport', body:'Hallo Jan, wir möchten uns für euren Partnersupport vorstellen.\n\nName / Gemeinschaft: …\nUnsere Links: …'},
+    allgemein: {subject:'Kontakt – Die Isolatoren Deluxe', body:'Hallo Jan, ich komme über eure Website.\n\nMeine Frage: …'}
+  };
+  function updateContact() {
+    const entry = templates[topic.value] || templates.allgemein;
+    whatsapp.href = 'https://wa.me/491749837499?text=' + encodeURIComponent(entry.body);
+    email.href = 'mailto:js.sonneborn@gmail.com?subject=' + encodeURIComponent(entry.subject) + '&body=' + encodeURIComponent(entry.body);
+    address.href = email.href;
+  }
+  topic.addEventListener('change', updateContact);
+  updateContact();
+})();
+</script>
 </body>
 </html>
