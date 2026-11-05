@@ -1,6 +1,8 @@
 'use strict';
 const byId = id => document.getElementById(id);
 const elements = Object.fromEntries(['mixResult','backResult','mixState','backState','fuelInput','oilInput','mixError','backError','ratioModal','backModal','ratioOptions','ratioForm','backRatioForm','ratioInput','backRatioInput','ratioError','backRatioError'].map(id => [id, byId(id)]));
+elements.activeRatioBadge = byId('activeRatioBadge');
+elements.currentRatioModalStatus = byId('currentRatioModalStatus');
 let vehicle = null;
 let recommendedRatio = null;
 let activeRatio = null;
@@ -30,17 +32,21 @@ document.querySelectorAll('.vehicle').forEach(button => {
   };
 });
 function updateMixState() {
+  elements.activeRatioBadge.textContent = activeRatio ? `✓ Ausgewählt: 1 : ${activeRatio}` : 'Bitte Mischungsverhältnis wählen';
+  elements.activeRatioBadge.classList.toggle('has-ratio', Boolean(activeRatio));
   elements.mixState.textContent = vehicle
     ? `Ausgewählt: ${vehicle} · ${activeRatio ? `Aktiv: 1 : ${activeRatio} (${activeRatio === recommendedRatio ? 'empfohlen' : 'manuell'})` : 'Bitte Mischungsverhältnis wählen'}`
     : activeRatio ? `Aktiv: 1 : ${activeRatio} (manuell)` : '';
 }
 function openRatioModal() {
+  elements.currentRatioModalStatus.textContent = activeRatio ? `Aktuell ausgewählt: 1 : ${activeRatio}` : 'Noch kein Verhältnis ausgewählt';
   elements.ratioOptions.replaceChildren();
   [33,40,50].forEach(ratio => {
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'option';
-    button.textContent = `1 : ${ratio}${ratio === recommendedRatio ? ' (empfohlen)' : ''}`;
+    button.setAttribute('aria-pressed', String(ratio === activeRatio));
+    button.textContent = `${ratio === activeRatio ? '✓ ' : ''}1 : ${ratio}${ratio === activeRatio ? ' · Ausgewählt' : ''}${ratio === recommendedRatio ? ' (empfohlen)' : ''}`;
     button.onclick = () => setRatio(ratio);
     elements.ratioOptions.appendChild(button);
   });

@@ -1,4 +1,10 @@
 /* Gemeinsame Farben und Interaktionszustände, nach den bisherigen Layoutregeln. */
+.ratio-badge { padding:14px 18px; border:2px dashed #a18e70; border-radius:10px; text-align:center; }
+#rechner .ratio-badge.has-ratio { background:#ffdc91; color:#17191e; border:2px solid #fff0ca; font-size:clamp(1.35rem,4.5vw,1.8rem); font-weight:800; line-height:1.35; }
+#ratioOptions { display:grid; gap:10px; margin:16px 0; }
+#ratioOptions .option { min-height:52px; width:100%; border:2px solid #a18e70; background:#30333a; color:#f4f1eb; font-size:1.1rem; }
+#ratioOptions .option[aria-pressed="true"] { background:#ffdc91; color:#17191e; border-color:#fff0ca; box-shadow:0 0 0 3px #ffdc9133; font-weight:800; }
+.ratio-current { color:#ffdc91; font-weight:700; }
 :root { --bg:#101114; --panel:#24262b; --border:#9b8869; --gold:#ffdc91; --text:#f4f1eb; }
 body { background:var(--bg); color:var(--text); }
 body::before { opacity:.035; }
