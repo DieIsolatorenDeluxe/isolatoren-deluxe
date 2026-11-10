@@ -70,3 +70,46 @@ a.action-primary:hover, a.partner-invitation-link:hover, .partner-card-body a.pa
 .action-contact .action-referral { margin-top:20px; padding-top:16px; }
 
 #contactTopic { display:block; width:100%; max-width:100%; margin:8px 0 18px; padding:12px; border:1px solid #a18e70; border-radius:9px; background:#202227; color:#f4f1eb; font:inherit; font-size:16px; min-height:48px; }
+
+/* Kompakte Termin- und Ideenübersicht. Native Details funktionieren ohne JavaScript. */
+.event-months { margin-block:20px; }
+.event-month { border-top:1px solid var(--border); }
+.event-month:last-child { border-bottom:1px solid var(--border); }
+.event-month > summary, .design-gallery > summary { cursor:pointer; min-height:56px; padding:14px 12px; color:var(--gold); font-weight:700; line-height:1.5; }
+.event-month > summary .month-count, .design-gallery > summary .month-count { float:right; margin-inline-start:8px; font-size:.875rem; font-weight:400; color:#dedbd5; }
+.event-month[open] > summary { background:#30333a; }
+.event-month .event-list { margin:0; padding-inline:12px; }
+.event-month .event-item { display:block; padding:0; }
+.event-entry > summary { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:4px 12px; min-height:48px; padding:10px 4px; cursor:pointer; }
+.event-label { display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 12px; min-width:0; }
+.event-label time { font-variant-numeric:tabular-nums; }
+.event-label .event-name { font-weight:700; overflow-wrap:anywhere; }
+.event-tag { color:#dedbd5; font-size:.8125rem; }
+.event-tag.is-announced { color:#c7f6d6; }
+.event-entry > summary::after { content:"+"; color:var(--gold); }
+.event-entry[open] > summary::after { content:"−"; }
+.event-detail { padding:0 4px 12px; }
+.event-month .event-status { font-size:.8125rem; }
+.event-month .event-note { font-size:.875rem; }
+.event-highlights { list-style:none; margin:12px 0 16px; padding:0; }
+.event-highlights li { display:grid; grid-template-columns:minmax(8.5rem,auto) minmax(0,1fr); gap:12px; padding:10px 0; border-top:1px solid var(--border); }
+.event-highlights time { color:var(--gold); font-weight:700; }
+.event-highlights li span { display:block; font-size:.875rem; color:#dedbd5; }
+.event-year { margin-bottom:12px; }
+.event-year > summary { cursor:pointer; min-height:48px; padding:12px; border:1px solid var(--border); border-radius:9px; color:var(--gold); font-weight:700; }
+.event-year > summary .month-count { margin-inline-start:8px; color:#dedbd5; font-size:.875rem; font-weight:400; }
+#merch { padding:12px clamp(12px,3vw,24px); }
+.design-gallery > summary { display:grid; grid-template-columns:60px minmax(0,1fr) auto; gap:12px; align-items:center; padding:4px; }
+.design-gallery > summary img { display:block; object-fit:contain; border-radius:6px; }
+.design-gallery > summary small { display:block; color:#dedbd5; font-weight:400; }
+.design-gallery > summary::after { content:"+"; }
+.design-gallery[open] > summary::after { content:"−"; }
+.design-gallery .shop-grid { padding-top:16px; }
+@media(max-width:640px) {
+ .event-highlights li { grid-template-columns:1fr; gap:3px; }
+ .event-label { flex-basis:100%; }
+}
+
+.site-footer { border-top:1px solid var(--border); padding:24px 12px; text-align:center; color:#dedbd5; line-height:1.6; font-size:.875rem; }
+.site-footer p { margin:8px auto; max-width:40rem; }
+.site-footer a { display:inline-flex; align-items:center; min-height:44px; padding-inline:12px; }
