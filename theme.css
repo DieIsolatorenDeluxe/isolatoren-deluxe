@@ -66,7 +66,7 @@ a.action-primary:hover, a.partner-invitation-link:hover, .partner-card-body a.pa
 .action-contact .action-social { margin-top:18px; gap:10px; }
 .action-contact .action-social strong { flex-basis:100%; }
 .action-contact .action-social a { flex:none; }
-.action-contact .action-logo { float:none; display:block; width:88px; max-width:100%; height:auto; margin:0 0 16px; }
+.action-contact .action-logo { float:none; display:block; width:clamp(150px,22vw,180px); max-width:100%; height:auto; margin:0 0 16px; }
 .action-contact .action-referral { margin-top:20px; padding-top:16px; }
 
 #contactTopic { display:block; width:100%; max-width:100%; margin:8px 0 18px; padding:12px; border:1px solid #a18e70; border-radius:9px; background:#202227; color:#f4f1eb; font:inherit; font-size:16px; min-height:48px; }
