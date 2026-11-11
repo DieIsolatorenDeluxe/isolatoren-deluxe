@@ -141,20 +141,23 @@ function calculateMix() {
   });
   elements.mixResult.appendChild(copy);
 
-  if (typeof navigator !== 'undefined' && typeof navigator.share === 'function') {
-    const share = document.createElement('button');
-    share.type = 'button';
-    share.className = 'secondary';
-    share.textContent = 'Ergebnis teilen';
-    share.addEventListener('click', async () => {
+  const share = document.createElement('button');
+  share.type = 'button';
+  share.className = 'secondary';
+  share.textContent = 'Ergebnis teilen';
+  share.style.marginInlineStart = '8px';
+  share.addEventListener('click', async () => {
+    if (typeof navigator.share === 'function') {
       try {
         await navigator.share({text});
+        return;
       } catch (error) {
-        if (error.name !== 'AbortError') copy.click();
+        if (error.name === 'AbortError') return;
       }
-    });
-    elements.mixResult.appendChild(share);
-  }
+    }
+    window.location.href = `mailto:?subject=Mischergebnis&body=${encodeURIComponent(text)}`;
+  });
+  elements.mixResult.appendChild(share);
 }
 function calculateBack() {
   const oil = readAmount('back', backRatio);
