@@ -1471,6 +1471,13 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
   <a href="#kontakt">Kontakt</a>
 </footer>
 
+<dialog id="merchPreview" aria-label="Designvorschau" style="max-width:min(92vw, 64rem); max-height:92vh; padding:12px; background:#24262b; color:var(--text); border:1px solid var(--gold); border-radius:12px;">
+  <form method="dialog" style="text-align:right; margin-bottom:8px;">
+    <button class="secondary" autofocus>× Zurück zur Galerie</button>
+  </form>
+  <img alt="" style="display:block; max-width:100%; max-height:calc(92vh - 90px); object-fit:contain; margin:auto;">
+</dialog>
+
 </div>
 
 <!-- Verhältnisauswahl -->
@@ -1550,6 +1557,19 @@ Aktives Mischungsverhältnis: <strong>keines gewählt</strong>
 <script src="calculator.js"></script>
 
 <script src="app.js"></script>
+<script>
+  const merchPreview = document.querySelector("#merchPreview");
+  const merchImage = merchPreview.querySelector("img");
+  document.querySelector(".design-gallery .shop-grid").addEventListener("click", (event) => {
+    const link = event.target.closest("a");
+    if (!link || event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey ||
+        event.shiftKey || event.altKey || typeof merchPreview.showModal !== "function") return;
+    event.preventDefault();
+    merchImage.alt = link.getAttribute("aria-label");
+    merchImage.src = link.href;
+    merchPreview.showModal();
+  });
+</script>
 <script>
   if (!("name" in document.createElement("details"))) {
     const groupedDetails = document.querySelectorAll("details[name]");
