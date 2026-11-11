@@ -18,6 +18,16 @@ a:active { color:#fff; }
 .section-note, .section p, .partner-invitation p, .partner-contact { color:#dedbd5; }
 .friends-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
 .friend-card { max-width:none; padding:14px; }
+.friend-card:has(.partner-card-details[open]) {
+  border-color:var(--gold);
+  box-shadow:0 0 16px #ffdc9155;
+}
+@media (hover:hover) {
+  .friend-card:hover {
+    border-color:var(--gold);
+    box-shadow:0 0 16px #ffdc9155;
+  }
+}
 .partner-card-details > summary { overflow-wrap:normal; word-break:normal; hyphens:none; }
 .partner-card-details > summary strong { font-size:clamp(.875rem,1.3vw,1rem); line-height:1.4; max-width:100%; }
 .partner-card-details > summary img { height:160px; object-fit:contain; padding:4px; filter:none; }
