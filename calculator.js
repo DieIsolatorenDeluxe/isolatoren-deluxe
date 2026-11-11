@@ -126,6 +126,35 @@ function calculateMix() {
   if (!Number.isFinite(oil)) return fail('mix', 'Die eingegebene Menge ist zu groß.');
   const display = oil < 1 ? '< 1' : Math.round(oil).toLocaleString('de-DE');
   showResult('mix', `${display} ml Öl zugeben`, activeRatio);
+  const text = `${fuel.toLocaleString('de-DE', {maximumSignificantDigits: 16})} Liter Benzin · 1:${activeRatio} · ${display} ml Zweitaktöl`;
+  const copy = document.createElement('button');
+  copy.type = 'button';
+  copy.className = 'secondary';
+  copy.textContent = 'Ergebnis kopieren';
+  copy.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(text);
+      copy.textContent = 'Ergebnis kopiert';
+    } catch {
+      window.prompt('Mischergebnis kopieren', text);
+    }
+  });
+  elements.mixResult.appendChild(copy);
+
+  if (typeof navigator !== 'undefined' && typeof navigator.share === 'function') {
+    const share = document.createElement('button');
+    share.type = 'button';
+    share.className = 'secondary';
+    share.textContent = 'Ergebnis teilen';
+    share.addEventListener('click', async () => {
+      try {
+        await navigator.share({text});
+      } catch (error) {
+        if (error.name !== 'AbortError') copy.click();
+      }
+    });
+    elements.mixResult.appendChild(share);
+  }
 }
 function calculateBack() {
   const oil = readAmount('back', backRatio);
