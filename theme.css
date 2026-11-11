@@ -35,7 +35,7 @@ a.action-primary, a.partner-invitation-link, .section-nav a.nav-primary,
 .partner-card-body a.partner-label { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:44px; padding:11px 16px; background:#ffdc91; color:#17191e; border:1px solid #ffdc91; border-radius:9px; font-weight:700; text-decoration:none; }
 a.action-primary:hover, a.partner-invitation-link:hover, .partner-card-body a.partner-label:hover { background:#fff0ca; color:#17191e; }
 .partner-actions a, button.secondary, .section-nav a, .partner-share > summary, .event-archive > summary { display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:10px 14px; color:#ffdc91; background:#202227; border:1px solid #a18e70; border-radius:9px; font-weight:700; }
-.partner-actions a:hover, button.secondary:hover, .section-nav a:hover, summary:hover { background:#41434a; color:#fff0ca; }
+.partner-actions a:hover, button.secondary:hover { background:#41434a; color:#fff0ca; }
 .partner-contact button { cursor:pointer; }
 .event-list { list-style:none; margin:24px 0; padding:0; }
 .event-item { display:grid; grid-template-columns:10rem minmax(0,1fr); gap:18px; padding:22px 0; border-top:1px solid #9b8869; }
@@ -112,4 +112,13 @@ a.action-primary:hover, a.partner-invitation-link:hover, .partner-card-body a.pa
 
 .site-footer { border-top:1px solid var(--border); padding:24px 12px; text-align:center; color:#dedbd5; line-height:1.6; font-size:.875rem; }
 .site-footer p { margin:8px auto; max-width:40rem; }
+.section-nav a, details > summary { border-radius:9px; }
+@media (hover:hover) {
+  .section-nav a:hover, details > summary:hover {
+    background:#474039;
+    color:#fff0ca;
+    border-color:var(--gold);
+    box-shadow:inset 0 0 0 1px var(--gold), 0 0 12px #ffdc9144;
+  }
+}
 .site-footer a { display:inline-flex; align-items:center; min-height:44px; padding-inline:12px; }
