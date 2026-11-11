@@ -126,7 +126,7 @@ function calculateMix() {
   if (!Number.isFinite(oil)) return fail('mix', 'Die eingegebene Menge ist zu groß.');
   const display = oil < 1 ? '< 1' : Math.round(oil).toLocaleString('de-DE');
   showResult('mix', `${display} ml Öl zugeben`, activeRatio);
-  const text = `${fuel.toLocaleString('de-DE', {maximumSignificantDigits: 16})} Liter Benzin · 1:${activeRatio} · ${display} ml Zweitaktöl`;
+  const text = `${fuel.toLocaleString('de-DE', {maximumSignificantDigits: 16})} Liter Benzin · 1:${activeRatio} · ${display} ml Zweitaktöl\n\nBerechnet mit dem Mischrechner von Die Isolatoren Deluxe:\nhttps://dieisolatorendeluxe.github.io/isolatoren-deluxe/#rechner`;
   const copy = document.createElement('button');
   copy.type = 'button';
   copy.className = 'secondary';
