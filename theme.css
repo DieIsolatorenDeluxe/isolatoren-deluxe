@@ -123,12 +123,20 @@ a.action-primary:hover, a.partner-invitation-link:hover, .partner-card-body a.pa
 .site-footer { border-top:1px solid var(--border); padding:24px 12px; text-align:center; color:#dedbd5; line-height:1.6; font-size:.875rem; }
 .site-footer p { margin:8px auto; max-width:40rem; }
 .section-nav a, details > summary { border-radius:9px; }
+.vehicle[aria-pressed="true"] {
+  box-shadow:0 0 0 2px var(--gold), 0 0 16px #ffdc9155;
+}
 @media (hover:hover) {
+  :is(button:enabled, a[href], select:enabled, input:enabled:not([readonly]), details > summary):hover {
+    box-shadow:inset 0 0 0 1px var(--gold), 0 0 12px #ffdc9144;
+  }
+  .vehicle[aria-pressed="true"]:hover {
+    box-shadow:0 0 0 2px var(--gold), 0 0 16px #ffdc9155;
+  }
   .section-nav a:hover, details > summary:hover {
     background:#474039;
     color:#fff0ca;
     border-color:var(--gold);
-    box-shadow:inset 0 0 0 1px var(--gold), 0 0 12px #ffdc9144;
   }
 }
 .site-footer a { display:inline-flex; align-items:center; min-height:44px; padding-inline:12px; }
