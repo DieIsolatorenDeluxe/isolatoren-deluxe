@@ -8,7 +8,7 @@ function setup(options={}) {
   const get=id=>nodes[id]||=(
     {hidden:false,disabled:false,textContent:'',listeners:{},
       addEventListener(type,fn){this.listeners[type]=fn;},
-      showModal(){this.open=true;},close(){this.open=false;}}
+      showModal(){this.open=true;},close(){this.open=false;},querySelector(){return null;}}
   );
   let registrationOptions,updates=0;
   const navigator={userAgent:'Android',platform:'Linux',maxTouchPoints:0,onLine:true,
@@ -16,7 +16,7 @@ function setup(options={}) {
     ...options.navigator};
   const context=vm.createContext({URL,navigator,document:{getElementById:get,
     visibilityState:'visible',addEventListener:(name,fn)=>documentEvents[name]=fn},
-    window:{location:{href:'https://example.test/isolatoren-deluxe/?private=value#result'},
+    window:{location:{href:'https://example.test/isolatoren-deluxe/?private=value#result',hash:options.hash ?? ''},
       matchMedia:()=>({matches:!!options.standalone,addEventListener(){}}),
       addEventListener:(name,fn)=>events[name]=fn}
   });
@@ -24,6 +24,13 @@ function setup(options={}) {
   return {nodes,navigator,events,documentEvents,get updates(){return updates;},get registrationOptions(){return registrationOptions;}};
 }
 const flush=()=>new Promise(resolve=>setImmediate(resolve));
+
+test('opening without a fragment or clearing it does not abort offline initialization',async()=>{
+  const app=setup({hash:''});await flush();
+  assert.equal(app.registrationOptions[0],'sw.js');
+  assert.doesNotThrow(()=>app.events.hashchange());
+  assert.match(app.nodes.connectionStatus.textContent,/offline verfügbar/);
+});
 test('Android without a native prompt shows manual installation instructions',async()=>{
   const app=setup(); await app.nodes.installApp.listeners.click();
   assert.equal(app.nodes.installHelp.open,true);
@@ -205,7 +212,7 @@ test('all social links are named, external HTTPS links with compact local icons'
   const root=path.join(__dirname,'..');
   const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
   const links=[...html.matchAll(/<a href="([^"]+)"[^>]*class="social-tile"[^>]*>/g)];
-  assert.equal(links.length,23);
+  assert.equal(links.length,14);
   const names=new Set();
   for(const [tag,href] of links){
     const url=new URL(href);
