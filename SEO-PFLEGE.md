@@ -10,7 +10,10 @@ Das Original-Logo, die Rechnerlogik, App-Installation, Manifest-ID, Start-URL,
 App-Scope und die Google-Verifizierungsdatei bleiben erhalten. Zusätzlich wurde
 ein vorhandener Startfehler in `app.js` behoben: Eine leere Sprungmarke muss zu
 `null` statt zu einer leeren Zeichenkette führen. Andernfalls brach die spätere
-Service-Worker-Registrierung ab. Cache-Version v19 liefert die Korrektur aus.
+Service-Worker-Registrierung ab. Cache-Version v20 liefert die Korrektur aus.
+Die HTML-Seite lädt die korrigierte App-Datei über eine Versionskennung; dieselbe
+Adresse wird für die Offline-Nutzung vorgeladen. So blockiert ein noch frischer
+HTTP-Cache nicht die erste Ausführung der Fehlerkorrektur.
 
 ## Inhalte und Suchintention
 
