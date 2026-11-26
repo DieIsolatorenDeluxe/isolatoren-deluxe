@@ -39,7 +39,8 @@ function setup(oldKeys = []) {
 }
 test('install fetches the complete calculator shell without using HTTP cache',async () => {
   const app=setup(); await app.dispatch('install');
-  assert.equal(app.entries.size,21); assert.equal(app.waiting,true);
+  assert.equal(app.entries.size,22); assert.equal(app.waiting,true);
+  assert.ok(app.entries.has(app.scope+'app.js?v=20261126-20'));
   assert.ok(app.entries.has(app.scope+'theme.css'));
   assert.ok(app.entries.has(app.scope+'calculator.js'));
   for (const file of ['qr-plakat.webp','app.js','teilen-qr.png','icon_instagram.webp','icon_facebook.webp','icon_tiktok.webp','app-icon-maskable-512.png','app-icon-180.png','app-icon.ico']) {
