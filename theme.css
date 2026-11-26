@@ -140,3 +140,10 @@ a.action-primary:hover, a.partner-invitation-link:hover, .partner-card-body a.pa
   }
 }
 .site-footer a { display:inline-flex; align-items:center; min-height:44px; padding-inline:12px; }
+
+/* Rechenhilfe: native Details, auch ohne JavaScript zugänglich. */
+.calculator-help { line-height:1.65; }
+.calculator-help > summary { cursor:pointer; padding-block:12px; min-height:44px; }
+.calculator-help table { width:100%; border-collapse:collapse; font-variant-numeric:tabular-nums; }
+.calculator-help th, .calculator-help td { padding:8px; border-bottom:1px solid var(--border); text-align:left; white-space:nowrap; }
+.calculator-help caption { text-align:left; padding-block:12px; }
