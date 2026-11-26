@@ -212,7 +212,7 @@
 
   function openLinkedPartner() {
     const id = window.location.hash?.slice(1);
-    const card = id && document.getElementById(id);
+    const card = id ? document.getElementById(id) : null;
     const details = card?.querySelector('.partner-card-details');
     if (details) {
       details.open = true;

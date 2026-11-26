@@ -7,7 +7,10 @@ Stand: 26.11.2026. Bestehende statische GitHub-Pages-Website, keine neue Website
 Die Änderungen dieses Stands betreffen `index.html`, `theme.css`, `sw.js`,
 `sitemap.xml` und `isolatoren-deluxe-vorschau.jpg`. Gemeinsam veröffentlichen.
 Das Original-Logo, die Rechnerlogik, App-Installation, Manifest-ID, Start-URL,
-App-Scope und die Google-Verifizierungsdatei bleiben erhalten.
+App-Scope und die Google-Verifizierungsdatei bleiben erhalten. Zusätzlich wurde
+ein vorhandener Startfehler in `app.js` behoben: Eine leere Sprungmarke muss zu
+`null` statt zu einer leeren Zeichenkette führen. Andernfalls brach die spätere
+Service-Worker-Registrierung ab. Cache-Version v19 liefert die Korrektur aus.
 
 ## Inhalte und Suchintention
 
@@ -54,11 +57,12 @@ Keine neue Domain-/Root-Website nur für diese Datei anlegen.
 
 `node --test tests/*.test.cjs`
 
-Hinweis zum vorhandenen Stand: Ein alter Social-Link-Test erwartet noch 23
-Community-Links, obwohl die freigegebene aktuelle Auswahl 14 solcher Links hat.
-Dieser Zähltest schlägt bereits vor der SEO-Änderung fehl. Die übrigen 36 Tests
-bestanden beim SEO-Durchlauf. Es wurden keine Mitglieder zurückergänzt, um den
-veralteten Test künstlich zu erfüllen.
+Ein alter Social-Link-Test erwartete noch 23 Community-Links statt der
+freigegebenen aktuellen 14. Diese Erwartung wurde berichtigt. Ein zusätzlicher
+Regressionstest prüft das Öffnen ohne Sprungmarke und das Leeren der Sprungmarke.
+Die Browser-Nachbildung verwendet nun wie echte Browser eine leere Zeichenkette
+für `location.hash` statt eines fehlenden Werts. Es wurden keine Mitglieder
+zurückergänzt, um einen alten Test zu erfüllen.
 
 Zusätzlich im Browser prüfen: 5 Liter bei 1:50 = 100 ml; 5 Liter bei 1:25 =
 200 ml; Rückrechner 100 ml bei 1:50 = 5 Liter; negative Eingaben; freie
