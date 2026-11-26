@@ -1,5 +1,11 @@
 # isolatoren-deluxe
 
+**Offizielle Website: [Die Isolatoren Deluxe](https://dieisolatorendeluxe.github.io/isolatoren-deluxe/)**
+
+Private Ostfahrzeug-Gemeinschaft mit Zweitakt-Gemischrechner für Benzin und Öl,
+Rückrechner, Treffen, Freunden und Partnersupport sowie unserer Kronkorkenaktion.
+Den Rechner direkt auf der Website nutzen – ohne Anmeldung und ohne Download.
+
 Statische Website mit Zweitakt-Mischrechner und Rückrechner. Kein Build notwendig.
 
 ## Tests
