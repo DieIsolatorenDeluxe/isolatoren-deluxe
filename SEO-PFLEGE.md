@@ -95,3 +95,39 @@ Keine automatischen Prüfungen sind hiermit eingerichtet.
 - [Brave: eigener Index](https://search.brave.com/help/index)
 
 Eine gute technische Grundlage garantiert weder Indexierung noch Platzierung.
+
+## Suchmaschinen ohne zusätzliche Konten benachrichtigen
+
+Seit 26.11.2026 ist die kontofreie IndexNow-Meldung vorbereitet:
+
+```sh
+node suchmaschinen-melden.cjs
+node suchmaschinen-melden.cjs --submit
+```
+
+Der erste Aufruf zeigt nur eine Vorschau. `--submit` sendet nach einer tatsächlichen
+Inhaltsänderung genau die öffentliche Hauptseite an den offiziellen gemeinsamen
+IndexNow-Endpunkt. Keine Meldung bei jedem Besuch und keine wiederholten Meldungen
+ohne Änderungen. Es werden keine Formulareingaben oder Besucherdaten übertragen.
+
+Die öffentliche Text-Prüfdatei liegt bewusst im Projekt-Unterverzeichnis. Der
+Parameter `keyLocation` begrenzt die bestätigte Zuständigkeit auf dieses Projekt.
+Das Skript prüft vor dem Versand die live erreichbare Prüfdatei, HTTP-Status,
+Canonical und Indexierungsfreigabe. Es meldet keine Testformulare, privaten Dateien,
+Hash-URLs oder die eigenständige Kronkorken-Demo.
+
+Bing und weitere IndexNow-Teilnehmer tauschen diese Benachrichtigungen untereinander
+aus. Google und Brave sind damit nicht direkt benachrichtigt. DuckDuckGo und Yahoo
+können über ihre Ergebnisquellen mittelbar profitieren; eine gesonderte Annahme
+dieser Anbieter wird damit nicht behauptet.
+
+HTTP 200 bedeutet: Meldung empfangen. HTTP 202 bedeutet: angenommen, Schlüsselprüfung
+steht noch aus. Keiner dieser Statuswerte bestätigt Indexierung oder Platzierung.
+Nicht angenommene Meldungen müssen anhand des Statuscodes geprüft werden.
+
+Offizielle Grundlagen:
+- https://www.indexnow.org/documentation (insbesondere `keyLocation` in Unterverzeichnissen)
+- https://www.indexnow.org/faq (gemeinsamer Endpunkt und teilnehmende Suchmaschinen)
+
+Die bereits funktionierende Google-Verifizierung bleibt unverändert. Eine robots.txt
+im Projekt-Unterverzeichnis wird nicht als vermeintliche Lösung angelegt.
